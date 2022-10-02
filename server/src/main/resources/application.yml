@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: mt
+  liquibase:
+    enabled: true
+    contexts: test
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/mt?useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+    driver-class-name: com.mysql.jdbc.Driver
+    username: mtUser
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database: mysql
+logging:
+  level:
+    root: INFO
+dims_team:
+  root-uri: http://localhost:8080
+  version: @project.version@

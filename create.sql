@@ -1,0 +1,3 @@
+CREATE USER 'mtUser'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON * . * TO 'mtUser'@'%';
+CREATE DATABASE mt;
