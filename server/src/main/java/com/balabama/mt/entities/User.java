@@ -1,0 +1,51 @@
+package com.balabama.mt.entities;
+
+import com.balabama.mt.dtos.SignupRequest;
+import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "user")
+@Data
+@NoArgsConstructor
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String username;
+    private String email;
+    private String password;
+    private UserRole role;
+
+    public User(SignupRequest signupRequest, String password) {
+        this.username = signupRequest.getUsername();
+        this.email = signupRequest.getEmail();
+        this.password = password;
+        this.role = signupRequest.getRole();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User that = (User) o;
+        return id.equals(that.id) && username.equals(that.username) && email.equals(that.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, email);
+    }
+}

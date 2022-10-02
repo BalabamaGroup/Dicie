@@ -15,6 +15,9 @@ spring:
 logging:
   level:
     root: INFO
-dims_team:
+mt:
   root-uri: http://localhost:8080
   version: @project.version@
+  app:
+    jwtSecret: mtSecretKey
+    jwtExpirationMs: 86400000

@@ -1,13 +1,13 @@
 --liquibase formatted sql
 
 --changeset evgeniy.sharunov:MT-1
-CREATE TABLE `user`
+create table `user`
 (
-    `id`   bigint(20) NOT NULL AUTO_INCREMENT,
-    `username` VARCHAR(255) NOT NULL UNIQUE,
-    `email` VARCHAR(255) NOT NULL UNIQUE,
-    `surname` VARCHAR(255) NOT NULL,
-    `name` VARCHAR(255) NOT NULL,
-    PRIMARY KEY (`id`)
+    id     bigint auto_increment
+        primary key,
+    email  varchar(50) not null unique,
+    username  varchar(20) not null unique,
+    password  varchar(120) not null,
+    `role` int(11) NOT NULL
 );
 --rollback DROP TABlE user;
