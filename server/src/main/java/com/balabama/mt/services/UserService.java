@@ -14,5 +14,5 @@ public interface UserService {
 
     void delete(Long id);
 
-    User save(User team);
+    User save(User user);
 }
