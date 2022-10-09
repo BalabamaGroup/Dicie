@@ -3,7 +3,6 @@ package com.balabama.mt.controllers;
 
 import com.balabama.mt.converters.UserDtoConverter;
 import com.balabama.mt.dtos.UserDto;
-import com.balabama.mt.entities.User;
 import com.balabama.mt.services.UserService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
