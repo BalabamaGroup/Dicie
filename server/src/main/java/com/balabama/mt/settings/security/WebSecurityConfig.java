@@ -43,7 +43,6 @@ public class WebSecurityConfig {
     }
 
 
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
@@ -71,7 +70,7 @@ public class WebSecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                    .allowedMethods("*").allowedOrigins("http://localhost:3000", "http://localhost:8080");
+                    .allowedMethods("*").allowedOrigins("http://localhost:3000", "http://localhost:8080").allowCredentials(true);
             }
         };
     }
