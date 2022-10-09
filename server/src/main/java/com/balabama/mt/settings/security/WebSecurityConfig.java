@@ -1,5 +1,6 @@
 package com.balabama.mt.settings.security;
 
+import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -70,7 +71,7 @@ public class WebSecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                    .allowedMethods("*");
+                    .allowedMethods("*").allowedOrigins("http://localhost:3000", "http://localhost:8080");
             }
         };
     }
