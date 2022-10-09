@@ -7,15 +7,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.server.ResponseStatusException;
 
 @Slf4j
 @ControllerAdvice(basePackageClasses = UserController.class)
 public class MTControllerAdvice {
 
-    @ExceptionHandler(MTException.class)
+    @ExceptionHandler(ResponseStatusException.class)
     @ResponseBody
-    ResponseEntity<?> handleControllerException(HttpServletRequest request, MTException ex) {
-        log.warn("Exception during request {}: {}, {}", request.getRequestURI(), ex.getHttpStatus(), ex.getErrorMessage());
-        return new ResponseEntity<>(ex.getErrorMessage(), ex.getHttpStatus());
+    ResponseEntity<?> handleControllerException(HttpServletRequest request, ResponseStatusException ex) {
+        log.warn("Exception during request {}: {}, {}", request.getRequestURI(), ex.getStatus(), ex.getMessage());
+        return new ResponseEntity<>(ex.getMessage(), ex.getStatus());
     }
 }
