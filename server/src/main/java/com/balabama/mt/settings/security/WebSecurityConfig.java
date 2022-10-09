@@ -62,7 +62,7 @@ public class WebSecurityConfig {
             .antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/favicon.ico")
             .antMatchers("/", "/*.js", "/*.css", "/h2-console/**", "/health", "/actuator/*", "/socket", "/assets/**", "/profile/**")
             .antMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/swagger-resources", "/swagger-resources/**")
-            .antMatchers("/api/auth/usernames");
+            .antMatchers("/api/auth/existing_users");
     }
 
     @Bean

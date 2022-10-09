@@ -1,6 +1,7 @@
 package com.balabama.mt.controllers;
 
 import com.balabama.mt.converters.UserDtoConverter;
+import com.balabama.mt.dtos.ExistingUserDto;
 import com.balabama.mt.dtos.JwtResponse;
 import com.balabama.mt.dtos.LoginRequest;
 import com.balabama.mt.dtos.SignupRequest;
@@ -68,8 +69,8 @@ public class AuthController {
         return converter.simpleConvert(userRepository.save(user), UserDto.class);
     }
 
-    @GetMapping("/usernames")
-    public List<String> getUsernames() {
-        return userRepository.findDistinctByUsername();
+    @GetMapping("/existing_users")
+    public List<ExistingUserDto> getUsernames() {
+        return userRepository.findDistinctByUsernameAndDistinctByEmail();
     }
 }

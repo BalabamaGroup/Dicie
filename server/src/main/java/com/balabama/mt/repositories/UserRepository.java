@@ -1,5 +1,6 @@
 package com.balabama.mt.repositories;
 
+import com.balabama.mt.dtos.ExistingUserDto;
 import com.balabama.mt.entities.User;
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Boolean existsByEmail(String email);
 
-    @Query("select distinct username from User")
-    List<String> findDistinctByUsername();
+    @Query("select new com.balabama.mt.dtos.ExistingUserDto(user.username, user.email) FROM User user")
+    List<ExistingUserDto> findDistinctByUsernameAndDistinctByEmail();
 }
