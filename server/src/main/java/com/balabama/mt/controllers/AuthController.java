@@ -70,6 +70,6 @@ public class AuthController {
 
     @GetMapping("/usernames")
     public List<String> getUsernames() {
-        return userRepository.findAll().stream().map(User::getUsername).collect(Collectors.toList());
+        return userRepository.findDistinctByUsername();
     }
 }
