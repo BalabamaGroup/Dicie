@@ -1,8 +1,14 @@
 import React, { useState, createRef, useEffect } from "react";
-import ValidationInput from "../../components/ValidationInput";
-import axios from "../../api/axios";
+import { inject } from "mobx-react";
 
-const SignUpPage = () => {
+import ValidationInput from "../../components/ValidationInput";
+
+interface SignUpProps {
+  signUp?: Function;
+  getTakenSignUpInfo?: Function;
+}
+
+const SignUp = ({ signUp, getTakenSignUpInfo }: SignUpProps) => {
   const errorRef = createRef<HTMLParagraphElement>();
 
   const [username, setUsername] = useState("");
@@ -22,29 +28,42 @@ const SignUpPage = () => {
   const [passwordIsValid, setPasswordIsValid] = useState(false);
   const [matchPasswordIsValid, setMatchPasswordIsValid] = useState(false);
 
+  const [takenUsernames, setTakenUsernames] = useState<string[]>([]);
+  const [takenEmails, setTakenEmails] = useState<string[]>([]);
+
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(
-        "/api/auth/signup",
-        JSON.stringify({
-          username,
-          password,
-          email: "aa@mail.ru",
-          role: "ROLE_USER",
-        }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-    }
+    const response =
+      signUp &&
+      (await signUp({
+        username,
+        password,
+        email,
+        role: "ROLE_USER",
+      }));
+    console.log(response);
   };
+
+  useEffect(() => {
+    const getExistingUsersInfo = async () => {
+      const takenSignUpInfo =
+        getTakenSignUpInfo && (await getTakenSignUpInfo());
+
+      const usernames: string[] = [];
+      const emails: string[] = [];
+
+      takenSignUpInfo.forEach((signUpInfo: any) => {
+        usernames.push(signUpInfo.username);
+        emails.push(signUpInfo.email);
+      });
+
+      setTakenUsernames(usernames);
+      setTakenEmails(emails);
+    };
+    getExistingUsersInfo();
+  }, []);
 
   useEffect(() => {
     setErrorMessage("");
@@ -54,13 +73,14 @@ const SignUpPage = () => {
     <section>
       <h1>Sign Up</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} noValidate>
         <ValidationInput.UsernameInput
           id={"username"}
           username={username}
           onChange={onChangeUsername}
           isValid={usernameIsValid}
           setIsValid={setUsernameIsValid}
+          takenUsernames={takenUsernames}
           focusOnLoad
         />
 
@@ -70,6 +90,7 @@ const SignUpPage = () => {
           onChange={onChangeEmail}
           isValid={emailIsValid}
           setIsValid={setEmailIsValid}
+          takenEmails={takenEmails}
         />
 
         <ValidationInput.PasswordInput
@@ -105,4 +126,10 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default inject(({ authStore }) => {
+  const { signUp, getTakenSignUpInfo } = authStore;
+  return {
+    signUp,
+    getTakenSignUpInfo,
+  };
+})(SignUp);

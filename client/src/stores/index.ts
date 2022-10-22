@@ -1,14 +1,12 @@
-// import { createContext } from "react";
 import { UserStore } from "./UserStore";
+import { AuthStore } from "./AuthStore";
 
-// export const rootStoreContext = createContext({
-//   userStore: new UserStore(),
-// });
-
+const authStore = new AuthStore();
 const userStore = new UserStore();
 
 const store = {
   userStore,
+  authStore,
 };
 
 export default store;

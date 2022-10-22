@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ReactSVG } from "react-svg";
+import { StyledValidationInput } from "../StyledValidationInput";
 
 export interface PasswordInputProps {
   id: string;
@@ -64,6 +65,7 @@ const PasswordInput = ({
           required
           aria-invalid={isValid ? "false" : "true"}
           aria-describedby={`${id}-instructions`}
+          autoComplete="off"
         />
         <p
           id={`${id}-instructions`}
@@ -75,7 +77,7 @@ const PasswordInput = ({
         </p>
       </div>
 
-      <div>
+      <StyledValidationInput>
         <label htmlFor={`${id}-match`}>
           {"Confirm Password: "}
           <ReactSVG
@@ -99,6 +101,7 @@ const PasswordInput = ({
           required
           aria-invalid={isValidMatch ? "false" : "true"}
           aria-describedby={`${id}-match-instructions`}
+          autoComplete="off"
         />
         <p
           id={`${id}-instructions`}
@@ -109,7 +112,7 @@ const PasswordInput = ({
           <ReactSVG src={"/images/info.react.svg"} wrapper={"span"} />
           Must match the first password input field.
         </p>
-      </div>
+      </StyledValidationInput>
     </>
   );
 };

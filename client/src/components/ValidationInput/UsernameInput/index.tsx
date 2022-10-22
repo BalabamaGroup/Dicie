@@ -1,6 +1,6 @@
 import { createRef, useState, useEffect } from "react";
 import { ReactSVG } from "react-svg";
-import { StyledInput } from "../StyledInput";
+import { StyledValidationInput } from "../StyledValidationInput";
 
 export interface UsernameInputProps {
   id: string;
@@ -8,9 +8,22 @@ export interface UsernameInputProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   isValid: boolean;
   setIsValid: Function;
+  takenUsernames?: string[];
   focusOnLoad?: boolean;
 }
 const USERNAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+
+const usernameInstructions = (
+  <span>
+    4 to 24 characters.
+    <br />
+    Must begin with a letter.
+    <br />
+    Letters, nubmbers, underscores, hyphens allowed.
+  </span>
+);
+
+const usernameIsTaken = <span>Username is taken</span>;
 
 const UsernameInput = ({
   id,
@@ -18,9 +31,12 @@ const UsernameInput = ({
   onChange,
   isValid,
   setIsValid,
+  takenUsernames = [],
   focusOnLoad = false,
 }: UsernameInputProps) => {
   const usernameRef = createRef<HTMLInputElement>();
+
+  const [message, setMessage] = useState<React.ReactNode | null>(null);
 
   const [isFocus, setIsFocus] = useState(false);
   const onFocus = () => setIsFocus(true);
@@ -31,11 +47,14 @@ const UsernameInput = ({
   }, []);
 
   useEffect(() => {
-    setIsValid(USERNAME_REGEX.test(username));
-  }, [username, setIsValid]);
+    const isRegexValid = USERNAME_REGEX.test(username);
+    const isTaken = takenUsernames.find((takenUN) => username === takenUN);
+    setIsValid(isRegexValid && !isTaken);
+    setMessage(isTaken ? usernameIsTaken : usernameInstructions);
+  }, [username, setIsValid, takenUsernames]);
 
   return (
-    <StyledInput>
+    <StyledValidationInput>
       <label htmlFor={id}>
         {"Username: "}
         <ReactSVG
@@ -72,13 +91,9 @@ const UsernameInput = ({
           src={"/images/info.react.svg"}
           wrapper={"span"}
         />
-        4 to 24 characters.
-        <br />
-        Must begin with a letter.
-        <br />
-        Letters, nubmbers, underscores, hyphens allowed.
+        {message}
       </p>
-    </StyledInput>
+    </StyledValidationInput>
   );
 };
 

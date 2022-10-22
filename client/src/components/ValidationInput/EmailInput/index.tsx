@@ -1,6 +1,6 @@
 import { createRef, useState, useEffect } from "react";
 import { ReactSVG } from "react-svg";
-import { StyledInput } from "../StyledInput";
+import { StyledValidationInput } from "../StyledValidationInput";
 
 export interface EmailInputProps {
   id: string;
@@ -8,9 +8,14 @@ export interface EmailInputProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   isValid: boolean;
   setIsValid: Function;
+  takenEmails: string[];
 }
 const EMAIL_REGEX =
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+const emailInstructions = <span>I dunno what to write here</span>;
+
+const emailIsTaken = <span>Email is taken</span>;
 
 const EmailInput = ({
   id,
@@ -18,17 +23,23 @@ const EmailInput = ({
   onChange,
   isValid,
   setIsValid,
+  takenEmails,
 }: EmailInputProps) => {
   const [isFocus, setIsFocus] = useState(false);
   const onFocus = () => setIsFocus(true);
   const onBlur = () => setIsFocus(false);
 
+  const [message, setMessage] = useState<React.ReactNode | null>(null);
+
   useEffect(() => {
-    setIsValid(EMAIL_REGEX.test(email));
-  }, [email, setIsValid]);
+    const isRegexValid = EMAIL_REGEX.test(email);
+    const isTaken = takenEmails.find((takenEmail) => email === takenEmail);
+    setIsValid(isRegexValid && !isTaken);
+    setMessage(isTaken ? emailIsTaken : emailInstructions);
+  }, [email, setIsValid, takenEmails]);
 
   return (
-    <StyledInput>
+    <StyledValidationInput>
       <label htmlFor={id}>
         {"Email: "}
         <ReactSVG
@@ -63,9 +74,9 @@ const EmailInput = ({
           src={"/images/info.react.svg"}
           wrapper={"span"}
         />
-        I dunno what to write here
+        {message}
       </p>
-    </StyledInput>
+    </StyledValidationInput>
   );
 };
 

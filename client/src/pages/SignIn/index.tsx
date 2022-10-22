@@ -1,0 +1,44 @@
+import { inject } from "mobx-react";
+import { useState } from "react";
+
+interface SignInProps {
+  signIn?: Function;
+}
+
+const SignIn = ({ signIn }: SignInProps) => {
+  const [username, setUsername] = useState("");
+  const onChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setUsername(e.target.value);
+
+  const [password, setPassword] = useState("");
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setPassword(e.target.value);
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    signIn && (await signIn({ username, password }));
+  };
+
+  return (
+    <form>
+      <input
+        value={username}
+        onChange={onChangeUsername}
+        placeholder="Username"
+      />
+      <input
+        value={password}
+        onChange={onChangePassword}
+        placeholder="Password"
+      />
+      <button onClick={handleSubmit}>Submit</button>
+    </form>
+  );
+};
+
+export default inject(({ authStore }) => {
+  const { signIn } = authStore;
+  return {
+    signIn,
+  };
+})(SignIn);

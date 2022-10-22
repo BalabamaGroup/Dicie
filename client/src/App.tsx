@@ -7,20 +7,16 @@ import store from "./stores/index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
-import SignIn from "./pages/LoginPage/SignIn";
-import SignUpPage from "./pages/SignUpPage";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 function App() {
-  fetch("http://localhost:8080/api/user").then(function (response) {
-    console.log(response);
-  });
-
   return (
     <div className="App">
       <MobxProvider {...store}>
         <Routes>
           <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/signup" element={<SignUp />} />
 
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
