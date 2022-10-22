@@ -16,7 +16,7 @@ public class RoomController {
 
 
     @GetMapping("/test")
-    public void getById(@PathVariable Long id) {
+    public void getById() {
         webSocketHandler.sendMessageToAllSessions();
     }
 
