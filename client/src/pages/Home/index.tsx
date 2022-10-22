@@ -20,8 +20,6 @@ const Home = ({ id }: HomeProps) => {
       const message = JSON.parse(e.data);
       console.log(message);
       setData(message);
-
-      ws.current?.send("TY SAM LOH PONYAL");
     };
   }, [isPaused]);
 
@@ -62,6 +60,14 @@ const Home = ({ id }: HomeProps) => {
         }}
       >
         {!isPaused ? "Остановить соединение" : "Открыть соединение"}
+      </button>
+
+      <button
+        onClick={() => {
+          ws.current?.send("TY SAM LOH PONYAL");
+        }}
+      >
+        Send nessage to server
       </button>
     </div>
   );
