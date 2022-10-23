@@ -19,27 +19,27 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 
-    private final UserDtoConverter dtoConverter;
-    private final UserService userService;
+    private final UserDtoConverter converter;
+    private final UserService service;
 
     @GetMapping()
     public List<UserDto> list() {
-        return dtoConverter.simpleConvert(userService.list(), UserDto.class);
+        return converter.simpleConvert(service.list(), UserDto.class);
     }
 
     @GetMapping("/{id}")
     public UserDto getById(@PathVariable Long id) {
-        return dtoConverter.simpleConvert(userService.getById(id), UserDto.class);
+        return converter.simpleConvert(service.getById(id), UserDto.class);
     }
 
     @GetMapping("/current")
     public UserDto getCurrentUser() {
-        return dtoConverter.simpleConvert(userService.getCurrent(), UserDto.class);
+        return converter.simpleConvert(service.getCurrent(), UserDto.class);
     }
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
-        userService.delete(id);
+        service.delete(id);
     }
 
 }
