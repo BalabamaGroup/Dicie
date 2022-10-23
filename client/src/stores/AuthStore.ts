@@ -1,5 +1,5 @@
-import { observable, action } from "mobx";
-import UserAPI from "../api/AuthAPI";
+import { action } from "mobx";
+import AuthAPI from "../api/Auth";
 
 import {
   signInProps,
@@ -7,28 +7,26 @@ import {
   takenSignUpInfo,
   signInResponse,
   signUpResponse,
-} from "./../api/AuthAPI/interfaces";
-
-export interface IAuthStore {}
+} from "../api/Auth/interfaces";
 
 export class AuthStore {
   @action signUp = async (data: signUpProps): Promise<signUpResponse> => {
-    const result = await UserAPI.signUp(data);
+    const result = await AuthAPI.signUp(data);
     await this.signIn({
-      username: result.username,
+      username: data.username,
       password: data.password,
     });
     return result;
   };
 
   @action signIn = async (data: signInProps): Promise<signInResponse> => {
-    const result = await UserAPI.signIn(data);
+    const result = await AuthAPI.signIn(data);
     console.log(result);
     sessionStorage.setItem("token", result.token);
     return result;
   };
 
   @action getTakenSignUpInfo = async (): Promise<takenSignUpInfo> => {
-    return await UserAPI.getTakenSignUpInfo();
+    return await AuthAPI.getTakenSignUpInfo();
   };
 }
