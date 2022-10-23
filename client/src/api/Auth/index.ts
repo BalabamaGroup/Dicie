@@ -1,8 +1,8 @@
 import { request } from "..";
-import { signInProps, signUpProps } from "./interfaces";
+import { signInData, signUpData } from "./interfaces";
 
 export default class AuthAPI {
-  static signUp = (data: signUpProps) => {
+  static signUp = (data: signUpData) => {
     const options = {
       method: "post",
       url: `auth/signup`,
@@ -12,16 +12,16 @@ export default class AuthAPI {
     return request(options);
   };
 
-  static getTakenSignUpInfo = () => {
+  static getTakenSignUpInfo() {
     const options = {
       method: "get",
       url: `auth/existing_users`,
     };
 
     return request(options);
-  };
+  }
 
-  static signIn = (data: signInProps) => {
+  static signIn = (data: signInData) => {
     const options = {
       method: "post",
       url: `auth/signin`,

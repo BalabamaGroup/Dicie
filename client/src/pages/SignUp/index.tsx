@@ -1,15 +1,15 @@
-import React, { useState, createRef, useEffect } from "react";
+import React, { useState, createRef, useEffect, useCallback } from "react";
 import { inject } from "mobx-react";
 
 import ValidationInput from "../../components/ValidationInput";
 import { RoleTypes } from "../../constants";
 
-interface SignUpProps {
+interface signUpData {
   signUp?: Function;
   getTakenSignUpInfo?: Function;
 }
 
-const SignUp = ({ signUp, getTakenSignUpInfo }: SignUpProps) => {
+const SignUp = ({ signUp, getTakenSignUpInfo }: signUpData) => {
   const errorRef = createRef<HTMLParagraphElement>();
 
   const [username, setUsername] = useState("");
@@ -32,8 +32,6 @@ const SignUp = ({ signUp, getTakenSignUpInfo }: SignUpProps) => {
   const [takenUsernames, setTakenUsernames] = useState<string[]>([]);
   const [takenEmails, setTakenEmails] = useState<string[]>([]);
 
-  const [errorMessage, setErrorMessage] = useState("");
-
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const response =
@@ -47,28 +45,24 @@ const SignUp = ({ signUp, getTakenSignUpInfo }: SignUpProps) => {
     console.log(response);
   };
 
+  const getExistingUsersInfo = useCallback(async () => {
+    const takenSignUpInfo = getTakenSignUpInfo && (await getTakenSignUpInfo());
+
+    const usernames: string[] = [];
+    const emails: string[] = [];
+
+    takenSignUpInfo.forEach((signUpInfo: any) => {
+      usernames.push(signUpInfo.username);
+      emails.push(signUpInfo.email);
+    });
+
+    setTakenUsernames(usernames);
+    setTakenEmails(emails);
+  }, [getTakenSignUpInfo]);
+
   useEffect(() => {
-    const getExistingUsersInfo = async () => {
-      const takenSignUpInfo =
-        getTakenSignUpInfo && (await getTakenSignUpInfo());
-
-      const usernames: string[] = [];
-      const emails: string[] = [];
-
-      takenSignUpInfo.forEach((signUpInfo: any) => {
-        usernames.push(signUpInfo.username);
-        emails.push(signUpInfo.email);
-      });
-
-      setTakenUsernames(usernames);
-      setTakenEmails(emails);
-    };
     getExistingUsersInfo();
   }, []);
-
-  useEffect(() => {
-    setErrorMessage("");
-  }, [username, password]);
 
   return (
     <section>
@@ -103,14 +97,6 @@ const SignUp = ({ signUp, getTakenSignUpInfo }: SignUpProps) => {
           isValidMatch={matchPasswordIsValid}
           setIsValidMatch={setMatchPasswordIsValid}
         />
-
-        <p
-          ref={errorRef}
-          className={errorMessage ? "errmsg" : "offscreen"}
-          aria-live="assertive"
-        >
-          {errorMessage}
-        </p>
 
         <button
         // disabled={

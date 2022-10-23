@@ -1,11 +1,11 @@
 import { inject } from "mobx-react";
 import { useState } from "react";
 
-interface SignInProps {
+interface signInData {
   signIn?: Function;
 }
 
-const SignIn = ({ signIn }: SignInProps) => {
+const SignIn = ({ signIn }: signInData) => {
   const [username, setUsername] = useState("");
   const onChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) =>
     setUsername(e.target.value);
