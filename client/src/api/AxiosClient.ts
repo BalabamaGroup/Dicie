@@ -1,15 +1,14 @@
 import axios, { AxiosInstance } from "axios";
+import { apiUrl } from "../utils/url";
+
 axios.defaults.withCredentials = true;
 
 class AxiosClient {
   host: AxiosInstance;
 
   constructor() {
-    const origin = "http://localhost:8080";
-    const apiBaseURL = origin + "/api/";
-
     this.host = axios.create({
-      baseURL: apiBaseURL,
+      baseURL: apiUrl(),
       responseType: "json",
       timeout: 30000,
     });
@@ -34,18 +33,18 @@ class AxiosClient {
       })
       .catch((err: any) => {
         console.log(err);
-        // let errText = err.response
-        //   ? this.getResponseError(err.response)
-        //   : err.message;
-        // if (err.response?.status === 401) {
-        //   //   this.request({
-        //   //     method: "post",
-        //   //     url: "auth/logout",
-        //   //   }).then(() => {
-        //   //     // window.location.href = "/signin";
-        //   //   });
-        // }
-        // return Promise.reject(errText || err);
+        let errText = err.response
+          ? this.getResponseError(err.response)
+          : err.message;
+        if (err.response?.status === 401) {
+          // this.request({
+          //   method: "post",
+          //   url: "auth/logout",
+          // }).then(() => {
+          window.location.href = "/signin";
+          // });
+        }
+        return Promise.reject(errText || err);
       });
   };
 }
