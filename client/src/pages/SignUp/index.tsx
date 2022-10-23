@@ -2,6 +2,7 @@ import React, { useState, createRef, useEffect } from "react";
 import { inject } from "mobx-react";
 
 import ValidationInput from "../../components/ValidationInput";
+import { RoleTypes } from "../../constants";
 
 interface SignUpProps {
   signUp?: Function;
@@ -41,7 +42,7 @@ const SignUp = ({ signUp, getTakenSignUpInfo }: SignUpProps) => {
         username,
         password,
         email,
-        role: "ROLE_USER",
+        role: RoleTypes.USER,
       }));
     console.log(response);
   };
