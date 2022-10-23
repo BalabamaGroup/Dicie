@@ -1,23 +1,23 @@
-export interface signUpProps {
+interface signUpProps {
   username: string;
   email: string;
   password: string;
   role: string;
 }
 
-export interface signUpResponse {
+interface signUpResponse {
   username: string;
   email: string;
   password: string;
   role: string;
 }
 
-export interface signInProps {
+interface signInProps {
   username: string;
   password: string;
 }
 
-export interface signInResponse {
+interface signInResponse {
   token: string;
   type: string;
   id: number;
@@ -26,6 +26,14 @@ export interface signInResponse {
   role: string;
 }
 
-export interface takenSignUpInfo {
+interface takenSignUpInfo {
   [index: number]: { username: string; email: string };
 }
+
+export type {
+  signUpProps,
+  signUpResponse,
+  signInProps,
+  signInResponse,
+  takenSignUpInfo,
+};

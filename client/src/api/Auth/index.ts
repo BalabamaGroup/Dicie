@@ -1,7 +1,7 @@
 import { request } from "..";
 import { signInProps, signUpProps } from "./interfaces";
 
-export default class UserAPI {
+export default class AuthAPI {
   static signUp = (data: signUpProps) => {
     const options = {
       method: "post",
