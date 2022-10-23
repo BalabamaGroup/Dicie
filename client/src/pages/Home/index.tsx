@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { inject, observer } from "mobx-react";
+import { socketUrl } from "../../utils/url";
 
 export interface HomeProps {
   id?: string;
@@ -13,10 +14,8 @@ const Home = ({ id }: HomeProps) => {
 
   const gettingData = useCallback(() => {
     if (!ws.current) return;
-
     ws.current.onmessage = (e) => {
       if (isPaused) return;
-      console.log(e);
       const message = JSON.parse(e.data);
       console.log(message);
       setData(message);
@@ -24,18 +23,14 @@ const Home = ({ id }: HomeProps) => {
   }, [isPaused]);
 
   useEffect(() => {
-    // if (!ws.current) return;
     if (!isPaused) {
-      ws.current = new WebSocket("ws://localhost:8080/socket"); // создаем ws соединение
-      ws.current.onopen = () => {
-        console.log("CONNECTION OPENED");
-        setStatus("Соединение открыто");
-      }; // callback на ивент открытия соединения
-      ws.current.onclose = () => setStatus("Соединение закрыто"); // callback на ивент закрытия соединения
+      ws.current = new WebSocket(socketUrl());
+      ws.current.onopen = () => setStatus("Соединение открыто");
+      ws.current.onclose = () => setStatus("Соединение закрыто");
       gettingData();
     }
 
-    return () => ws.current?.close(); // кода меняется isPaused - соединение закрывается
+    return () => ws.current?.close();
   }, [ws, isPaused, gettingData]);
 
   return (
@@ -46,10 +41,7 @@ const Home = ({ id }: HomeProps) => {
       <>
         <div>
           <h2>{status}</h2>
-          <p>{`connection ID: ${data?.connectionID}`}</p>
-          <p>{`event: ${data?.event}`}</p>
-          <p>{`status: ${data?.status}`}</p>
-          <p>{`version: ${data?.version}`}</p>
+          <p>{`data: ${data}`}</p>
         </div>
       </>
 
