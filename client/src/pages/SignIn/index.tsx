@@ -38,7 +38,5 @@ const SignIn = ({ signIn }: signInData) => {
 
 export default inject(({ authStore }) => {
   const { signIn } = authStore;
-  return {
-    signIn,
-  };
+  return { signIn };
 })(SignIn);

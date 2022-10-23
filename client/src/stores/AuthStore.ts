@@ -1,18 +1,18 @@
 import { action } from "mobx";
-import AuthAPI from "../api/Auth";
 
+import AuthAPI from "../api/auth";
 import {
-  signUpData,
-  signUpRes,
   signInData,
   signInRes,
+  signUpData,
+  signUpRes,
   takenSignUpInfoRes,
-} from "../api/Auth/interfaces";
+} from "../api/auth/interfaces";
 
 export class AuthStore {
   @action signUp = async (data: signUpData): Promise<signUpRes> => {
-    const result = await AuthAPI.signUp(data);
-    await this.signIn({
+    const result = AuthAPI.signUp(data);
+    this.signIn({
       username: data.username,
       password: data.password,
     });
@@ -20,13 +20,13 @@ export class AuthStore {
   };
 
   @action signIn = async (data: signInData): Promise<signInRes> => {
-    const result = await AuthAPI.signIn(data);
+    const result = AuthAPI.signIn(data);
     console.log(result);
     sessionStorage.setItem("token", result.token);
     return result;
   };
 
   @action getTakenSignUpInfo = async (): Promise<takenSignUpInfoRes> => {
-    return await AuthAPI.getTakenSignUpInfo();
+    return AuthAPI.getTakenSignUpInfo();
   };
 }
