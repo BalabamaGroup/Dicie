@@ -1,14 +1,22 @@
 package com.balabama.mt.entities;
 
 import com.balabama.mt.dtos.SignupRequest;
+import com.balabama.mt.entities.rooms.Room;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "user")
@@ -23,6 +31,13 @@ public class User {
     private String email;
     private String password;
     private UserRole role;
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room")
+    private Room room;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private UserState userState;
 
     public User(SignupRequest signupRequest, String password) {
         this.username = signupRequest.getUsername();
