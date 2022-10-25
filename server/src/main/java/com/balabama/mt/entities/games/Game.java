@@ -1,5 +1,9 @@
-package com.balabama.mt.entities;
+package com.balabama.mt.entities.games;
 
+import com.balabama.mt.entities.User;
+import com.balabama.mt.entities.UserState;
+import com.balabama.mt.entities.rooms.Room;
+import com.balabama.mt.entities.rooms.RoomData;
 import java.util.List;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -26,7 +30,6 @@ import lombok.ToString;
 public class Game {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Integer minUsers;
@@ -34,4 +37,12 @@ public class Game {
     @ToString.Exclude
     @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
     private List<Room> rooms;
+
+    public RoomData createRoomData(Room room){
+        return new RoomData(room);
+    }
+
+    public UserState createUserState(User user){
+        return new UserState(user);
+    }
 }

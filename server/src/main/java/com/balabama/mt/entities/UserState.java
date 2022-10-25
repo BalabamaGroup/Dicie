@@ -1,5 +1,6 @@
 package com.balabama.mt.entities;
 
+import com.balabama.mt.dtos.UserStateDto;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -30,4 +31,13 @@ public class UserState {
     @JoinColumn(name = "user_id")
     @ToString.Exclude
     private User user;
+
+    public UserState(User user) {
+        this.id = user.getId();
+        this.user = user;
+    }
+
+    public UserStateDto createDto(){
+        return new UserStateDto(this);
+    }
 }

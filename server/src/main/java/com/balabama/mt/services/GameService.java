@@ -1,6 +1,6 @@
 package com.balabama.mt.services;
 
-import com.balabama.mt.entities.Game;
+import com.balabama.mt.entities.games.Game;
 import java.util.List;
 
 public interface GameService {

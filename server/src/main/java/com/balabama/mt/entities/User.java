@@ -1,7 +1,7 @@
 package com.balabama.mt.entities;
 
 import com.balabama.mt.dtos.SignupRequest;
-import java.util.List;
+import com.balabama.mt.entities.rooms.Room;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;

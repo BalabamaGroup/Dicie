@@ -1,4 +1,4 @@
-package com.balabama.mt.entities;
+package com.balabama.mt.entities.rooms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,4 +28,8 @@ public class RoomData {
     @JoinColumn(name = "room_id")
     private Room room;
 
+    public RoomData(Room room) {
+        this.id = room.getId();
+        this.room = room;
+    }
 }

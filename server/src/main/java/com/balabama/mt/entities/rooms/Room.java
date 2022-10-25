@@ -1,6 +1,9 @@
-package com.balabama.mt.entities;
+package com.balabama.mt.entities.rooms;
 
+import com.balabama.mt.entities.games.Game;
+import com.balabama.mt.entities.User;
 import com.balabama.mt.exceptions.MTException;
+import com.balabama.mt.exceptions.RoomStartException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -9,8 +12,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -60,4 +61,29 @@ public class Room {
         this.users.add(user);
     }
 
+    public void start() {
+        this.startCheck();
+        this.roomData = this.game.createRoomData(this);
+        List<User> userList = new ArrayList<>();
+        for (User user : users) {
+            user.setUserState(this.game.createUserState(user));
+            userList.add(user);
+        }
+        this.setUsers(userList);
+    }
+
+    private void startCheck() {
+        if (roomData != null) {
+            throw RoomStartException.alreadyRunning(this.id);
+        }
+        if (game == null) {
+            throw RoomStartException.gameNotSet(this.id);
+        }
+        if (users.size() > game.getMaxUsers()) {
+            throw RoomStartException.usersLimit(this);
+        }
+        if (users.size() < game.getMinUsers()) {
+            throw RoomStartException.usersFew(this);
+        }
+    }
 }
