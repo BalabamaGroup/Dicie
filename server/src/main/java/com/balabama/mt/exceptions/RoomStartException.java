@@ -34,6 +34,6 @@ public class RoomStartException extends ResponseStatusException {
     public static RoomStartException usersFew(Room room) {
         return new RoomStartException(HttpStatus.BAD_REQUEST,
             "There are few users to start room with id = " + room.getId() + ", you need at least " + room.getGame().getMinUsers()
-                + " users to play '" + room.getGame().getName() + "'fool, and now only " + room.getUsers().size());
+                + " users to play '" + room.getGame().getName() + "', and now only " + room.getUsers().size());
     }
 }
