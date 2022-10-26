@@ -1,4 +1,4 @@
-package com.balabama.mt.entities;
+package com.balabama.mt.entities.user;
 
 import com.balabama.mt.dtos.SignupRequest;
 import com.balabama.mt.entities.rooms.Room;

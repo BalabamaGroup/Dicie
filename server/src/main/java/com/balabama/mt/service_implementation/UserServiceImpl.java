@@ -1,6 +1,6 @@
 package com.balabama.mt.service_implementation;
 
-import com.balabama.mt.entities.User;
+import com.balabama.mt.entities.user.User;
 import com.balabama.mt.exceptions.MTException;
 import com.balabama.mt.repositories.UserRepository;
 import com.balabama.mt.services.UserService;

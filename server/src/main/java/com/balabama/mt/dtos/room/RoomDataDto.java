@@ -1,6 +1,7 @@
-package com.balabama.mt.dtos;
+package com.balabama.mt.dtos.room;
 
-import com.balabama.mt.entities.UserState;
+import com.balabama.mt.entities.rooms.Room;
+import com.balabama.mt.entities.rooms.RoomData;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserStateDto {
+public class RoomDataDto {
 
-    public UserStateDto(UserState state) {
-
+    public RoomDataDto(Room room) {
     }
+
 }

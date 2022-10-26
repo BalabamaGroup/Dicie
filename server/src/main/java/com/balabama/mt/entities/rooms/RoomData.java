@@ -1,5 +1,6 @@
 package com.balabama.mt.entities.rooms;
 
+import com.balabama.mt.dtos.room.RoomDataDto;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,5 +32,9 @@ public class RoomData {
     public RoomData(Room room) {
         this.id = room.getId();
         this.room = room;
+    }
+
+    public RoomDataDto createDto() {
+        return new RoomDataDto(this.room);
     }
 }

@@ -1,9 +1,7 @@
-package com.balabama.mt.dtos;
+package com.balabama.mt.dtos.user;
 
-import com.balabama.mt.entities.UserRole;
-import com.balabama.mt.entities.UserState;
+import com.balabama.mt.entities.user.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

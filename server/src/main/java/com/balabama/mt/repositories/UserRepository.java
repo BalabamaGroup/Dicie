@@ -1,7 +1,7 @@
 package com.balabama.mt.repositories;
 
 import com.balabama.mt.dtos.ExistingUserDto;
-import com.balabama.mt.entities.User;
+import com.balabama.mt.entities.user.User;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;

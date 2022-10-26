@@ -1,6 +1,6 @@
 package com.balabama.mt.settings.security;
 
-import com.balabama.mt.entities.User;
+import com.balabama.mt.entities.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Collection;
 import java.util.Collections;

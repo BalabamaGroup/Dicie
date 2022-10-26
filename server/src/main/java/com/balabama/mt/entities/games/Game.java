@@ -1,7 +1,7 @@
 package com.balabama.mt.entities.games;
 
-import com.balabama.mt.entities.User;
-import com.balabama.mt.entities.UserState;
+import com.balabama.mt.entities.user.User;
+import com.balabama.mt.entities.user.UserState;
 import com.balabama.mt.entities.rooms.Room;
 import com.balabama.mt.entities.rooms.RoomData;
 import java.util.List;
@@ -9,8 +9,6 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;

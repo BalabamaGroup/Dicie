@@ -36,6 +36,7 @@ create table room_charade_data
 (
     room_id bigint not null
         primary key,
+    all_users_ready bit null,
     constraint FK900z9j8lhpo0g2vofk8pvkkts
         foreign key (room_id) references room (id)
 );
@@ -64,6 +65,7 @@ create table user_charade_state
     user_id     bigint not null
         primary key,
     is_finished bit null,
+    ready bit null,
     word        varchar(255) null,
     constraint FK_riusvmjs0b0jrkeyik7wkd436
         foreign key (user_id) references user (id)

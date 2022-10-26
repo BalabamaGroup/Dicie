@@ -1,7 +1,8 @@
-package com.balabama.mt.entities;
+package com.balabama.mt.entities.user.charade;
 
-import com.balabama.mt.dtos.UserCharadeStateDto;
-import com.balabama.mt.dtos.UserStateDto;
+import com.balabama.mt.dtos.user.charade.UserCharadeStateDto;
+import com.balabama.mt.entities.user.User;
+import com.balabama.mt.entities.user.UserState;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import lombok.Data;
@@ -15,6 +16,7 @@ public class UserCharadeState extends UserState {
 
     private String word;
     private Boolean isFinished = false;
+    private Boolean ready = false;
 
     public UserCharadeState(User user) {
         super(user);
@@ -23,6 +25,12 @@ public class UserCharadeState extends UserState {
     @Override
     public UserCharadeStateDto createDto() {
         return new UserCharadeStateDto(this);
+    }
+
+    public UserCharadeState setWord(String word){
+        this.word = word;
+        this.ready = true;
+        return this;
     }
 
 }

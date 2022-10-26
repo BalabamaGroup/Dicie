@@ -1,7 +1,10 @@
 package com.balabama.mt.controllers;
 
+import com.balabama.mt.dtos.room.RoomDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import javax.transaction.Transactional;
@@ -45,6 +48,20 @@ public class WebSocketHandler extends TextWebSocketHandler {
         for (WebSocketSession session : sessions) {
             try {
                 session.sendMessage(new TextMessage(mapper.writeValueAsString("HI lox")));
+            } catch (Exception e) {
+                log.error("Cannot send statistic to websocket session.", e);
+            }
+        }
+    }
+
+    @Transactional
+    public void sendRoomMessage(RoomDto roomDto) {
+        List<String> usernames = roomDto.getUsernames();
+        for (WebSocketSession session : sessions) {
+            try {
+                if (usernames.contains(Objects.requireNonNull(session.getPrincipal()).getName())) {
+                    session.sendMessage(new TextMessage(mapper.writeValueAsString(roomDto)));
+                }
             } catch (Exception e) {
                 log.error("Cannot send statistic to websocket session.", e);
             }

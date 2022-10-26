@@ -1,6 +1,6 @@
 package com.balabama.mt.settings.security;
 
-import com.balabama.mt.entities.User;
+import com.balabama.mt.entities.user.User;
 import com.balabama.mt.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
