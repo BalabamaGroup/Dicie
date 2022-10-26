@@ -4,6 +4,7 @@ import com.balabama.mt.dtos.SignupRequest;
 import com.balabama.mt.entities.rooms.Room;
 import java.util.Objects;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "user")
@@ -33,7 +35,8 @@ public class User {
     private UserRole role;
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room")
+    @JoinColumn(name = "room", columnDefinition = "VARCHAR(36)")
+    @Type(type = "uuid-char")
     private Room room;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn

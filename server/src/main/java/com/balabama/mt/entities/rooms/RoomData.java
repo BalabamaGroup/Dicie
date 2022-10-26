@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -22,7 +23,8 @@ import lombok.NoArgsConstructor;
 public class RoomData {
 
     @Id
-    @Column(name = "room_id")
+    @Column(name = "room_id", columnDefinition = "VARCHAR(36)")
+    @Type(type = "uuid-char")
     private UUID id;
 
     @OneToOne
