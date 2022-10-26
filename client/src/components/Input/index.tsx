@@ -1,7 +1,10 @@
 import { createRef, useState, useEffect } from "react";
 import { ReactSVG } from "react-svg";
-import { getTextHeight } from "../../common/helpers/domHelpers";
 import * as Styled from "./index.styled";
+
+import { getTextHeight } from "../../common/helpers/domHelpers";
+
+import { multiInputDataType } from "../MultiInput";
 
 export interface InputProps {
   id: string;
@@ -22,34 +25,45 @@ export interface InputProps {
     note: string;
   };
 
+  multiInputData?: multiInputDataType;
+  multiInputDataIndex?: number;
+  onChangeMultiInputData?: Function;
+
   focusOnLoad?: boolean;
 }
 
-const USERNAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
-
 const Input = ({
   id,
-  value,
   placeholder,
+  value,
   onChange,
 
-  isValid,
+  isValid = true,
   setIsValid,
 
   validationData,
   existanceData,
 
-  focusOnLoad,
+  multiInputData,
+  onChangeMultiInputData,
+
+  focusOnLoad = false,
 }: InputProps) => {
+  const isMultiInputPart = !!multiInputData && !!onChangeMultiInputData;
+
   const inputRef = createRef<HTMLInputElement>();
 
   const [isFocus, setIsFocus] = useState(false);
-  const onFocus = () => setIsFocus(true);
-  const onBlur = () => setIsFocus(false);
+  const onFocus = () => {
+    setIsFocus(true);
+    isMultiInputPart && onChangeMultiInputData(true);
+  };
+  const onBlur = () => {
+    setIsFocus(false);
+    isMultiInputPart && onChangeMultiInputData(false);
+  };
 
   const [currentNote, setCurrentNote] = useState("");
-
-  console.log(getTextHeight(currentNote, 20));
 
   const onInputClick = () => {
     if (!inputRef?.current) return;
@@ -66,29 +80,37 @@ const Input = ({
   }, []);
 
   useEffect(() => {
+    if (isValid === undefined || !setIsValid) return;
+
     let isRegexValid = true;
     if (validationData) isRegexValid = validationData.regex.test(value);
 
-    let isTaken = true;
+    let isTaken = false;
     if (existanceData)
       isTaken = !!existanceData.values.find((ev) => value === ev);
 
     if (validationData && !isRegexValid) setCurrentNote(validationData?.note);
     else if (existanceData && isTaken) setCurrentNote(existanceData?.note);
-    setIsValid && setIsValid(!isTaken && isRegexValid);
-  }, [value, existanceData, validationData]);
+    setIsValid(!!value ? !isTaken && isRegexValid : true);
+  }, [value]);
 
   return (
     <Styled.Wrapper
+      className="input_wrapper"
       isNoteVisible={isFocus && !isValid}
       noteTextHeight={getTextHeight(currentNote, 20)}
+      multiInputData={isMultiInputPart ? multiInputData : undefined}
     >
       <Styled.InputWrapper
+        className="input_input-wrapper"
         id={id}
         onClick={onInputClick}
         onMouseDown={onInputMouseDown}
+        isFocus={isFocus}
+        isValid={isValid}
       >
         <Styled.Input
+          className="input_input"
           placeholder={placeholder}
           ref={inputRef}
           value={value}
@@ -96,17 +118,18 @@ const Input = ({
           onFocus={onFocus}
           onBlur={onBlur}
         />
-        <Styled.Icon>
+        <Styled.Icon className="input_icon">
           <ReactSVG src="/images/cross.react.svg" />
         </Styled.Icon>
       </Styled.InputWrapper>
 
-      <Styled.NoteWrapper
+      <Styled.Note
+        className="input_note"
         onMouseDown={onInputMouseDown}
         isVisible={isFocus && !isValid}
       >
         {currentNote}
-      </Styled.NoteWrapper>
+      </Styled.Note>
     </Styled.Wrapper>
   );
 };
