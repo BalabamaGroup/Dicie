@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "name": "🌎 root",
+      "path": "./client"
+    },
+    {
+      "name": "📮 @mt/public",
+      "path": "./client/public"
+    },
+    {
+      "name": "🔒 @mt/src",
+      "path": "./client/src"
+    }
+  ],
+  "settings": {}
+}
