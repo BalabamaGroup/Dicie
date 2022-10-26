@@ -71,7 +71,11 @@ create table user_charade_state
         foreign key (user_id) references user (id)
 );
 
-insert into game(game_type,id, max_users, min_users, name) value ('CHARADE', 1, 10, 1, 'charade')
+insert into game(game_type,id, max_users, min_users, name) value ('CHARADE', 1, 10, 1, 'charade');
+ALTER TABLE `room`
+    ADD COLUMN `admin_id` bigint null, ADD KEY `FKzUiRVjCyIYturgw07fyiouOQI` (`admin_id`),
+    ADD CONSTRAINT `FKzUiRVjCyIYturgw07fyiouOQI` FOREIGN KEY (`admin_id`) REFERENCES `user` (`id`);
+
 --rollback DROP TABlE user;
 --rollback DROP TABlE room;
 --rollback DROP TABlE game;

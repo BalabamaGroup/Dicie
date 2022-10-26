@@ -35,6 +35,7 @@ public class RoomDtoConverter extends BaseDtoConverter {
             room.setGame(gameService.getById(dtoIn.getGameId()));
         }
         room.addUser(userService.getCurrent());
+        room.setAdmin(userService.getCurrent());
         return room;
     }
 

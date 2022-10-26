@@ -22,6 +22,7 @@ public class RoomDto {
     private Boolean start = false;
     private String name;
     private UUID id;
+    private UserDto admin;
 
     @JsonIgnore
     public List<String> getUsernames() {

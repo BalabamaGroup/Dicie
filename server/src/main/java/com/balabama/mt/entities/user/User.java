@@ -38,6 +38,8 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private UserState userState;
+    @OneToOne(mappedBy = "admin")
+    private Room controlledRoom;
 
     public User(SignupRequest signupRequest, String password) {
         this.username = signupRequest.getUsername();

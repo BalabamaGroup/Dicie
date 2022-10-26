@@ -49,6 +49,9 @@ public class Room {
     @OneToOne(mappedBy = "room", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private RoomData roomData;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "admin_id", referencedColumnName = "id")
+    private User admin;
 
     public void addUsers(List<User> users) {
         users.forEach(this::addUser);
