@@ -1,9 +1,9 @@
 package com.balabama.mt.entities.games;
 
-import com.balabama.mt.entities.User;
-import com.balabama.mt.entities.UserCharadeState;
+import com.balabama.mt.entities.user.User;
+import com.balabama.mt.entities.user.charade.UserCharadeState;
 import com.balabama.mt.entities.rooms.Room;
-import com.balabama.mt.entities.rooms.RoomCharadeData;
+import com.balabama.mt.entities.rooms.charade.RoomCharadeData;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 

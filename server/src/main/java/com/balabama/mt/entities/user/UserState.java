@@ -1,6 +1,7 @@
-package com.balabama.mt.entities;
+package com.balabama.mt.entities.user;
 
-import com.balabama.mt.dtos.UserStateDto;
+import com.balabama.mt.dtos.user.UserStateDto;
+import com.balabama.mt.entities.user.User;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,7 +14,6 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import lombok.ToString.Exclude;
 
 @Entity
 @Table(name = "user_state")

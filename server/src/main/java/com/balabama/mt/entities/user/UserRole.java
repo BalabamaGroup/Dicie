@@ -1,4 +1,4 @@
-package com.balabama.mt.entities;
+package com.balabama.mt.entities.user;
 
 import org.springframework.security.core.GrantedAuthority;
 

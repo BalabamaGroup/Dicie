@@ -1,7 +1,7 @@
 package com.balabama.mt.entities.rooms;
 
 import com.balabama.mt.entities.games.Game;
-import com.balabama.mt.entities.User;
+import com.balabama.mt.entities.user.User;
 import com.balabama.mt.exceptions.MTException;
 import com.balabama.mt.exceptions.RoomStartException;
 import java.util.ArrayList;

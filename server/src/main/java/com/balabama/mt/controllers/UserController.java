@@ -2,8 +2,9 @@ package com.balabama.mt.controllers;
 
 
 import com.balabama.mt.converters.UserDtoConverter;
-import com.balabama.mt.dtos.UserDto;
+import com.balabama.mt.dtos.user.UserDto;
 import com.balabama.mt.services.UserService;
+import java.security.Principal;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,11 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         service.delete(id);
+    }
+
+    @GetMapping("/principal")
+    public Principal user(Principal user) {
+        return user;
     }
 
 }

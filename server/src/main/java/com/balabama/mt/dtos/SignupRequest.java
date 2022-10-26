@@ -1,6 +1,6 @@
 package com.balabama.mt.dtos;
 
-import com.balabama.mt.entities.UserRole;
+import com.balabama.mt.entities.user.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

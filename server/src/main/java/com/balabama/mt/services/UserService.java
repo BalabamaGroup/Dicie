@@ -1,6 +1,6 @@
 package com.balabama.mt.services;
 
-import com.balabama.mt.entities.User;
+import com.balabama.mt.entities.user.User;
 import java.util.List;
 
 public interface UserService {
