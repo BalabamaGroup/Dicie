@@ -39,10 +39,15 @@ public class RoomDtoConverter extends BaseDtoConverter {
         RoomDto roomDto = new RoomDto();
         for (User user : room.getUsers()) {
             UserWithState userWithState = simpleConvert(user, UserWithState.class);
-            userWithState.setState(user.getUserState().createDto());
+            if (user.getUserState() != null) {
+                userWithState.setState(user.getUserState().createDto());
+            }
             roomDto.getUsers().add(userWithState);
         }
-        roomDto.setRoomDataDto(room.getRoomData().createDto());
+        if (room.getRoomData() != null) {
+            roomDto.setRoomDataDto(room.getRoomData().createDto());
+        }
+        roomDto.setStart(room.getStart());
         return roomDto;
 
 

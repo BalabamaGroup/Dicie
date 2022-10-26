@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,8 +34,15 @@ public class RoomController {
     }
 
     @PostMapping("/start/{id}")
-    public RoomDto createRoom(@PathVariable Long id) {
+    public RoomDto start(@PathVariable Long id) {
         RoomDto roomDto = converter.convertRoom(service.start(id));
+        webSocketHandler.sendRoomMessage(roomDto);
+        return roomDto;
+    }
+
+    @PutMapping("/connect/{id}")
+    public RoomDto connect(@PathVariable Long id) {
+        RoomDto roomDto = converter.convertRoom(service.connect(id));
         webSocketHandler.sendRoomMessage(roomDto);
         return roomDto;
     }

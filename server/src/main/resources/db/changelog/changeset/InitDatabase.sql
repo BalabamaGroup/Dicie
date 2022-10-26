@@ -16,10 +16,9 @@ create table room
 (
     id           bigint auto_increment
         primary key,
-    max_users    int null,
-    min_users    int null,
-    is_finished  bit null,
-    user_turn_id bigint null,
+    max_users    int not null default 20,
+    min_users    int not null default 2,
+    start bit not null default false,
     game         bigint null,
     constraint FKnfwcytp8m89dqetjy1x4en8d
         foreign key (game) references game (id)

@@ -9,4 +9,6 @@ public interface RoomService {
     Room start(Long id);
 
     Room getById(Long id);
+
+    Room connect(Long id);
 }

@@ -18,6 +18,7 @@ public class RoomDto {
 
     private List<UserWithState> users = new ArrayList<>();
     private RoomDataDto roomDataDto;
+    private Boolean start = false;
 
     @JsonIgnore
     public List<String> getUsernames() {

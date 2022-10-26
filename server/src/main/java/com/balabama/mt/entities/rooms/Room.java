@@ -32,8 +32,9 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer minUsers;
-    private Integer maxUsers;
+    private Integer minUsers = 2;
+    private Integer maxUsers = 20;
+    private Boolean start = false;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "room", fetch = FetchType.LAZY)
@@ -61,6 +62,11 @@ public class Room {
         this.users.add(user);
     }
 
+    public void connect(User user) {
+        checkRoomNotStart();
+        addUser(user);
+    }
+
     public void start() {
         this.startCheck();
         this.roomData = this.game.createRoomData(this);
@@ -70,15 +76,24 @@ public class Room {
             userList.add(user);
         }
         this.setUsers(userList);
+        this.start = true;
     }
 
     private void startCheck() {
-        if (roomData != null) {
-            throw RoomStartException.alreadyRunning(this.id);
-        }
+        checkRoomNotStart();
         if (game == null) {
             throw RoomStartException.gameNotSet(this.id);
         }
+        checkUsersLimits();
+    }
+
+    private void checkRoomNotStart() {
+        if (roomData != null || start) {
+            throw RoomStartException.alreadyRunning(this.id);
+        }
+    }
+
+    private void checkUsersLimits() {
         if (users.size() > game.getMaxUsers()) {
             throw RoomStartException.usersLimit(this);
         }
