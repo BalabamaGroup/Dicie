@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { apiUrl } from "../utils/url";
+import { apiUrl } from "../common/utils/url";
 
 axios.defaults.withCredentials = true;
 

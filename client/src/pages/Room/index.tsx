@@ -1,5 +1,11 @@
 const Room = () => {
-  return <div>Room</div>;
+  const createGame = async (id: number) => {};
+
+  return (
+    <div>
+      <button>create sharades game</button>
+    </div>
+  );
 };
 
 export default Room;

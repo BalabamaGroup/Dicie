@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { inject, observer } from "mobx-react";
-import { socketUrl } from "../../utils/url";
+import { socketUrl } from "../../common/utils/url";
 
 export interface HomeProps {
   id?: string;

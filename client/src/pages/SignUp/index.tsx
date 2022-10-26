@@ -2,7 +2,10 @@ import React, { useState, createRef, useEffect, useCallback } from "react";
 import { inject } from "mobx-react";
 
 import ValidationInput from "../../components/ValidationInput";
-import { RoleTypes } from "../../constants";
+import { RoleTypes } from "../../common/constants";
+import * as Styled from "./index.styled";
+import Input from "../../components/Input";
+import { getUsernameValidationData } from "../../common/utils/validation";
 
 interface signUpData {
   signUp?: Function;
@@ -29,8 +32,13 @@ const SignUp = ({ signUp, getTakenSignUpInfo }: signUpData) => {
   const [passwordIsValid, setPasswordIsValid] = useState(false);
   const [matchPasswordIsValid, setMatchPasswordIsValid] = useState(false);
 
+  const [usernameIsTaken, setUsernameIsTaken] = useState(false);
+  const [emailIsTaken, setEmailIsTaken] = useState(false);
+
   const [takenUsernames, setTakenUsernames] = useState<string[]>([]);
   const [takenEmails, setTakenEmails] = useState<string[]>([]);
+
+  const userameValidationData = getUsernameValidationData();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -65,51 +73,59 @@ const SignUp = ({ signUp, getTakenSignUpInfo }: signUpData) => {
   }, []);
 
   return (
-    <section>
-      <h1>Sign Up</h1>
+    <Styled.SignUp>
+      <Styled.AuthPicture />
 
-      <form onSubmit={handleSubmit} noValidate>
-        <ValidationInput.UsernameInput
-          id={"username"}
-          username={username}
+      <Styled.AuthContent>
+        <Input
+          id={"string"}
+          placeholder="Username"
+          value={username}
           onChange={onChangeUsername}
-          isValid={usernameIsValid}
-          setIsValid={setUsernameIsValid}
-          takenUsernames={takenUsernames}
-          focusOnLoad
+          isValid={usernameIsTaken}
+          setIsValid={setUsernameIsTaken}
+          validationData={{
+            ...userameValidationData.validation,
+          }}
+          existanceData={{
+            values: takenUsernames,
+            ...userameValidationData.existance,
+          }}
         />
 
-        <ValidationInput.EmailInput
-          id={"email"}
-          email={email}
-          onChange={onChangeEmail}
-          isValid={emailIsValid}
-          setIsValid={setEmailIsValid}
-          takenEmails={takenEmails}
-        />
+        <form onSubmit={handleSubmit} noValidate>
+          <ValidationInput.EmailInput
+            id={"email"}
+            email={email}
+            onChange={onChangeEmail}
+            isValid={emailIsValid}
+            setIsValid={setEmailIsValid}
+            takenEmails={takenEmails}
+          />
 
-        <ValidationInput.PasswordInput
-          id={"password"}
-          password={password}
-          onChange={onChangePassword}
-          isValid={passwordIsValid}
-          setIsValid={setPasswordIsValid}
-          isValidMatch={matchPasswordIsValid}
-          setIsValidMatch={setMatchPasswordIsValid}
-        />
+          <ValidationInput.PasswordInput
+            id={"password"}
+            password={password}
+            onChange={onChangePassword}
+            isValid={passwordIsValid}
+            setIsValid={setPasswordIsValid}
+            isValidMatch={matchPasswordIsValid}
+            setIsValidMatch={setMatchPasswordIsValid}
+          />
 
-        <button
-        // disabled={
-        //   !usernameIsValid ||
-        //   !passwordIsValid ||
-        //   !matchPasswordIsValid ||
-        //   !emailIsValid
-        // }
-        >
-          Sign Up
-        </button>
-      </form>
-    </section>
+          <button
+          // disabled={
+          //   !usernameIsValid ||
+          //   !passwordIsValid ||
+          //   !matchPasswordIsValid ||
+          //   !emailIsValid
+          // }
+          >
+            Sign Up
+          </button>
+        </form>
+      </Styled.AuthContent>
+    </Styled.SignUp>
   );
 };
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ReactSVG } from "react-svg";
-import { StyledValidationInput } from "../StyledValidationInput";
+import { StyledValidationInput } from "../index.styled";
 
 export interface PasswordInputProps {
   id: string;
