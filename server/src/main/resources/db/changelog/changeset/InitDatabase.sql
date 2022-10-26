@@ -14,18 +14,19 @@ create table game
 );
 create table room
 (
-    id           bigint auto_increment
+    id        binary(255)  not null
         primary key,
-    max_users    int not null default 20,
-    min_users    int not null default 2,
-    start bit not null default false,
-    game         bigint null,
+    max_users int          null,
+    min_users int          null,
+    name      varchar(255) null,
+    start     bit          null,
+    game      bigint       null,
     constraint FKnfwcytp8m89dqetjy1x4en8d
         foreign key (game) references game (id)
 );
 create table room_data
 (
-    room_id bigint not null
+    room_id binary(255) not null
         primary key,
     constraint FKg5kf7d8lhpo0g2vofk8pvkkts
         foreign key (room_id) references room (id)
@@ -33,7 +34,7 @@ create table room_data
 
 create table room_charade_data
 (
-    room_id bigint not null
+    room_id binary(255) not null
         primary key,
     all_users_ready bit null,
     constraint FK900z9j8lhpo0g2vofk8pvkkts
@@ -47,7 +48,7 @@ create table user
     password varchar(255) null,
     role     int          null,
     username varchar(255) null,
-    room     bigint       null,
+    room     binary(255)       null,
     constraint FKh4vi8y500vhc3k8qy8o5t76u8
         foreign key (room) references room (id)
 );

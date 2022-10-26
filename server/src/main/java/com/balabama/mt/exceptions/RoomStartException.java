@@ -1,6 +1,7 @@
 package com.balabama.mt.exceptions;
 
 import com.balabama.mt.entities.rooms.Room;
+import java.util.UUID;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -14,12 +15,12 @@ public class RoomStartException extends ResponseStatusException {
         super(status, reason);
     }
 
-    public static RoomStartException alreadyRunning(Long id) {
+    public static RoomStartException alreadyRunning(UUID id) {
         return new RoomStartException(HttpStatus.BAD_REQUEST,
             "The room with id = " + id + " is already running");
     }
 
-    public static RoomStartException gameNotSet(Long id) {
+    public static RoomStartException gameNotSet(UUID id) {
         return new RoomStartException(HttpStatus.BAD_REQUEST,
             "The room with id = " + id + " cannot be started, because the game is not set");
     }

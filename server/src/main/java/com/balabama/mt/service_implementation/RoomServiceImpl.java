@@ -5,6 +5,8 @@ import com.balabama.mt.exceptions.MTException;
 import com.balabama.mt.repositories.RoomRepository;
 import com.balabama.mt.services.RoomService;
 import com.balabama.mt.services.UserService;
+import java.util.List;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,24 +19,29 @@ public class RoomServiceImpl implements RoomService {
     private final UserService userService;
 
     @Override
+    public List<Room> list() {
+        return roomRepository.findAll();
+    }
+
+    @Override
     public Room save(Room newRoom) {
         return roomRepository.save(newRoom);
     }
 
     @Override
-    public Room getById(Long id) {
+    public Room getById(UUID id) {
         return roomRepository.findById(id).orElseThrow(() -> MTException.notFoundById(Room.class, id));
     }
 
     @Override
-    public Room connect(Long id) {
+    public Room connect(UUID id) {
         Room room = getById(id);
         room.connect(userService.getCurrent());
         return save(room);
     }
 
     @Override
-    public Room start(Long id) {
+    public Room start(UUID id) {
         Room room = getById(id);
         room.start();
         save(room);

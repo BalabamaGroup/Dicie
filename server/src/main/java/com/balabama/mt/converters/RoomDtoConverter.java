@@ -1,5 +1,6 @@
 package com.balabama.mt.converters;
 
+import com.balabama.mt.dtos.room.RoomDashboardDto;
 import com.balabama.mt.dtos.user.UserDto.UserWithState;
 import com.balabama.mt.dtos.room.RoomCreateDto;
 import com.balabama.mt.dtos.room.RoomDto;
@@ -7,6 +8,8 @@ import com.balabama.mt.entities.user.User;
 import com.balabama.mt.entities.rooms.Room;
 import com.balabama.mt.services.GameService;
 import com.balabama.mt.services.UserService;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +51,9 @@ public class RoomDtoConverter extends BaseDtoConverter {
             roomDto.setRoomDataDto(room.getRoomData().createDto());
         }
         roomDto.setStart(room.getStart());
+        roomDto.setName(room.getName());
+        roomDto.setId(room.getId());
         return roomDto;
-
-
     }
 }
 

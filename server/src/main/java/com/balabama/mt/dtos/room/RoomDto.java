@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,8 @@ public class RoomDto {
     private List<UserWithState> users = new ArrayList<>();
     private RoomDataDto roomDataDto;
     private Boolean start = false;
+    private String name;
+    private UUID id;
 
     @JsonIgnore
     public List<String> getUsernames() {

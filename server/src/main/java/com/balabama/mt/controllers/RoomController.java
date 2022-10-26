@@ -2,8 +2,11 @@ package com.balabama.mt.controllers;
 
 import com.balabama.mt.converters.RoomDtoConverter;
 import com.balabama.mt.dtos.room.RoomCreateDto;
+import com.balabama.mt.dtos.room.RoomDashboardDto;
 import com.balabama.mt.dtos.room.RoomDto;
 import com.balabama.mt.services.RoomService;
+import java.util.List;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +26,13 @@ public class RoomController {
     private final RoomDtoConverter converter;
     private final WebSocketHandler webSocketHandler;
 
+    @GetMapping
+    public List<RoomDashboardDto> list(){
+        return converter.simpleConvert(service.list(),RoomDashboardDto.class);
+    }
+
     @GetMapping("/{id}")
-    public RoomDto getById(@PathVariable Long id) {
+    public RoomDto getById(@PathVariable UUID id) {
         return converter.convertRoom(service.getById(id));
     }
 
@@ -34,14 +42,14 @@ public class RoomController {
     }
 
     @PostMapping("/start/{id}")
-    public RoomDto start(@PathVariable Long id) {
+    public RoomDto start(@PathVariable UUID id) {
         RoomDto roomDto = converter.convertRoom(service.start(id));
         webSocketHandler.sendRoomMessage(roomDto);
         return roomDto;
     }
 
     @PutMapping("/connect/{id}")
-    public RoomDto connect(@PathVariable Long id) {
+    public RoomDto connect(@PathVariable UUID id) {
         RoomDto roomDto = converter.convertRoom(service.connect(id));
         webSocketHandler.sendRoomMessage(roomDto);
         return roomDto;

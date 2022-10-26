@@ -1,6 +1,7 @@
 package com.balabama.mt.entities.rooms;
 
 import com.balabama.mt.dtos.room.RoomDataDto;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ public class RoomData {
 
     @Id
     @Column(name = "room_id")
-    private Long id;
+    private UUID id;
 
     @OneToOne
     @MapsId

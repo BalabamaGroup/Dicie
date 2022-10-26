@@ -6,7 +6,9 @@ import com.balabama.mt.exceptions.MTException;
 import com.balabama.mt.exceptions.RoomStartException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,8 +32,9 @@ import org.springframework.http.HttpStatus;
 public class Room {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue
+    private UUID id;
+    private String name;
     private Integer minUsers = 2;
     private Integer maxUsers = 20;
     private Boolean start = false;
@@ -100,5 +103,9 @@ public class Room {
         if (users.size() < game.getMinUsers()) {
             throw RoomStartException.usersFew(this);
         }
+    }
+
+    public Integer numberOfUsers(){
+        return users.size();
     }
 }
