@@ -44,28 +44,28 @@ public class RoomController {
     @PostMapping("/start/{id}")
     public RoomDto start(@PathVariable UUID id) {
         RoomDto roomDto = converter.convertRoom(service.start(id));
-        webSocketHandler.sendRoomMessage(roomDto);
+//        webSocketHandler.sendRoomMessage(roomDto);
         return roomDto;
     }
 
     @PostMapping("/finish/{id}")
     public RoomDto finish(@PathVariable UUID id) {
         RoomDto roomDto = converter.convertRoom(service.finish(id));
-        webSocketHandler.sendRoomMessage(roomDto);
+//        webSocketHandler.sendRoomMessage(roomDto);
         return roomDto;
     }
 
     @PutMapping("/connect/{id}")
     public RoomDto connect(@PathVariable UUID id) {
         RoomDto roomDto = converter.convertRoom(service.connect(id));
-        webSocketHandler.sendRoomMessage(roomDto);
+//        webSocketHandler.sendRoomMessage(roomDto);
         return roomDto;
     }
 
     @PutMapping("/disconnect/{id}")
     public RoomDto disconnect(@PathVariable UUID id) {
         RoomDto roomDto = converter.convertRoom(service.disconnect(id));
-        webSocketHandler.sendRoomMessage(roomDto);
+//        webSocketHandler.sendRoomMessage(roomDto);
         return roomDto;
     }
 
