@@ -22,3 +22,20 @@ export const getEmailValidationData = () => {
     },
   };
 };
+
+export const getPasswordValidationData = () => {
+  return {
+    validation: {
+      regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+      note: "Minimum eight characters\nAt least one uppercase letter, one lowercase letter and one number",
+    },
+  };
+};
+
+export const getMatchPasswordValidationData = () => {
+  return {
+    custom: {
+      note: "Must match the first password input field",
+    },
+  };
+};

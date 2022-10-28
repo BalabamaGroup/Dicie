@@ -1,6 +1,6 @@
 export const Protocols = Object.freeze({
   DEFAULT: "http://",
-  SOCKET: "ws://",
+  SOCKET: "wss://",
 });
 
 export const Hosts = Object.freeze({

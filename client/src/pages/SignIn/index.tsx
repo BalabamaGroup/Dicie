@@ -14,9 +14,9 @@ const SignIn = ({ signIn }: signInData) => {
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
     setPassword(e.target.value);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    signIn && (await signIn({ username, password }));
+    signIn && signIn({ username, password });
   };
 
   return (

@@ -7,6 +7,8 @@ import * as Styled from "./index.styled";
 import Input from "../../components/Input";
 import {
   getEmailValidationData,
+  getMatchPasswordValidationData,
+  getPasswordValidationData,
   getUsernameValidationData,
 } from "../../common/utils/validation";
 import MultiInput from "../../components/MultiInput";
@@ -31,6 +33,10 @@ const SignUp = ({ signUp, getTakenSignUpInfo }: signUpData) => {
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
     setPassword(e.target.value);
 
+  const [matchPassword, setMatchPassword] = useState("");
+  const onChangeMatchPassword = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setMatchPassword(e.target.value);
+
   const [usernameIsValid, setUsernameIsValid] = useState(false);
   const [emailIsValid, setEmailIsValid] = useState(false);
   const [passwordIsValid, setPasswordIsValid] = useState(false);
@@ -41,18 +47,18 @@ const SignUp = ({ signUp, getTakenSignUpInfo }: signUpData) => {
 
   const userameValidationData = getUsernameValidationData();
   const emailValidationData = getEmailValidationData();
+  const passwordValidationData = getPasswordValidationData();
+  const matchPasswordValidationData = getMatchPasswordValidationData();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const response =
-      signUp &&
+    signUp &&
       (await signUp({
         username,
         password,
         email,
         role: RoleTypes.USER,
       }));
-    console.log(response);
   };
 
   const getExistingUsersInfo = useCallback(async () => {
@@ -79,42 +85,10 @@ const SignUp = ({ signUp, getTakenSignUpInfo }: signUpData) => {
       <Styled.AuthPicture />
 
       <Styled.AuthContent>
-        <Input
-          id={"signUp-username"}
-          placeholder="Username"
-          value={username}
-          onChange={onChangeUsername}
-          isValid={usernameIsValid}
-          setIsValid={setUsernameIsValid}
-          focusOnLoad
-          validationData={{
-            ...userameValidationData.validation,
-          }}
-          existanceData={{
-            values: takenUsernames,
-            ...userameValidationData.existance,
-          }}
-        />
-
-        <Input
-          id={"signUp-email"}
-          placeholder="Email"
-          value={email}
-          onChange={onChangeEmail}
-          isValid={emailIsValid}
-          setIsValid={setEmailIsValid}
-          validationData={{
-            ...emailValidationData.validation,
-          }}
-          existanceData={{
-            values: takenEmails,
-            ...emailValidationData.existance,
-          }}
-        />
-
         <MultiInput>
           <Input
             id={"signUp-username"}
+            key={"signUp-username"}
             placeholder="Username"
             value={username}
             onChange={onChangeUsername}
@@ -131,6 +105,7 @@ const SignUp = ({ signUp, getTakenSignUpInfo }: signUpData) => {
 
           <Input
             id={"signUp-email"}
+            key={"signUp-email"}
             placeholder="Email"
             value={email}
             onChange={onChangeEmail}
@@ -147,55 +122,40 @@ const SignUp = ({ signUp, getTakenSignUpInfo }: signUpData) => {
 
           <Input
             id={"signUp-username"}
-            placeholder="Username"
-            value={username}
-            onChange={onChangeUsername}
-            isValid={usernameIsValid}
-            setIsValid={setUsernameIsValid}
+            key={"signUp-passsword"}
+            placeholder="Password"
+            value={password}
+            onChange={onChangePassword}
+            isValid={passwordIsValid}
+            setIsValid={setPasswordIsValid}
             validationData={{
-              ...userameValidationData.validation,
-            }}
-            existanceData={{
-              values: takenUsernames,
-              ...userameValidationData.existance,
+              ...passwordValidationData.validation,
             }}
           />
 
           <Input
             id={"signUp-email"}
-            placeholder="Email"
-            value={email}
-            onChange={onChangeEmail}
-            isValid={emailIsValid}
-            setIsValid={setEmailIsValid}
-            validationData={{
-              ...emailValidationData.validation,
-            }}
-            existanceData={{
-              values: takenEmails,
-              ...emailValidationData.existance,
+            key={"signUp-passsword-repeat"}
+            placeholder="Repeat password"
+            value={matchPassword}
+            onChange={onChangeMatchPassword}
+            isValid={matchPasswordIsValid}
+            setIsValid={setMatchPasswordIsValid}
+            customTest={{
+              test: () => password === matchPassword,
+              ...matchPasswordValidationData.custom,
             }}
           />
         </MultiInput>
 
         <form onSubmit={handleSubmit} noValidate>
-          <ValidationInput.PasswordInput
-            id={"password"}
-            password={password}
-            onChange={onChangePassword}
-            isValid={passwordIsValid}
-            setIsValid={setPasswordIsValid}
-            isValidMatch={matchPasswordIsValid}
-            setIsValidMatch={setMatchPasswordIsValid}
-          />
-
           <button
-          // disabled={
-          //   !usernameIsValid ||
-          //   !passwordIsValid ||
-          //   !matchPasswordIsValid ||
-          //   !emailIsValid
-          // }
+            disabled={
+              !usernameIsValid ||
+              !passwordIsValid ||
+              !matchPasswordIsValid ||
+              !emailIsValid
+            }
           >
             Sign Up
           </button>

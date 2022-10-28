@@ -32,8 +32,6 @@ const MultiInput = ({ children }: MultiInputProps) => {
     setMiltiInputData(newMultiInputData);
   };
 
-  console.log(multiInputData);
-
   return (
     <Styled.MultiInput>
       {children.map((child, i) =>

@@ -28,6 +28,7 @@ const Home = ({ id }: HomeProps) => {
       ws.current.onopen = () => setStatus("Соединение открыто");
       ws.current.onclose = () => setStatus("Соединение закрыто");
       gettingData();
+      console.log(ws);
     }
 
     return () => ws.current?.close();

@@ -25,6 +25,11 @@ export interface InputProps {
     note: string;
   };
 
+  customTest?: {
+    test: Function;
+    note: string;
+  };
+
   multiInputData?: multiInputDataType;
   multiInputDataIndex?: number;
   onChangeMultiInputData?: Function;
@@ -43,6 +48,7 @@ const Input = ({
 
   validationData,
   existanceData,
+  customTest,
 
   multiInputData,
   onChangeMultiInputData,
@@ -85,13 +91,19 @@ const Input = ({
     let isRegexValid = true;
     if (validationData) isRegexValid = validationData.regex.test(value);
 
-    let isTaken = false;
+    let isExistanceValid = true;
     if (existanceData)
-      isTaken = !!existanceData.values.find((ev) => value === ev);
+      isExistanceValid = !existanceData.values.find((ev) => value === ev);
 
-    if (validationData && !isRegexValid) setCurrentNote(validationData?.note);
-    else if (existanceData && isTaken) setCurrentNote(existanceData?.note);
-    setIsValid(!!value ? !isTaken && isRegexValid : true);
+    let isCustomTestValid = true;
+    if (customTest) isCustomTestValid = customTest.test();
+
+    if (validationData && !isRegexValid) setCurrentNote(validationData.note);
+    else if (customTest && isCustomTestValid) setCurrentNote(customTest.note);
+    else if (existanceData && isExistanceValid)
+      setCurrentNote(existanceData.note);
+
+    setIsValid(isExistanceValid && isRegexValid && isCustomTestValid);
   }, [value]);
 
   return (

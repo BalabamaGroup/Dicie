@@ -32,7 +32,6 @@ const App = () => {
             <Route path={Routes.CONTACT} element={<Contact />} />
 
             <Route path={Routes.ROOM} element={<Room />} />
-
             <Route path="*" element={<Navigate to={Routes.HOME} replace />} />
           </RoutesRRD>
         </MobxProvider>
