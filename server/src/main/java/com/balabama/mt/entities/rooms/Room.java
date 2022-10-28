@@ -81,6 +81,9 @@ public class Room {
         if (this.admin.equals(user) && !users.isEmpty()) {
             this.admin = this.users.get(0);
         }
+        if (this.users.isEmpty()) {
+            this.admin = null;
+        }
     }
 
     public void connect(User user) {

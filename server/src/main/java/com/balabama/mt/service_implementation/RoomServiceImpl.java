@@ -59,7 +59,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void delete(Room room) {
-        roomRepository.delete(room);
+        roomRepository.deleteById(room.getId());
     }
 
     @Override
