@@ -25,8 +25,8 @@ public class RoomDto {
     private UserDto admin;
 
     @JsonIgnore
-    public List<String> getUsernames() {
-        return users.stream().map(UserDto::getUsername).collect(Collectors.toList());
+    public List<Long> getIds() {
+        return users.stream().map(UserDto::getId).collect(Collectors.toList());
     }
 
 }

@@ -56,10 +56,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     @Transactional
     public void sendRoomMessage(RoomDto roomDto) {
-        List<String> usernames = roomDto.getUsernames();
+        List<Long> ids = roomDto.getIds();
         for (WebSocketSession session : sessions) {
             try {
-                if (usernames.contains(Objects.requireNonNull(session.getPrincipal()).getName())) {
+                if (ids.contains(Long.parseLong(Objects.requireNonNull(session.getUri()).getQuery()))) {
                     session.sendMessage(new TextMessage(mapper.writeValueAsString(roomDto)));
                 }
             } catch (Exception e) {
