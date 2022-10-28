@@ -60,7 +60,7 @@ public class WebSecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()
             .antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/favicon.ico")
-            .antMatchers("/", "/*.js", "/*.css", "/h2-console/**", "/health", "/actuator/*", "/assets/**", "/profile/**", "/ws-message**","/ws-message/**","/ws-message**","/ws-message")
+            .antMatchers("/", "/*.js", "/*.css", "/h2-console/**", "/health", "/actuator/*", "/assets/**", "/profile/**")
             .antMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/swagger-resources", "/swagger-resources/**")
             .antMatchers("/api/auth/existing_users");
     }
