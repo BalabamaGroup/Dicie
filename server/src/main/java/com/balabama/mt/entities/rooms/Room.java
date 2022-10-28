@@ -145,4 +145,10 @@ public class Room {
     public Integer numberOfUsers() {
         return users.size();
     }
+
+    public void validateAdmin(User user) {
+        if (!user.equals(this.admin)){
+            throw MTException.forbidden();
+        }
+    }
 }

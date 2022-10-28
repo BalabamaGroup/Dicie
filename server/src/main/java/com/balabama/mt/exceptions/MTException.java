@@ -36,4 +36,9 @@ public class MTException extends ResponseStatusException {
     public static <T, V> MTException alreadyExist(Class<T> clazz, V value, String field) {
         return new MTException(HttpStatus.BAD_REQUEST, clazz.getSimpleName() + " with " + field + " = '" + value + "' already exist.");
     }
+
+    public static MTException forbidden() {
+        return new MTException(HttpStatus.FORBIDDEN, "Only the administrator can do this");
+    }
+
 }
