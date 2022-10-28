@@ -13,7 +13,13 @@ public interface RoomService {
 
     Room start(UUID id);
 
+    Room finish(UUID id);
+
     Room getById(UUID id);
 
     Room connect(UUID id);
+    Room disconnect(UUID id);
+
+    void delete(UUID id);
+    void delete(Room room);
 }

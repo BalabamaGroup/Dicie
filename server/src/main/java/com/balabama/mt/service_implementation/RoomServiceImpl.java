@@ -41,9 +41,39 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public Room disconnect(UUID id) {
+        Room room = getById(id);
+        room.disconnect(userService.getCurrent());
+        if (room.getUsers().isEmpty()) {
+            delete(room);
+            return new Room();
+        } else {
+            return save(room);
+        }
+    }
+
+    @Override
+    public void delete(UUID id) {
+        delete(getById(id));
+    }
+
+    @Override
+    public void delete(Room room) {
+        roomRepository.delete(room);
+    }
+
+    @Override
     public Room start(UUID id) {
         Room room = getById(id);
         room.start();
+        save(room);
+        return room;
+    }
+
+    @Override
+    public Room finish(UUID id) {
+        Room room = getById(id);
+        room.finish();
         save(room);
         return room;
     }

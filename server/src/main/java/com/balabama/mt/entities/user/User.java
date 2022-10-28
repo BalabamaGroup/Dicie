@@ -38,7 +38,7 @@ public class User {
     @JoinColumn(name = "room", columnDefinition = "VARCHAR(36)")
     @Type(type = "uuid-char")
     private Room room;
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,orphanRemoval = true)
     @PrimaryKeyJoinColumn
     private UserState userState;
     @OneToOne(mappedBy = "admin")
