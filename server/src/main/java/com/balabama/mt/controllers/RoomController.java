@@ -43,31 +43,23 @@ public class RoomController {
     }
 
     @PostMapping("/start/{id}")
-    public RoomDto start(@PathVariable UUID id) {
-        RoomDto roomDto = converter.convertRoom(service.start(id));
-        webSocketHandler.sendRoomMessage(roomDto);
-        return roomDto;
+    public void start(@PathVariable UUID id) {
+        webSocketHandler.sendRoomMessage(converter.convertRoom(service.start(id)));
     }
 
     @PostMapping("/finish/{id}")
-    public RoomDto finish(@PathVariable UUID id) {
-        RoomDto roomDto = converter.convertRoom(service.finish(id));
-        webSocketHandler.sendRoomMessage(roomDto);
-        return roomDto;
+    public void finish(@PathVariable UUID id) {
+        webSocketHandler.sendRoomMessage(converter.convertRoom(service.finish(id)));
     }
 
     @PutMapping("/connect/{id}")
-    public RoomDto connect(@PathVariable UUID id) {
-        RoomDto roomDto = converter.convertRoom(service.connect(id));
-        webSocketHandler.sendRoomMessage(roomDto);
-        return roomDto;
+    public void connect(@PathVariable UUID id) {
+        webSocketHandler.sendRoomMessage(converter.convertRoom(service.connect(id)));
     }
 
     @PutMapping("/disconnect/{id}")
-    public RoomDto disconnect(@PathVariable UUID id) {
-        RoomDto roomDto = converter.convertRoom(service.disconnect(id));
-        webSocketHandler.sendRoomMessage(roomDto);
-        return roomDto;
+    public void disconnect(@PathVariable UUID id) {
+        webSocketHandler.sendRoomMessage(converter.convertRoom(service.disconnect(id)));
     }
 
     @DeleteMapping("/{id}")
