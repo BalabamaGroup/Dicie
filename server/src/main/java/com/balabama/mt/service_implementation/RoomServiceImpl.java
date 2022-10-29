@@ -54,7 +54,9 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void delete(UUID id) {
-        delete(getById(id));
+        Room room = getById(id);
+        room.validateAdmin(userService.getCurrent());
+        delete(room);
     }
 
     @Override

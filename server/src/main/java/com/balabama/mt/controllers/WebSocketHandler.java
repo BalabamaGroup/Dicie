@@ -57,14 +57,19 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Transactional
     public void sendRoomMessage(RoomDto roomDto) {
         List<Long> ids = roomDto.getIds();
-        for (WebSocketSession session : sessions) {
+        sessions.forEach(session -> {
             try {
-                if (ids.contains(Long.parseLong(Objects.requireNonNull(session.getUri()).getQuery()))) {
+                Long userId = Long.parseLong(Objects.requireNonNull(session.getUri()).getQuery());
+                if (ids.contains(userId)) {
+                    roomDto.getForUser(userId);
                     session.sendMessage(new TextMessage(mapper.writeValueAsString(roomDto)));
                 }
             } catch (Exception e) {
                 log.error("Cannot send statistic to websocket session.", e);
             }
+        });
+        for (WebSocketSession session : sessions) {
+
         }
     }
 

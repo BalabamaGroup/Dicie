@@ -3,10 +3,13 @@ package com.balabama.mt.dtos.room;
 import com.balabama.mt.dtos.user.UserDto;
 import com.balabama.mt.dtos.user.UserDto.UserWithState;
 import com.balabama.mt.entities.rooms.RoomData;
+import com.balabama.mt.entities.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.Data;
@@ -28,5 +31,11 @@ public class RoomDto {
     public List<Long> getIds() {
         return users.stream().map(UserDto::getId).collect(Collectors.toList());
     }
+
+    @JsonIgnore
+    public void getForUser(Long userId) {
+        users.stream().filter(user-> Objects.equals(user.getId(), userId)).findFirst().ifPresent(UserWithState::hideState);
+    }
+
 
 }
