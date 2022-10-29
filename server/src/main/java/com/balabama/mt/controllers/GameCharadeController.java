@@ -21,13 +21,13 @@ public class GameCharadeController {
     private final WebSocketHandler webSocketHandler;
 
 
-    @PostMapping("/set_word/{userId}/{word}")
-    public void setWord(@PathVariable Long userId, @PathVariable String word) {
+    @PostMapping("/set_word/{userId}")
+    public void setWord(@PathVariable Long userId, @RequestBody String word) {
         webSocketHandler.sendRoomMessage(converter.convertRoom(service.setWord(userId, word)));
     }
 
-    @PostMapping("/check_word/{word}")
-    public void checkWord(@PathVariable String word) {
+    @PostMapping("/check_word")
+    public void checkWord(@RequestBody String word) {
         webSocketHandler.sendRoomMessage(converter.convertRoom(service.checkWord(word)));
     }
 
