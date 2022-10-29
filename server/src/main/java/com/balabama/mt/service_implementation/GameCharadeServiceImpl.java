@@ -3,12 +3,14 @@ package com.balabama.mt.service_implementation;
 import com.balabama.mt.entities.rooms.Room;
 import com.balabama.mt.entities.rooms.charade.RoomCharadeData;
 import com.balabama.mt.entities.user.charade.UserCharadeState;
+import com.balabama.mt.exceptions.MTException;
 import com.balabama.mt.services.GameCharadeService;
 import com.balabama.mt.services.RoomService;
 import com.balabama.mt.services.UserService;
 import com.balabama.mt.services.UserStateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +24,9 @@ public class GameCharadeServiceImpl implements GameCharadeService {
 
     @Override
     public Room setWord(Long userId, String word) {
+        if (userService.getCurrent().getId().equals(userId)) {
+            throw new MTException(HttpStatus.FORBIDDEN, "You can't set a word for yourself");
+        }
         UserCharadeState userCharadeState = ((UserCharadeState) userStateService.getById(userId)).setWord(word);
         Room room = getRoomByState(userCharadeState);
         RoomCharadeData roomCharadeData = (RoomCharadeData) room.getRoomData();
