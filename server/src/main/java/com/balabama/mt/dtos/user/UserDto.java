@@ -28,8 +28,8 @@ public class UserDto {
         private UserStateDto state;
 
         @JsonIgnore
-        public void hideState() {
-            state.hideState();
+        public UserStateDto hideState() {
+            return state.hideState();
         }
 
     }

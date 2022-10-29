@@ -15,6 +15,12 @@ public class UserStateDto {
 
     }
     @JsonIgnore
-    public void hideState(){
+    public UserStateDto hideState(){
+        return this;
+    }
+
+    @JsonIgnore
+    public UserStateDto copy(){
+        return new UserStateDto();
     }
 }

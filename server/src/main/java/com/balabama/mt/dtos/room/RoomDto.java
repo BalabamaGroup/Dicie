@@ -2,8 +2,10 @@ package com.balabama.mt.dtos.room;
 
 import com.balabama.mt.dtos.user.UserDto;
 import com.balabama.mt.dtos.user.UserDto.UserWithState;
+import com.balabama.mt.dtos.user.UserStateDto;
 import com.balabama.mt.entities.rooms.RoomData;
 import com.balabama.mt.entities.user.User;
+import com.balabama.mt.exceptions.MTException;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
@@ -33,9 +35,8 @@ public class RoomDto {
     }
 
     @JsonIgnore
-    public void getForUser(Long userId) {
-        users.stream().filter(user-> Objects.equals(user.getId(), userId)).findFirst().ifPresent(UserWithState::hideState);
+    public UserWithState getUser(Long userId) {
+        return users.stream().filter(user -> Objects.equals(user.getId(), userId)).findFirst().orElseThrow(() -> MTException.notFound(UserWithState.class, userId, "id"));
     }
-
 
 }

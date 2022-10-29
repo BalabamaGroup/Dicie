@@ -1,6 +1,8 @@
 package com.balabama.mt.controllers;
 
 import com.balabama.mt.dtos.room.RoomDto;
+import com.balabama.mt.dtos.user.UserDto.UserWithState;
+import com.balabama.mt.dtos.user.UserStateDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.List;
@@ -57,19 +59,23 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Transactional
     public void sendRoomMessage(RoomDto roomDto) {
         List<Long> ids = roomDto.getIds();
-        sessions.forEach(session -> {
+        for (WebSocketSession session : sessions) {
             try {
                 Long userId = Long.parseLong(Objects.requireNonNull(session.getUri()).getQuery());
                 if (ids.contains(userId)) {
-                    roomDto.getForUser(userId);
-                    session.sendMessage(new TextMessage(mapper.writeValueAsString(roomDto)));
+                    UserWithState user = roomDto.getUser(userId);
+                    if (user.getState() != null) {
+                        UserStateDto oldState = user.getState().copy();
+                        user.hideState();
+                        session.sendMessage(new TextMessage(mapper.writeValueAsString(roomDto)));
+                        user.setState(oldState);
+                    } else {
+                        session.sendMessage(new TextMessage(mapper.writeValueAsString(roomDto)));
+                    }
                 }
             } catch (Exception e) {
                 log.error("Cannot send statistic to websocket session.", e);
             }
-        });
-        for (WebSocketSession session : sessions) {
-
         }
     }
 
