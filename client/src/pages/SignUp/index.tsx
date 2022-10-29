@@ -150,12 +150,12 @@ const SignUp = ({ signUp, getTakenSignUpInfo }: signUpData) => {
 
         <form onSubmit={handleSubmit} noValidate>
           <button
-            disabled={
-              !usernameIsValid ||
-              !passwordIsValid ||
-              !matchPasswordIsValid ||
-              !emailIsValid
-            }
+          // disabled={
+          //   !usernameIsValid ||
+          //   !passwordIsValid ||
+          //   !matchPasswordIsValid ||
+          //   !emailIsValid
+          // }
           >
             Sign Up
           </button>

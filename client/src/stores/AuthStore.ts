@@ -19,6 +19,7 @@ export class AuthStore {
   @action signIn = async (data: signInData) => {
     const result = await AuthAPI.signIn(data);
     console.log(result);
+    if (result.id) sessionStorage.setItem("id", `${result.id}`);
     if (result.token) {
       sessionStorage.setItem("token", result.token);
       window.location.href = "/";

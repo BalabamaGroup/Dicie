@@ -21,6 +21,28 @@ const queryClient = new QueryClient();
 const App = () => {
   return (
     <div className="App">
+      {/* // */}
+      {sessionStorage.getItem("token") ? (
+        <button
+          onClick={() => {
+            sessionStorage.removeItem("token");
+            window.location.href = "/auth/signin";
+          }}
+        >
+          LOG_OUT
+        </button>
+      ) : (
+        <>
+          <button onClick={() => (window.location.href = Routes.SIGN_IN)}>
+            SIGN_IN
+          </button>
+          <button onClick={() => (window.location.href = Routes.SIGN_UP)}>
+            SIGN_UP
+          </button>
+        </>
+      )}
+      <button onClick={() => (window.location.href = Routes.HOME)}>HOME</button>
+      {/* // */}
       <QueryClientProvider client={queryClient}>
         <MobxProvider {...store}>
           <RoutesRRD>

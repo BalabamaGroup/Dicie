@@ -82,7 +82,7 @@ const Input = ({
   };
 
   useEffect(() => {
-    if (focusOnLoad && inputRef?.current) inputRef.current.focus();
+    if (focusOnLoad && inputRef && inputRef.current) inputRef.current.focus();
   }, []);
 
   useEffect(() => {

@@ -4,8 +4,12 @@ type User = {
   email: string;
   role: string;
   token?: string;
-  roomId?: 1;
-  state?: any;
+  roomId?: string;
+  state?: {
+    word?: string;
+    isFinished?: boolean;
+    ready?: boolean;
+  };
 };
 
 export default User;

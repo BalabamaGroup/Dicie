@@ -1,8 +1,8 @@
 import { UserStore } from "./UserStore";
 import { AuthStore } from "./AuthStore";
 
-const authStore = new AuthStore();
 const userStore = new UserStore();
+const authStore = new AuthStore();
 
 const store = {
   userStore,

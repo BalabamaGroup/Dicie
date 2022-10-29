@@ -41,7 +41,7 @@ class AxiosClient {
           //   method: "post",
           //   url: "auth/logout",
           // }).then(() => {
-          // window.location.href = "/auth/signin";
+          window.location.href = "/auth/signin";
           // });
         }
         return Promise.reject(errText || err);
