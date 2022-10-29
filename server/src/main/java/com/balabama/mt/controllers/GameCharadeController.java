@@ -22,10 +22,8 @@ public class GameCharadeController {
 
 
     @PostMapping("/set_word/{userId}")
-    public RoomDto createRoom(@PathVariable Long userId, @RequestBody String word) {
-        RoomDto roomDto = converter.convertRoom(service.setWord(userId, word));
-        webSocketHandler.sendRoomMessage(roomDto);
-        return roomDto;
+    public void setWord(@PathVariable Long userId, @RequestBody String word) {
+        webSocketHandler.sendRoomMessage(converter.convertRoom(service.setWord(userId, word)));
     }
 
 }
