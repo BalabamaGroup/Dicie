@@ -29,6 +29,10 @@ public class RoomCharadeData extends RoomData {
         }
     }
 
+    public boolean checkFinish() {
+        return super.getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState()).allMatch(UserCharadeState::getIsFinished);
+    }
+
     public RoomCharadeDataDto createDto() {
         RoomCharadeDataDto roomCharadeDataDto = new RoomCharadeDataDto(super.getRoom());
         roomCharadeDataDto.setAllUsersReady(allUsersReady);
