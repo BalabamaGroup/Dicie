@@ -3,6 +3,7 @@ package com.balabama.mt.entities.user.charade;
 import com.balabama.mt.dtos.user.charade.UserCharadeStateDto;
 import com.balabama.mt.entities.user.User;
 import com.balabama.mt.entities.user.UserState;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import lombok.Data;
@@ -30,6 +31,12 @@ public class UserCharadeState extends UserState {
     public UserCharadeState setWord(String word){
         this.word = word;
         this.ready = true;
+        return this;
+    }
+
+    public UserCharadeState checkWord(String word){
+        if (Objects.equals(this.word, word))
+        this.isFinished = true;
         return this;
     }
 

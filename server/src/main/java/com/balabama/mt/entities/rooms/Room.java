@@ -57,14 +57,11 @@ public class Room {
     @JoinColumn(name = "admin_id", referencedColumnName = "id")
     private User admin;
 
-    public void addUsers(List<User> users) {
-        users.forEach(this::addUser);
-    }
-
     private void addUser(User user) {
         if (this.users.contains(user)) {
             return;
         }
+        checkRoomNotStart();
         if (user.getRoom() != null || user.getUserState() != null) {
             throw new MTException(HttpStatus.BAD_REQUEST, "User " + user.getUsername() + " is already in the room");
         }
@@ -87,7 +84,6 @@ public class Room {
     }
 
     public void connect(User user) {
-        checkRoomNotStart();
         addUser(user);
     }
 

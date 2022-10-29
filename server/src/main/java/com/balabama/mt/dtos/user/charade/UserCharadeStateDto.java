@@ -27,7 +27,9 @@ public class UserCharadeStateDto extends UserStateDto {
 
     @JsonIgnore
     public UserCharadeStateDto hideState() {
-        word = "*****";
+        if (!isFinished) {
+            word = "*****";
+        }
         return this;
     }
 
