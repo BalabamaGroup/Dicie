@@ -28,8 +28,8 @@ public class RoomController {
     private final WebSocketHandler webSocketHandler;
 
     @GetMapping
-    public List<RoomDashboardDto> list(){
-        return converter.simpleConvert(service.list(),RoomDashboardDto.class);
+    public List<RoomDashboardDto> list() {
+        return converter.simpleConvert(service.list(), RoomDashboardDto.class);
     }
 
     @GetMapping("/{id}")

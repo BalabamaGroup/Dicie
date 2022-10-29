@@ -1,6 +1,7 @@
 package com.balabama.mt.dtos.user;
 
 import com.balabama.mt.entities.user.UserRole;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,11 @@ public class UserDto {
     public static class UserWithState extends UserDto {
 
         private UserStateDto state;
+
+        @JsonIgnore
+        public void hideState() {
+            state.hideState();
+        }
 
     }
 }
