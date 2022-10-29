@@ -26,8 +26,8 @@ public class GameCharadeController {
         webSocketHandler.sendRoomMessage(converter.convertRoom(service.setWord(userId, word)));
     }
 
-    @PostMapping("/check_word/{word}")
-    public void checkWord(@PathVariable String word) {
+    @PostMapping("/check_word")
+    public void checkWord(@RequestBody String word) {
         webSocketHandler.sendRoomMessage(converter.convertRoom(service.checkWord(word)));
     }
 
