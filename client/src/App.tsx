@@ -12,9 +12,8 @@ import store from "./stores/index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
 import Room from "./pages/Room";
+import Auth from "./pages/Auth";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +21,7 @@ const App = () => {
   return (
     <div className="App">
       {/* // */}
-      {sessionStorage.getItem("token") ? (
+      {/* {sessionStorage.getItem("token") ? (
         <button
           onClick={() => {
             sessionStorage.removeItem("token");
@@ -41,13 +40,13 @@ const App = () => {
           </button>
         </>
       )}
-      <button onClick={() => (window.location.href = Routes.HOME)}>HOME</button>
+      <button onClick={() => (window.location.href = Routes.HOME)}>HOME</button> */}
       {/* // */}
       <QueryClientProvider client={queryClient}>
         <MobxProvider {...store}>
           <RoutesRRD>
-            <Route path={Routes.SIGN_IN} element={<SignIn />} />
-            <Route path={Routes.SIGN_UP} element={<SignUp />} />
+            <Route path={Routes.SIGN_IN} element={<Auth />} />
+            <Route path={Routes.SIGN_UP} element={<Auth />} />
 
             <Route path={Routes.HOME} element={<Home />} />
             <Route path={Routes.ABOUT} element={<About />} />

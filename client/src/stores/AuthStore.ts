@@ -1,11 +1,7 @@
 import { action } from "mobx";
 
 import AuthAPI from "../api/auth";
-import {
-  signInData,
-  signUpData,
-  takenSignUpInfoRes,
-} from "../api/auth/interfaces";
+import { signInData, signUpData } from "../api/auth/interfaces";
 
 export class AuthStore {
   @action signUp = async (data: signUpData) => {
@@ -29,10 +25,5 @@ export class AuthStore {
   @action signOut = () => {
     sessionStorage.removeItem("token");
     window.location.href = "/auth/signin";
-  };
-
-  @action getTakenSignUpInfo = async (): Promise<takenSignUpInfoRes> => {
-    const result = await AuthAPI.getTakenSignUpInfo();
-    return result;
   };
 }

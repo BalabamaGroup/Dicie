@@ -84,7 +84,14 @@ const Room = () => {
               <input
                 type="text"
                 disabled={+sessionStorage.id === user.id}
-                value={user.state?.word || ""}
+                value={
+                  //   user.state?.word
+                  +sessionStorage.id === user.id
+                    ? user.state?.isFinished
+                      ? user.state?.word
+                      : ""
+                    : user.state?.word
+                }
                 onChange={(e) => updateUsers(e, user.id)}
               />
 

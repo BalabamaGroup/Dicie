@@ -34,11 +34,11 @@ const getWrapperHeightDataCss = (
 
 const getValidationStylingDataCss = (isFocus: boolean, isValid: boolean) => {
   return isFocus && isValid
-    ? ` box-shadow: 0px 4px 8px rgba(117, 74, 175, 0.3); `
+    ? ` box-shadow: 0px 4px 16px rgba(106, 101, 255, 0.25); `
     : isFocus && !isValid
-    ? ` box-shadow: 0px 4px 8px rgba(175, 74, 74, 0.3); `
+    ? ` box-shadow: 0px 4px 8px rgba(252, 48, 87, 0.25); `
     : !isFocus && !isValid
-    ? ` color: #D05353; `
+    ? ` color: #fc3057; `
     : ``;
 };
 
@@ -112,7 +112,7 @@ export const Note = styled.div<{ isVisible: boolean | undefined }>`
   transition: all 0.2s ease-in-out;
   line-height: 20px;
 
-  color: #d05353;
+  color: #fc3057;
 
   white-space: pre-line;
   ${({ isVisible }) =>

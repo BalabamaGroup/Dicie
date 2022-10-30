@@ -12,29 +12,19 @@ export interface InputProps {
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 
+  focusOnLoad?: boolean;
+  iconData?: { iconSrc: string; onClick: Function };
+
   isValid?: boolean;
   setIsValid?: Function;
-
-  validationData?: {
-    regex: RegExp;
-    note: string;
-  };
-
-  existanceData?: {
-    values: Array<string>;
-    note: string;
-  };
-
-  customTest?: {
-    test: Function;
-    note: string;
-  };
+  validationData?: { regex: RegExp; note: string };
+  existanceData?: { values: Array<string>; note: string };
+  customTest?: { test: Function; note: string };
+  customDependancies?: Array<any>;
 
   multiInputData?: multiInputDataType;
   multiInputDataIndex?: number;
   onChangeMultiInputData?: Function;
-
-  focusOnLoad?: boolean;
 }
 
 const Input = ({
@@ -43,12 +33,15 @@ const Input = ({
   value,
   onChange,
 
+  iconData,
+
   isValid = true,
   setIsValid,
 
   validationData,
   existanceData,
   customTest,
+  customDependancies,
 
   multiInputData,
   onChangeMultiInputData,
@@ -82,8 +75,11 @@ const Input = ({
   };
 
   useEffect(() => {
-    if (focusOnLoad && inputRef && inputRef.current) inputRef.current.focus();
+    if (focusOnLoad && inputRef?.current) inputRef.current.focus();
   }, []);
+
+  let dependancies = [value];
+  if (customDependancies) dependancies = [dependancies, ...customDependancies];
 
   useEffect(() => {
     if (isValid === undefined || !setIsValid) return;
@@ -104,7 +100,7 @@ const Input = ({
       setCurrentNote(existanceData.note);
 
     setIsValid(isExistanceValid && isRegexValid && isCustomTestValid);
-  }, [value]);
+  }, dependancies);
 
   return (
     <Styled.Wrapper
@@ -130,9 +126,11 @@ const Input = ({
           onFocus={onFocus}
           onBlur={onBlur}
         />
-        <Styled.Icon className="input_icon">
-          <ReactSVG src="/images/cross.react.svg" />
-        </Styled.Icon>
+        {iconData && (
+          <Styled.Icon className="input_icon">
+            <ReactSVG src="/images/cross.react.svg" />
+          </Styled.Icon>
+        )}
       </Styled.InputWrapper>
 
       <Styled.Note

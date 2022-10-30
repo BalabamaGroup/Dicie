@@ -4,11 +4,14 @@ export const size = {
   desktop: 1025,
 };
 
-export const mobile = `(max-width: ${size.mobile}px)`;
+export const mobileAndSmaller = `(max-width: ${size.mobile}px)`;
+export const mobileAndBigger = `(mix-width: ${size.mobile}px)`;
 
-export const tablet = `(max-width: ${size.tablet}px)`;
+export const tabletAndSmaller = `(max-width: ${size.tablet}px)`;
+export const tabletAndBigger = `(max-width: ${size.tablet}px)`;
 
-export const desktop = `(min-width: ${size.desktop}px)`;
+export const desktopAndSmaller = `(max-width: ${size.desktop}px)`;
+export const desktopAndBigger = `(max-width: ${size.desktop}px)`;
 
 export const isMobile = () => {
   return window.innerWidth <= size.mobile;
