@@ -8,12 +8,16 @@ import { multiInputDataType } from "../MultiInput";
 
 export interface InputProps {
   id: string;
+  type?: string;
   placeholder?: string;
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 
   focusOnLoad?: boolean;
-  iconData?: { iconSrc: string; onClick: Function };
+  iconData?: {
+    iconSrc: string;
+    onClick: React.MouseEventHandler<HTMLDivElement>;
+  };
 
   isValid?: boolean;
   setIsValid?: Function;
@@ -29,6 +33,7 @@ export interface InputProps {
 
 const Input = ({
   id,
+  type = "text",
   placeholder,
   value,
   onChange,
@@ -95,8 +100,8 @@ const Input = ({
     if (customTest) isCustomTestValid = customTest.test();
 
     if (validationData && !isRegexValid) setCurrentNote(validationData.note);
-    else if (customTest && isCustomTestValid) setCurrentNote(customTest.note);
-    else if (existanceData && isExistanceValid)
+    else if (customTest && !isCustomTestValid) setCurrentNote(customTest.note);
+    else if (existanceData && !isExistanceValid)
       setCurrentNote(existanceData.note);
 
     setIsValid(isExistanceValid && isRegexValid && isCustomTestValid);
@@ -112,23 +117,24 @@ const Input = ({
       <Styled.InputWrapper
         className="input_input-wrapper"
         id={id}
-        onClick={onInputClick}
         onMouseDown={onInputMouseDown}
         isFocus={isFocus}
         isValid={isValid}
       >
         <Styled.Input
+          type={type}
           className="input_input"
           placeholder={placeholder}
           ref={inputRef}
           value={value}
+          onClick={onInputClick}
           onChange={onChange}
           onFocus={onFocus}
           onBlur={onBlur}
         />
         {iconData && (
-          <Styled.Icon className="input_icon">
-            <ReactSVG src="/images/cross.react.svg" />
+          <Styled.Icon className="input_icon" onClick={iconData.onClick}>
+            <ReactSVG src={iconData.iconSrc} />
           </Styled.Icon>
         )}
       </Styled.InputWrapper>

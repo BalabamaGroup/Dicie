@@ -73,9 +73,6 @@ export const InputWrapper = styled.div<{
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 32px;
-
-  padding: 26px 32px;
 
   background-color: #fff;
 
@@ -84,22 +81,44 @@ export const InputWrapper = styled.div<{
 `;
 
 export const Input = styled.input`
-  font-weight: 600;
-  font-size: 20px;
+  all: unset;
+
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 16px;
   line-height: 20px;
 
-  all: unset;
   height: 20px;
   width: 100%;
+  padding: 26px 32px 26px 32px;
 `;
 
 export const Icon = styled.div`
   height: 20px;
   width: 20px;
+  padding: 26px 26px 26px 26px;
+  border-radius: 0 16px 16px 0;
+
+  background: #ffffff;
+
+  background: linear-gradient(to right, #ffffff 50%, #8986f5 50%) left;
+  background-size: 200%;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-position: right;
+    svg * {
+      fill: #fff;
+    }
+  }
 
   svg {
     height: 20px;
     width: 20px;
+    * {
+      transition: all 0.2s ease-in-out;
+      fill: #888888;
+    }
   }
 `;
 

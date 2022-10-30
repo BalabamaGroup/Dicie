@@ -22,7 +22,7 @@ export const AuthHeader = styled.div`
   }
 
   .main {
-    font-family: "Quicksand";
+    font-family: "Inter";
     font-weight: 700;
     font-size: 40px;
     line-height: 50px;
@@ -35,7 +35,7 @@ export const AuthHeader = styled.div`
   }
 
   .subheader {
-    font-family: "Quicksand";
+    font-family: "Inter";
     font-weight: 700;
     font-size: 14px;
     line-height: 18px;

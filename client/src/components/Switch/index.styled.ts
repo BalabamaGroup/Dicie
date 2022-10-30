@@ -16,7 +16,7 @@ export const SwitchOption = styled.div<{ isChosen: boolean | undefined }>`
   justify-content: space-between;
   gap: 6px;
 
-  font-family: "Quicksand";
+  font-family: "Inter";
   font-weight: 700;
   font-size: 12px;
   line-height: 15px;

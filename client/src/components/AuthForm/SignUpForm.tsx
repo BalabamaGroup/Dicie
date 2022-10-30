@@ -49,6 +49,14 @@ const SignUpForm = ({
   const [passwordIsValid, setPasswordIsValid] = useState(true);
   const [matchPasswordIsValid, setMatchPasswordIsValid] = useState(true);
 
+  const [passwordIsVisible, setPasswordIsVisible] = useState(false);
+  const togglePasswordIsvisible = () =>
+    setPasswordIsVisible(!passwordIsVisible);
+
+  const [matchPasswordIsVisible, setMatchPasswordIsVisible] = useState(false);
+  const toggleMatchPasswordIsvisible = () =>
+    setMatchPasswordIsVisible(!matchPasswordIsVisible);
+
   const [takenUsernames, setTakenUsernames] = useState<string[]>([]);
   const [takenEmails, setTakenEmails] = useState<string[]>([]);
 
@@ -117,6 +125,7 @@ const SignUpForm = ({
           <Input
             id={"signUp-email"}
             key={"signUp-email"}
+            type={"email"}
             placeholder="Email"
             value={email.value}
             onChange={email.onChange}
@@ -134,9 +143,16 @@ const SignUpForm = ({
           <Input
             id={"signUp-username"}
             key={"signUp-passsword"}
+            type={passwordIsVisible ? "text" : "password"}
             placeholder="Password"
             value={password.value}
             onChange={password.onChange}
+            iconData={{
+              iconSrc: passwordIsVisible
+                ? "/svgs/eye.closed.svg"
+                : "/svgs/eye.opened.svg",
+              onClick: togglePasswordIsvisible,
+            }}
             isValid={passwordIsValid}
             setIsValid={setPasswordIsValid}
             validationData={{
@@ -147,9 +163,16 @@ const SignUpForm = ({
           <Input
             id={"signUp-email"}
             key={"signUp-passsword-repeat"}
+            type={matchPasswordIsVisible ? "text" : "password"}
             placeholder="Repeat password"
             value={matchPassword.value}
             onChange={matchPassword.onChange}
+            iconData={{
+              iconSrc: matchPasswordIsVisible
+                ? "/svgs/eye.closed.svg"
+                : "/svgs/eye.opened.svg",
+              onClick: toggleMatchPasswordIsvisible,
+            }}
             isValid={matchPasswordIsValid}
             setIsValid={setMatchPasswordIsValid}
             customTest={{

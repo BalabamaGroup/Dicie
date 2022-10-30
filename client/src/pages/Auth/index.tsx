@@ -16,7 +16,7 @@ const SignUp = () => {
   return (
     <Styled.SignUp>
       <Styled.AuthPicture>
-        <img src="/images/auth-picture.png" alt="" />
+        <img src="/pngs/auth-picture.png" alt="" />
       </Styled.AuthPicture>
 
       <Styled.AuthContent>
@@ -29,7 +29,7 @@ const SignUp = () => {
               onClick: () => {
                 navigate("/auth/signup");
               },
-              defaultChoice: true,
+              defaultChoice: formType === "signUp",
             },
             {
               id: "signin",
@@ -37,6 +37,7 @@ const SignUp = () => {
               onClick: () => {
                 navigate("/auth/signin");
               },
+              defaultChoice: formType === "signIn",
             },
           ]}
         />

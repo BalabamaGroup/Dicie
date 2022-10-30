@@ -19,7 +19,7 @@ export const Button = styled.button<{
   color: #ffffff;
   border-radius: 16px;
 
-  font-family: "Quicksand";
+  font-family: "Inter";
   font-weight: 700;
   font-size: 20px;
   line-height: 25px;
