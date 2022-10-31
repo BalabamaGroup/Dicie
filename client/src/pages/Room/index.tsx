@@ -86,11 +86,11 @@ const Room = () => {
                 disabled={+sessionStorage.id === user.id}
                 value={
                   //   user.state?.word
-                  +sessionStorage.id === user.id
+                  (+sessionStorage.id === user.id
                     ? user.state?.isFinished
                       ? user.state?.word
                       : ""
-                    : user.state?.word
+                    : user.state?.word) || ""
                 }
                 onChange={(e) => updateUsers(e, user.id)}
               />

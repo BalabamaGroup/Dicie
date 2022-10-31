@@ -1,4 +1,3 @@
-import { inject } from "mobx-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import routes from "../../common/constants/routes";
 import AuthForm from "../../components/AuthForm";
@@ -48,10 +47,4 @@ const SignUp = () => {
   );
 };
 
-export default inject(({ authStore }) => {
-  const { signUp, getTakenSignUpInfo } = authStore;
-  return {
-    signUp,
-    getTakenSignUpInfo,
-  };
-})(SignUp);
+export default SignUp;

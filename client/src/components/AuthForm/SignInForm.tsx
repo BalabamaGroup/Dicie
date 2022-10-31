@@ -1,16 +1,12 @@
 import React from "react";
-import { inject } from "mobx-react";
-
-import { RoleTypes } from "../../common/constants";
 
 import * as Styled from "./index.styled";
 import Input from "../Input";
 import MultiInput from "../MultiInput";
 import Button from "../Button";
+import useAuth from "../../hooks/useAuth";
 
 interface signInProps {
-  signIn?: Function;
-
   username: {
     value: string;
     onChange: React.ChangeEventHandler<HTMLInputElement>;
@@ -21,14 +17,15 @@ interface signInProps {
   };
 }
 
-const SignInForm = ({ username, password, signIn }: signInProps) => {
+const SignInForm = ({ username, password }: signInProps) => {
+  const { signIn } = useAuth();
+
   const onSignIn = async (e: any) => {
-    e.preventDefault();
-    signIn &&
-      (await signIn({
-        username: username.value,
-        password: password.value,
-      }));
+    // e.preventDefault();
+    signIn({
+      username: username.value,
+      password: password.value,
+    });
   };
 
   return (
@@ -64,9 +61,4 @@ const SignInForm = ({ username, password, signIn }: signInProps) => {
   );
 };
 
-export default inject(({ authStore }) => {
-  const { signIn } = authStore;
-  return {
-    signIn,
-  };
-})(SignInForm);
+export default SignInForm;

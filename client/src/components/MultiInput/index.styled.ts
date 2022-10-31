@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const MultiInput = styled.div<{ scale: boolean | undefined }>`
   display: flex;
   flex-direction: column;
-
   width: ${({ scale }) => (scale ? "100%" : "auto")};
 
   .input_wrapper:first-child {

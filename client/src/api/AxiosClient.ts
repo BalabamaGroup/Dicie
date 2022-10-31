@@ -1,5 +1,9 @@
 import axios, { AxiosInstance } from "axios";
+import { useNavigate } from "react-router-dom";
+import routes from "../common/constants/routes";
+
 import { apiUrl } from "../common/utils/url";
+import Toast from "../components/Toast";
 
 axios.defaults.withCredentials = true;
 
@@ -32,17 +36,15 @@ class AxiosClient {
         return res.data;
       })
       .catch((err: any) => {
-        console.log(err);
+        Toast.error(err.request.response);
+
         let errText = err.response
           ? this.getResponseError(err.response)
           : err.message;
         if (err.response?.status === 401) {
-          // this.request({
-          //   method: "post",
-          //   url: "auth/logout",
-          // }).then(() => {
-          window.location.href = "/auth/signin";
-          // });
+          sessionStorage.removeItem("id");
+          sessionStorage.removeItem("token");
+          // window.location.href = routes.SIGN_IN;
         }
         return Promise.reject(errText || err);
       });

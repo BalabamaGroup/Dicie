@@ -1,5 +1,4 @@
 import React, { useState, createRef } from "react";
-import { inject } from "mobx-react";
 
 import { RoleTypes } from "../../common/constants";
 import {
@@ -15,10 +14,9 @@ import MultiInput from "../MultiInput";
 import Button from "../Button";
 import { useQuery } from "react-query";
 import AuthAPI from "../../api/auth";
+import useAuth from "../../hooks/useAuth";
 
 interface signUpProps {
-  signUp?: Function;
-
   username: {
     value: string;
     onChange: React.ChangeEventHandler<HTMLInputElement>;
@@ -42,8 +40,9 @@ const SignUpForm = ({
   email,
   password,
   matchPassword,
-  signUp,
 }: signUpProps) => {
+  const { signUp } = useAuth();
+
   const [usernameIsValid, setUsernameIsValid] = useState(true);
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
@@ -67,13 +66,12 @@ const SignUpForm = ({
 
   const onSignUp = async (e: any) => {
     e.preventDefault();
-    signUp &&
-      signUp({
-        username: username.value,
-        password: password.value,
-        email: email.value,
-        role: RoleTypes.USER,
-      });
+    signUp({
+      username: username.value,
+      password: password.value,
+      email: email.value,
+      role: RoleTypes.USER,
+    });
   };
 
   useQuery("takenSignUpInfo", async () => {
@@ -200,10 +198,4 @@ const SignUpForm = ({
   );
 };
 
-export default inject(({ authStore }) => {
-  const { signUp, getTakenSignUpInfo } = authStore;
-  return {
-    signUp,
-    getTakenSignUpInfo,
-  };
-})(SignUpForm);
+export default SignUpForm;
