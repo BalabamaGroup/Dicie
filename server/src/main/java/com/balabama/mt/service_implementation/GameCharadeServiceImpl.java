@@ -37,7 +37,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
     @Override
     public Room ready() {
         User current = userService.getCurrent();
-        if (((UserCharadeState)userService.getCurrent().getUserState()).getSelectedUser()!=null){
+        if (((UserCharadeState) userService.getCurrent().getUserState()).getSelectedUser() == null) {
             throw new MTException(HttpStatus.BAD_REQUEST, "Choose to whom you will make a word");
         }
         String selectedWord = (((UserCharadeState) userService.getById(((UserCharadeState) current.getUserState()).getSelectedUser())
