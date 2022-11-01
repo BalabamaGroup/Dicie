@@ -9,4 +9,6 @@ public interface GameCharadeService {
     Room checkWord(String word);
 
     Room selectUser(Long id);
+
+    Room ready();
 }

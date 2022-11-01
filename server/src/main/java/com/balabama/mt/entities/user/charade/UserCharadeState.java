@@ -3,6 +3,7 @@ package com.balabama.mt.entities.user.charade;
 import com.balabama.mt.dtos.user.charade.UserCharadeStateDto;
 import com.balabama.mt.entities.user.User;
 import com.balabama.mt.entities.user.UserState;
+import com.balabama.mt.exceptions.MTException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -12,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
 
 @Entity
 @Table(name = "user_charade_state")
@@ -40,7 +42,6 @@ public class UserCharadeState extends UserState {
 
     public UserCharadeState setWord(String word) {
         this.word = word;
-        this.ready = true;
         return this;
     }
 
@@ -52,6 +53,9 @@ public class UserCharadeState extends UserState {
     }
 
     public UserCharadeState addSelectedUser(User user) {
+        if (!isGoing) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "It's not your turn now");
+        }
         setSelectedUser(user.getId());
         return this;
     }
