@@ -5,6 +5,7 @@ import com.balabama.mt.dtos.QuestionDto;
 import com.balabama.mt.dtos.StringDto;
 import com.balabama.mt.dtos.room.RoomDto;
 import com.balabama.mt.dtos.room.charade.CharadeAnswer;
+import com.balabama.mt.dtos.room.charade.CharadeAnswerDto;
 import com.balabama.mt.services.GameCharadeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +52,8 @@ public class GameCharadeController {
     }
 
     @PostMapping("/answer")
-    public void answer(@RequestBody CharadeAnswer charadeAnswer) {
-        webSocketHandler.sendRoomMessage(converter.convertRoom(service.answer(charadeAnswer)));
+    public void answer(@RequestBody CharadeAnswerDto charadeAnswer) {
+        webSocketHandler.sendRoomMessage(converter.convertRoom(service.answer(charadeAnswer.getCharadeAnswer())));
     }
 
 
