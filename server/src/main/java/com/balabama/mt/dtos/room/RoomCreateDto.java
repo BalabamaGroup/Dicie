@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 public class RoomCreateDto {
 
     private Long gameId;
+    private String name;
 }

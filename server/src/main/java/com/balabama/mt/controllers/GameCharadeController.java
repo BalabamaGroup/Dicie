@@ -33,4 +33,9 @@ public class GameCharadeController {
         webSocketHandler.sendRoomMessage(converter.convertRoom(service.checkWord(word.getWord())));
     }
 
+    @PostMapping("/select_user/{userId}")
+    public void selectUser(@PathVariable Long userId) {
+        webSocketHandler.sendRoomMessage(converter.convertRoom(service.selectUser(userId)));
+    }
+
 }

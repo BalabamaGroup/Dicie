@@ -1,5 +1,6 @@
 package com.balabama.mt.controllers;
 
+import com.balabama.mt.exceptions.ExceptionDto;
 import com.balabama.mt.exceptions.MTException;
 import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,6 @@ public class MTControllerAdvice {
     @ResponseBody
     ResponseEntity<?> handleControllerException(HttpServletRequest request, ResponseStatusException ex) {
         log.warn("Exception during request {}: {}, {}", request.getRequestURI(), ex.getStatus(), ex.getMessage());
-        return new ResponseEntity<>(ex.getMessage(), ex.getStatus());
+        return new ResponseEntity<>(new ExceptionDto(ex.getReason()), ex.getStatus());
     }
 }

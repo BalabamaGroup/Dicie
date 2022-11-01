@@ -17,6 +17,7 @@ public class UserCharadeStateDto extends UserStateDto {
     private String word;
     private Boolean isFinished = false;
     private Boolean ready = false;
+    private Long selectUser;
 
     public UserCharadeStateDto(UserCharadeState state) {
         super(state);
@@ -35,6 +36,6 @@ public class UserCharadeStateDto extends UserStateDto {
 
     @JsonIgnore
     public UserCharadeStateDto copy() {
-        return new UserCharadeStateDto(word, isFinished, ready);
+        return new UserCharadeStateDto(word, isFinished, ready,selectUser);
     }
 }

@@ -18,9 +18,11 @@ create table room
         primary key,
     max_users int          null,
     min_users int          null,
-    name      varchar(255) null,
+    name      varchar(255) not null,
     start     bit          null,
     game      bigint       null,
+    constraint UK_aa58c9de9eu0v585le47w25my
+        unique (name),
     constraint FKnfwcytp8m89dqetjy1x4en8d
         foreign key (game) references game (id)
 );
@@ -66,6 +68,7 @@ create table user_charade_state
         primary key,
     is_finished bit null,
     ready bit null,
+    selected_user bigint null,
     word        varchar(255) null,
     constraint FK_riusvmjs0b0jrkeyik7wkd436
         foreign key (user_id) references user (id)

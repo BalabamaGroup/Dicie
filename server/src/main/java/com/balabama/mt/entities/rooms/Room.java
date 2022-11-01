@@ -38,6 +38,7 @@ public class Room {
     @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @Type(type = "uuid-char")
     private UUID id;
+    @Column(unique = true, nullable = false)
     private String name;
     private Integer minUsers = 2;
     private Integer maxUsers = 20;
@@ -143,7 +144,7 @@ public class Room {
     }
 
     public void validateAdmin(User user) {
-        if (!user.equals(this.admin)){
+        if (!user.equals(this.admin)) {
             throw MTException.forbidden();
         }
     }

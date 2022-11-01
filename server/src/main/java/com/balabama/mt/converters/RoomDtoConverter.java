@@ -5,7 +5,9 @@ import com.balabama.mt.dtos.room.RoomCreateDto;
 import com.balabama.mt.dtos.room.RoomDto;
 import com.balabama.mt.entities.user.User;
 import com.balabama.mt.entities.rooms.Room;
+import com.balabama.mt.exceptions.MTException;
 import com.balabama.mt.services.GameService;
+import com.balabama.mt.services.RoomService;
 import com.balabama.mt.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -20,6 +22,8 @@ public class RoomDtoConverter extends BaseDtoConverter {
     private UserService userService;
     @Autowired
     private GameService gameService;
+    @Autowired
+    private RoomService roomService;
 
 
     public RoomDtoConverter(ModelMapper modelMapper) {
@@ -33,6 +37,10 @@ public class RoomDtoConverter extends BaseDtoConverter {
         }
         room.connect(userService.getCurrent());
         room.setAdmin(userService.getCurrent());
+        room.setName(dtoIn.getName());
+        if (roomService.existByName(dtoIn.getName())) {
+            throw MTException.alreadyExistByName(Room.class, dtoIn.getName());
+        }
         return room;
     }
 

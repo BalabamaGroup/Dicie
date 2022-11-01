@@ -11,6 +11,8 @@ public interface RoomService {
 
     Room save(Room room);
 
+    Boolean existByName(String name);
+
     Room start(UUID id);
 
     Room finish(UUID id);

@@ -17,12 +17,12 @@ public class RoomStartException extends ResponseStatusException {
 
     public static RoomStartException alreadyRunning(UUID id) {
         return new RoomStartException(HttpStatus.BAD_REQUEST,
-            "The room with id = " + id + " is already running");
+            "The room is already running");
     }
 
     public static RoomStartException gameNotSet(UUID id) {
         return new RoomStartException(HttpStatus.BAD_REQUEST,
-            "The room with id = " + id + " cannot be started, because the game is not set");
+            "The room cannot be started, because the game is not set");
     }
 
     public static RoomStartException usersLimit(Room room) {
