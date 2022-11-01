@@ -16,6 +16,8 @@ import lombok.NoArgsConstructor;
 public class RoomCharadeData extends RoomData {
 
     private Boolean allUsersReady = false;
+    private String currentQuestion;
+    private Integer responseCounterYes = 0;
 
     public RoomCharadeData(Room room) {
         super(room);
@@ -36,6 +38,8 @@ public class RoomCharadeData extends RoomData {
     public RoomCharadeDataDto createDto() {
         RoomCharadeDataDto roomCharadeDataDto = new RoomCharadeDataDto(super.getRoom());
         roomCharadeDataDto.setAllUsersReady(allUsersReady);
+        roomCharadeDataDto.setCurrentQuestion(currentQuestion);
+        roomCharadeDataDto.setResponseCounterYes(responseCounterYes);
         return roomCharadeDataDto;
     }
 

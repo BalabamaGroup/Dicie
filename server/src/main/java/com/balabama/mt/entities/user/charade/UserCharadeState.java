@@ -53,11 +53,15 @@ public class UserCharadeState extends UserState {
     }
 
     public UserCharadeState addSelectedUser(User user) {
+        checkTurn();
+        setSelectedUser(user.getId());
+        return this;
+    }
+
+    public void checkTurn() {
         if (!isGoing) {
             throw new MTException(HttpStatus.BAD_REQUEST, "It's not your turn now");
         }
-        setSelectedUser(user.getId());
-        return this;
     }
 
     public UserCharadeState addSelectedBy(User user) {

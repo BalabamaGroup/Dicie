@@ -1,5 +1,6 @@
 package com.balabama.mt.service_implementation;
 
+import com.balabama.mt.dtos.room.charade.CharadeAnswer;
 import com.balabama.mt.entities.rooms.Room;
 import com.balabama.mt.entities.rooms.charade.RoomCharadeData;
 import com.balabama.mt.entities.user.User;
@@ -54,6 +55,20 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         return roomService.save(room);
     }
 
+    @Override
+    public Room askQuestion(String question) {
+        User current = userService.getCurrent();
+        UserCharadeState currentUserCharadeState = ((UserCharadeState) current.getUserState());
+        currentUserCharadeState.checkTurn();
+        RoomCharadeData roomCharadeData = (RoomCharadeData) current.getRoom().getRoomData();
+        if (roomCharadeData.getCurrentQuestion() == null && roomCharadeData.getResponseCounterYes() >= 3) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "Not your turn");
+        }
+        roomCharadeData.setCurrentQuestion(question);
+        current.getRoom().setRoomData(roomCharadeData);
+        return roomService.save(current.getRoom());
+    }
+
 
     @Override
     public Room checkWord(String word) {
@@ -71,13 +86,40 @@ public class GameCharadeServiceImpl implements GameCharadeService {
     public Room selectUser(Long id) {
         User current = userService.getCurrent();
         User selected = userService.getById(id);
-        UserCharadeState currentUserCharadeState = ((UserCharadeState) userStateService.getById(current.getId())).addSelectedUser(
+        UserCharadeState currentUserCharadeState = ((UserCharadeState) current.getUserState()).addSelectedUser(
             selected);
         userStateService.save(currentUserCharadeState);
         return roomService.save(changeTurn(getRoomByState(((UserCharadeState) userStateService.getById(selected.getId())).addSelectedBy(
             current))));
 
     }
+
+    @Override
+    public Room answer(CharadeAnswer charadeAnswer) {
+        User current = userService.getCurrent();
+        UserCharadeState currentUserCharadeState = ((UserCharadeState) current.getUserState());
+        User turnUser = userService.getById(currentUserCharadeState.getSelectedUser());
+        if (!((UserCharadeState) turnUser.getUserState()).getIsGoing()) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "You cannot answer this user's questions");
+        }
+        RoomCharadeData roomCharadeData = (RoomCharadeData) current.getRoom().getRoomData();
+        if (roomCharadeData.getCurrentQuestion() == null && roomCharadeData.getResponseCounterYes() >= 3) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "Ooops smth went wrong");
+        }
+        roomCharadeData.setCurrentQuestion(null);
+        if (charadeAnswer == CharadeAnswer.YES) {
+            roomCharadeData.setResponseCounterYes(roomCharadeData.getResponseCounterYes() + 1);
+        } else {
+            roomCharadeData.setResponseCounterYes(0);
+            changeTurn(roomCharadeData.getRoom());
+        }
+        if (roomCharadeData.getResponseCounterYes() >= 3){
+            changeTurn(roomCharadeData.getRoom());
+        }
+        return roomService.save(roomCharadeData.getRoom());
+
+    }
+
 
     private Room getRoomByState(UserCharadeState userCharadeState) {
         userCharadeState = (UserCharadeState) userStateService.save(userCharadeState);
