@@ -38,4 +38,10 @@ public class GameCharadeController {
         webSocketHandler.sendRoomMessage(converter.convertRoom(service.selectUser(userId)));
     }
 
+    @PostMapping("/ready")
+    public void ready() {
+        webSocketHandler.sendRoomMessage(converter.convertRoom(service.ready()));
+    }
+
+
 }

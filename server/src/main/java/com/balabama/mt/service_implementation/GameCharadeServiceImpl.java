@@ -31,12 +31,29 @@ public class GameCharadeServiceImpl implements GameCharadeService {
             throw new MTException(HttpStatus.FORBIDDEN, "You can't set a word");
         }
         UserCharadeState userCharadeState = ((UserCharadeState) userStateService.getById(userId)).setWord(word);
+        return roomService.save(getRoomByState(userCharadeState));
+    }
+
+    @Override
+    public Room ready() {
+        User current = userService.getCurrent();
+        if (((UserCharadeState)userService.getCurrent().getUserState()).getSelectedUser()!=null){
+            throw new MTException(HttpStatus.BAD_REQUEST, "Choose to whom you will make a word");
+        }
+        String selectedWord = (((UserCharadeState) userService.getById(((UserCharadeState) current.getUserState()).getSelectedUser())
+            .getUserState()).getWord());
+        if (selectedWord == null || selectedWord.equals("")) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "You didn't set the word");
+        }
+        UserCharadeState userCharadeState = ((UserCharadeState) userStateService.getById(current.getId()));
+        userCharadeState.setReady(true);
         Room room = getRoomByState(userCharadeState);
         RoomCharadeData roomCharadeData = (RoomCharadeData) room.getRoomData();
         roomCharadeData.checkReady();
         room.setRoomData(roomCharadeData);
-        return roomService.save(changeTurn(room));
+        return roomService.save(getRoomByState(userCharadeState));
     }
+
 
     @Override
     public Room checkWord(String word) {
