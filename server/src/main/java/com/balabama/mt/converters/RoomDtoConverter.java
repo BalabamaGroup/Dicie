@@ -12,6 +12,7 @@ import com.balabama.mt.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -32,6 +33,9 @@ public class RoomDtoConverter extends BaseDtoConverter {
 
     public Room convertFromDtoIn(RoomCreateDto dtoIn) {
         Room room = new Room();
+        if (dtoIn.getName() == null) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "Specify a name when creating a room");
+        }
         if (dtoIn.getGameId() != null) {
             room.setGame(gameService.getById(dtoIn.getGameId()));
         }

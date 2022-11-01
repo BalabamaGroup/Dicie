@@ -2,6 +2,8 @@ package com.balabama.mt.entities.user;
 
 import com.balabama.mt.dtos.user.UserStateDto;
 import com.balabama.mt.entities.user.User;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -35,6 +37,10 @@ public class UserState {
     public UserState(User user) {
         this.id = user.getId();
         this.user = user;
+    }
+
+    public static List<User> addUserStates(List<User> users){
+        return new ArrayList<>();
     }
 
     public UserStateDto createDto(){

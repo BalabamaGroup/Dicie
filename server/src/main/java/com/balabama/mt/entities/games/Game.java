@@ -40,7 +40,7 @@ public class Game {
         return new RoomData(room);
     }
 
-    public UserState createUserState(User user){
-        return new UserState(user);
+    public List<User> addUserStates(List<User> users){
+        return UserState.addUserStates(users);
     }
 }

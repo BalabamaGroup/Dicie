@@ -96,12 +96,7 @@ public class Room {
     public void start() {
         this.startCheck();
         this.roomData = this.game.createRoomData(this);
-        List<User> userList = new ArrayList<>();
-        for (User user : users) {
-            user.setUserState(this.game.createUserState(user));
-            userList.add(user);
-        }
-        this.setUsers(userList);
+        this.setUsers(this.game.addUserStates(users));
         this.start = true;
     }
 
