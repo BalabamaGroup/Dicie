@@ -26,6 +26,9 @@ public class UserCharadeStateDto extends UserStateDto {
         this.word = state.getWord();
         this.isFinished = state.getIsFinished();
         this.ready = state.getReady();
+        this.isGoing = state.getIsGoing();
+        this.selectedBy= state.getSelectedBy();
+        this.selectedUser = state.getSelectedUser();
     }
 
     @JsonIgnore
