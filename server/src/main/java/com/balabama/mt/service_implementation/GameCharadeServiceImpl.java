@@ -51,7 +51,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         RoomCharadeData roomCharadeData = (RoomCharadeData) room.getRoomData();
         roomCharadeData.checkReady();
         room.setRoomData(roomCharadeData);
-        return roomService.save(getRoomByState(userCharadeState));
+        return roomService.save(room);
     }
 
 
