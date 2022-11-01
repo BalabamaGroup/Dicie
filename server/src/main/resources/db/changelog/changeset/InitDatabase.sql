@@ -66,9 +66,11 @@ create table user_charade_state
 (
     user_id     bigint not null
         primary key,
-    is_finished bit null,
-    ready bit null,
+    is_finished bit not null default false,
+    ready bit not null default false,
+    is_going bit not null default false,
     selected_user bigint null,
+    selected_by bigint null,
     word        varchar(255) null,
     constraint FK_riusvmjs0b0jrkeyik7wkd436
         foreign key (user_id) references user (id)
