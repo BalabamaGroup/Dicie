@@ -22,7 +22,7 @@ class AxiosClient {
 
   request = async (options: any) => {
     const token = sessionStorage.getItem("token");
-    options.headers = { Authorization: `Bearer ${token}` };
+    if (token) options.headers = { Authorization: `Bearer ${token}` };
     return this.host(options)
       .then((res: any) => {
         console.log(res);
@@ -41,7 +41,7 @@ class AxiosClient {
           //   method: "post",
           //   url: "auth/logout",
           // }).then(() => {
-          window.location.href = "/signin";
+          window.location.href = "/auth/signin";
           // });
         }
         return Promise.reject(errText || err);

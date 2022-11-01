@@ -1,71 +1,88 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import { inject, observer } from "mobx-react";
-import { socketUrl } from "../../common/utils/url";
+import { useQuery } from "react-query";
+import RoomAPI from "../../api/room";
+import UserAPI from "../../api/user";
 
-export interface HomeProps {
-  id?: string;
-}
+export interface HomeProps {}
 
-const Home = ({ id }: HomeProps) => {
-  const [isPaused, setIsPaused] = useState(false);
-  const [data, setData] = useState<any>(null);
-  const [status, setStatus] = useState("");
-  const ws = useRef<WebSocket | null>(null);
+const Home = ({}: HomeProps) => {
+  const { data: rooms, isLoading: roomsIsLoading } = useQuery("rooms", () => {
+    return RoomAPI.getRooms();
+  });
 
-  const gettingData = useCallback(() => {
-    if (!ws.current) return;
-    ws.current.onmessage = (e) => {
-      if (isPaused) return;
-      const message = JSON.parse(e.data);
-      console.log(message);
-      setData(message);
-    };
-  }, [isPaused]);
+  const {
+    data: currentRoomId,
+    error: currentRoomIdError,
+    isLoading: currentRoomIdIsLoading,
+    refetch: currentRoomIdRefetch,
+  } = useQuery("currentRoom", async () => {
+    const currUser = await UserAPI.getCurrentUser();
+    return currUser.roomId;
+  });
 
-  useEffect(() => {
-    if (!isPaused) {
-      ws.current = new WebSocket(socketUrl());
-      ws.current.onopen = () => setStatus("Соединение открыто");
-      ws.current.onclose = () => setStatus("Соединение закрыто");
-      gettingData();
+  const onReturnToCurrRoom = () => {
+    if (currentRoomId) window.location.href = `/room/${currentRoomId}`;
+  };
+
+  const onDisconnectFromCurrRoom = async () => {
+    if (currentRoomId) {
+      await RoomAPI.disconnectFromRoom(currentRoomId);
+      currentRoomIdRefetch();
     }
+  };
 
-    return () => ws.current?.close();
-  }, [ws, isPaused, gettingData]);
+  const onCreateRoom = async () => {
+    const newRoom = await RoomAPI.createRoom({ gameId: 1 });
+    onGoToRoom(newRoom.id);
+  };
+
+  const onGoToRoom = (id: string) => {
+    window.location.href = `/room/${id}`;
+  };
+
+  if (currentRoomIdError) return <p>An error has occured</p>;
+  if (currentRoomIdIsLoading) return <p>is Loading...</p>;
 
   return (
     <div>
-      {id}
       <h1>Home Page</h1>
 
-      <>
-        <div>
-          <h2>{status}</h2>
-          <p>{`data: ${data}`}</p>
-        </div>
-      </>
+      {currentRoomId && (
+        <h4>
+          <button onClick={onReturnToCurrRoom}>Return to your room</button>
+          <button onClick={onDisconnectFromCurrRoom}>
+            Disconnect from your room
+          </button>
+        </h4>
+      )}
 
-      <button
-        onClick={() => {
-          ws.current?.close();
-          setIsPaused(!isPaused);
-        }}
-      >
-        {!isPaused ? "Остановить соединение" : "Открыть соединение"}
+      <br />
+      <br />
+
+      <button disabled={!!currentRoomId} onClick={onCreateRoom}>
+        <h2>Create Room</h2>
       </button>
 
-      <button
-        onClick={() => {
-          ws.current?.send("TY SAM LOH PONYAL");
-        }}
-      >
-        Send nessage to server
-      </button>
+      <br />
+      <br />
+
+      {roomsIsLoading ? (
+        <p>Room data is loading</p>
+      ) : (
+        rooms &&
+        rooms.map((room: any) => (
+          <div key={room.id}>
+            <button
+              disabled={!!currentRoomId}
+              onClick={() => onGoToRoom(room.id)}
+            >
+              {room.id}
+            </button>
+            <br />
+          </div>
+        ))
+      )}
     </div>
   );
 };
 
-export default inject(({ userStore }) => {
-  const { id } = userStore;
-  return { id };
-})(observer(Home));
+export default Home;

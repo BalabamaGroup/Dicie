@@ -7,7 +7,7 @@ export const Hosts = Object.freeze({
   CLIENT: "localhost:3000/",
   SERVER: "localhost:8080/",
   SERVER_API: "localhost:8080/api/",
-  SERVER_SOCKET: "localhost:8080/socket/",
+  SERVER_SOCKET: "localhost:8080/socket",
 });
 
 export const RoleTypes = Object.freeze({

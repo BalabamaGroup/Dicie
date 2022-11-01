@@ -1,6 +1,7 @@
 import { request } from "..";
+import User from "../../common/types/user";
 
-import { getUsersRes, getCurrentUserRes, getUserByIdRes } from "./interfaces";
+import { getUsersRes, getUserByIdRes } from "./interfaces";
 
 export default class UserAPI {
   static getUsers = (): getUsersRes => {
@@ -12,13 +13,13 @@ export default class UserAPI {
     return request(options).then((res: getUsersRes) => res);
   };
 
-  static getCurrentUser = (): getCurrentUserRes => {
+  static getCurrentUser = (): User => {
     const options = {
       method: "get",
       url: `user/current`,
     };
 
-    return request(options).then((res: getCurrentUserRes) => res);
+    return request(options).then((res: User) => res);
   };
 
   static getUserById = (id: number): getUserByIdRes => {

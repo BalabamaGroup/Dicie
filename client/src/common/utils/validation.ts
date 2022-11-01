@@ -2,7 +2,7 @@ export const getUsernameValidationData = () => {
   return {
     validation: {
       regex: /^[A-z][A-z0-9-_]{3,23}$/,
-      note: "4 to 24 characters.\nMust begin with a letter.\nLetters, numbers, underscores, hyphens allowed.",
+      note: "4 to 24 characters\nMust begin with a letter\nAllowed special characters:  _ -",
     },
     existance: {
       note: "Username is taken",
@@ -19,6 +19,23 @@ export const getEmailValidationData = () => {
     },
     existance: {
       note: "Email is taken",
+    },
+  };
+};
+
+export const getPasswordValidationData = () => {
+  return {
+    validation: {
+      regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+      note: "Minimum eight characters\nAt least one uppercase letter\none lowercase letter and one number",
+    },
+  };
+};
+
+export const getMatchPasswordValidationData = () => {
+  return {
+    custom: {
+      note: "Must match the first password input field",
     },
   };
 };

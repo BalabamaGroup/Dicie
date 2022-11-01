@@ -12,24 +12,19 @@ export interface InputProps {
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 
+  focusOnLoad?: boolean;
+  iconData?: { iconSrc: string; onClick: Function };
+
   isValid?: boolean;
   setIsValid?: Function;
-
-  validationData?: {
-    regex: RegExp;
-    note: string;
-  };
-
-  existanceData?: {
-    values: Array<string>;
-    note: string;
-  };
+  validationData?: { regex: RegExp; note: string };
+  existanceData?: { values: Array<string>; note: string };
+  customTest?: { test: Function; note: string };
+  customDependancies?: Array<any>;
 
   multiInputData?: multiInputDataType;
   multiInputDataIndex?: number;
   onChangeMultiInputData?: Function;
-
-  focusOnLoad?: boolean;
 }
 
 const Input = ({
@@ -38,11 +33,15 @@ const Input = ({
   value,
   onChange,
 
+  iconData,
+
   isValid = true,
   setIsValid,
 
   validationData,
   existanceData,
+  customTest,
+  customDependancies,
 
   multiInputData,
   onChangeMultiInputData,
@@ -79,20 +78,29 @@ const Input = ({
     if (focusOnLoad && inputRef?.current) inputRef.current.focus();
   }, []);
 
+  let dependancies = [value];
+  if (customDependancies) dependancies = [dependancies, ...customDependancies];
+
   useEffect(() => {
     if (isValid === undefined || !setIsValid) return;
 
     let isRegexValid = true;
     if (validationData) isRegexValid = validationData.regex.test(value);
 
-    let isTaken = false;
+    let isExistanceValid = true;
     if (existanceData)
-      isTaken = !!existanceData.values.find((ev) => value === ev);
+      isExistanceValid = !existanceData.values.find((ev) => value === ev);
 
-    if (validationData && !isRegexValid) setCurrentNote(validationData?.note);
-    else if (existanceData && isTaken) setCurrentNote(existanceData?.note);
-    setIsValid(!!value ? !isTaken && isRegexValid : true);
-  }, [value]);
+    let isCustomTestValid = true;
+    if (customTest) isCustomTestValid = customTest.test();
+
+    if (validationData && !isRegexValid) setCurrentNote(validationData.note);
+    else if (customTest && isCustomTestValid) setCurrentNote(customTest.note);
+    else if (existanceData && isExistanceValid)
+      setCurrentNote(existanceData.note);
+
+    setIsValid(isExistanceValid && isRegexValid && isCustomTestValid);
+  }, dependancies);
 
   return (
     <Styled.Wrapper
@@ -118,9 +126,11 @@ const Input = ({
           onFocus={onFocus}
           onBlur={onBlur}
         />
-        <Styled.Icon className="input_icon">
-          <ReactSVG src="/images/cross.react.svg" />
-        </Styled.Icon>
+        {iconData && (
+          <Styled.Icon className="input_icon">
+            <ReactSVG src="/images/cross.react.svg" />
+          </Styled.Icon>
+        )}
       </Styled.InputWrapper>
 
       <Styled.Note

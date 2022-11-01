@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-export const MultiInput = styled.div`
+export const MultiInput = styled.div<{ scale: boolean | undefined }>`
   display: flex;
   flex-direction: column;
-  padding: 20px;
+
+  width: ${({ scale }) => (scale ? "100%" : "auto")};
 
   .input_wrapper:first-child {
     padding-top: 0;

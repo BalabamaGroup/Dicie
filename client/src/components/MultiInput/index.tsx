@@ -9,10 +9,12 @@ export type multiInputDataType = {
 };
 
 interface MultiInputProps {
+  className?: string;
+  scale?: boolean;
   children: Array<React.ReactElement>;
 }
 
-const MultiInput = ({ children }: MultiInputProps) => {
+const MultiInput = ({ className, scale, children }: MultiInputProps) => {
   const defaultData = children.map((child, i) => ({
     index: i,
     isSeparate: false,
@@ -32,10 +34,8 @@ const MultiInput = ({ children }: MultiInputProps) => {
     setMiltiInputData(newMultiInputData);
   };
 
-  console.log(multiInputData);
-
   return (
-    <Styled.MultiInput>
+    <Styled.MultiInput className={className} scale={scale}>
       {children.map((child, i) =>
         cloneElement(child, {
           multiInputData: multiInputData[i],

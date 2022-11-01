@@ -4,5 +4,5 @@ export default Object.freeze({
   CONTACT: "/contact",
   SIGN_IN: "/auth/signin",
   SIGN_UP: "/auth/signup",
-  ROOM: "/room/:id",
+  ROOM: "/room/:roomId",
 });

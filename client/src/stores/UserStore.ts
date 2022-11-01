@@ -1,12 +1,10 @@
 import { observable, action } from "mobx";
 
-export interface IUserStore {
-  id: string;
-  name?: string;
-  pic?: string;
-}
-
 export class UserStore {
-  @observable id = "id";
-  @observable name = "name";
+  // @observable id: number | null = null;
+  // @observable username: string | null = null;
+  // constructor({ id, username }: { id?: number; username?: string }) {
+  //   if (id) this.id = id;
+  //   if (username) this.username = username;
+  // }
 }

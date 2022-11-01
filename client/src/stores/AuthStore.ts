@@ -1,32 +1,29 @@
 import { action } from "mobx";
 
 import AuthAPI from "../api/auth";
-import {
-  signInData,
-  signInRes,
-  signUpData,
-  signUpRes,
-  takenSignUpInfoRes,
-} from "../api/auth/interfaces";
+import { signInData, signUpData } from "../api/auth/interfaces";
 
 export class AuthStore {
-  @action signUp = async (data: signUpData): Promise<signUpRes> => {
-    const result = AuthAPI.signUp(data);
-    this.signIn({
+  @action signUp = async (data: signUpData) => {
+    await AuthAPI.signUp(data);
+    await this.signIn({
       username: data.username,
       password: data.password,
     });
-    return result;
   };
 
-  @action signIn = async (data: signInData): Promise<signInRes> => {
-    const result = AuthAPI.signIn(data);
+  @action signIn = async (data: signInData) => {
+    const result = await AuthAPI.signIn(data);
     console.log(result);
-    sessionStorage.setItem("token", result.token);
-    return result;
+    if (result.id) sessionStorage.setItem("id", `${result.id}`);
+    if (result.token) {
+      sessionStorage.setItem("token", result.token);
+      window.location.href = "/";
+    }
   };
 
-  @action getTakenSignUpInfo = async (): Promise<takenSignUpInfoRes> => {
-    return AuthAPI.getTakenSignUpInfo();
+  @action signOut = () => {
+    sessionStorage.removeItem("token");
+    window.location.href = "/auth/signin";
   };
 }
