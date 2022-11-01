@@ -18,6 +18,7 @@ public class UserCharadeState extends UserState {
     private String word;
     private Boolean isFinished = false;
     private Boolean ready = false;
+    private Long selectedUser;
 
     public UserCharadeState(User user) {
         super(user);
@@ -28,16 +29,22 @@ public class UserCharadeState extends UserState {
         return new UserCharadeStateDto(this);
     }
 
-    public UserCharadeState setWord(String word){
+    public UserCharadeState setWord(String word) {
         this.word = word;
         this.ready = true;
         return this;
     }
 
-    public UserCharadeState checkWord(String word){
-        if (Objects.equals(this.word, word))
-        this.isFinished = true;
+    public UserCharadeState checkWord(String word) {
+        if (Objects.equals(this.word, word)) {
+            this.isFinished = true;
+        }
         return this;
     }
+    public UserCharadeState addSelectedUser(User user) {
+        setSelectedUser(user.getId());
+        return this;
+    }
+
 
 }

@@ -29,6 +29,11 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public Boolean existByName(String name) {
+        return roomRepository.existsByName(name);
+    }
+
+    @Override
     public Room getById(UUID id) {
         return roomRepository.findById(id).orElseThrow(() -> MTException.notFoundById(Room.class, id));
     }
