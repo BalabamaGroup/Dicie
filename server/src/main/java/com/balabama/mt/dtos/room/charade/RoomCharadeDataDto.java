@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 public class RoomCharadeDataDto extends RoomDataDto {
 
     private Boolean allUsersReady = false;
+    private String currentQuestion;
+    private Integer responseCounterYes = 0;
 
     public RoomCharadeDataDto(Room room) {
         super();

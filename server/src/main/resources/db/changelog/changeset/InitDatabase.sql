@@ -5,22 +5,22 @@
 -- auto-generated definition
 create table game
 (
-    game_type varchar(31)  not null,
-    id        bigint       not null
+    game_type varchar(31) not null,
+    id        bigint      not null
         primary key,
-    max_users int          null,
-    min_users int          null,
+    max_users int null,
+    min_users int null,
     name      varchar(255) null
 );
 create table room
 (
     id        varchar(36)  not null
         primary key,
-    max_users int          null,
-    min_users int          null,
+    max_users int null,
+    min_users int null,
     name      varchar(255) not null,
-    start     bit          null,
-    game      bigint       null,
+    start     bit null,
+    game      bigint null,
     constraint UK_aa58c9de9eu0v585le47w25my
         unique (name),
     constraint FKnfwcytp8m89dqetjy1x4en8d
@@ -36,9 +36,11 @@ create table room_data
 
 create table room_charade_data
 (
-    room_id varchar(36) not null
+    room_id              varchar(36) not null
         primary key,
-    all_users_ready bit null,
+    all_users_ready      bit null,
+    current_question     varchar(255) null,
+    response_counter_yes int null,
     constraint FK900z9j8lhpo0g2vofk8pvkkts
         foreign key (room_id) references room (id)
 );
@@ -48,9 +50,9 @@ create table user
         primary key,
     email    varchar(255) null,
     password varchar(255) null,
-    role     int          null,
+    role     int null,
     username varchar(255) null,
-    room     varchar(36)       null,
+    room     varchar(36) null,
     constraint FKh4vi8y500vhc3k8qy8o5t76u8
         foreign key (room) references room (id)
 );
@@ -64,19 +66,19 @@ create table user_state
 );
 create table user_charade_state
 (
-    user_id     bigint not null
+    user_id       bigint not null
         primary key,
-    is_finished bit not null default false,
-    ready bit not null default false,
-    is_going bit not null default false,
+    is_finished   bit    not null default false,
+    ready         bit    not null default false,
+    is_going      bit    not null default false,
     selected_user bigint null,
-    selected_by bigint null,
-    word        varchar(255) null,
+    selected_by   bigint null,
+    word          varchar(255) null,
     constraint FK_riusvmjs0b0jrkeyik7wkd436
         foreign key (user_id) references user (id)
 );
 
-insert into game(game_type,id, max_users, min_users, name) value ('CHARADE', 1, 10, 1, 'charade');
+insert into game(game_type, id, max_users, min_users, name) value ('CHARADE', 1, 10, 1, 'charade');
 ALTER TABLE `room`
     ADD COLUMN `admin_id` bigint null, ADD KEY `FKzUiRVjCyIYturgw07fyiouOQI` (`admin_id`),
     ADD CONSTRAINT `FKzUiRVjCyIYturgw07fyiouOQI` FOREIGN KEY (`admin_id`) REFERENCES `user` (`id`);

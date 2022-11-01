@@ -1,5 +1,6 @@
 package com.balabama.mt.services;
 
+import com.balabama.mt.dtos.room.charade.CharadeAnswer;
 import com.balabama.mt.entities.rooms.Room;
 
 public interface GameCharadeService {
@@ -11,4 +12,9 @@ public interface GameCharadeService {
     Room selectUser(Long id);
 
     Room ready();
+
+    Room  askQuestion(String question);
+
+    Room  answer(CharadeAnswer charadeAnswer);
+
 }
