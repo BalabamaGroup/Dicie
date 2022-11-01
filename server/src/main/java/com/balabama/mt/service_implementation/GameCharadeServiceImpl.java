@@ -109,11 +109,12 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         roomCharadeData.setCurrentQuestion(null);
         if (charadeAnswer == CharadeAnswer.YES) {
             roomCharadeData.setResponseCounterYes(roomCharadeData.getResponseCounterYes() + 1);
-        } else {
+        }
+        if (charadeAnswer == CharadeAnswer.NO) {
             roomCharadeData.setResponseCounterYes(0);
             changeTurn(roomCharadeData.getRoom());
         }
-        if (roomCharadeData.getResponseCounterYes() >= 3){
+        if (roomCharadeData.getResponseCounterYes() >= 3) {
             changeTurn(roomCharadeData.getRoom());
         }
         return roomService.save(roomCharadeData.getRoom());
