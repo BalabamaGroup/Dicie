@@ -66,17 +66,19 @@ create table user_state
 );
 create table user_charade_state
 (
-    user_id       bigint not null
+    user_id               bigint not null
         primary key,
-    is_finished   bit    not null default false,
-    ready         bit    not null default false,
-    is_going      bit    not null default false,
-    selected_user bigint null,
-    selected_by   bigint null,
-    word          varchar(255) null,
+    is_finished           bit    not null,
+    is_going              bit    not null,
+    ready                 bit    not null,
+    word                  varchar(255) null,
+    selected_user_user_id bigint null,
     constraint FK_riusvmjs0b0jrkeyik7wkd436
-        foreign key (user_id) references user (id)
+        foreign key (user_id) references user (id),
+    constraint FKpubhbjwe1h9m3ehc8be7vio17
+        foreign key (selected_user_user_id) references user_charade_state (user_id)
 );
+
 
 insert into game(game_type, id, max_users, min_users, name) value ('CHARADE', 1, 10, 1, 'charade');
 ALTER TABLE `room`

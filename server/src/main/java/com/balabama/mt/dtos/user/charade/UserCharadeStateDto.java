@@ -4,6 +4,11 @@ import com.balabama.mt.dtos.user.UserStateDto;
 import com.balabama.mt.entities.user.charade.UserCharadeState;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,8 +32,8 @@ public class UserCharadeStateDto extends UserStateDto {
         this.isFinished = state.getIsFinished();
         this.ready = state.getReady();
         this.isGoing = state.getIsGoing();
-        this.selectedBy= state.getSelectedBy();
-        this.selectedUser = state.getSelectedUser();
+        this.selectedBy = state.getSelectedBy().getId();
+        this.selectedUser = state.getSelectedUser().getId();
     }
 
     @JsonIgnore

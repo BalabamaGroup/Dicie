@@ -41,7 +41,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         if (((UserCharadeState) userService.getCurrent().getUserState()).getSelectedUser() == null) {
             throw new MTException(HttpStatus.BAD_REQUEST, "Choose to whom you will make a word");
         }
-        String selectedWord = (((UserCharadeState) userService.getById(((UserCharadeState) current.getUserState()).getSelectedUser())
+        String selectedWord = (((UserCharadeState) userService.getById(((UserCharadeState) current.getUserState()).getSelectedUser().getId())
             .getUserState()).getWord());
         if (selectedWord == null || selectedWord.equals("")) {
             throw new MTException(HttpStatus.BAD_REQUEST, "You didn't set the word");
@@ -86,11 +86,13 @@ public class GameCharadeServiceImpl implements GameCharadeService {
     public Room selectUser(Long id) {
         User current = userService.getCurrent();
         User selected = userService.getById(id);
+        if (current.getRoom().getId() != selected.getRoom().getId()) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "Selected user in other room");
+        }
         UserCharadeState currentUserCharadeState = ((UserCharadeState) current.getUserState()).addSelectedUser(
             selected);
         userStateService.save(currentUserCharadeState);
-        return roomService.save(changeTurn(getRoomByState(((UserCharadeState) userStateService.getById(selected.getId())).addSelectedBy(
-            current))));
+        return roomService.save(changeTurn(getRoomByState(((UserCharadeState) selected.getUserState()).addSelectedBy(current))));
 
     }
 
@@ -98,7 +100,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
     public Room answer(CharadeAnswer charadeAnswer) {
         User current = userService.getCurrent();
         UserCharadeState currentUserCharadeState = ((UserCharadeState) current.getUserState());
-        User turnUser = userService.getById(currentUserCharadeState.getSelectedUser());
+        User turnUser = userService.getById(currentUserCharadeState.getSelectedUser().getId());
         if (!((UserCharadeState) turnUser.getUserState()).getIsGoing()) {
             throw new MTException(HttpStatus.BAD_REQUEST, "You cannot answer this user's questions");
         }
