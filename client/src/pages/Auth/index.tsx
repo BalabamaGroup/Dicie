@@ -26,7 +26,7 @@ const SignUp = () => {
               id: "signup",
               label: "Sign Up",
               onClick: () => {
-                navigate("/auth/signup");
+                navigate(routes.SIGN_UP);
               },
               defaultChoice: formType === "signUp",
             },
@@ -34,7 +34,7 @@ const SignUp = () => {
               id: "signin",
               label: "Sign In",
               onClick: () => {
-                navigate("/auth/signin");
+                navigate(routes.SIGN_IN);
               },
               defaultChoice: formType === "signIn",
             },

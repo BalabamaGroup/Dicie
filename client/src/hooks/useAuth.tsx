@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-
 import AuthAPI from "../api/auth";
+
 import routes from "../common/constants/routes";
 
 const useAuth = () => {

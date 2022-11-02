@@ -1,5 +1,4 @@
 import axios, { AxiosInstance } from "axios";
-import { useNavigate } from "react-router-dom";
 import routes from "../common/constants/routes";
 
 import { apiUrl } from "../common/utils/url";
@@ -39,9 +38,6 @@ class AxiosClient {
         const errTextJSON = JSON.parse(err.request.responseText);
         Toast.error(errTextJSON.errorMessage);
 
-        // let errText = err.response
-        //   ? this.getResponseError(err.response)
-        //   : err.message;
         if (err.response?.status === 401) {
           sessionStorage.removeItem("id");
           sessionStorage.removeItem("token");

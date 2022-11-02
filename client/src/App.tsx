@@ -50,8 +50,7 @@ const App = () => {
           <Route path={Routes.ABOUT} element={<About />} />
           <Route path={Routes.CONTACT} element={<Contact />} />
 
-          <Route path={Routes.ROOM} element={<Room />} />
-          <Route path="*" element={<Navigate to={Routes.HOME} replace />} />
+          <Route path="*" element={<Navigate to={Routes.SIGN_IN} replace />} />
         </RoutesRRD>
 
         <ReactQueryDevtools initialIsOpen={false} />

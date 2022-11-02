@@ -1,4 +1,4 @@
-import React, { useState, createRef } from "react";
+import React, { useState } from "react";
 
 import { RoleTypes } from "../../common/constants";
 import {
