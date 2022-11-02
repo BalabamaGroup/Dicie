@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import UserAPI from "../api/user";
+import { Game } from "../common/types/room";
 import { socketUrl } from "../common/utils/url";
 
 const useRoomConnectionSocket = () => {
   const ws = useRef<WebSocket | null>(null);
 
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<Game | null>(null);
   const [status, setStatus] = useState<boolean>(false);
 
   const gettingData = useCallback(() => {
@@ -29,7 +29,7 @@ const useRoomConnectionSocket = () => {
     return () => ws.current?.close();
   }, [ws, gettingData]);
 
-  return [ws, data, status];
+  return { socket: ws, roomData: data, status };
 };
 
 export default useRoomConnectionSocket;

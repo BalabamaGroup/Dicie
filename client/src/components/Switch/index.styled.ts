@@ -17,13 +17,13 @@ export const SwitchOption = styled.div<{ isChosen: boolean | undefined }>`
   gap: 6px;
 
   font-family: "Inter";
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 15px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
 
   .higlighting {
     bottom: 0;
-    width: 16px;
+    width: 24px;
     height: 2px;
 
     border-radius: 2px;
@@ -38,6 +38,7 @@ export const SwitchOption = styled.div<{ isChosen: boolean | undefined }>`
           color: #222222;
           background: #ffffff;
           border-radius: 8px;
+          box-shadow: 0px 2px 4px rgba(137, 134, 245, 0.125);
 
           .higlighting {
             background-color: #ffffff;

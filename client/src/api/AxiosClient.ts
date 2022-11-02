@@ -36,17 +36,18 @@ class AxiosClient {
         return res.data;
       })
       .catch((err: any) => {
-        Toast.error(err.request.response);
+        const errTextJSON = JSON.parse(err.request.responseText);
+        Toast.error(errTextJSON.errorMessage);
 
-        let errText = err.response
-          ? this.getResponseError(err.response)
-          : err.message;
+        // let errText = err.response
+        //   ? this.getResponseError(err.response)
+        //   : err.message;
         if (err.response?.status === 401) {
           sessionStorage.removeItem("id");
           sessionStorage.removeItem("token");
           // window.location.href = routes.SIGN_IN;
         }
-        return Promise.reject(errText || err);
+        return Promise.reject(err || errTextJSON.errorMessage);
       });
   };
 }

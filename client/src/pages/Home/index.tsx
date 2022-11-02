@@ -31,7 +31,7 @@ const Home = ({}: HomeProps) => {
   };
 
   const onCreateRoom = async () => {
-    const newRoom = await RoomAPI.createRoom({ gameId: 1 });
+    const newRoom = await RoomAPI.createRoom({ gameId: 1, name: "Balabamy" });
     onGoToRoom(newRoom.id);
   };
 
@@ -75,7 +75,7 @@ const Home = ({}: HomeProps) => {
               disabled={!!currentRoomId}
               onClick={() => onGoToRoom(room.id)}
             >
-              {room.id}
+              {room.name}
             </button>
             <br />
           </div>

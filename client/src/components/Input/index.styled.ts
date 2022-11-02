@@ -38,7 +38,7 @@ const getValidationStylingDataCss = (isFocus: boolean, isValid: boolean) => {
     : isFocus && !isValid
     ? ` box-shadow: 0px 4px 8px rgba(252, 48, 87, 0.25); `
     : !isFocus && !isValid
-    ? ` color: #fc3057; `
+    ? ` color: #e36b6b; `
     : ``;
 };
 
@@ -131,7 +131,7 @@ export const Note = styled.div<{ isVisible: boolean | undefined }>`
   transition: all 0.2s ease-in-out;
   line-height: 20px;
 
-  color: #fc3057;
+  color: #e36b6b;
 
   white-space: pre-line;
   ${({ isVisible }) =>

@@ -1,34 +1,36 @@
 import { request } from "..";
 import Room from "../../common/types/room";
-import { createRoomData } from "./interfaces";
 
 export default class RoomAPI {
-  static createRoom = (data: createRoomData): Room => {
+  static createRoom = (data: {
+    gameId: number;
+    name: string;
+  }): Promise<Room> => {
     const options = {
       method: "post",
       url: `room`,
       data,
     };
 
-    return request(options).then((res: Room) => res);
+    return request(options).then((res: Promise<Room>) => res);
   };
 
-  static getRooms = (): [Room] => {
+  static getRooms = (): Promise<[Room]> => {
     const options = {
       method: "get",
       url: `room`,
     };
 
-    return request(options).then((res: [Room]) => res);
+    return request(options).then((res: Promise<[Room]>) => res);
   };
 
-  static getRoom = (id: string): Room => {
+  static getRoom = (id: string): Promise<Room> => {
     const options = {
       method: "get",
       url: `room/${id}`,
     };
 
-    return request(options).then((res: Room) => res);
+    return request(options).then((res: Promise<Room>) => res);
   };
 
   static connectToRoom = async (id: string): Promise<Room> => {
@@ -37,43 +39,33 @@ export default class RoomAPI {
       url: `room/connect/${id}`,
     };
 
-    return request(options).then((res: Room) => res);
+    return request(options).then((res: Promise<Room>) => res);
   };
 
-  static disconnectFromRoom = (id: string): Room => {
+  static disconnectFromRoom = (id: string): Promise<Room> => {
     const options = {
       method: "put",
       url: `room/disconnect/${id}`,
     };
 
-    return request(options).then((res: Room) => res);
+    return request(options).then((res: Promise<Room>) => res);
   };
 
-  static startGame = (id: string): Room => {
+  static startGame = (id: string): Promise<Room> => {
     const options = {
       method: "post",
       url: `room/start/${id}`,
     };
 
-    return request(options).then((res: Room) => res);
+    return request(options).then((res: Promise<Room>) => res);
   };
 
-  static finishGame = (id: string): Room => {
+  static finishGame = (id: string): Promise<Room> => {
     const options = {
       method: "post",
       url: `room/finish/${id}`,
     };
 
-    return request(options).then((res: Room) => res);
-  };
-
-  static setSharadeWord = (id: number, data: { word: string }) => {
-    const options = {
-      method: "post",
-      url: `game_charade/set_word/${id}`,
-      data,
-    };
-
-    return request(options).then((res: Room) => res);
+    return request(options).then((res: Promise<Room>) => res);
   };
 }

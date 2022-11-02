@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import * as Styled from "./index.styled";
 import Input from "../Input";
@@ -20,8 +20,12 @@ interface signInProps {
 const SignInForm = ({ username, password }: signInProps) => {
   const { signIn } = useAuth();
 
+  const [passwordIsVisible, setPasswordIsVisible] = useState(false);
+  const togglePasswordIsvisible = () =>
+    setPasswordIsVisible(!passwordIsVisible);
+
   const onSignIn = async (e: any) => {
-    // e.preventDefault();
+    e.preventDefault();
     signIn({
       username: username.value,
       password: password.value,
@@ -48,6 +52,13 @@ const SignInForm = ({ username, password }: signInProps) => {
             id={"signUp-username"}
             key={"signUp-passsword"}
             placeholder="Password"
+            type={passwordIsVisible ? "text" : "password"}
+            iconData={{
+              iconSrc: passwordIsVisible
+                ? "/svgs/eye.closed.svg"
+                : "/svgs/eye.opened.svg",
+              onClick: togglePasswordIsvisible,
+            }}
             value={password.value}
             onChange={password.onChange}
           />
