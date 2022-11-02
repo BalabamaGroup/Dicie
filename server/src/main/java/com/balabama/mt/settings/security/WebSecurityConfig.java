@@ -45,7 +45,7 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.cors().and()
+        http.cors().and().csrf().disable()
             .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests()
@@ -59,12 +59,10 @@ public class WebSecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()
-            .antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/favicon.ico", "/static/**")
-            .antMatchers("/auth/signup", "/", "/*.ts", "/*.js", "/*.css", "/h2-console/**", "/health", "/actuator/*", "/assets/**",
-                "/profile/**",
-                "/socket**")
+            .antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/favicon.ico","/static/**")
+            .antMatchers("/", "/*.js", "/*.css", "/h2-console/**", "/health", "/actuator/*", "/assets/**", "/profile/**", "/socket**")
             .antMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/swagger-resources", "/swagger-resources/**")
-            .antMatchers("/api/auth/existing_users", "/auth/signin", "/pngs/**", "/svgs/**", "/about");
+            .antMatchers("/api/auth/existing_users");
     }
 
     @Bean

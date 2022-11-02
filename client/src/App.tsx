@@ -46,7 +46,7 @@ const App = () => {
           <Route path={Routes.SIGN_IN} element={<Auth />} />
           <Route path={Routes.SIGN_UP} element={<Auth />} />
 
-          <Route path={Routes.HOME} element={<Home />} />
+          <Route path={Routes.HOME} element={<Auth />} />
           <Route path={Routes.ABOUT} element={<About />} />
           <Route path={Routes.CONTACT} element={<Contact />} />
 
