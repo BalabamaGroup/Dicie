@@ -21,11 +21,15 @@ const useAuth = () => {
 
   const signIn = async (data: { username: string; password: string }) => {
     AuthAPI.signIn(data).then((res) => {
-      console.log("AAAAAAAAAA", res);
       sessionStorage.setItem("id", `${res.id}`);
       res.token && sessionStorage.setItem("token", res.token);
       navigate(routes.HOME);
     });
+  };
+
+  const getTakenSignUpInfo = async () => {
+    const result = await AuthAPI.getTakenSignUpInfo();
+    return result;
   };
 
   const signOut = () => {
@@ -33,7 +37,7 @@ const useAuth = () => {
     navigate(routes.SIGN_IN);
   };
 
-  return { signUp, signIn, signOut };
+  return { signUp, signIn, signOut, getTakenSignUpInfo };
 };
 
 export default useAuth;

@@ -13,7 +13,6 @@ import Input from "../Input";
 import MultiInput from "../MultiInput";
 import Button from "../Button";
 import { useQuery } from "react-query";
-import AuthAPI from "../../api/auth";
 import useAuth from "../../hooks/useAuth";
 
 interface signUpProps {
@@ -41,7 +40,7 @@ const SignUpForm = ({
   password,
   matchPassword,
 }: signUpProps) => {
-  const { signUp } = useAuth();
+  const { signUp, getTakenSignUpInfo } = useAuth();
 
   const [usernameIsValid, setUsernameIsValid] = useState(true);
   const [emailIsValid, setEmailIsValid] = useState(true);
@@ -75,7 +74,7 @@ const SignUpForm = ({
   };
 
   useQuery("takenSignUpInfo", async () => {
-    const takenSignUpInfo = await AuthAPI.getTakenSignUpInfo();
+    const takenSignUpInfo = await getTakenSignUpInfo();
 
     const usernames: string[] = [];
     const emails: string[] = [];
