@@ -1,6 +1,7 @@
 package com.balabama.mt.service_implementation;
 
 import com.balabama.mt.entities.games.Game;
+import com.balabama.mt.entities.user.User;
 import com.balabama.mt.exceptions.MTException;
 import com.balabama.mt.repositories.GameRepository;
 import com.balabama.mt.services.GameService;

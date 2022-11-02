@@ -5,10 +5,15 @@ import com.balabama.mt.entities.user.User;
 import com.balabama.mt.entities.user.UserState;
 import com.balabama.mt.exceptions.MTException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
@@ -26,8 +31,10 @@ public class UserCharadeState extends UserState {
     private Boolean isFinished = false;
     @Column(nullable = false)
     private Boolean ready = false;
-    private Long selectedUser;
-    private Long selectedBy;
+    @OneToOne(fetch = FetchType.LAZY)
+    private UserCharadeState selectedUser;
+    @OneToOne(mappedBy = "selectedUser")
+    private UserCharadeState selectedBy;
     @Column(nullable = false)
     private Boolean isGoing = false;
 
@@ -54,7 +61,7 @@ public class UserCharadeState extends UserState {
 
     public UserCharadeState addSelectedUser(User user) {
         checkTurn();
-        setSelectedUser(user.getId());
+        setSelectedUser((UserCharadeState) user.getUserState());
         return this;
     }
 
@@ -65,7 +72,7 @@ public class UserCharadeState extends UserState {
     }
 
     public UserCharadeState addSelectedBy(User user) {
-        setSelectedBy(user.getId());
+        setSelectedBy((UserCharadeState) user.getUserState());
         return this;
     }
 
