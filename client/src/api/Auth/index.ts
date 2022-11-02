@@ -1,10 +1,13 @@
 import { request } from "..";
 import User from "../../common/types/user";
 
-import { signInData, signUpData } from "./interfaces";
-
 export default class AuthAPI {
-  static signUp = async (data: signUpData): Promise<User> => {
+  static signUp = async (data: {
+    username: string;
+    email: string;
+    password: string;
+    role: string;
+  }): Promise<User> => {
     const options = {
       method: "post",
       url: `auth/signup`,
@@ -27,7 +30,10 @@ export default class AuthAPI {
     );
   };
 
-  static signIn = async (data: signInData): Promise<User> => {
+  static signIn = async (data: {
+    username: string;
+    password: string;
+  }): Promise<User> => {
     const options = {
       method: "post",
       url: `auth/signin`,
