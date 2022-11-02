@@ -212,8 +212,7 @@
                   <outputDirectory>${project.build.outputDirectory}/static</outputDirectory>
                   <resources>
                     <resource>
-                      <directory>${frontend-src-dir}/dist/client</directory>
-                      <filtering>false</filtering>
+                      <directory>${frontend-src-dir}/build</directory>
                     </resource>
                   </resources>
                 </configuration>
