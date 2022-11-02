@@ -2,7 +2,7 @@ export default Object.freeze({
   HOME: "/",
   ABOUT: "about/",
   CONTACT: "/contact",
-  SIGN_IN: "/balabama",
-  SIGN_UP: "/group",
+  SIGN_IN: "/signin",
+  SIGN_UP: "/signup",
   ROOM: "/room/:roomId",
 });

@@ -39,9 +39,9 @@ class AxiosClient {
         Toast.error(errTextJSON.errorMessage);
 
         if (err.response?.status === 401) {
+          window.location.href = routes.SIGN_IN;
           sessionStorage.removeItem("id");
           sessionStorage.removeItem("token");
-          // window.location.href = routes.SIGN_IN;
         }
         return Promise.reject(err || errTextJSON.errorMessage);
       });

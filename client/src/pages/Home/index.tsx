@@ -1,10 +1,17 @@
+import { useState } from "react";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import RoomAPI from "../../api/room";
 import UserAPI from "../../api/user";
 
 export interface HomeProps {}
 
 const Home = ({}: HomeProps) => {
+  const navigate = useNavigate();
+
+  const [roomName, setRoomName] = useState("");
+  const onChangeRoomName = (e: any) => setRoomName(e.target.value);
+
   const { data: rooms, isLoading: roomsIsLoading } = useQuery("rooms", () => {
     return RoomAPI.getRooms();
   });
@@ -20,7 +27,7 @@ const Home = ({}: HomeProps) => {
   });
 
   const onReturnToCurrRoom = () => {
-    if (currentRoomId) window.location.href = `/room/${currentRoomId}`;
+    if (currentRoomId) navigate(`/room/${currentRoomId}`);
   };
 
   const onDisconnectFromCurrRoom = async () => {
@@ -31,12 +38,12 @@ const Home = ({}: HomeProps) => {
   };
 
   const onCreateRoom = async () => {
-    const newRoom = await RoomAPI.createRoom({ gameId: 1, name: "Balabamy" });
+    const newRoom = await RoomAPI.createRoom({ gameId: 1, name: roomName });
     onGoToRoom(newRoom.id);
   };
 
   const onGoToRoom = (id: string) => {
-    window.location.href = `/room/${id}`;
+    navigate(`/room/${id}`);
   };
 
   if (currentRoomIdError) return <p>An error has occured</p>;
@@ -61,6 +68,7 @@ const Home = ({}: HomeProps) => {
       <button disabled={!!currentRoomId} onClick={onCreateRoom}>
         <h2>Create Room</h2>
       </button>
+      <input value={roomName} onChange={onChangeRoomName} />
 
       <br />
       <br />
