@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -59,10 +61,14 @@ public class UserCharadeState extends UserState {
         return this;
     }
 
-    public UserCharadeState addSelectedUser(User user) {
+    public void selectUser(UserCharadeState selectedUser) {
         checkTurn();
-        setSelectedUser((UserCharadeState) user.getUserState());
-        return this;
+        if (Objects.equals(this.getId(), selectedUser.getId()) || getSelectedUser() != null || selectedUser.getSelectedBy() != null) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "You can not select this user");
+        }
+        setSelectedUser(selectedUser);
+        selectedUser.setSelectedBy(this);
+        checkNonCycleSelectedUser();
     }
 
     public void checkTurn() {
@@ -84,6 +90,21 @@ public class UserCharadeState extends UserState {
         }
         ((UserCharadeState) userList.get(0).getUserState()).setIsGoing(true);
         return userList;
+    }
+
+    public void preFinish() {
+        selectedUser = null;
+        selectedBy = null;
+    }
+
+    private void checkNonCycleSelectedUser() {
+        if (getUser().getRoom().getUsers().stream().map(user -> (UserCharadeState) user.getUserState())
+            .filter(state -> state.getSelectedBy() == null && state.getSelectedUser() == null).count() == 1
+            && getUser().getRoom().getUsers().stream().map(user -> (UserCharadeState) user.getUserState())
+            .filter(state -> state.getSelectedBy() != null && state.getSelectedUser() != null).count()
+            == getUser().getRoom().getUsers().size() - 1) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "You have to choose another user");
+        }
     }
 
 

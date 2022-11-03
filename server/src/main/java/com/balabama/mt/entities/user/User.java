@@ -2,6 +2,7 @@ package com.balabama.mt.entities.user;
 
 import com.balabama.mt.dtos.SignupRequest;
 import com.balabama.mt.entities.rooms.Room;
+import com.balabama.mt.exceptions.MTException;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,6 +20,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.Type;
+import org.springframework.http.HttpStatus;
 
 @Entity
 @Table(name = "user")
@@ -38,7 +40,7 @@ public class User {
     @JoinColumn(name = "room", columnDefinition = "VARCHAR(36)")
     @Type(type = "uuid-char")
     private Room room;
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @PrimaryKeyJoinColumn
     private UserState userState;
     @OneToOne(mappedBy = "admin")
@@ -49,6 +51,12 @@ public class User {
         this.email = signupRequest.getEmail();
         this.password = password;
         this.role = signupRequest.getRole();
+    }
+
+    public void checkSameRoom(User otherUser) {
+        if (getRoom() == null || otherUser.getRoom() == null || getRoom().getId() != otherUser.getRoom().getId()) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "Users in different rooms");
+        }
     }
 
 

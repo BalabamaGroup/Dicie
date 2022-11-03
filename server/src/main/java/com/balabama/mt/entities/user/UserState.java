@@ -46,4 +46,8 @@ public class UserState {
     public UserStateDto createDto(){
         return new UserStateDto(this);
     }
+
+    public void preFinish(){
+
+    }
 }

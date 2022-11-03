@@ -1,6 +1,7 @@
 package com.balabama.mt.service_implementation;
 
 import com.balabama.mt.dtos.room.charade.CharadeAnswer;
+import com.balabama.mt.entities.games.Charade;
 import com.balabama.mt.entities.rooms.Room;
 import com.balabama.mt.entities.rooms.charade.RoomCharadeData;
 import com.balabama.mt.entities.user.User;
@@ -27,8 +28,11 @@ public class GameCharadeServiceImpl implements GameCharadeService {
 
     @Override
     public Room setWord(Long userId, String word) {
-        User current = userService.getCurrent();
-        if (current.getId().equals(userId) || !Objects.equals(((UserCharadeState) current.getUserState()).getSelectedUser(), userId)) {
+        User currentUser = userService.getCurrent();
+        Room room = currentUser.getRoom();
+        room.validateGame(Charade.class);
+        if (currentUser.getId().equals(userId) || ((UserCharadeState) currentUser.getUserState()).getSelectedUser() == null || !Objects.equals(
+            ((UserCharadeState) currentUser.getUserState()).getSelectedUser().getId(), userId)) {
             throw new MTException(HttpStatus.FORBIDDEN, "You can't set a word");
         }
         UserCharadeState userCharadeState = ((UserCharadeState) userStateService.getById(userId)).setWord(word);
@@ -41,7 +45,8 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         if (((UserCharadeState) userService.getCurrent().getUserState()).getSelectedUser() == null) {
             throw new MTException(HttpStatus.BAD_REQUEST, "Choose to whom you will make a word");
         }
-        String selectedWord = (((UserCharadeState) userService.getById(((UserCharadeState) current.getUserState()).getSelectedUser().getId())
+        String selectedWord = (((UserCharadeState) userService.getById(
+                ((UserCharadeState) current.getUserState()).getSelectedUser().getId())
             .getUserState()).getWord());
         if (selectedWord == null || selectedWord.equals("")) {
             throw new MTException(HttpStatus.BAD_REQUEST, "You didn't set the word");
@@ -83,16 +88,14 @@ public class GameCharadeServiceImpl implements GameCharadeService {
     }
 
     @Override
-    public Room selectUser(Long id) {
+    public Room selectUser(Long userSelectedId) {
         User current = userService.getCurrent();
-        User selected = userService.getById(id);
-        if (current.getRoom().getId() != selected.getRoom().getId()) {
-            throw new MTException(HttpStatus.BAD_REQUEST, "Selected user in other room");
-        }
-        UserCharadeState currentUserCharadeState = ((UserCharadeState) current.getUserState()).addSelectedUser(
-            selected);
-        userStateService.save(currentUserCharadeState);
-        return roomService.save(changeTurn(getRoomByState(((UserCharadeState) selected.getUserState()).addSelectedBy(current))));
+        User selected = userService.getById(userSelectedId);
+        current.checkSameRoom(selected);
+        Room room = current.getRoom();
+        room.validateGame(Charade.class);
+        ((UserCharadeState) current.getUserState()).selectUser((UserCharadeState) selected.getUserState());
+        return roomService.save(changeTurn(current.getRoom()));
 
     }
 

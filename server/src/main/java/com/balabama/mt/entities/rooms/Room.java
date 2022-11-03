@@ -1,5 +1,6 @@
 package com.balabama.mt.entities.rooms;
 
+import com.balabama.mt.entities.games.Charade;
 import com.balabama.mt.entities.games.Game;
 import com.balabama.mt.entities.user.User;
 import com.balabama.mt.exceptions.MTException;
@@ -100,14 +101,18 @@ public class Room {
         this.start = true;
     }
 
+    public void preFinish() {
+        this.roomData = null;
+        for (User user : users) {
+            user.getUserState().preFinish();
+        }
+    }
+
     public void finish() {
         this.roomData = null;
-        List<User> userList = new ArrayList<>();
         for (User user : users) {
             user.setUserState(null);
-            userList.add(user);
         }
-        this.setUsers(userList);
         this.start = false;
     }
 
@@ -141,6 +146,12 @@ public class Room {
     public void validateAdmin(User user) {
         if (!user.equals(this.admin)) {
             throw MTException.forbidden();
+        }
+    }
+
+    public <T> void validateGame(Class<T> clazz) {
+        if (clazz.isInstance(getGame())) {
+            throw new MTException(HttpStatus.INTERNAL_SERVER_ERROR, "Game is not " + clazz.getName());
         }
     }
 }
