@@ -28,6 +28,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getById(Long id) {
+        if (id == null) {
+            throw MTException.badRequestNullId(User.class);
+        }
         return userRepository.findById(id).orElseThrow(() -> MTException.notFoundById(User.class, id));
     }
 

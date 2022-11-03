@@ -25,6 +25,10 @@ public class MTException extends ResponseStatusException {
         return notFound(clazz, value, "Id");
     }
 
+    public static <T, V> MTException badRequestNullId(Class<T> clazz) {
+        return new MTException(HttpStatus.BAD_REQUEST, clazz.getSimpleName() + " Id cannot be null");
+    }
+
     public static <T, V> MTException notFound(Class<T> clazz, V value, String field) {
         return new MTException(HttpStatus.NOT_FOUND, clazz.getSimpleName() + " with " + field + " = '" + value + "' does not exist.");
     }

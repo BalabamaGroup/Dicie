@@ -32,8 +32,12 @@ public class UserCharadeStateDto extends UserStateDto {
         this.isFinished = state.getIsFinished();
         this.ready = state.getReady();
         this.isGoing = state.getIsGoing();
-        this.selectedBy = state.getSelectedBy().getId();
-        this.selectedUser = state.getSelectedUser().getId();
+        if (state.getSelectedBy() != null) {
+            this.selectedBy = state.getSelectedBy().getId();
+        }
+        if (state.getSelectedUser() != null) {
+            this.selectedUser = state.getSelectedUser().getId();
+        }
     }
 
     @JsonIgnore
