@@ -40,7 +40,7 @@ const SignInForm = ({ username, password }: signInProps) => {
       </Styled.AuthHeader>
 
       <Styled.MultiInputWrapper inputCount={2}>
-        <MultiInput className="auth_multiinput" scale={true}>
+        <MultiInput className="auth_multiinput" isScale={true}>
           <Input
             id={"signUp-username"}
             key={"signUp-username"}
@@ -65,7 +65,7 @@ const SignInForm = ({ username, password }: signInProps) => {
         </MultiInput>
       </Styled.MultiInputWrapper>
 
-      <Button scale={true} onClick={onSignIn}>
+      <Button isScale={true} onClick={onSignIn}>
         Sign In
       </Button>
     </Styled.AuthForm>

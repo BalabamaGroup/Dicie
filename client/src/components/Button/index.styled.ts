@@ -2,9 +2,10 @@ import styled, { css } from "styled-components";
 
 export const Button = styled.button<{
   disabled: boolean | undefined;
-  scale: boolean | undefined;
+  isScale: boolean | undefined;
 }>`
   all: unset;
+  user-select: none;
   cursor: pointer;
   box-sizing: border-box;
 
@@ -26,7 +27,7 @@ export const Button = styled.button<{
 
   transition: all 0.2s ease-in-out;
 
-  width: ${({ scale }) => (scale ? "100%" : "auto")};
+  width: ${({ isScale }) => (isScale ? "100%" : "auto")};
 
   &:hover {
     box-shadow: 0px 8px 32px rgba(106, 101, 255, 0.5);

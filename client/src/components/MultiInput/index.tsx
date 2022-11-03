@@ -10,11 +10,15 @@ export type multiInputDataType = {
 
 interface MultiInputProps {
   className?: string;
-  scale?: boolean;
+  isScale?: boolean;
   children: Array<React.ReactElement>;
 }
 
-const MultiInput = ({ className, scale, children }: MultiInputProps) => {
+const MultiInput = ({
+  className,
+  isScale = false,
+  children,
+}: MultiInputProps) => {
   const defaultData = children.map((child, i) => ({
     index: i,
     isSeparate: false,
@@ -35,7 +39,7 @@ const MultiInput = ({ className, scale, children }: MultiInputProps) => {
   };
 
   return (
-    <Styled.MultiInput className={className} scale={scale}>
+    <Styled.MultiInput className={className} isScale={isScale}>
       {children.map((child, i) =>
         cloneElement(child, {
           multiInputData: multiInputData[i],

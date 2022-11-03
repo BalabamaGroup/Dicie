@@ -5,13 +5,13 @@ interface ButtonProps {
   children: React.ReactNode;
   onClick: MouseEventHandler<HTMLButtonElement>;
 
-  scale?: boolean;
+  isScale?: boolean;
   disabled?: boolean;
 }
 
-const Button = ({ onClick, disabled, children, scale }: ButtonProps) => {
+const Button = ({ onClick, disabled, children, isScale }: ButtonProps) => {
   return (
-    <Styled.Button scale={scale} disabled={disabled} onClick={onClick}>
+    <Styled.Button isScale={isScale} disabled={disabled} onClick={onClick}>
       {children}
     </Styled.Button>
   );

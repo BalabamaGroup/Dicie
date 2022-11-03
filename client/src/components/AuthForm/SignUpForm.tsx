@@ -101,7 +101,7 @@ const SignUpForm = ({
       </Styled.AuthHeader>
 
       <Styled.MultiInputWrapper inputCount={4}>
-        <MultiInput className="auth_multiinput" scale={true}>
+        <MultiInput className="auth_multiinput" isScale={true}>
           <Input
             id={"signUp-username"}
             key={"signUp-username"}
@@ -182,7 +182,7 @@ const SignUpForm = ({
       </Styled.MultiInputWrapper>
 
       <Button
-        scale={true}
+        isScale={true}
         onClick={onSignUp}
         // disabled={
         //   !usernameIsValid ||

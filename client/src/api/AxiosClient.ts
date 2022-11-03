@@ -17,33 +17,27 @@ class AxiosClient {
     });
   }
 
-  getResponseError = (res: any) => {
-    if (!res) return;
-    if (res.data && res.data.error) return res.data.error.message;
-    if (res.isAxiosError && res.message) return res.message;
-  };
-
   request = async (options: any) => {
     const token = sessionStorage.getItem("token");
     if (token) options.headers = { Authorization: `Bearer ${token}` };
     return this.host(options)
       .then((res: any) => {
         console.log(res);
-        const error = this.getResponseError(res);
-        if (error) throw new Error(error);
         if (!res || !res.data || res.isAxiosError) return null;
         return res.data;
       })
       .catch((err: any) => {
-        const errTextJSON = JSON.parse(err.request.responseText);
-        Toast.error(errTextJSON.errorMessage);
-
+        console.log(err);
+        if (err.request?.responseText) {
+          const errTextJSON = JSON.parse(err.request.responseText);
+          Toast.error(errTextJSON.errorMessage);
+        }
         if (err.response?.status === 401) {
           window.location.href = routes.SIGN_IN;
           sessionStorage.removeItem("id");
           sessionStorage.removeItem("token");
         }
-        return Promise.reject(err || errTextJSON.errorMessage);
+        return Promise.reject(err);
       });
   };
 }
