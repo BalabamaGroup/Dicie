@@ -1,4 +1,4 @@
-import { createRef, useState, cloneElement } from "react";
+import { useState, cloneElement } from "react";
 import * as Styled from "./index.styled";
 
 export type multiInputDataType = {

@@ -22,10 +22,3 @@ export interface getUserByIdRes {
   email: string;
   role: string;
 }
-
-// export interface getCurrentUserRes {
-//   id: number;
-//   username: string;
-//   email: string;
-//   role: string;
-// }
