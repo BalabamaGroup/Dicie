@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import RoomAPI from "../../api/room";
 import UserAPI from "../../api/user";
 
+import * as Styled from "./index.styled";
+
 export interface HomeProps {}
 
 const Home = ({}: HomeProps) => {
@@ -50,46 +52,48 @@ const Home = ({}: HomeProps) => {
   if (currentRoomIdIsLoading) return <p>is Loading...</p>;
 
   return (
-    <div>
-      <h1>Home Page</h1>
+    <Styled.HomePage></Styled.HomePage>
 
-      {currentRoomId && (
-        <h4>
-          <button onClick={onReturnToCurrRoom}>Return to your room</button>
-          <button onClick={onDisconnectFromCurrRoom}>
-            Disconnect from your room
-          </button>
-        </h4>
-      )}
+    // <div>
+    //   <h1>Home Page</h1>
 
-      <br />
-      <br />
+    //   {currentRoomId && (
+    //     <h4>
+    //       <button onClick={onReturnToCurrRoom}>Return to your room</button>
+    //       <button onClick={onDisconnectFromCurrRoom}>
+    //         Disconnect from your room
+    //       </button>
+    //     </h4>
+    //   )}
 
-      <button disabled={!!currentRoomId} onClick={onCreateRoom}>
-        <h2>Create Room</h2>
-      </button>
-      <input value={roomName} onChange={onChangeRoomName} />
+    //   <br />
+    //   <br />
 
-      <br />
-      <br />
+    //   <button disabled={!!currentRoomId} onClick={onCreateRoom}>
+    //     <h2>Create Room</h2>
+    //   </button>
+    //   <input value={roomName} onChange={onChangeRoomName} />
 
-      {roomsIsLoading ? (
-        <p>Room data is loading</p>
-      ) : (
-        rooms &&
-        rooms.map((room: any) => (
-          <div key={room.id}>
-            <button
-              disabled={!!currentRoomId}
-              onClick={() => onGoToRoom(room.id)}
-            >
-              {room.name}
-            </button>
-            <br />
-          </div>
-        ))
-      )}
-    </div>
+    //   <br />
+    //   <br />
+
+    //   {roomsIsLoading ? (
+    //     <p>Room data is loading</p>
+    //   ) : (
+    //     rooms &&
+    //     rooms.map((room: any) => (
+    //       <div key={room.id}>
+    //         <button
+    //           disabled={!!currentRoomId}
+    //           onClick={() => onGoToRoom(room.id)}
+    //         >
+    //           {room.name}
+    //         </button>
+    //         <br />
+    //       </div>
+    //     ))
+    //   )}
+    // </div>
   );
 };
 

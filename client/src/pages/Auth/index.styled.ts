@@ -10,7 +10,7 @@ export const SignUp = styled.section`
   ${commonPageStyles}
 
   box-sizing: border-box;
-  background-color: #f7f4fc;
+  background: ${({ theme }) => theme.page.background};
 
   padding: 32px;
 
@@ -23,11 +23,7 @@ export const AuthPicture = styled.div`
   width: 50%;
   height: 100%;
   border-radius: 32px;
-  background: linear-gradient(
-    180deg,
-    rgba(137, 134, 245, 0.5) 0%,
-    rgba(106, 101, 255, 0.5) 100%
-  );
+  background: ${({ theme }) => theme.page.auth.pictureBackground};
 
   display: flex;
   align-items: center;
@@ -50,7 +46,8 @@ export const AuthContent = styled.div`
     width: 100%;
   }
 
-  height: 100%;
+  height: calc(100%-32px);
+
   display: flex;
   flex-direction: column;
   justify-content: center;

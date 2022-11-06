@@ -16,11 +16,11 @@ export const Button = styled.button<{
 
   padding: 24px 32px;
 
-  background: #8986f5;
-  color: #ffffff;
+  background: ${({ theme }) => theme.button.background};
+  color: ${({ theme }) => theme.button.text};
+
   border-radius: 16px;
 
-  font-family: "Inter";
   font-weight: 700;
   font-size: 20px;
   line-height: 25px;
@@ -30,7 +30,7 @@ export const Button = styled.button<{
   width: ${({ isScale }) => (isScale ? "100%" : "auto")};
 
   &:hover {
-    box-shadow: 0px 8px 32px rgba(106, 101, 255, 0.5);
+    box-shadow: ${({ theme }) => theme.button.shadow};
   }
 
   ${({ disabled }) =>

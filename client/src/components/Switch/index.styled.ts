@@ -16,10 +16,10 @@ export const SwitchOption = styled.div<{ isChosen: boolean | undefined }>`
   justify-content: space-between;
   gap: 6px;
 
-  font-family: "Inter";
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
+  border-radius: 8px;
 
   .higlighting {
     bottom: 0;
@@ -35,20 +35,24 @@ export const SwitchOption = styled.div<{ isChosen: boolean | undefined }>`
     !isChosen
       ? css`
           cursor: pointer;
-          color: #222222;
-          background: #ffffff;
-          border-radius: 8px;
-          box-shadow: 0px 2px 4px rgba(137, 134, 245, 0.125);
+          color: ${({ theme }) => theme.switch.text};
+          background: ${({ theme }) => theme.switch.background};
+
+          &:hover {
+            box-shadow: ${({ theme }) => theme.switch.shadow};
+          }
 
           .higlighting {
-            background-color: #ffffff;
+            background-color: none;
           }
         `
       : css`
-          color: #696cf9;
+          background: ${({ theme }) => theme.switch.isChosen.background};
+          color: ${({ theme }) => theme.switch.isChosen.text};
 
           .higlighting {
-            background-color: #696cf9;
+            background-color: ${({ theme }) =>
+              theme.switch.isChosen.highlighting};
             transition: all 0.2s ease-in-out;
           }
         `}

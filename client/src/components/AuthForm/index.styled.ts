@@ -18,7 +18,7 @@ export const AuthHeader = styled.div`
   width: 100%;
 
   .colored {
-    color: #8986f5;
+    color: ${({ theme }) => theme.page.auth.headerAccent};
   }
 
   .main {
@@ -27,8 +27,9 @@ export const AuthHeader = styled.div`
     font-size: 40px;
     line-height: 50px;
     text-align: center;
-    color: #222222;
     margin-bottom: 16px;
+
+    color: ${({ theme }) => theme.page.auth.headerMain};
     @media ${mobileAndSmaller} {
       margin-bottom: 0px;
     }
@@ -40,7 +41,8 @@ export const AuthHeader = styled.div`
     font-size: 14px;
     line-height: 18px;
     text-align: center;
-    color: #444444;
+    color: ${({ theme }) => theme.page.auth.headerSub};
+
     @media ${mobileAndSmaller} {
       display: none;
     }

@@ -13,31 +13,37 @@ import Home from "./pages/Home";
 import Room from "./pages/Room";
 import Auth from "./pages/Auth";
 import ToastContainer from "./components/Toast/ToastContainer";
+import NavBar from "./components/NavBar";
+import Theme from "./styles/Theme";
 
 const queryClient = new QueryClient();
 
+// const PageLayout = () => {
+//   return <NavBar />;
+// };
+
 const App = () => {
   return (
-    <div className="App">
-      <QueryClientProvider client={queryClient}>
-        <RoutesRRD>
-          <Route path={Routes.SIGN_IN} element={<Auth />} />
-          <Route path={Routes.SIGN_UP} element={<Auth />} />
-
-          <Route path={Routes.HOME} element={<Home />} />
-          <Route path={Routes.ABOUT} element={<About />} />
-          <Route path={Routes.CONTACT} element={<Contact />} />
-
-          <Route path={Routes.ROOM} element={<Room />} />
-
-          <Route path="*" element={<Navigate to={Routes.HOME} replace />} />
-        </RoutesRRD>
-
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-
-      <ToastContainer />
-    </div>
+    <Theme>
+      <div className="App">
+        <QueryClientProvider client={queryClient}>
+          {/* // */}
+          <NavBar />
+          <RoutesRRD>
+            <Route path={Routes.SIGN_IN} element={<Auth />} />
+            <Route path={Routes.SIGN_UP} element={<Auth />} />
+            <Route path={Routes.HOME} element={<Home />} />
+            <Route path={Routes.ABOUT} element={<About />} />
+            <Route path={Routes.CONTACT} element={<Contact />} />
+            <Route path={Routes.ROOM} element={<Room />} />
+            <Route path="*" element={<Navigate to={Routes.HOME} replace />} />
+          </RoutesRRD>
+          <ToastContainer />
+          {/* // */}
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </div>
+    </Theme>
   );
 };
 

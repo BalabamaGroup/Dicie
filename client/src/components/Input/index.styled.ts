@@ -32,16 +32,6 @@ const getWrapperHeightDataCss = (
     : ` height: 72px; `;
 };
 
-const getValidationStylingDataCss = (isFocus: boolean, isValid: boolean) => {
-  return isFocus && isValid
-    ? ` box-shadow: 0px 4px 16px rgba(106, 101, 255, 0.25); `
-    : isFocus && !isValid
-    ? ` box-shadow: 0px 4px 8px rgba(252, 48, 87, 0.25); `
-    : !isFocus && !isValid
-    ? ` color: #e36b6b; `
-    : ``;
-};
-
 export const Wrapper = styled.div<{
   multiInputData?: multiInputDataType | undefined;
   isNoteVisible: boolean | undefined;
@@ -74,16 +64,24 @@ export const InputWrapper = styled.div<{
   align-items: center;
   justify-content: space-between;
 
-  background-color: #fff;
-
   transition: all 0.2s ease-in-out;
-  ${({ isFocus, isValid }) => getValidationStylingDataCss(isFocus, isValid)}
+
+  background: ${({ theme }) => theme.input.background};
+
+  color: ${({ isFocus, isValid, theme }) =>
+    !isValid && !isFocus ? theme.input.textInvalid : theme.input.text};
+
+  box-shadow: ${({ isFocus, isValid, theme }) =>
+    isFocus
+      ? isValid
+        ? theme.input.shadow
+        : theme.input.shadowInvalid
+      : `none`};
 `;
 
 export const Input = styled.input`
   all: unset;
 
-  font-family: "Inter";
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
@@ -91,24 +89,29 @@ export const Input = styled.input`
   height: 20px;
   width: 100%;
   padding: 26px 32px 26px 32px;
+
+  ::placeholder {
+    color: ${({ theme }) => theme.input.placeholderText};
+  }
 `;
 
 export const Icon = styled.div`
   height: 20px;
   width: 20px;
   padding: 26px 26px 26px 26px;
-  border-radius: 0 16px 16px 0;
+  border-radius: 0 14px 14px 0;
 
-  background: #ffffff;
+  background-color: ${({ theme }) => theme.input.icon.background};
 
-  background: linear-gradient(to right, #ffffff 50%, #8986f5 50%) left;
+  background: ${({ theme }) =>
+    `linear-gradient(to right, ${theme.input.icon.background} 50%, ${theme.input.icon.backgroundHover} 50%) left`};
   background-size: 200%;
   transition: all 0.2s ease-in-out;
 
   &:hover {
     background-position: right;
     svg * {
-      fill: #fff;
+      fill: ${({ theme }) => theme.input.icon.fillHover};
     }
   }
 
@@ -116,8 +119,8 @@ export const Icon = styled.div`
     height: 20px;
     width: 20px;
     * {
-      transition: all 0.2s ease-in-out;
-      fill: #888888;
+      transition: all 0.1s ease-in-out;
+      fill: ${({ theme }) => theme.input.icon.fill};
     }
   }
 `;
@@ -126,12 +129,10 @@ export const Note = styled.div<{ isVisible: boolean | undefined }>`
   user-select: none;
   max-width: 100%;
 
-  color: #000;
+  color: ${({ theme }) => theme.input.note.text};
   border-radius: 0 0 16px 16px;
   transition: all 0.2s ease-in-out;
   line-height: 20px;
-
-  color: #e36b6b;
 
   white-space: pre-line;
   ${({ isVisible }) =>

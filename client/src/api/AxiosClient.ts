@@ -33,7 +33,9 @@ class AxiosClient {
           Toast.error(errTextJSON.errorMessage);
         }
         if (err.response?.status === 401) {
-          window.location.href = routes.SIGN_IN;
+          console.log();
+          if (window.location.pathname !== routes.SIGN_IN)
+            window.location.href = routes.SIGN_IN;
           sessionStorage.removeItem("id");
           sessionStorage.removeItem("token");
         }
