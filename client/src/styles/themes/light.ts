@@ -5,10 +5,30 @@ const light = {
     background: colors.light.default,
 
     auth: {
+      pictureBackground: "#C0BDF9",
       headerMain: colors.dark.default,
       headerSub: colors.neutral[70],
       headerAccent: colors.purple,
-      pictureBackground: colors.purple,
+    },
+
+    home: {
+      cards: {
+        createRoom: {
+          background: colors.yellow,
+          text: colors.dark.default,
+          shadowHover: colors.shadow.yellow.large,
+        },
+        orLabel: {
+          background: colors.light.default,
+          text: colors.dark.default,
+          shadow: colors.shadow.light.large,
+        },
+        joinRoom: {
+          background: colors.purple,
+          text: colors.light.default,
+          shadowHover: colors.shadow.purple.large,
+        },
+      },
     },
   },
 
@@ -30,8 +50,8 @@ const light = {
   },
 
   navbar: {
-    background: colors.dark.default,
-    text: colors.light.default,
+    background: colors.light.default,
+    text: colors.dark.default,
   },
 
   input: {

@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 
-import { RoleTypes } from "../../common/constants";
+import { RoleTypes } from "../../../common/constants";
 import {
   getEmailValidationData,
   getMatchPasswordValidationData,
   getPasswordValidationData,
   getUsernameValidationData,
-} from "../../common/utils/validation";
+} from "../../../common/utils/validation";
 
 import * as Styled from "./index.styled";
-import Input from "../Input";
-import MultiInput from "../MultiInput";
-import Button from "../Button";
+import Input from "../../../components/Input";
+import MultiInput from "../../../components/MultiInput";
+import Button from "../../../components/Button";
 import { useQuery } from "react-query";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 
 interface signUpProps {
   username: {
@@ -146,8 +146,8 @@ const SignUpForm = ({
             onChange={password.onChange}
             iconData={{
               iconSrc: passwordIsVisible
-                ? "/svgs/eye.closed.svg"
-                : "/svgs/eye.opened.svg",
+                ? "/images/svgs/eye.closed.svg"
+                : "/images/svgs/eye.opened.svg",
               onClick: togglePasswordIsvisible,
             }}
             isValid={passwordIsValid}
@@ -166,8 +166,8 @@ const SignUpForm = ({
             onChange={matchPassword.onChange}
             iconData={{
               iconSrc: matchPasswordIsVisible
-                ? "/svgs/eye.closed.svg"
-                : "/svgs/eye.opened.svg",
+                ? "/images/svgs/eye.closed.svg"
+                : "/images/svgs/eye.opened.svg",
               onClick: toggleMatchPasswordIsvisible,
             }}
             isValid={matchPasswordIsValid}

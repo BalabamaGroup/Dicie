@@ -22,7 +22,6 @@ export const NavBar = styled.div<{ path: string; theme: any }>`
   justify-content: space-between;
   background-color: red;
 
-  /* transition: all 0.2s ease-in-out; */
   ${({ path }) => getCssByPath(path)}
   background: ${({ theme }) => theme && theme.navbar.background};
   color: ${({ theme }) => theme && theme.navbar.text};

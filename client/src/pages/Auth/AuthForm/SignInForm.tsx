@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 import * as Styled from "./index.styled";
-import Input from "../Input";
-import MultiInput from "../MultiInput";
-import Button from "../Button";
-import useAuth from "../../hooks/useAuth";
+import Input from "../../../components/Input";
+import MultiInput from "../../../components/MultiInput";
+import Button from "../../../components/Button";
+import useAuth from "../../../hooks/useAuth";
 
 interface signInProps {
   username: {
@@ -55,8 +55,8 @@ const SignInForm = ({ username, password }: signInProps) => {
             type={passwordIsVisible ? "text" : "password"}
             iconData={{
               iconSrc: passwordIsVisible
-                ? "/svgs/eye.closed.svg"
-                : "/svgs/eye.opened.svg",
+                ? "/images/svgs/eye.closed.svg"
+                : "/images/svgs/eye.opened.svg",
               onClick: togglePasswordIsvisible,
             }}
             value={password.value}

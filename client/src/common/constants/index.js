@@ -14,3 +14,14 @@ export const RoleTypes = Object.freeze({
   USER: "ROLE_USER",
   ADMIN: "ROLE_ADMIN",
 });
+
+export const authFormViews = Object.freeze({
+  SIGN_UP: "SIGN_UP",
+  SIGN_IN: "SIGN_IN",
+});
+
+export const homeContentCards = Object.freeze({
+  DEFAULT: "DEFAULT",
+  CREATE_ROOM: "CREATE_ROOM",
+  JOIN_ROOM: "JOIN_ROOM",
+});

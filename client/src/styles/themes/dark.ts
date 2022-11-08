@@ -5,10 +5,30 @@ const dark = {
     background: colors.dark.default,
 
     auth: {
+      pictureBackground: "#FCFBD1",
       headerMain: colors.light.default,
       headerSub: colors.neutral[30],
       headerAccent: colors.yellow,
-      pictureBackground: colors.yellow,
+    },
+
+    home: {
+      cards: {
+        createRoom: {
+          background: colors.yellow,
+          text: colors.dark.default,
+          shadowHover: colors.shadow.yellow.large,
+        },
+        orLabel: {
+          background: colors.dark.default,
+          text: colors.light.default,
+          shadow: colors.shadow.dark.large,
+        },
+        joinRoom: {
+          background: colors.purple,
+          text: colors.light.default,
+          shadowHover: colors.shadow.purple.large,
+        },
+      },
     },
   },
 
@@ -30,8 +50,8 @@ const dark = {
   },
 
   navbar: {
-    background: colors.light.default,
-    text: colors.dark.default,
+    background: colors.dark.default,
+    text: colors.light.default,
   },
 
   input: {

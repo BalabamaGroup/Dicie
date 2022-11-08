@@ -40,7 +40,7 @@ const App = () => {
           </RoutesRRD>
           <ToastContainer />
           {/* // */}
-          <ReactQueryDevtools initialIsOpen={false} />
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </QueryClientProvider>
       </div>
     </Theme>

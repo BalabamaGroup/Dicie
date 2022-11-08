@@ -5,21 +5,21 @@ export const Toast = {
   success: (data: any) =>
     defaultToast.success(data, {
       icon: () => {
-        return <ReactSVG src="/svgs/check.exclude.svg" />;
+        return <ReactSVG src="/images/svgs/check.exclude.svg" />;
       },
     }),
 
   warning: (data: any) =>
     defaultToast.warning(data, {
       icon: () => {
-        return <ReactSVG src="/svgs/info.exclude.svg" />;
+        return <ReactSVG src="/images/svgs/info.exclude.svg" />;
       },
     }),
 
   error: (data: any) =>
     defaultToast.error(data, {
       icon: () => {
-        return <ReactSVG src="/svgs/warning.exclude.svg" />;
+        return <ReactSVG src="/images/svgs/warning.exclude.svg" />;
       },
     }),
 };
