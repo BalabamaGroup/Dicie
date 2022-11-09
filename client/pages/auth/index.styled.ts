@@ -3,10 +3,10 @@ import styled from "styled-components";
 import {
   desktopAndSmaller,
   mobileAndSmaller,
-} from "../app/common/utils/device";
-import { commonPageStyles } from "../src/styles/commonStyles";
+} from "../../app/common/utils/device";
+import { commonPageStyles } from "../../styles/commonStyles";
 
-export const SignUp = styled.section`
+export const Auth = styled.section`
   ${commonPageStyles}
 
   box-sizing: border-box;
@@ -30,7 +30,9 @@ export const AuthPicture = styled.div`
   justify-content: center;
 
   img {
+    position: relative !important;
     width: 100%;
+    height: auto !important;
   }
 
   @media ${desktopAndSmaller} {

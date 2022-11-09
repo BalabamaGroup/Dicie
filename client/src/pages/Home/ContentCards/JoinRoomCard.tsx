@@ -1,9 +1,9 @@
-import RoomAPI from "../../../api/room";
+import RoomAPI from "../../../../app/api/room";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { homeContentCards } from "../../../common/constants";
+import { homeContentCards } from "../../../../app/common/constants";
 import * as Styled from "./index.styled";
-import UserAPI from "../../../api/user";
+import UserAPI from "../../../../app/api/user";
 
 interface JoinRoomCardProps {
   selectedCard: string;

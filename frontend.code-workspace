@@ -5,12 +5,20 @@
       "path": "./client"
     },
     {
-      "name": "📮 @mt/public",
+      "name": "📢 @aspid/public",
       "path": "./client/public"
     },
     {
-      "name": "🔒 @mt/src",
-      "path": "./client/src"
+      "name": "📄 @aspid/pages",
+      "path": "./client/pages"
+    },
+    {
+      "name": "📦 @aspid/app",
+      "path": "./client/app"
+    },
+    {
+      "name": "🎨 @aspid/styles",
+      "path": "./client/styles"
     }
   ],
   "settings": {}

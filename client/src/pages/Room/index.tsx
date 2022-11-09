@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import RoomAPI from "../../api/room";
-import { UserInGame } from "../../common/types/user";
-import Game from "../../components/Game";
-import useRoomConnectionSocket from "../../hooks/useRoomConnectionSocket";
+import RoomAPI from "../../../app/api/room";
+import { UserInGame } from "../../../app/common/types/user";
+import Game from "../../../app/components/Game";
+import useRoomConnectionSocket from "../../../app/hooks/useRoomConnectionSocket";
 
 const Room = () => {
   const { roomId } = useParams();

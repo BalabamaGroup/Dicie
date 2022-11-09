@@ -24,3 +24,8 @@ hs_err_pid*
 /server/.mvn/
 /.idea/
 /client.iml
+
+# Client
+/client/build
+/client/.next
+/client/node_modules

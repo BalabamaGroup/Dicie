@@ -5,16 +5,16 @@ import "react-toastify/dist/ReactToastify.css";
 
 import "./App.css";
 
-import Routes from "./common/constants/routes";
+import Routes from "../app/common/constants/routes";
 
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import Room from "./pages/Room";
 import Auth from "./pages/Auth";
-import ToastContainer from "./components/Toast/ToastContainer";
-import NavBar from "./components/NavBar";
-import Theme from "./styles/Theme";
+import ToastContainer from "../app/components/Toast/ToastContainer";
+import NavBar from "../app/components/NavBar";
+import Theme from "../styles/Theme";
 
 const queryClient = new QueryClient();
 

@@ -1,5 +1,5 @@
 import { ReactSVG } from "react-svg";
-import { homeContentCards } from "../../../common/constants";
+import { homeContentCards } from "../../../../app/common/constants";
 import * as Styled from "./index.styled";
 
 interface CreateRoomCardProps {

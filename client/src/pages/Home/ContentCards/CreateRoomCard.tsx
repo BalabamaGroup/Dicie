@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import RoomAPI from "../../../api/room";
-import { homeContentCards } from "../../../common/constants";
+import RoomAPI from "../../../../app/api/room";
+import { homeContentCards } from "../../../../app/common/constants";
 import * as Styled from "./index.styled";
 
 interface CreateRoomCardProps {

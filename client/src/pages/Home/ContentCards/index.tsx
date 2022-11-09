@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { homeContentCards } from "../../../common/constants";
+import { homeContentCards } from "../../../../app/common/constants";
 import CreateRoomCard from "./CreateRoomCard";
 import * as Styled from "./index.styled";
 import JoinRoomCard from "./JoinRoomCard";

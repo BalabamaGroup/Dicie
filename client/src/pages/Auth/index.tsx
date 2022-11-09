@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import routes from "../../common/constants/routes";
+import routes from "../../../app/common/constants/routes";
 import AuthForm from "./AuthForm";
 
 import Switch from "../../components/Switch";
