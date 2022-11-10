@@ -1,6 +1,5 @@
-import ContentCards from "./ContentCards";
-
-import * as Styled from "./index.styled";
+import ContentCards from './ContentCards';
+import * as Styled from './index.styled';
 
 export interface HomeProps {}
 

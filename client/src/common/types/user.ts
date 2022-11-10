@@ -20,10 +20,11 @@ export type UserInGame = {
 };
 
 export type UserCharadesState = {
-  word: string;
-  ready: boolean;
-  selectedUser: number;
-  selectedBy: number;
   isGoing: boolean;
-  isFinished: boolean;
+  ready: boolean;
+  lastAnswer: 'YES' | 'NO' | 'WTF';
+  selectedBy: number;
+  selectedUser: number;
+  winRound: boolean;
+  word: string;
 };

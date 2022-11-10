@@ -16,7 +16,7 @@
   <description>server</description>
   <properties>
     <frontend-maven-plugin.version>1.12.1</frontend-maven-plugin.version>
-    <nodeJs.version>v16.3.0</nodeJs.version>
+    <nodeJs.version>v18.12.1</nodeJs.version>
     <java.version>17</java.version>
     <mysql-connector-java.version>5.7.34</mysql-connector-java.version>
     <liquibase-maven-plugin.version>4.16.1</liquibase-maven-plugin.version>
