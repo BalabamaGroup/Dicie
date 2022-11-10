@@ -119,6 +119,8 @@ public class UserCharadeState extends UserState {
 
     public void undoReady() {
         selectedUser = null;
+        selectedBy = null;
+        word = null;
         ready = false;
     }
 
