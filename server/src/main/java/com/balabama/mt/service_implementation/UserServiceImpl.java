@@ -75,15 +75,4 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-
-    @Transactional
-    @Scheduled(initialDelay = 0, fixedRateString = "36000")
-    public void test() {
-        User user1 = getById(1L);
-        user1.setEmail("dfsfsdfsdfsdfsdfsdfsf");
-        userRepository.save(user1);
-        User user2 = getById(1000L);
-    }
-
-
 }
