@@ -122,6 +122,7 @@ public class UserCharadeState extends UserState {
         selectedBy = null;
         word = null;
         ready = false;
+        isGoing = false;
     }
 
 
