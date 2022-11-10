@@ -206,6 +206,9 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         int countNo = 0;
         int countWTF = 0;
         for (UserCharadeState state : userCharadeStates) {
+            if (state.getLastAnswer() == null) {
+                continue;
+            }
             if (state.getLastAnswer() == CharadeAnswer.YES) {
                 countYes = countYes + 1;
             } else if (state.getLastAnswer() == CharadeAnswer.NO) {
