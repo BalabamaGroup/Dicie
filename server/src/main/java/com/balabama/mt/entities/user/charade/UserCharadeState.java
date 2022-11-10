@@ -125,7 +125,9 @@ public class UserCharadeState extends UserState {
     }
 
     public void undoReady() {
+        this.getSelectedBy().setSelectedUser(null);
         selectedBy = null;
+        selectedUser.setSelectedBy(null);
         selectedUser = null;
         ready = false;
     }
