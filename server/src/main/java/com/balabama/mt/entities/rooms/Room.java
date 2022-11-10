@@ -76,6 +76,7 @@ public class Room {
         }
         user.setRoom(null);
         this.users.remove(user);
+        user.setUserState(null);
         if (this.admin.equals(user) && !users.isEmpty()) {
             this.admin = this.users.get(0);
         }
