@@ -58,10 +58,24 @@ export default class CharadesAPI {
     request(options);
   };
 
-  static checkWord = (id: number, data: { word: string }) => {
+  static getHistory = async (
+    id: number
+  ): Promise<[{ question: string; answer: 'YES' | 'NO' | 'WTF' }]> => {
+    const options = {
+      method: 'get',
+      url: `game_charade/get_history/${id}`,
+    };
+
+    return request(options).then(
+      (res: Promise<[{ question: string; answer: 'YES' | 'NO' | 'WTF' }]>) =>
+        res
+    );
+  };
+
+  static checkWord = (data: { word: string }) => {
     const options = {
       method: 'post',
-      url: `game_charade/check_word/${id}`,
+      url: `game_charade/check_word`,
       data,
     };
 
