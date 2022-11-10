@@ -93,7 +93,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
 
     @Override
     public Room askQuestion(String question) {
-        if (question == null || question.trim().length() < 2) {
+        if (question == null || question.length() < 2) {
             throw new MTException(HttpStatus.BAD_REQUEST, "Incorrect question");
         }
         User current = getCurrentUserInReadyGame();
