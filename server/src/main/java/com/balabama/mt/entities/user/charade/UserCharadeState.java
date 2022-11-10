@@ -14,6 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import liquibase.repackaged.org.apache.commons.text.similarity.LevenshteinDistance;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -55,7 +56,8 @@ public class UserCharadeState extends UserState {
     }
 
     public UserCharadeState checkWord(String word) {
-        if (Objects.equals(this.word, word)) {
+        int q = new LevenshteinDistance().apply(word.toLowerCase(), this.word.toLowerCase());
+        if (q < ((((float) this.word.length()) / 100) * 60)) {
             this.winRound = ((RoomCharadeData) this.getUser().getRoom().getRoomData()).getRound();
         }
         return this;

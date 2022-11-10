@@ -24,5 +24,4 @@ public class GameController {
     public List<GameDto> list() {
         return converter.simpleConvert(service.list(), GameDto.class);
     }
-
 }

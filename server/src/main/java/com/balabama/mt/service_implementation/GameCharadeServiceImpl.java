@@ -67,13 +67,15 @@ public class GameCharadeServiceImpl implements GameCharadeService {
 
     @Override
     public Room checkWord(String word) {
-        UserCharadeState userCharadeState = ((UserCharadeState) userStateService.getById(userService.getCurrent().getId())).checkWord(word);
-        Room room = getRoomByState(userCharadeState);
-        RoomCharadeData roomCharadeData = (RoomCharadeData) room.getRoomData();
+        User current = getCurrentUserInReadyGame();
+        UserCharadeState currentUserCharadeState = (UserCharadeState) current.getUserState();
+        currentUserCharadeState.checkTurn();
+        currentUserCharadeState.checkWord(word);
+        RoomCharadeData roomCharadeData = (RoomCharadeData) roomService.save(current.getRoom()).getRoomData();
         if (roomCharadeData.checkFinish()) {
-            return roomService.finish(room.getId());
+            return roomService.finish(roomCharadeData.getRoom().getId());
         } else {
-            return roomService.save(changeTurn(room));
+            return roomService.save(changeTurn(roomCharadeData.getRoom()));
         }
     }
 
@@ -91,6 +93,9 @@ public class GameCharadeServiceImpl implements GameCharadeService {
 
     @Override
     public Room askQuestion(String question) {
+        if (question == null || question.trim().length() < 2) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "Incorrect question");
+        }
         User current = getCurrentUserInReadyGame();
         UserCharadeState currentUserCharadeState = ((UserCharadeState) current.getUserState());
         currentUserCharadeState.checkTurn();
@@ -160,12 +165,17 @@ public class GameCharadeServiceImpl implements GameCharadeService {
 
     private Room changeTurn(Room room) {
         Integer currentTurnNumber = findCurrentTurnNumber(room);
+        int newNumber = 0;
         ((UserCharadeState) room.getUsers().get(currentTurnNumber).getUserState()).setIsGoing(false);
         if (currentTurnNumber != room.getUsers().size() - 1) {
             ((UserCharadeState) room.getUsers().get(currentTurnNumber + 1).getUserState()).setIsGoing(true);
+            newNumber = currentTurnNumber + 1;
         } else {
             ((UserCharadeState) room.getUsers().get(0).getUserState()).setIsGoing(true);
             ((RoomCharadeData) room.getRoomData()).setRound(((RoomCharadeData) room.getRoomData()).getRound() + 1);
+        }
+        if (((UserCharadeState) room.getUsers().get(newNumber).getUserState()).isFinished()) {
+            changeTurn(room);
         }
         return room;
     }
