@@ -36,10 +36,10 @@ public class UserCharadeStateDto extends UserStateDto {
         this.isGoing = state.getIsGoing();
         this.lastAnswer = state.getLastAnswer();
         if (state.getSelectedBy() != null) {
-            this.selectedBy = state.getSelectedBy().getId();
+            this.selectedBy = state.getSelectedBy();
         }
         if (state.getSelectedUser() != null) {
-            this.selectedUser = state.getSelectedUser().getId();
+            this.selectedUser = state.getSelectedUser();
         }
     }
 

@@ -104,13 +104,6 @@ public class Room {
         this.start = true;
     }
 
-    public void preFinish() {
-        this.roomData = null;
-        for (User user : users) {
-            user.getUserState().preFinish();
-        }
-    }
-
     public void finish() {
         this.roomData = null;
         for (User user : users) {

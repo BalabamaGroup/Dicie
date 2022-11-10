@@ -83,7 +83,6 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public Room finish(UUID id) {
         Room room = getById(id);
-        room.preFinish();
         room = save(room);
         room.finish();
         return save(room);

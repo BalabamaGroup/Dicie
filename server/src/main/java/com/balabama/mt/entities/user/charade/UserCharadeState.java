@@ -30,10 +30,8 @@ public class UserCharadeState extends UserState {
     private Integer winRound;
     @Column(nullable = false)
     private Boolean ready = false;
-    @OneToOne(fetch = FetchType.LAZY)
-    private UserCharadeState selectedUser;
-    @OneToOne(mappedBy = "selectedUser")
-    private UserCharadeState selectedBy;
+    private Long selectedUser;
+    private Long selectedBy;
     @Column(nullable = false)
     private Boolean isGoing = false;
     private CharadeAnswer lastAnswer;
@@ -68,8 +66,8 @@ public class UserCharadeState extends UserState {
         if (Objects.equals(this.getId(), selectedUser.getId()) || getSelectedUser() != null || selectedUser.getSelectedBy() != null) {
             throw new MTException(HttpStatus.BAD_REQUEST, "You can not select this user");
         }
-        setSelectedUser(selectedUser);
-        selectedUser.setSelectedBy(this);
+        setSelectedUser(selectedUser.getId());
+        selectedUser.setSelectedBy(this.getId());
         checkNonCycleSelectedUser();
     }
 
@@ -80,7 +78,7 @@ public class UserCharadeState extends UserState {
     }
 
     public UserCharadeState addSelectedBy(User user) {
-        setSelectedBy((UserCharadeState) user.getUserState());
+        setSelectedBy(user.getId());
         return this;
     }
 
@@ -92,11 +90,6 @@ public class UserCharadeState extends UserState {
         }
         ((UserCharadeState) userList.get(0).getUserState()).setIsGoing(true);
         return userList;
-    }
-
-    public void preFinish() {
-        selectedUser = null;
-        selectedBy = null;
     }
 
     public void disconnect() {
@@ -125,9 +118,6 @@ public class UserCharadeState extends UserState {
     }
 
     public void undoReady() {
-        this.getSelectedBy().setSelectedUser(null);
-        selectedBy = null;
-        selectedUser.setSelectedBy(null);
         selectedUser = null;
         ready = false;
     }

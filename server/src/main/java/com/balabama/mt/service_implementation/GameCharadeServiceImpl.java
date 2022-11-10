@@ -1,6 +1,5 @@
 package com.balabama.mt.service_implementation;
 
-import com.balabama.mt.entities.rooms.RoomData;
 import com.balabama.mt.entities.user.charade.CharadeAnswer;
 import com.balabama.mt.entities.games.Charade;
 import com.balabama.mt.entities.rooms.Room;
@@ -38,7 +37,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         room.validateGame(Charade.class);
         if (currentUser.getId().equals(userId) || ((UserCharadeState) currentUser.getUserState()).getSelectedUser() == null
             || !Objects.equals(
-            ((UserCharadeState) currentUser.getUserState()).getSelectedUser().getId(), userId)) {
+            ((UserCharadeState) currentUser.getUserState()).getSelectedUser(), userId)) {
             throw new MTException(HttpStatus.FORBIDDEN, "You can't set a word");
         }
         UserCharadeState userCharadeState = ((UserCharadeState) userStateService.getById(userId)).setWord(word);
@@ -52,7 +51,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
             throw new MTException(HttpStatus.BAD_REQUEST, "Choose to whom you will make a word");
         }
         String selectedWord = (((UserCharadeState) userService.getById(
-                ((UserCharadeState) current.getUserState()).getSelectedUser().getId())
+                ((UserCharadeState) current.getUserState()).getSelectedUser())
             .getUserState()).getWord());
         if (selectedWord == null || selectedWord.equals("")) {
             throw new MTException(HttpStatus.BAD_REQUEST, "You didn't set the word");
