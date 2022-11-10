@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 export const Button = styled.button<{
   disabled: boolean | undefined;
@@ -27,7 +27,7 @@ export const Button = styled.button<{
 
   transition: all 0.2s ease-in-out;
 
-  width: ${({ isScale }) => (isScale ? "100%" : "auto")};
+  width: ${({ isScale }) => (isScale ? '100%' : 'auto')};
 
   &:hover {
     box-shadow: ${({ theme }) => theme.button.shadow};

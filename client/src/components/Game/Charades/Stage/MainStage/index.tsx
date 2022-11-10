@@ -33,7 +33,7 @@ const MainStage = ({
 
   const [goingUser] = players.filter((player) => player.state.isGoing);
 
-  const calculateAnswerGraphData = () => {
+  const calculateAnswerData = () => {
     const result = { YES: 0, NO: 0, WTF: 0, count: 0 };
     players.forEach((player) => {
       if (player.state.lastAnswer) {
@@ -41,10 +41,11 @@ const MainStage = ({
         result.count++;
       }
     });
+
     return result;
   };
 
-  const answerGraphData = calculateAnswerGraphData();
+  const answerData = calculateAnswerData();
 
   return (
     <div>
@@ -57,33 +58,37 @@ const MainStage = ({
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div
                   style={{
-                    width: `${
-                      (answerGraphData.YES * 100) / answerGraphData.count
-                    }%`,
+                    width: `${(answerData.YES * 100) / players.length}%`,
                     height: '50px',
                     background: 'green',
                   }}
-                />
+                ></div>
                 <div
                   style={{
-                    width: `${
-                      (answerGraphData.NO * 100) / answerGraphData.count
-                    }%`,
+                    width: `${(answerData.NO * 100) / players.length}%`,
                     height: '50px',
                     background: 'red',
                   }}
-                />
+                ></div>
                 <div
                   style={{
-                    width: `${
-                      (answerGraphData.WTF * 100) / answerGraphData.count
-                    }%`,
+                    width: `${(answerData.WTF * 100) / players.length}%`,
                     height: '50px',
                     background: 'grey',
                   }}
+                ></div>
+                <div
+                  style={{
+                    width: `${
+                      (100 / players.length) *
+                      (players.length - answerData.count)
+                    }%`,
+                    height: '50px',
+                    background: 'lightgray',
+                  }}
                 />
               </div>
-              {answerGraphData.count === players.length && (
+              {answerData.count === players.length && (
                 <div onClick={onAcceptAnswer}>
                   <button>Accept answer</button>
                 </div>
