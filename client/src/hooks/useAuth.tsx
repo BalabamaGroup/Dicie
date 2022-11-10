@@ -20,11 +20,13 @@ const useAuth = () => {
   };
 
   const signIn = async (data: { username: string; password: string }) => {
-    AuthAPI.signIn(data).then((res) => {
-      sessionStorage.setItem("id", `${res.id}`);
-      res.token && sessionStorage.setItem("token", res.token);
-      navigate(routes.HOME);
-    });
+    AuthAPI.signIn(data)
+      .then((res) => {
+        sessionStorage.setItem("id", `${res.id}`);
+        res.token && sessionStorage.setItem("token", res.token);
+        navigate(routes.HOME);
+      })
+      .catch(() => {});
   };
 
   const getTakenSignUpInfo = async () => {

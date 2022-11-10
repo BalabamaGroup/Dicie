@@ -1,8 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import routes from "../../common/constants/routes";
-import AuthForm from "../../components/AuthForm";
+import AuthForm from "./AuthForm";
 
 import Switch from "../../components/Switch";
+import useTheme from "../../hooks/useTheme";
 
 import * as Styled from "./index.styled";
 
@@ -12,10 +13,13 @@ const SignUp = () => {
   const location = useLocation();
   const formType = location.pathname === routes.SIGN_UP ? "signUp" : "signIn";
 
+  const { getTheme } = useTheme();
+  const theme = getTheme();
+
   return (
     <Styled.SignUp>
       <Styled.AuthPicture>
-        <img src="/pngs/auth-picture.png" alt="" />
+        <img src={`/images/pngs/auth-picture.${theme}.png`} alt="" />
       </Styled.AuthPicture>
 
       <Styled.AuthContent>
