@@ -79,11 +79,11 @@ const MainStage = ({
                       (answerGraphData.WTF * 100) / answerGraphData.count
                     }%`,
                     height: '50px',
-                    background: 'red',
+                    background: 'grey',
                   }}
                 />
               </div>
-              {answerGraphData.count === players.length - 1 && (
+              {answerGraphData.count === players.length && (
                 <div onClick={onAcceptAnswer}>
                   <button>Accept answer</button>
                 </div>
