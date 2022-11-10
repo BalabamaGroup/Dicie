@@ -1,5 +1,6 @@
 package com.balabama.mt.service_implementation;
 
+import com.balabama.mt.entities.rooms.RoomData;
 import com.balabama.mt.entities.user.charade.CharadeAnswer;
 import com.balabama.mt.entities.games.Charade;
 import com.balabama.mt.entities.rooms.Room;
@@ -71,11 +72,11 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         UserCharadeState currentUserCharadeState = (UserCharadeState) current.getUserState();
         currentUserCharadeState.checkTurn();
         currentUserCharadeState.checkWord(word);
-        RoomCharadeData roomCharadeData = (RoomCharadeData) roomService.save(current.getRoom()).getRoomData();
-        if (roomCharadeData.checkFinish()) {
-            return roomService.finish(roomCharadeData.getRoom().getId());
+        RoomCharadeData roomData = (RoomCharadeData) roomService.save(current.getRoom()).getRoomData();
+        if (roomData.checkFinish()) {
+            return roomService.finish(roomData.getRoom().getId());
         } else {
-            return roomService.save(changeTurn(roomCharadeData.getRoom()));
+            return roomService.save(roomData.changeTurn());
         }
     }
 
@@ -87,7 +88,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         Room room = current.getRoom();
         room.validateGame(Charade.class);
         ((UserCharadeState) current.getUserState()).selectUser((UserCharadeState) selected.getUserState());
-        return roomService.save(changeTurn(current.getRoom()));
+        return roomService.save(((RoomCharadeData) room.getRoomData()).changeTurn());
 
     }
 
@@ -145,7 +146,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         }
         if (endAnswer == CharadeAnswer.NO || (roomCharadeData.getResponseCounterYes() >= 3)) {
             roomCharadeData.setResponseCounterYes(0);
-            changeTurn(roomCharadeData.getRoom());
+            roomCharadeData.changeTurn();
         }
         userCharadeStates.forEach(x -> x.setLastAnswer(null));
         roomCharadeData.setCurrentQuestion(null);
@@ -161,32 +162,6 @@ public class GameCharadeServiceImpl implements GameCharadeService {
     private Room getRoomByState(UserCharadeState userCharadeState) {
         userCharadeState = (UserCharadeState) userStateService.save(userCharadeState);
         return roomService.getById(userCharadeState.getUser().getRoom().getId());
-    }
-
-    private Room changeTurn(Room room) {
-        Integer currentTurnNumber = findCurrentTurnNumber(room);
-        int newNumber = 0;
-        ((UserCharadeState) room.getUsers().get(currentTurnNumber).getUserState()).setIsGoing(false);
-        if (currentTurnNumber != room.getUsers().size() - 1) {
-            ((UserCharadeState) room.getUsers().get(currentTurnNumber + 1).getUserState()).setIsGoing(true);
-            newNumber = currentTurnNumber + 1;
-        } else {
-            ((UserCharadeState) room.getUsers().get(0).getUserState()).setIsGoing(true);
-            ((RoomCharadeData) room.getRoomData()).setRound(((RoomCharadeData) room.getRoomData()).getRound() + 1);
-        }
-        if (((UserCharadeState) room.getUsers().get(newNumber).getUserState()).isFinished()) {
-            changeTurn(room);
-        }
-        return room;
-    }
-
-    private Integer findCurrentTurnNumber(Room room) {
-        for (int i = 0; i < room.getUsers().size(); i++) {
-            if (((UserCharadeState) room.getUsers().get(i).getUserState()).getIsGoing()) {
-                return i;
-            }
-        }
-        throw new MTException(HttpStatus.INTERNAL_SERVER_ERROR, "Turn not found");
     }
 
     private User getCurrentUserInReadyGame() {

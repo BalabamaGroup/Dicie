@@ -1,6 +1,5 @@
 package com.balabama.mt.entities.rooms;
 
-import com.balabama.mt.entities.games.Charade;
 import com.balabama.mt.entities.games.Game;
 import com.balabama.mt.entities.user.User;
 import com.balabama.mt.exceptions.MTException;
@@ -90,7 +89,10 @@ public class Room {
     }
 
     public void disconnect(User user) {
-        checkRoomNotStart();
+        if (start) {
+            roomData.disconnect(user);
+            user.disconnect();
+        }
         deleteUser(user);
     }
 

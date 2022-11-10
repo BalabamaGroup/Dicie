@@ -99,6 +99,11 @@ public class UserCharadeState extends UserState {
         selectedBy = null;
     }
 
+    public void disconnect() {
+        selectedUser = null;
+        selectedBy = null;
+    }
+
     private void checkNonCycleSelectedUser() {
         if (getUser().getRoom().getUsers().stream().map(user -> (UserCharadeState) user.getUserState())
             .filter(state -> state.getSelectedBy() == null && state.getSelectedUser() == null).count() == 1
@@ -117,6 +122,12 @@ public class UserCharadeState extends UserState {
         if (isGoing || lastAnswer != null) {
             throw new MTException(HttpStatus.BAD_REQUEST, "You can't answer your own question");
         }
+    }
+
+    public void undoReady() {
+        selectedBy = null;
+        selectedUser = null;
+        ready = false;
     }
 
 
