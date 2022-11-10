@@ -41,7 +41,7 @@ public class RoomCharadeData extends RoomData {
         userState.setWinRound(getRound());
         if (!allUsersReady) {
             getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState()).forEach(UserCharadeState::undoReady);
-            getRoom().getUsers().stream().filter(x -> x.equals(user)).findFirst()
+            getRoom().getUsers().stream().filter(x -> !x.equals(user)).findFirst()
                 .ifPresent(y -> ((UserCharadeState) y.getUserState()).setIsGoing(true));
             return;
         }
