@@ -86,10 +86,10 @@ CREATE TABLE `charade_log`
     `id`       bigint(20) NOT NULL AUTO_INCREMENT,
     `answer`   INT(11) NULL DEFAULT 0,
     question   varchar(255) null,
-    `state_id` BIGINT(20) NOT NULL,
+    `state_user_id` BIGINT(20) NOT NULL,
     PRIMARY KEY (`id`),
-    KEY        `FKrgw0AEQV19iBOVLJfcxoVpHxs` (`state_id`),
-    CONSTRAINT `FKrgw0AEQV19iBOVLJfcxoVpHxs` FOREIGN KEY (`state_id`) REFERENCES `user_charade_state` (`user_id`)
+    KEY        `FKrgw0AEQV19iBOVLJfcxoVpHxs` (`state_user_id`),
+    CONSTRAINT `FKrgw0AEQV19iBOVLJfcxoVpHxs` FOREIGN KEY (`state_user_id`) REFERENCES `user_charade_state` (`user_id`)
 );
 
 
