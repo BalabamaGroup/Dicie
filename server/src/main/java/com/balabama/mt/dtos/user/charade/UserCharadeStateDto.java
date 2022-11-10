@@ -1,6 +1,7 @@
 package com.balabama.mt.dtos.user.charade;
 
 import com.balabama.mt.dtos.user.UserStateDto;
+import com.balabama.mt.entities.user.charade.CharadeAnswer;
 import com.balabama.mt.entities.user.charade.UserCharadeState;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -20,18 +21,20 @@ import lombok.NoArgsConstructor;
 public class UserCharadeStateDto extends UserStateDto {
 
     private String word;
-    private Boolean isFinished = false;
+    private Integer winRound;
     private Boolean ready = false;
     private Long selectedUser;
     private Long selectedBy;
     private Boolean isGoing = false;
+    private CharadeAnswer lastAnswer;
 
     public UserCharadeStateDto(UserCharadeState state) {
         super(state);
         this.word = state.getWord();
-        this.isFinished = state.getIsFinished();
+        this.winRound = state.getWinRound();
         this.ready = state.getReady();
         this.isGoing = state.getIsGoing();
+        this.lastAnswer = state.getLastAnswer();
         if (state.getSelectedBy() != null) {
             this.selectedBy = state.getSelectedBy().getId();
         }
@@ -42,7 +45,7 @@ public class UserCharadeStateDto extends UserStateDto {
 
     @JsonIgnore
     public UserCharadeStateDto hideState() {
-        if (!isFinished) {
+        if (winRound == null) {
             word = "*****";
         }
         return this;
@@ -50,6 +53,6 @@ public class UserCharadeStateDto extends UserStateDto {
 
     @JsonIgnore
     public UserCharadeStateDto copy() {
-        return new UserCharadeStateDto(word, isFinished, ready, selectedUser, selectedBy, isGoing);
+        return new UserCharadeStateDto(word, winRound, ready, selectedUser, selectedBy, isGoing, lastAnswer);
     }
 }

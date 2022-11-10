@@ -18,21 +18,19 @@ public class RoomCharadeData extends RoomData {
     private Boolean allUsersReady = false;
     private String currentQuestion;
     private Integer responseCounterYes = 0;
+    private Integer round = 0;
 
     public RoomCharadeData(Room room) {
         super(room);
     }
 
     public void checkReady() {
-        if (super.getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState()).allMatch(UserCharadeState::getReady)) {
-            this.allUsersReady = true;
-        } else {
-            this.allUsersReady = false;
-        }
+        this.allUsersReady = super.getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState())
+            .allMatch(UserCharadeState::getReady);
     }
 
     public boolean checkFinish() {
-        return super.getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState()).allMatch(UserCharadeState::getIsFinished);
+        return super.getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState()).allMatch(UserCharadeState::isFinished);
     }
 
     public RoomCharadeDataDto createDto() {
@@ -40,6 +38,7 @@ public class RoomCharadeData extends RoomData {
         roomCharadeDataDto.setAllUsersReady(allUsersReady);
         roomCharadeDataDto.setCurrentQuestion(currentQuestion);
         roomCharadeDataDto.setResponseCounterYes(responseCounterYes);
+        roomCharadeDataDto.setRound(round);
         return roomCharadeDataDto;
     }
 

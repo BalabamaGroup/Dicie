@@ -40,7 +40,8 @@ create table room_charade_data
         primary key,
     all_users_ready      bit null,
     current_question     varchar(255) null,
-    response_counter_yes int null,
+    response_counter_yes int null
+    round                int null,
     constraint FK900z9j8lhpo0g2vofk8pvkkts
         foreign key (room_id) references room (id)
 );
@@ -68,15 +69,27 @@ create table user_charade_state
 (
     user_id               bigint not null
         primary key,
-    is_finished           bit    not null,
+    win_round             int null,
     is_going              bit    not null,
     ready                 bit    not null,
     word                  varchar(255) null,
+    `answer`              INT(11) NULL DEFAULT 0,
     selected_user_user_id bigint null,
     constraint FK_riusvmjs0b0jrkeyik7wkd436
         foreign key (user_id) references user (id),
     constraint FKpubhbjwe1h9m3ehc8be7vio17
         foreign key (selected_user_user_id) references user_charade_state (user_id)
+);
+
+CREATE TABLE `charade_log`
+(
+    `id`       bigint(20) NOT NULL AUTO_INCREMENT,
+    `answer`   INT(11) NULL DEFAULT 0,
+    question   varchar(255) null,
+    `state_id` BIGINT(20) NOT NULL,
+    PRIMARY KEY (`id`),
+    KEY        `FKrgw0AEQV19iBOVLJfcxoVpHxs` (`state_id`),
+    CONSTRAINT `FKrgw0AEQV19iBOVLJfcxoVpHxs` FOREIGN KEY (`state_id`) REFERENCES `user_charade_state` (`id`)
 );
 
 

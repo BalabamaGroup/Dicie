@@ -5,9 +5,12 @@ import com.balabama.mt.exceptions.MTException;
 import com.balabama.mt.repositories.UserRepository;
 import com.balabama.mt.services.UserService;
 import java.util.List;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.builder.ToStringExclude;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -70,6 +73,16 @@ public class UserServiceImpl implements UserService {
             throw MTException.alreadyExistByName(User.class, user.getUsername());
         }
         return userRepository.save(user);
+    }
+
+
+    @Transactional
+    @Scheduled(initialDelay = 0, fixedRateString = "36000")
+    public void test() {
+        User user1 = getById(1L);
+        user1.setEmail("dfsfsdfsdfsdfsdfsdfsf");
+        userRepository.save(user1);
+        User user2 = getById(1000L);
     }
 
 

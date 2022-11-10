@@ -1,25 +1,22 @@
 package com.balabama.mt.entities.user.charade;
 
 import com.balabama.mt.dtos.user.charade.UserCharadeStateDto;
+import com.balabama.mt.entities.rooms.charade.RoomCharadeData;
 import com.balabama.mt.entities.user.User;
 import com.balabama.mt.entities.user.UserState;
 import com.balabama.mt.exceptions.MTException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.http.HttpStatus;
 
 @Entity
@@ -29,8 +26,7 @@ import org.springframework.http.HttpStatus;
 public class UserCharadeState extends UserState {
 
     private String word;
-    @Column(nullable = false)
-    private Boolean isFinished = false;
+    private Integer winRound;
     @Column(nullable = false)
     private Boolean ready = false;
     @OneToOne(fetch = FetchType.LAZY)
@@ -39,6 +35,10 @@ public class UserCharadeState extends UserState {
     private UserCharadeState selectedBy;
     @Column(nullable = false)
     private Boolean isGoing = false;
+    private CharadeAnswer lastAnswer;
+    @ToString.Exclude
+    @OneToMany(mappedBy = "state", fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<CharadeLog> charadeLogs = new ArrayList<>();
 
     public UserCharadeState(User user) {
         super(user);
@@ -56,7 +56,7 @@ public class UserCharadeState extends UserState {
 
     public UserCharadeState checkWord(String word) {
         if (Objects.equals(this.word, word)) {
-            this.isFinished = true;
+            this.winRound = ((RoomCharadeData) this.getUser().getRoom().getRoomData()).getRound();
         }
         return this;
     }
@@ -104,6 +104,16 @@ public class UserCharadeState extends UserState {
             .filter(state -> state.getSelectedBy() != null && state.getSelectedUser() != null).count()
             == getUser().getRoom().getUsers().size() - 1) {
             throw new MTException(HttpStatus.BAD_REQUEST, "You have to choose another user");
+        }
+    }
+
+    public Boolean isFinished() {
+        return this.winRound != null;
+    }
+
+    public void canAnswer() {
+        if (isGoing || lastAnswer != null) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "You can't answer your own question");
         }
     }
 

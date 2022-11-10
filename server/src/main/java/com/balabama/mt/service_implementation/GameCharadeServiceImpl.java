@@ -1,16 +1,19 @@
 package com.balabama.mt.service_implementation;
 
-import com.balabama.mt.dtos.room.charade.CharadeAnswer;
+import com.balabama.mt.entities.user.charade.CharadeAnswer;
 import com.balabama.mt.entities.games.Charade;
 import com.balabama.mt.entities.rooms.Room;
 import com.balabama.mt.entities.rooms.charade.RoomCharadeData;
 import com.balabama.mt.entities.user.User;
+import com.balabama.mt.entities.user.charade.CharadeLog;
 import com.balabama.mt.entities.user.charade.UserCharadeState;
 import com.balabama.mt.exceptions.MTException;
+import com.balabama.mt.repositories.CharadeLogRepository;
 import com.balabama.mt.services.GameCharadeService;
 import com.balabama.mt.services.RoomService;
 import com.balabama.mt.services.UserService;
 import com.balabama.mt.services.UserStateService;
+import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
     private final RoomService roomService;
     private final UserStateService userStateService;
     private final UserService userService;
+    private final CharadeLogRepository charadeLogRepository;
 
 
     @Override
@@ -31,7 +35,8 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         User currentUser = userService.getCurrent();
         Room room = currentUser.getRoom();
         room.validateGame(Charade.class);
-        if (currentUser.getId().equals(userId) || ((UserCharadeState) currentUser.getUserState()).getSelectedUser() == null || !Objects.equals(
+        if (currentUser.getId().equals(userId) || ((UserCharadeState) currentUser.getUserState()).getSelectedUser() == null
+            || !Objects.equals(
             ((UserCharadeState) currentUser.getUserState()).getSelectedUser().getId(), userId)) {
             throw new MTException(HttpStatus.FORBIDDEN, "You can't set a word");
         }
@@ -61,21 +66,6 @@ public class GameCharadeServiceImpl implements GameCharadeService {
     }
 
     @Override
-    public Room askQuestion(String question) {
-        User current = userService.getCurrent();
-        UserCharadeState currentUserCharadeState = ((UserCharadeState) current.getUserState());
-        currentUserCharadeState.checkTurn();
-        RoomCharadeData roomCharadeData = (RoomCharadeData) current.getRoom().getRoomData();
-        if (roomCharadeData.getCurrentQuestion() == null && roomCharadeData.getResponseCounterYes() >= 3) {
-            throw new MTException(HttpStatus.BAD_REQUEST, "Not your turn");
-        }
-        roomCharadeData.setCurrentQuestion(question);
-        current.getRoom().setRoomData(roomCharadeData);
-        return roomService.save(current.getRoom());
-    }
-
-
-    @Override
     public Room checkWord(String word) {
         UserCharadeState userCharadeState = ((UserCharadeState) userStateService.getById(userService.getCurrent().getId())).checkWord(word);
         Room room = getRoomByState(userCharadeState);
@@ -100,27 +90,66 @@ public class GameCharadeServiceImpl implements GameCharadeService {
     }
 
     @Override
-    public Room answer(CharadeAnswer charadeAnswer) {
-        User current = userService.getCurrent();
+    public Room askQuestion(String question) {
+        User current = getCurrentUserInReadyGame();
         UserCharadeState currentUserCharadeState = ((UserCharadeState) current.getUserState());
-        User turnUser = userService.getById(currentUserCharadeState.getSelectedUser().getId());
-        if (!((UserCharadeState) turnUser.getUserState()).getIsGoing()) {
-            throw new MTException(HttpStatus.BAD_REQUEST, "You cannot answer this user's questions");
-        }
+        currentUserCharadeState.checkTurn();
         RoomCharadeData roomCharadeData = (RoomCharadeData) current.getRoom().getRoomData();
-        if (roomCharadeData.getCurrentQuestion() == null && roomCharadeData.getResponseCounterYes() >= 3) {
-            throw new MTException(HttpStatus.BAD_REQUEST, "Ooops smth went wrong");
+        if (roomCharadeData.getCurrentQuestion() != null) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "You have already asked a question, wait for an answer");
         }
-        roomCharadeData.setCurrentQuestion(null);
-        if (charadeAnswer == CharadeAnswer.YES) {
+        if (roomCharadeData.getCurrentQuestion() == null && roomCharadeData.getResponseCounterYes() >= 3) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "Not your turn");
+        }
+        roomCharadeData.setCurrentQuestion(question);
+        current.getRoom().setRoomData(roomCharadeData);
+        return roomService.save(current.getRoom());
+    }
+
+    @Override
+    public Room answer(CharadeAnswer charadeAnswer) {
+        User current = getCurrentUserInReadyGame();
+        RoomCharadeData roomCharadeData = (RoomCharadeData) current.getRoom().getRoomData();
+        UserCharadeState userState = (UserCharadeState) current.getUserState();
+        userState.canAnswer();
+        if (roomCharadeData.getCurrentQuestion() == null) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "The question has not been asked yet");
+        }
+        userState.setLastAnswer(charadeAnswer);
+        return roomService.save(roomCharadeData.getRoom());
+
+    }
+
+    @Override
+    public Room acceptAnswer() {
+        User current = getCurrentUserInReadyGame();
+        UserCharadeState userState = (UserCharadeState) current.getUserState();
+        RoomCharadeData roomCharadeData = (RoomCharadeData) current.getRoom().getRoomData();
+        List<UserCharadeState> userCharadeStates = current.getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState())
+            .toList();
+        long countUserAnswer = userCharadeStates.stream()
+            .filter(x -> x.getLastAnswer() != null).count();
+        if (!userState.getIsGoing() || (long) current.getRoom().getUsers().size() - 1 != countUserAnswer) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "You can't confirm the answer now");
+        }
+        CharadeAnswer endAnswer = getEndAnswer(userCharadeStates);
+        charadeLogRepository.save(
+            new CharadeLog(roomCharadeData.getCurrentQuestion(), endAnswer, userState));
+        if (endAnswer == CharadeAnswer.YES) {
             roomCharadeData.setResponseCounterYes(roomCharadeData.getResponseCounterYes() + 1);
         }
-        if (charadeAnswer == CharadeAnswer.NO || (roomCharadeData.getResponseCounterYes() >= 3)) {
+        if (endAnswer == CharadeAnswer.NO || (roomCharadeData.getResponseCounterYes() >= 3)) {
             roomCharadeData.setResponseCounterYes(0);
             changeTurn(roomCharadeData.getRoom());
         }
-        return roomService.save(roomCharadeData.getRoom());
+        userCharadeStates.forEach(x -> x.setLastAnswer(null));
+        roomCharadeData.setCurrentQuestion(null);
+        return roomService.save(current.getRoom());
+    }
 
+    @Override
+    public List<CharadeLog> getLogs(Long id) {
+        return charadeLogRepository.findAllByState((UserCharadeState) userService.getById(id).getUserState());
     }
 
 
@@ -136,6 +165,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
             ((UserCharadeState) room.getUsers().get(currentTurnNumber + 1).getUserState()).setIsGoing(true);
         } else {
             ((UserCharadeState) room.getUsers().get(0).getUserState()).setIsGoing(true);
+            ((RoomCharadeData) room.getRoomData()).setRound(((RoomCharadeData) room.getRoomData()).getRound() + 1);
         }
         return room;
     }
@@ -149,4 +179,37 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         throw new MTException(HttpStatus.INTERNAL_SERVER_ERROR, "Turn not found");
     }
 
+    private User getCurrentUserInReadyGame() {
+        User current = userService.getCurrent();
+        if (current.getRoom() == null) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "You are not in room");
+        }
+        current.getRoom().validateGame(Charade.class);
+        if (!((RoomCharadeData) current.getRoom().getRoomData()).getAllUsersReady()) {
+            throw new MTException(HttpStatus.BAD_REQUEST, "Not all users are ready");
+        }
+        return current;
+    }
+
+    private CharadeAnswer getEndAnswer(List<UserCharadeState> userCharadeStates) {
+        int countYes = 0;
+        int countNo = 0;
+        int countWTF = 0;
+        for (UserCharadeState state : userCharadeStates) {
+            if (state.getLastAnswer() == CharadeAnswer.YES) {
+                countYes = countYes + 1;
+            } else if (state.getLastAnswer() == CharadeAnswer.NO) {
+                countNo = countNo + 1;
+            } else {
+                countWTF = countWTF + 1;
+            }
+        }
+        if (countYes > countNo && countYes > countWTF) {
+            return CharadeAnswer.YES;
+        } else if (countNo > countYes && countNo > countWTF) {
+            return CharadeAnswer.NO;
+        } else {
+            return CharadeAnswer.WTF;
+        }
+    }
 }

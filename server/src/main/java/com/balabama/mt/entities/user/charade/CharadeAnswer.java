@@ -1,4 +1,4 @@
-package com.balabama.mt.dtos.room.charade;
+package com.balabama.mt.entities.user.charade;
 
 public enum CharadeAnswer {
     YES,

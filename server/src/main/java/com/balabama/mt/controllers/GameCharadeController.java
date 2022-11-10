@@ -4,9 +4,12 @@ import com.balabama.mt.converters.RoomDtoConverter;
 import com.balabama.mt.dtos.QuestionDto;
 import com.balabama.mt.dtos.StringDto;
 import com.balabama.mt.dtos.room.charade.CharadeAnswerDto;
+import com.balabama.mt.dtos.user.charade.CharadeLogDto;
 import com.balabama.mt.services.GameCharadeService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +24,12 @@ public class GameCharadeController {
     private final GameCharadeService service;
     private final RoomDtoConverter converter;
     private final WebSocketHandler webSocketHandler;
+
+
+    @GetMapping("/get_history/{id}")
+    public List<CharadeLogDto> getLog(@PathVariable Long id) {
+        return converter.simpleConvert(service.getLogs(id), CharadeLogDto.class);
+    }
 
 
     @PostMapping(value = "/set_word/{userId}")
@@ -51,6 +60,11 @@ public class GameCharadeController {
     @PostMapping("/answer")
     public void answer(@RequestBody CharadeAnswerDto charadeAnswer) {
         webSocketHandler.sendRoomMessage(converter.convertRoom(service.answer(charadeAnswer.getCharadeAnswer())));
+    }
+
+    @PostMapping("/accept_answer")
+    public void acceptAnswer() {
+        webSocketHandler.sendRoomMessage(converter.convertRoom(service.acceptAnswer()));
     }
 
 
