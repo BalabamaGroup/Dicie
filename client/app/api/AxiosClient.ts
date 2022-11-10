@@ -1,8 +1,8 @@
-import axios, { AxiosInstance } from "axios";
-import routes from "../common/constants/routes";
+import axios, { AxiosInstance } from 'axios';
+import routes from '@/app/common/constants/routes';
 
-import { apiUrl } from "../common/utils/url";
-import Toast from "../components/Toast";
+import { apiUrl } from '@/app/common/utils/url';
+import Toast from '@/app/components/Toast';
 
 axios.defaults.withCredentials = true;
 
@@ -12,13 +12,13 @@ class AxiosClient {
   constructor() {
     this.host = axios.create({
       baseURL: apiUrl(),
-      responseType: "json",
+      responseType: 'json',
       timeout: 30000,
     });
   }
 
   request = async (options: any) => {
-    const token = sessionStorage.getItem("token");
+    const token = sessionStorage.getItem('token');
     if (token) options.headers = { Authorization: `Bearer ${token}` };
     return this.host(options)
       .then((res: any) => {
@@ -36,8 +36,8 @@ class AxiosClient {
           console.log();
           if (window.location.pathname !== routes.SIGN_IN)
             window.location.href = routes.SIGN_IN;
-          sessionStorage.removeItem("id");
-          sessionStorage.removeItem("token");
+          sessionStorage.removeItem('id');
+          sessionStorage.removeItem('token');
         }
         return Promise.reject(err);
       });

@@ -16,7 +16,7 @@
   <description>server</description>
   <properties>
     <frontend-maven-plugin.version>1.12.1</frontend-maven-plugin.version>
-    <nodeJs.version>v16.3.0</nodeJs.version>
+    <nodeJs.version>v18.12.1</nodeJs.version>
     <java.version>17</java.version>
     <mysql-connector-java.version>5.7.34</mysql-connector-java.version>
     <liquibase-maven-plugin.version>4.16.1</liquibase-maven-plugin.version>
@@ -186,6 +186,9 @@
                 <goals>
                   <goal>npm</goal>
                 </goals>
+                <configuration>
+                  <arguments>install --no-optional</arguments>
+                </configuration>
               </execution>
               <execution>
                 <id>npm build</id>
@@ -194,6 +197,15 @@
                 </goals>
                 <configuration>
                   <arguments>run build</arguments>
+                </configuration>
+              </execution>
+              <execution>
+                <id>npm start</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+                <configuration>
+                  <arguments>run start</arguments>
                 </configuration>
               </execution>
             </executions>
@@ -212,7 +224,7 @@
                   <outputDirectory>${project.build.outputDirectory}/static</outputDirectory>
                   <resources>
                     <resource>
-                      <directory>${frontend-src-dir}/build</directory>
+                      <directory>${frontend-src-dir}/.next/server/pages</directory>
                     </resource>
                   </resources>
                 </configuration>

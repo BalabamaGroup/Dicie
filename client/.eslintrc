@@ -1,3 +1,13 @@
 {
-  "extends": ["next", "next/core-web-vitals"]
+  "extends": ["next", "next/core-web-vitals"],
+  "ignorePatterns": ["node_modules/", ".next/"],
+  "settings": {
+    "import/resolver": {
+      "alias": [
+        ["@/app", "./app"],
+        ["@pages", "./pages"],
+        ["@styles", "./styles"]
+      ]
+    }
+  }
 }

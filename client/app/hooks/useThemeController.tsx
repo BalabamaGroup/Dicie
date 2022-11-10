@@ -1,10 +1,11 @@
-const useTheme = () => {
+const useThemeController = () => {
   const getTheme = () => {
-    const storageTheme = localStorage.getItem("theme");
-
-    if (!storageTheme) return "light";
-    else if (storageTheme === "auto") return getBrowserTheme();
-    return storageTheme;
+    if (typeof window !== "undefined") {
+      const storageTheme = localStorage.getItem("theme");
+      if (!storageTheme) return "light";
+      else if (storageTheme === "auto") return getBrowserTheme();
+      return storageTheme;
+    }
   };
 
   const getBrowserTheme = () => {
@@ -51,4 +52,4 @@ const useTheme = () => {
   };
 };
 
-export default useTheme;
+export default useThemeController;

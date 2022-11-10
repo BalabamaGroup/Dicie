@@ -6,6 +6,7 @@ const light = {
 
     auth: {
       pictureBackground: "#C0BDF9",
+      pictureSrc: "/images/pngs/auth-picture.light.png",
       headerMain: colors.dark.default,
       headerSub: colors.neutral[70],
       headerAccent: colors.purple,

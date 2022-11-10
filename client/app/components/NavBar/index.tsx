@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import routes from "../../../app/common/constants/routes";
 import useAuth from "../../hooks/useAuth";
-import useTheme from "../../hooks/useTheme";
+import useThemeController from "../../hooks/useThemeController";
 
 import * as Styled from "./index.styled";
 
@@ -10,7 +10,7 @@ const NavBar = () => {
   const navigate = useNavigate();
   const { signOut } = useAuth();
   const location = useLocation();
-  const { toggleTheme } = useTheme();
+  const { toggleTheme } = useThemeController();
 
   const path = location.pathname;
 

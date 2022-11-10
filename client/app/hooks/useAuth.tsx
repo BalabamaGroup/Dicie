@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import AuthAPI from "../../app/api/auth";
 
 import routes from "../../app/common/constants/routes";
 
 const useAuth = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const signUp = async (data: {
     username: string;
@@ -24,7 +24,7 @@ const useAuth = () => {
       .then((res) => {
         sessionStorage.setItem("id", `${res.id}`);
         res.token && sessionStorage.setItem("token", res.token);
-        navigate(routes.HOME);
+        router.push(routes.HOME);
       })
       .catch(() => {});
   };
@@ -36,7 +36,7 @@ const useAuth = () => {
 
   const signOut = () => {
     sessionStorage.removeItem("token");
-    navigate(routes.SIGN_IN);
+    router.push(routes.SIGN_IN);
   };
 
   return { signUp, signIn, signOut, getTakenSignUpInfo };

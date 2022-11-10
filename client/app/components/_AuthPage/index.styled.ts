@@ -1,10 +1,6 @@
-import styled from "styled-components";
-
-import {
-  desktopAndSmaller,
-  mobileAndSmaller,
-} from "../../app/common/utils/device";
-import { commonPageStyles } from "../../styles/commonStyles";
+import styled from 'styled-components';
+import { commonPageStyles } from '@/styles/commonStyles';
+import { desktopAndSmaller, mobileAndSmaller } from '@/app/common/utils/device';
 
 export const Auth = styled.section`
   ${commonPageStyles}

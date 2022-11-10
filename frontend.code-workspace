@@ -2,22 +2,22 @@
   "folders": [
     {
       "name": "🌎 root",
-      "path": "./client"
+      "path": "."
     },
     {
-      "name": "📢 @aspid/public",
+      "name": "📢 @/public",
       "path": "./client/public"
     },
     {
-      "name": "📄 @aspid/pages",
+      "name": "📑 @/pages",
       "path": "./client/pages"
     },
     {
-      "name": "📦 @aspid/app",
+      "name": "📱 @/app",
       "path": "./client/app"
     },
     {
-      "name": "🎨 @aspid/styles",
+      "name": "🎨 @/styles",
       "path": "./client/styles"
     }
   ],

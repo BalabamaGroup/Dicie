@@ -1,17 +1,14 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 
 interface AuthFormProps {
   type: "signUp" | "signIn";
-
-  preUsername?: string;
-  prePassword?: string;
 }
 
-const AuthForm = ({ type, preUsername, prePassword }: AuthFormProps) => {
-  const [username, setUsername] = useState(preUsername || "");
+const AuthForm = ({ type }: AuthFormProps) => {
+  const [username, setUsername] = useState("");
   const onChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) =>
     setUsername(e.target.value);
 
@@ -19,7 +16,7 @@ const AuthForm = ({ type, preUsername, prePassword }: AuthFormProps) => {
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
 
-  const [password, setPassword] = useState(prePassword || "");
+  const [password, setPassword] = useState("");
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
     setPassword(e.target.value);
 
