@@ -50,4 +50,7 @@ public class UserState {
     public void preFinish(){
 
     }
+
+    public void disconnect(){
+    }
 }

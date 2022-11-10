@@ -59,6 +59,10 @@ public class User {
         }
     }
 
+    public void disconnect(){
+        getUserState().disconnect();
+    }
+
 
     @Override
     public boolean equals(Object o) {

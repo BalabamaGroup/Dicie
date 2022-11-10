@@ -49,6 +49,9 @@ public class RoomServiceImpl implements RoomService {
     public Room disconnect(UUID id) {
         Room room = getById(id);
         room.disconnect(userService.getCurrent());
+        if (room.getUsers().size() == 1) {
+            finish(room.getId());
+        }
         if (room.getUsers().isEmpty()) {
             delete(room);
             return new Room();

@@ -1,6 +1,8 @@
 package com.balabama.mt.entities.rooms;
 
 import com.balabama.mt.dtos.room.RoomDataDto;
+import com.balabama.mt.entities.user.User;
+import com.balabama.mt.entities.user.charade.UserCharadeState;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,4 +42,13 @@ public class RoomData {
     public RoomDataDto createDto() {
         return new RoomDataDto(this.room);
     }
+
+    public boolean checkFinish() {
+        return true;
+    }
+
+    public void disconnect(User user) {
+        return;
+    }
+
 }
