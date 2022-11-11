@@ -3,8 +3,6 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import 'react-toastify/dist/ReactToastify.css';
 
-import './App.css';
-
 import Routes from './common/constants/routes';
 
 import About from './pages/About';
