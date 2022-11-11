@@ -1,4 +1,4 @@
-import { Game } from '../../../common/types/room';
+import { Game } from '@/common/types/room';
 import MainStage from './Stage/MainStage';
 import PlayerPickingStage from './Stage/PlayerPickingStage';
 

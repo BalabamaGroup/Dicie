@@ -1,9 +1,6 @@
-import styled, { css } from "styled-components";
-import { homeContentCards } from "../../../common/constants";
-import {
-  tabletAndBigger,
-  tabletAndSmaller,
-} from "../../../common/utils/device";
+import styled, { css } from 'styled-components';
+import { homeContentCards } from '@/common/constants';
+import { tabletAndBigger, tabletAndSmaller } from '@/common/utils/device';
 
 export const HomeContentCards = styled.div<{
   selectedCard: string;

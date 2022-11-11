@@ -1,5 +1,5 @@
 {
-  "extends": [],
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
   "settings": {
     "import/resolver": {
       "alias": [

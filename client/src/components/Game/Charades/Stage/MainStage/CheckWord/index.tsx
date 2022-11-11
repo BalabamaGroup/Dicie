@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CharadesAPI from '../../../../../../api/game/charades';
+import CharadesAPI from '@/api/game/charades';
 
 const CheckWord = () => {
   const [finalWord, setFinalWord] = useState('');

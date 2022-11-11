@@ -1,4 +1,4 @@
-import { Hosts, Protocols } from "../constants";
+import { Hosts, Protocols } from '@/common/constants';
 
 export const apiUrl = () => {
   return Protocols.DEFAULT + Hosts.SERVER_API;

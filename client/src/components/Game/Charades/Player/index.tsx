@@ -1,23 +1,23 @@
-import { useState } from "react";
-import CharadesAPI from "../../../../api/game/charades";
-import { UserInGame } from "../../../../common/types/user";
-import * as Styled from "./index.styled";
+import { useState } from 'react';
+import CharadesAPI from '@/api/game/charades';
+import { UserInGame } from '@/common/types/user';
+import * as Styled from './index.styled';
 
 interface CharadeUserProps {
-  stage?: "main" | "playerPicking";
+  stage?: 'main' | 'playerPicking';
   player: UserInGame;
   currentUserPlayer: UserInGame;
 }
 
 const Player = ({
-  stage = "main",
+  stage = 'main',
   player,
   currentUserPlayer,
 }: CharadeUserProps) => {
   const isCurrentUserTurn =
     currentUserPlayer.state.isGoing && !currentUserPlayer.state.selectedUser;
 
-  const [word, setWord] = useState("");
+  const [word, setWord] = useState('');
   const onChangeWord = (e: any) => setWord(e.target.value);
 
   const onSelectUser = () => {
@@ -27,9 +27,9 @@ const Player = ({
   };
 
   const onSetWord = () => {
-    console.log("Blur");
-    if (typeof word === "string") CharadesAPI.setWord(player.id, { word });
-    setWord("");
+    console.log('Blur');
+    if (typeof word === 'string') CharadesAPI.setWord(player.id, { word });
+    setWord('');
   };
 
   return (
@@ -46,9 +46,9 @@ const Player = ({
         </p>
         <div>
           {player.state.selectedBy === currentUserPlayer.id &&
-            stage === "playerPicking" && (
+            stage === 'playerPicking' && (
               <input
-                type="text"
+                type='text'
                 disabled={+sessionStorage.id === player.id}
                 value={word}
                 onChange={onChangeWord}

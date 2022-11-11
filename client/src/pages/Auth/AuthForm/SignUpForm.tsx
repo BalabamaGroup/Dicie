@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { RoleTypes } from "../../../common/constants";
+import { RoleTypes } from '@/common/constants';
 import {
   getEmailValidationData,
   getMatchPasswordValidationData,
   getPasswordValidationData,
   getUsernameValidationData,
-} from "../../../common/utils/validation";
+} from '@/common/utils/validation';
 
-import * as Styled from "./index.styled";
-import Input from "../../../components/Input";
-import MultiInput from "../../../components/MultiInput";
-import Button from "../../../components/Button";
-import { useQuery } from "react-query";
-import useAuth from "../../../hooks/useAuth";
+import * as Styled from './index.styled';
+import Input from '@/components/Input';
+import MultiInput from '@/components/MultiInput';
+import Button from '@/components/Button';
+import { useQuery } from 'react-query';
+import useAuth from '@/hooks/useAuth';
 
 interface signUpProps {
   username: {
@@ -73,7 +73,7 @@ const SignUpForm = ({
     });
   };
 
-  useQuery("takenSignUpInfo", async () => {
+  useQuery('takenSignUpInfo', async () => {
     const takenSignUpInfo = await getTakenSignUpInfo();
 
     const usernames: string[] = [];
@@ -93,19 +93,19 @@ const SignUpForm = ({
   return (
     <Styled.AuthForm>
       <Styled.AuthHeader>
-        <div className="main">
-          Welcome to <span className="colored">Aspid</span>
+        <div className='main'>
+          Welcome to <span className='colored'>Aspid</span>
         </div>
-        <div className="subheader">Become the true embodiment of darkness</div>
-        <div className="subheader">And there are also party games</div>
+        <div className='subheader'>Become the true embodiment of darkness</div>
+        <div className='subheader'>And there are also party games</div>
       </Styled.AuthHeader>
 
       <Styled.MultiInputWrapper inputCount={4}>
-        <MultiInput className="auth_multiinput" isScale={true}>
+        <MultiInput className='auth_multiinput' isScale={true}>
           <Input
-            id={"signUp-username"}
-            key={"signUp-username"}
-            placeholder="Username"
+            id={'signUp-username'}
+            key={'signUp-username'}
+            placeholder='Username'
             value={username.value}
             onChange={username.onChange}
             isValid={usernameIsValid}
@@ -120,10 +120,10 @@ const SignUpForm = ({
           />
 
           <Input
-            id={"signUp-email"}
-            key={"signUp-email"}
-            type={"email"}
-            placeholder="Email"
+            id={'signUp-email'}
+            key={'signUp-email'}
+            type={'email'}
+            placeholder='Email'
             value={email.value}
             onChange={email.onChange}
             isValid={emailIsValid}
@@ -138,16 +138,16 @@ const SignUpForm = ({
           />
 
           <Input
-            id={"signUp-username"}
-            key={"signUp-passsword"}
-            type={passwordIsVisible ? "text" : "password"}
-            placeholder="Password"
+            id={'signUp-username'}
+            key={'signUp-passsword'}
+            type={passwordIsVisible ? 'text' : 'password'}
+            placeholder='Password'
             value={password.value}
             onChange={password.onChange}
             iconData={{
               iconSrc: passwordIsVisible
-                ? "/images/svgs/eye.closed.svg"
-                : "/images/svgs/eye.opened.svg",
+                ? '/images/svgs/eye.closed.svg'
+                : '/images/svgs/eye.opened.svg',
               onClick: togglePasswordIsvisible,
             }}
             isValid={passwordIsValid}
@@ -158,16 +158,16 @@ const SignUpForm = ({
           />
 
           <Input
-            id={"signUp-email"}
-            key={"signUp-passsword-repeat"}
-            type={matchPasswordIsVisible ? "text" : "password"}
-            placeholder="Repeat password"
+            id={'signUp-email'}
+            key={'signUp-passsword-repeat'}
+            type={matchPasswordIsVisible ? 'text' : 'password'}
+            placeholder='Repeat password'
             value={matchPassword.value}
             onChange={matchPassword.onChange}
             iconData={{
               iconSrc: matchPasswordIsVisible
-                ? "/images/svgs/eye.closed.svg"
-                : "/images/svgs/eye.opened.svg",
+                ? '/images/svgs/eye.closed.svg'
+                : '/images/svgs/eye.opened.svg',
               onClick: toggleMatchPasswordIsvisible,
             }}
             isValid={matchPasswordIsValid}

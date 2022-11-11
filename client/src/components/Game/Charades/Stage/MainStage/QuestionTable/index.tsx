@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import CharadesAPI from '../../../../../../api/game/charades';
-import { UserInGame } from '../../../../../../common/types/user';
+import CharadesAPI from '@/api/game/charades';
+import { UserInGame } from '@/common/types/user';
 
 interface QuestionTableProps {
   currentUserPlayer: UserInGame;
