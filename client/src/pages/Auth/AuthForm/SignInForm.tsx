@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 import * as Styled from './index.styled';
-import Input from '../../../components/Input';
-import MultiInput from '../../../components/MultiInput';
-import Button from '../../../components/Button';
-import useAuth from '../../../hooks/useAuth';
+import Input from '@/components/Input';
+import MultiInput from '@/components/MultiInput';
+import Button from '@/components/Button';
+import useAuth from '@/hooks/useAuth';
 
 interface signInProps {
   username: {

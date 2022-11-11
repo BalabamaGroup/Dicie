@@ -1,11 +1,11 @@
-import colors from "../colors";
+import colors from '../colors';
 
 const dark = {
   page: {
     background: colors.dark.default,
 
     auth: {
-      pictureBackground: "#FCFBD1",
+      pictureBackground: '#FCFBD1',
       headerMain: colors.light.default,
       headerSub: colors.neutral[30],
       headerAccent: colors.yellow,
@@ -34,7 +34,7 @@ const dark = {
 
   switch: {
     isChosen: {
-      background: "none",
+      background: 'none',
       text: colors.yellow,
       highlighting: colors.yellow,
     },

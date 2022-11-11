@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { commonPageWithNavbarStyles } from "../../styles/commonStyles";
+import styled from 'styled-components';
+import { commonPageWithNavbarStyles } from '@/styles/commonStyles';
 
 export const HomePage = styled.section`
   ${commonPageWithNavbarStyles}

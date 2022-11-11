@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { ToastContainer as DefaultToastContainer, Slide } from "react-toastify";
-import { mobileAndSmaller } from "../../common/utils/device";
+import styled from 'styled-components';
+import { ToastContainer as DefaultToastContainer, Slide } from 'react-toastify';
+import { mobileAndSmaller } from '@/common/utils/device';
 
 const ToastContainer = styled(DefaultToastContainer).attrs({
-  position: "top-right",
+  position: 'top-right',
   autoClose: 2000,
   transition: Slide,
   newestOnTop: true,
@@ -33,7 +33,7 @@ const ToastContainer = styled(DefaultToastContainer).attrs({
     .Toastify__toast-body {
       padding: 0;
       color: #666666;
-      font-family: "Inter";
+      font-family: 'Inter';
       font-weight: 500;
       font-size: 12px;
       line-height: 16px;

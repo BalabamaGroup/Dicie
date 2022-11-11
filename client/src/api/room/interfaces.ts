@@ -1,4 +1,4 @@
-import User from "../../common/types/user";
+import User from '@/common/types/user';
 
 export interface createRoomData {
   gameId: number;
@@ -10,7 +10,7 @@ export interface createRoomRes {
 }
 
 export interface getRoomsRes {
-  map(arg0: (room: any) => JSX.Element): import("react").ReactNode;
+  map(arg0: (room: any) => JSX.Element): import('react').ReactNode;
   [index: number]: {
     id: string;
     name: string;

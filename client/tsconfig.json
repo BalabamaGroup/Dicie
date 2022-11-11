@@ -17,22 +17,24 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "experimentalDecorators": true,
-    "baseUrl": "./src",
+    "baseUrl": "src",
     "paths": {
-      "@/api/*": ["api/*"],
-      "@/common/*": ["common/*"],
-      "@/components/*": ["components/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/pages/*": ["pages/*"],
-      "@/styles/*": ["styles/*"]
+      // "@/*": ["./"],
+      "@/api/*": ["./api/*"],
+      "@/common/*": ["./common/*"],
+      "@/components/*": ["./components/*"],
+      "@/hooks/*": ["./hooks/*"],
+      "@/pages/*": ["./pages/*"],
+      "@/styles/*": ["./styles/*"]
     }
   },
   "include": [
-    "src/api",
-    "src/common",
+    // "./src",
+    "./src/api",
+    "./src/common",
     "./src/components",
-    "src/hooks",
-    "src/pages",
-    "src/styles"
+    "./src/hooks",
+    "./src/pages",
+    "./src/styles"
   ]
 }

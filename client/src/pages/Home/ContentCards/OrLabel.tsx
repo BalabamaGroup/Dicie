@@ -1,6 +1,6 @@
-import { ReactSVG } from "react-svg";
-import { homeContentCards } from "../../../common/constants";
-import * as Styled from "./index.styled";
+import { ReactSVG } from 'react-svg';
+import { homeContentCards } from '@/common/constants';
+import * as Styled from './index.styled';
 
 interface CreateRoomCardProps {
   selectedCard: string;
@@ -17,11 +17,11 @@ const OrLabel = ({ selectedCard, onOrClick }: CreateRoomCardProps) => {
         </div>
       </div> */}
 
-      <div className="main">
+      <div className='main'>
         {selectedCard === homeContentCards.DEFAULT ? (
-          "OR"
+          'OR'
         ) : (
-          <ReactSVG src={"/images/svgs/arrow.up.svg"} />
+          <ReactSVG src={'/images/svgs/arrow.up.svg'} />
         )}
       </div>
       {/* 

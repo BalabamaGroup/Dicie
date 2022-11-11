@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { multiInputDataType } from "../MultiInput";
+import styled, { css } from 'styled-components';
+import { multiInputDataType } from '@/MultiInput';
 
 const getMultiInputDataBorderRadiusCss = (
   multiInputData: multiInputDataType | undefined

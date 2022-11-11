@@ -1,5 +1,5 @@
-import { UserInGame } from "../../../../common/types/user";
-import * as Styled from "./index.styled";
+import { UserInGame } from '@/common/types/user';
+import * as Styled from './index.styled';
 
 interface CurrentUserPlayerProps {
   player: UserInGame;
@@ -10,8 +10,8 @@ const CurrentUserPlayer = ({ player }: CurrentUserPlayerProps) => {
     <Styled.CurrentUserPlayer>
       <div
         style={{
-          background: "gray",
-          padding: "5px 20px",
+          background: 'gray',
+          padding: '5px 20px',
         }}
       >
         {player.username}

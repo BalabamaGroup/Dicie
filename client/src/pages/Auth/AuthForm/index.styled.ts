@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { mobileAndSmaller } from "../../../common/utils/device";
+import styled from 'styled-components';
+import { mobileAndSmaller } from '@/common/utils/device';
 
 export const AuthForm = styled.div`
   width: 400px;
@@ -22,7 +22,7 @@ export const AuthHeader = styled.div`
   }
 
   .main {
-    font-family: "Inter";
+    font-family: 'Inter';
     font-weight: 700;
     font-size: 40px;
     line-height: 50px;
@@ -36,7 +36,7 @@ export const AuthHeader = styled.div`
   }
 
   .subheader {
-    font-family: "Inter";
+    font-family: 'Inter';
     font-weight: 700;
     font-size: 14px;
     line-height: 18px;

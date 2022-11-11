@@ -1,10 +1,10 @@
-import { createRef, useState, useEffect } from "react";
-import { ReactSVG } from "react-svg";
-import * as Styled from "./index.styled";
+import { createRef, useState, useEffect } from 'react';
+import { ReactSVG } from 'react-svg';
+import * as Styled from './index.styled';
 
-import { getTextHeight } from "../../common/helpers/domHelpers";
+import { getTextHeight } from '@/common/helpers/domHelpers';
 
-import { multiInputDataType } from "../MultiInput";
+import { multiInputDataType } from '@/MultiInput';
 
 export interface InputProps {
   id: string;
@@ -33,7 +33,7 @@ export interface InputProps {
 
 const Input = ({
   id,
-  type = "text",
+  type = 'text',
   placeholder,
   value,
   onChange,
@@ -67,7 +67,7 @@ const Input = ({
     isMultiInputPart && onChangeMultiInputData(false);
   };
 
-  const [currentNote, setCurrentNote] = useState("");
+  const [currentNote, setCurrentNote] = useState('');
 
   const onInputClick = () => {
     if (!inputRef?.current) return;
@@ -109,13 +109,13 @@ const Input = ({
 
   return (
     <Styled.Wrapper
-      className="input_wrapper"
+      className='input_wrapper'
       isNoteVisible={isFocus && !isValid}
       noteTextHeight={getTextHeight(currentNote, 20)}
       multiInputData={isMultiInputPart ? multiInputData : undefined}
     >
       <Styled.InputWrapper
-        className="input_input-wrapper"
+        className='input_input-wrapper'
         id={id}
         onMouseDown={onInputMouseDown}
         isFocus={isFocus}
@@ -123,7 +123,7 @@ const Input = ({
       >
         <Styled.Input
           type={type}
-          className="input_input"
+          className='input_input'
           placeholder={placeholder}
           ref={inputRef}
           value={value}
@@ -133,14 +133,14 @@ const Input = ({
           onBlur={onBlur}
         />
         {iconData && (
-          <Styled.Icon className="input_icon" onClick={iconData.onClick}>
+          <Styled.Icon className='input_icon' onClick={iconData.onClick}>
             <ReactSVG src={iconData.iconSrc} />
           </Styled.Icon>
         )}
       </Styled.InputWrapper>
 
       <Styled.Note
-        className="input_note"
+        className='input_note'
         onMouseDown={onInputMouseDown}
         isVisible={isFocus && !isValid}
       >

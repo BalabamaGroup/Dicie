@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { Game } from "../common/types/room";
-import { socketUrl } from "../common/utils/url";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Game } from '@/common/types/room';
+import { socketUrl } from '@/common/utils/url';
 
 const useRoomConnectionSocket = () => {
   const ws = useRef<WebSocket | null>(null);
@@ -19,7 +19,7 @@ const useRoomConnectionSocket = () => {
   }, []);
 
   useEffect(() => {
-    const webSocketUrl = socketUrl() + `?${sessionStorage.getItem("id")}`;
+    const webSocketUrl = socketUrl() + `?${sessionStorage.getItem('id')}`;
     ws.current = new WebSocket(webSocketUrl);
 
     ws.current.onopen = () => setStatus(true);

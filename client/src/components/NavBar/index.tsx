@@ -1,10 +1,10 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import routes from "../../common/constants/routes";
-import useAuth from "../../hooks/useAuth";
-import useTheme from "../../hooks/useTheme";
+import routes from '@/common/constants/routes';
+import useAuth from '@/hooks/useAuth';
+import useTheme from '@/hooks/useTheme';
 
-import * as Styled from "./index.styled";
+import * as Styled from './index.styled';
 
 const NavBar = () => {
   const navigate = useNavigate();

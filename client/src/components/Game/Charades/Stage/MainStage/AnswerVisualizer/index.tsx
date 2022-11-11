@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import CharadesAPI from '../../../../../../api/game/charades';
-import { UserInGame } from '../../../../../../common/types/user';
+import CharadesAPI from '@/api/game/charades';
+import { UserInGame } from '@/common/types/user';
 
 interface AnswerVisualizerProps {
   players: UserInGame[];

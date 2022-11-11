@@ -1,5 +1,5 @@
-import { request } from "..";
-import User from "../../common/types/user";
+import { request } from '..';
+import User from '@/common/types/user';
 
 export default class AuthAPI {
   static signUp = async (data: {
@@ -9,7 +9,7 @@ export default class AuthAPI {
     role: string;
   }): Promise<User> => {
     const options = {
-      method: "post",
+      method: 'post',
       url: `auth/signup`,
       data,
     };
@@ -21,7 +21,7 @@ export default class AuthAPI {
     [{ username: string; email: string }]
   > => {
     const options = {
-      method: "get",
+      method: 'get',
       url: `auth/existing_users`,
     };
 
@@ -35,7 +35,7 @@ export default class AuthAPI {
     password: string;
   }): Promise<User> => {
     const options = {
-      method: "post",
+      method: 'post',
       url: `auth/signin`,
       data,
     };
