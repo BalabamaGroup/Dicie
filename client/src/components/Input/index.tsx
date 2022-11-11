@@ -4,7 +4,7 @@ import * as Styled from './index.styled';
 
 import { getTextHeight } from '@/common/helpers/domHelpers';
 
-import { multiInputDataType } from '@/MultiInput';
+import { multiInputDataType } from '@/components/MultiInput';
 
 export interface InputProps {
   id: string;

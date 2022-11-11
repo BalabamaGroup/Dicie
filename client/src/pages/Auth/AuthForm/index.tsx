@@ -1,30 +1,30 @@
-import { useState } from "react";
-import SignInForm from "./SignInForm";
-import SignUpForm from "./SignUpForm";
+import { useState } from 'react';
+import SignInForm from './SignInForm';
+import SignUpForm from './SignUpForm';
 
 interface AuthFormProps {
-  type: "signUp" | "signIn";
+  type: 'signUp' | 'signIn';
 }
 
 const AuthForm = ({ type }: AuthFormProps) => {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
   const onChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) =>
     setUsername(e.target.value);
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
 
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
     setPassword(e.target.value);
 
-  const [matchPassword, setMatchPassword] = useState("");
+  const [matchPassword, setMatchPassword] = useState('');
   const onChangeMatchPassword = (e: React.ChangeEvent<HTMLInputElement>) =>
     setMatchPassword(e.target.value);
 
   switch (type) {
-    case "signUp":
+    case 'signUp':
       return (
         <SignUpForm
           username={{ value: username, onChange: onChangeUsername }}
@@ -36,7 +36,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
           }}
         />
       );
-    case "signIn":
+    case 'signIn':
       return (
         <SignInForm
           username={{ value: username, onChange: onChangeUsername }}
