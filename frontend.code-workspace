@@ -2,16 +2,24 @@
   "folders": [
     {
       "name": "🌎 root",
-      "path": "./client"
+      "path": "."
     },
     {
-      "name": "📮 @mt/public",
+      "name": "📢 @/public",
       "path": "./client/public"
     },
+    //{
+    // "name": "📑 @/app",
+    //  "path": "./client/src"
+    //},
     {
-      "name": "🔒 @mt/src",
+      "name": "📱 @/app",
       "path": "./client/src"
     }
+    // {
+    //  "name": "🎨 @/styles",
+    //  "path": "./client/styles"
+    //}
   ],
   "settings": {}
 }
