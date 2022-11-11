@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import CharadesAPI from '../../../../../api/game/charades';
 import { Game } from '../../../../../common/types/room';
 import { UserInGame } from '../../../../../common/types/user';
 import Player from '../../Player';
@@ -22,9 +20,9 @@ const MainStage = ({
   players,
 }: MainStageProps) => {
   const isMyTurn = currentUserPlayer.state.isGoing;
-  const iHaveWon = currentUserPlayer.state.winRound;
   const questionIsAsked = !!gameData.roomDataDto.currentQuestion;
   const iHaveAnsweredQuestion = !!currentUserPlayer.state.lastAnswer;
+  const iHaveWon = currentUserPlayer.state.winRound;
 
   const [goingUser] = players.filter((player) => player.state.isGoing);
 

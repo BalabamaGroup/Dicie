@@ -49,13 +49,13 @@ export default class CharadesAPI {
     request(options);
   };
 
-  static acceptAnswer = () => {
+  static acceptAnswer = async (): Promise<void> => {
     const options = {
       method: 'post',
       url: `game_charade/accept_answer`,
     };
 
-    request(options);
+    return request(options).then((res: Promise<void>) => res);
   };
 
   static getHistory = async (
