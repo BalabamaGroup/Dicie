@@ -25,8 +25,6 @@ export const Button = styled.button<{
   font-size: 20px;
   line-height: 25px;
 
-  transition: all 0.2s ease-in-out;
-
   width: ${({ isScale }) => (isScale ? '100%' : 'auto')};
 
   &:hover {

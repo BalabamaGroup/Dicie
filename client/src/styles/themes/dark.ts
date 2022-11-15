@@ -1,11 +1,15 @@
-import colors from '../colors';
+import Theme from '@/common/types/theme';
+
+import colors from '../colors/colors';
+import gradients from '../colors/gradients';
+import shadows from '../colors/shadows';
 
 const dark = {
   page: {
-    background: colors.dark.default,
+    background: gradients.dark,
 
     auth: {
-      pictureBackground: '#FCFBD1',
+      pictureBackground: gradients.yellow_green_light.value,
       headerMain: colors.light.default,
       headerSub: colors.neutral[30],
       headerAccent: colors.yellow,
@@ -13,20 +17,25 @@ const dark = {
 
     home: {
       cards: {
+        default: {
+          background: gradients.dark,
+        },
         createRoom: {
-          background: colors.yellow,
+          background: gradients.yellow_green,
+          selectedBackground: colors.dark.default,
           text: colors.dark.default,
-          shadowHover: colors.shadow.yellow.large,
+          shadowHover: shadows.yellow.large,
         },
         orLabel: {
           background: colors.dark.default,
           text: colors.light.default,
-          shadow: colors.shadow.dark.large,
+          shadow: shadows.dark.large,
         },
         joinRoom: {
-          background: colors.purple,
+          background: gradients.indigo_purple,
+          selectedBackground: colors.dark.default,
           text: colors.light.default,
-          shadowHover: colors.shadow.purple.large,
+          shadowHover: shadows.purple.large,
         },
       },
     },
@@ -40,18 +49,20 @@ const dark = {
     },
     background: colors.yellow,
     text: colors.dark.default,
-    shadow: colors.shadow.yellow.small,
+    shadow: shadows.yellow.small,
   },
 
   button: {
-    background: colors.yellow,
+    background: gradients.yellow_green.value,
     text: colors.dark.default,
-    shadow: colors.shadow.yellow.small,
+    shadow: shadows.yellow.small,
   },
 
   navbar: {
-    background: colors.dark.default,
+    background: 'none',
     text: colors.light.default,
+    forsedTextLight: colors.light.default,
+    forsedTextDark: colors.dark.default,
   },
 
   input: {
@@ -59,14 +70,14 @@ const dark = {
     placeholderText: colors.neutral[60],
     text: colors.light.default,
     textInvalid: colors.red,
-    shadow: colors.shadow.dark.large,
-    shadowInvalid: colors.shadow.red.small,
+    shadow: shadows.dark.small,
+    shadowInvalid: shadows.red.small,
 
     icon: {
       fill: colors.neutral[60],
       fillHover: colors.dark.darker,
       backgroundHover: colors.yellow,
-      background: colors.dark.darker,
+      background: 'transparent',
     },
 
     note: {

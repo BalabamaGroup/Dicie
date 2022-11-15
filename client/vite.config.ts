@@ -1,10 +1,26 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
-import svgrPlugin from 'vite-plugin-svgr';
+
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  plugins: [react(), viteTsconfigPaths(), svgrPlugin()],
+  plugins: [
+    react({
+      babel: {
+        plugins: [
+          [
+            'babel-plugin-styled-components',
+            {
+              ssr: false,
+              displayName: true,
+              fileName: false,
+            },
+          ],
+        ],
+      },
+    }),
+    viteTsconfigPaths(),
+  ],
   build: {
     outDir: 'build',
   },

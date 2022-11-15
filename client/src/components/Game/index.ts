@@ -1,4 +1,4 @@
-import Charades from "./Charades";
+import Charades from './Charades';
 
 const Game = {
   Charades,

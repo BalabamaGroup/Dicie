@@ -1,10 +1,10 @@
-import { createRef, useState, useEffect } from 'react';
+import { createRef, useEffect, useState } from 'react';
 import { ReactSVG } from 'react-svg';
-import * as Styled from './index.styled';
 
 import { getTextHeight } from '@/common/helpers/domHelpers';
-
 import { multiInputDataType } from '@/components/MultiInput';
+
+import * as Styled from './index.styled';
 
 export interface InputProps {
   id: string;

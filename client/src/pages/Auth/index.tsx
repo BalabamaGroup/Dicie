@@ -27,20 +27,20 @@ const SignUp = () => {
           className='auth_switch'
           options={[
             {
-              id: 'signup',
-              label: 'Sign Up',
-              onClick: () => {
-                navigate(routes.SIGN_UP);
-              },
-              defaultChoice: formType === 'signUp',
-            },
-            {
               id: 'signin',
               label: 'Sign In',
               onClick: () => {
                 navigate(routes.SIGN_IN);
               },
               defaultChoice: formType === 'signIn',
+            },
+            {
+              id: 'signup',
+              label: 'Sign Up',
+              onClick: () => {
+                navigate(routes.SIGN_UP);
+              },
+              defaultChoice: formType === 'signUp',
             },
           ]}
         />

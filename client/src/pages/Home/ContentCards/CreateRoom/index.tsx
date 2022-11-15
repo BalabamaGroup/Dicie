@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import RoomAPI from '@/api/room';
 import { homeContentCards } from '@/common/constants';
+
 import * as Styled from './index.styled';
 
 interface CreateRoomCardProps {

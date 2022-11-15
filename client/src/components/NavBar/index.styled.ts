@@ -1,35 +1,31 @@
 import styled, { css } from 'styled-components';
-import routes from '@/common/constants/routes';
 
-const getCssByPath = (path: string) => {
-  switch (true) {
-    case path === routes.HOME:
-      return css`
-        background-color: #201e1f;
-        color: white;
-      `;
-  }
-};
-
-export const NavBar = styled.div<{ path: string; theme: any }>`
-  background-color: transparent;
-
+export const NavBar = styled.div<{
+  forsedTextColor: 'light' | 'dark' | undefined;
+  theme: any;
+}>`
   padding: 0 64px;
   height: 64px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: red;
 
-  ${({ path }) => getCssByPath(path)}
+  box-sizing: border-box;
+  width: 100%;
   background: ${({ theme }) => theme && theme.navbar.background};
-  color: ${({ theme }) => theme && theme.navbar.text};
+
+  color: ${({ forsedTextColor, theme }) =>
+    forsedTextColor
+      ? forsedTextColor === 'light'
+        ? theme.navbar.forsedTextLight
+        : theme.navbar.forsedTextDark
+      : theme && theme.navbar.text};
 `;
 
 export const Logo = styled.div`
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 800;
   font-size: 32px;
   line-height: 44px;
 `;

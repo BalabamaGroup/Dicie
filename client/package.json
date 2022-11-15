@@ -21,6 +21,7 @@
     "react-svg": "^15.1.9",
     "react-toastify": "^9.0.8",
     "styled-components": "^5.3.6",
+    "typeface-nunito": "^1.1.13",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
@@ -29,12 +30,12 @@
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
+    "babel-plugin-styled-components": "^2.0.7",
     "eslint": "^8.27.0",
     "eslint-plugin-react": "^7.31.10",
     "prettier": "2.7.1",
     "typescript": "^4.8.4",
     "vite": "^3.2.3",
-    "vite-plugin-svgr": "^2.2.2",
     "vite-tsconfig-paths": "^3.5.2"
   }
 }

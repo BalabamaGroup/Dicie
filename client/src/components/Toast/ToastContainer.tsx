@@ -33,7 +33,6 @@ const ToastContainer = styled(DefaultToastContainer).attrs({
     .Toastify__toast-body {
       padding: 0;
       color: #666666;
-      font-family: 'Inter';
       font-weight: 500;
       font-size: 12px;
       line-height: 16px;
