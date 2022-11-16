@@ -1,12 +1,12 @@
-import { request } from "..";
-import User from "../../common/types/user";
+import { request } from '..';
+import User from '@/common/types/user';
 
-import { getUsersRes, getUserByIdRes } from "./interfaces";
+import { getUsersRes, getUserByIdRes } from './interfaces';
 
 export default class UserAPI {
   static getUsers = (): getUsersRes => {
     const options = {
-      method: "post",
+      method: 'post',
       url: `user`,
     };
 
@@ -15,7 +15,7 @@ export default class UserAPI {
 
   static getCurrentUser = (): User => {
     const options = {
-      method: "get",
+      method: 'get',
       url: `user/current`,
     };
 
@@ -24,7 +24,7 @@ export default class UserAPI {
 
   static getUserById = (id: number): getUserByIdRes => {
     const options = {
-      method: "post",
+      method: 'post',
       url: `user/${id}`,
     };
 
@@ -33,7 +33,7 @@ export default class UserAPI {
 
   static deleteUserById = (id: number): void => {
     const options = {
-      method: "delete",
+      method: 'delete',
       url: `user/${id}`,
     };
 

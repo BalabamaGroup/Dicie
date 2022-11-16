@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import routes from "../../common/constants/routes";
+import styled, { css } from 'styled-components';
+import routes from '@/common/constants/routes';
 
 const getCssByPath = (path: string) => {
   switch (true) {

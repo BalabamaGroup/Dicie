@@ -1,11 +1,11 @@
-import colors from "../colors";
+import colors from '../colors';
 
 const light = {
   page: {
     background: colors.light.default,
 
     auth: {
-      pictureBackground: "#C0BDF9",
+      pictureBackground: '#C0BDF9',
       headerMain: colors.dark.default,
       headerSub: colors.neutral[70],
       headerAccent: colors.purple,

@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { ThemeProvider } from "styled-components";
-import useTheme from "../hooks/useTheme";
+import { useState, useEffect } from 'react';
+import { ThemeProvider } from 'styled-components';
+import useTheme from '@/hooks/useTheme';
 
-import dark from "./themes/dark";
-import light from "./themes/light";
+import dark from './themes/dark';
+import light from './themes/light';
 
 const Theme = ({ children }: { children: any }) => {
   const { getTheme, getBrowserTheme } = useTheme();
@@ -12,9 +12,9 @@ const Theme = ({ children }: { children: any }) => {
 
   useEffect(() => {
     const themeListener = () => {
-      const theme = localStorage.getItem("theme");
+      const theme = localStorage.getItem('theme');
 
-      if (theme === "auto") {
+      if (theme === 'auto') {
         const browserTheme = getBrowserTheme();
         setTheme(browserTheme);
         return;
@@ -23,12 +23,12 @@ const Theme = ({ children }: { children: any }) => {
       theme && setTheme(theme);
     };
 
-    window.addEventListener("storage", themeListener);
-    return () => window.removeEventListener("storage", themeListener);
+    window.addEventListener('storage', themeListener);
+    return () => window.removeEventListener('storage', themeListener);
   }, []);
 
   return (
-    <ThemeProvider theme={theme === "light" ? light : dark}>
+    <ThemeProvider theme={theme === 'light' ? light : dark}>
       {children}
     </ThemeProvider>
   );

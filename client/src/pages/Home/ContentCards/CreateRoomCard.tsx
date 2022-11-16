@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import RoomAPI from "../../../api/room";
-import { homeContentCards } from "../../../common/constants";
-import * as Styled from "./index.styled";
+import RoomAPI from '@/api/room';
+import { homeContentCards } from '@/common/constants';
+import * as Styled from './index.styled';
 
 interface CreateRoomCardProps {
   selectedCard: string;
@@ -13,7 +13,7 @@ interface CreateRoomCardProps {
 const CreateRoomCard = ({ selectedCard, onSelect }: CreateRoomCardProps) => {
   const navigate = useNavigate();
 
-  const [roomName, setRoomName] = useState("");
+  const [roomName, setRoomName] = useState('');
   const onChangeRoomName = (e: any) => setRoomName(e.target.value);
   const onCreateRoom = async () => {
     const newRoom = await RoomAPI.createRoom({ gameId: 1, name: roomName });
@@ -28,8 +28,8 @@ const CreateRoomCard = ({ selectedCard, onSelect }: CreateRoomCardProps) => {
     >
       {selectedCard === homeContentCards.DEFAULT ? (
         <div>
-          <div className="header main">{`Create your \n own room`}</div>
-          <div className="header sub">And make others obey your will</div>
+          <div className='header main'>{`Create your \n own room`}</div>
+          <div className='header sub'>And make others obey your will</div>
         </div>
       ) : (
         <div>

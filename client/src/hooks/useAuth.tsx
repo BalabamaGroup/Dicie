@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import AuthAPI from "../api/auth";
+import { useNavigate } from 'react-router-dom';
+import AuthAPI from '@/api/auth';
 
-import routes from "../common/constants/routes";
+import routes from '@/common/constants/routes';
 
 const useAuth = () => {
   const navigate = useNavigate();
@@ -22,8 +22,8 @@ const useAuth = () => {
   const signIn = async (data: { username: string; password: string }) => {
     AuthAPI.signIn(data)
       .then((res) => {
-        sessionStorage.setItem("id", `${res.id}`);
-        res.token && sessionStorage.setItem("token", res.token);
+        sessionStorage.setItem('id', `${res.id}`);
+        res.token && sessionStorage.setItem('token', res.token);
         navigate(routes.HOME);
       })
       .catch(() => {});
@@ -35,7 +35,7 @@ const useAuth = () => {
   };
 
   const signOut = () => {
-    sessionStorage.removeItem("token");
+    sessionStorage.removeItem('token');
     navigate(routes.SIGN_IN);
   };
 

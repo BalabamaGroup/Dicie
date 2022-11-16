@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { homeContentCards } from "../../../common/constants";
-import CreateRoomCard from "./CreateRoomCard";
-import * as Styled from "./index.styled";
-import JoinRoomCard from "./JoinRoomCard";
-import OrLabel from "./OrLabel";
+import { useState } from 'react';
+import { homeContentCards } from '@/common/constants';
+import CreateRoomCard from './CreateRoomCard';
+import * as Styled from './index.styled';
+import JoinRoomCard from './JoinRoomCard';
+import OrLabel from './OrLabel';
 
 export interface HomeContentCardsProps {}
 

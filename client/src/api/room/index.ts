@@ -1,5 +1,5 @@
-import { request } from "..";
-import Room from "../../common/types/room";
+import { request } from '..';
+import Room from '@/common/types/room';
 
 export default class RoomAPI {
   static createRoom = (data: {
@@ -7,7 +7,7 @@ export default class RoomAPI {
     name: string;
   }): Promise<Room> => {
     const options = {
-      method: "post",
+      method: 'post',
       url: `room`,
       data,
     };
@@ -17,7 +17,7 @@ export default class RoomAPI {
 
   static getRooms = (): Promise<[Room]> => {
     const options = {
-      method: "get",
+      method: 'get',
       url: `room`,
     };
 
@@ -26,7 +26,7 @@ export default class RoomAPI {
 
   static getRoom = (id: string): Promise<Room> => {
     const options = {
-      method: "get",
+      method: 'get',
       url: `room/${id}`,
     };
 
@@ -35,7 +35,7 @@ export default class RoomAPI {
 
   static connectToRoom = async (id: string): Promise<Room> => {
     const options = {
-      method: "put",
+      method: 'put',
       url: `room/connect/${id}`,
     };
 
@@ -44,7 +44,7 @@ export default class RoomAPI {
 
   static disconnectFromRoom = (id: string): Promise<Room> => {
     const options = {
-      method: "put",
+      method: 'put',
       url: `room/disconnect/${id}`,
     };
 
@@ -53,7 +53,7 @@ export default class RoomAPI {
 
   static startGame = (id: string): Promise<Room> => {
     const options = {
-      method: "post",
+      method: 'post',
       url: `room/start/${id}`,
     };
 
@@ -62,7 +62,7 @@ export default class RoomAPI {
 
   static finishGame = (id: string): Promise<Room> => {
     const options = {
-      method: "post",
+      method: 'post',
       url: `room/finish/${id}`,
     };
 

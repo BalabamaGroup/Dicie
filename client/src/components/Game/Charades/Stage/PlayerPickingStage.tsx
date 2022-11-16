@@ -1,8 +1,7 @@
-import CharadesAPI from "../../../../api/game/charades";
-import { UserInGame } from "../../../../common/types/user";
-import Player from "../Player";
-import CurrentUserPlayer from "../Player/CurrentUserPlayer";
-
+import CharadesAPI from '@/api/game/charades';
+import { UserInGame } from '@/common/types/user';
+import Player from '../Player';
+import CurrentUserPlayer from '../Player/CurrentUserPlayer';
 interface PlayerPickingStageProps {
   currentUserPlayer: UserInGame;
   players: UserInGame[];
@@ -26,7 +25,7 @@ const PlayerPickingStage = ({
       <CurrentUserPlayer player={currentUserPlayer} />
       {players.map((player) => (
         <Player
-          stage="playerPicking"
+          stage='playerPicking'
           key={player.id}
           player={player}
           currentUserPlayer={currentUserPlayer}
@@ -35,10 +34,10 @@ const PlayerPickingStage = ({
 
       <button
         onClick={onReadyClick}
-        style={{ position: "absolute", bottom: "20px", right: "20px" }}
+        style={{ position: 'absolute', bottom: '20px', right: '20px' }}
       >
         <h3>
-          {!currentUserPlayer.state.ready ? "I am ready!" : "Im not ready ("}
+          {!currentUserPlayer.state.ready ? 'I am ready!' : 'Im not ready ('}
         </h3>
       </button>
     </div>

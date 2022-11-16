@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CharadesAPI from '../../../../../../api/game/charades';
+import CharadesAPI from '@/api/game/charades';
 
 interface AnswerQuestionProps {
   question: string | null;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import CharadesAPI from '../../../../../../api/game/charades';
-import { UserInGame } from '../../../../../../common/types/user';
+import CharadesAPI from '@/api/game/charades';
+import { UserInGame } from '@/common/types/user';
 
 interface QuestionTableProps {
   currentUserPlayer: UserInGame;
@@ -19,14 +19,11 @@ const QuestionTable = ({ currentUserPlayer }: QuestionTableProps) => {
       const myHistory = await CharadesAPI.getHistory(currentUserPlayer.id);
       return myHistory;
     },
-    { refetchOnWindowFocus: false, enabled: false }
+    {}
   );
 
   useEffect(() => {
-    window.addEventListener('answerAccept', () => {
-      console.log('EVENT answerAccept');
-      myTableDataRefetch();
-    });
+    window.addEventListener('answerAccept', () => myTableDataRefetch());
     return () =>
       window.removeEventListener('answerAccept', () => myTableDataRefetch());
   }, []);
@@ -40,17 +37,25 @@ const QuestionTable = ({ currentUserPlayer }: QuestionTableProps) => {
         display: 'flex',
         flexDirection: 'column',
         border: '2px solid teal',
-        gap: '10px',
       }}
     >
       {myTableData &&
-        myTableData.map((tableData) => (
+        myTableData.map((tableData, i) => (
           <div
+            key={i}
             style={{
+              height: '25px',
               display: 'flex',
               flexDirection: 'row',
               justifyContent: 'space-between',
+              alignItems: 'center',
               gap: '20px',
+              background:
+                tableData.answer === 'YES'
+                  ? 'lightgreen'
+                  : tableData.answer === 'NO'
+                  ? 'lightred'
+                  : 'lightgrey',
             }}
           >
             <div>{tableData.question}</div>
