@@ -66,11 +66,13 @@ public class RoomData {
             if (userNum >= countWin) {
                 long points = (long) Math.ceil(((100f / countLose) * (countLose - (usersInPlaces.size() - userNum - 1))));
                 usersInPlaces.get(userNum)
-                    .addPoints(points * (-(1 / (1 + 10 ^ ((roomAvg - usersInPlaces.get(userNum).getPoints()) / 400)))));
+                    .addPoints(Math.round(
+                        points * (-(1d / (1 + Math.pow(10, (((double) roomAvg - usersInPlaces.get(userNum).getPoints()) / 400)))))));
             } else {
                 long points = (long) Math.ceil(((100f / countWin) * (countWin - userNum)));
                 usersInPlaces.get(userNum)
-                    .addPoints(points * (1 - 1 / (1 + 10 ^ ((roomAvg - usersInPlaces.get(userNum).getPoints()) / 400))));
+                    .addPoints(Math.round(
+                        points * (1 - 1d / (1 + Math.pow(10, (((double) roomAvg - usersInPlaces.get(userNum).getPoints()) / 400))))));
             }
         }
     }
