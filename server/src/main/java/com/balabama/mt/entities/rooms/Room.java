@@ -105,8 +105,10 @@ public class Room {
     }
 
     public void finish() {
+        this.roomData.earnPoints();
         this.roomData = null;
         for (User user : users) {
+            user.finish();
             user.setUserState(null);
         }
         this.start = false;

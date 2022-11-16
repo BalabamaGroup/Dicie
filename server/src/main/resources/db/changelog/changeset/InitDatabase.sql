@@ -54,6 +54,7 @@ create table user
     role     int null,
     username varchar(255) null,
     room     varchar(36) null,
+    points   biging not null default 0,
     constraint FKh4vi8y500vhc3k8qy8o5t76u8
         foreign key (room) references room (id)
 );

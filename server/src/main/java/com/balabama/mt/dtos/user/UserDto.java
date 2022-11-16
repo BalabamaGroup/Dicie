@@ -18,6 +18,7 @@ public class UserDto {
     private String email;
     private UserRole role;
     private UUID roomId;
+    private Long point;
 
     @Data
     @AllArgsConstructor

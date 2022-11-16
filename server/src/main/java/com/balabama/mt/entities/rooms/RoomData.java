@@ -3,6 +3,8 @@ package com.balabama.mt.entities.rooms;
 import com.balabama.mt.dtos.room.RoomDataDto;
 import com.balabama.mt.entities.user.User;
 import com.balabama.mt.entities.user.charade.UserCharadeState;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,6 +51,28 @@ public class RoomData {
 
     public void disconnect(User user) {
         return;
+    }
+
+    public List<User> getUsersInPlaces() {
+        return new ArrayList<>();
+    }
+
+    public void earnPoints() {
+        List<User> usersInPlaces = getUsersInPlaces();
+        long roomAvg = (long) (((float) usersInPlaces.stream().mapToLong(User::getPoints).sum()) / usersInPlaces.size());
+        long countWin = usersInPlaces.size() / 2;
+        long countLose = usersInPlaces.size() - countWin;
+        for (int userNum = 0; userNum < usersInPlaces.size(); userNum++) {
+            if (userNum >= countWin) {
+                long points = (long) Math.ceil(((100f / countLose) * (countLose - (usersInPlaces.size() - userNum - 1))));
+                usersInPlaces.get(userNum)
+                    .addPoints(points * (-(1 / (1 + 10 ^ ((roomAvg - usersInPlaces.get(userNum).getPoints()) / 400)))));
+            } else {
+                long points = (long) Math.ceil(((100f / countWin) * (countWin - userNum)));
+                usersInPlaces.get(userNum)
+                    .addPoints(points * (1 - 1 / (1 + 10 ^ ((roomAvg - usersInPlaces.get(userNum).getPoints()) / 400))));
+            }
+        }
     }
 
 }
