@@ -52,7 +52,7 @@ public class RoomServiceImpl implements RoomService {
         if (room.getRoomData() != null && room.getRoomData().checkFinish()) {
             return finish(room.getId());
         }
-        if (room.getUsers().size() == 1) {
+        if (room.getRoomData() != null && room.getStart() && room.getUsers().size() == 1) {
             finish(room.getId());
         }
         if (room.getUsers().isEmpty()) {
