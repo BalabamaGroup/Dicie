@@ -125,5 +125,9 @@ public class UserCharadeState extends UserState {
         isGoing = false;
     }
 
+    public int questionCount() {
+        return charadeLogs.size();
+    }
+
 
 }

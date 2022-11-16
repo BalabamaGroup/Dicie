@@ -4,8 +4,12 @@ import com.balabama.mt.dtos.room.charade.RoomCharadeDataDto;
 import com.balabama.mt.entities.rooms.Room;
 import com.balabama.mt.entities.rooms.RoomData;
 import com.balabama.mt.entities.user.User;
+import com.balabama.mt.entities.user.UserState;
 import com.balabama.mt.entities.user.charade.UserCharadeState;
 import com.balabama.mt.exceptions.MTException;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import lombok.Data;
@@ -88,6 +92,12 @@ public class RoomCharadeData extends RoomData {
         roomCharadeDataDto.setResponseCounterYes(responseCounterYes);
         roomCharadeDataDto.setRound(round);
         return roomCharadeDataDto;
+    }
+
+    public List<User> getUsersInPlaces() {
+        return getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState())
+            .sorted(Comparator.comparing(UserCharadeState::getWinRound).thenComparing(UserCharadeState::questionCount))
+            .map(UserState::getUser).collect(Collectors.toList());
     }
 
 }

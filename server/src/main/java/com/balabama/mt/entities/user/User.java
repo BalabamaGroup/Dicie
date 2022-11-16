@@ -43,6 +43,7 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @PrimaryKeyJoinColumn
     private UserState userState;
+    private Long points = 0L;
     @OneToOne(mappedBy = "admin")
     private Room controlledRoom;
 
@@ -59,8 +60,21 @@ public class User {
         }
     }
 
-    public void disconnect(){
+    public void disconnect() {
         getUserState().disconnect();
+    }
+
+    public void finish() {
+        if (userState != null) {
+            userState.finish();
+        }
+    }
+
+    public void addPoints(Long points) {
+        this.points = this.points + points;
+        if (this.points < 0) {
+            this.points = 0L;
+        }
     }
 
 

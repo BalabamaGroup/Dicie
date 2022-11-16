@@ -49,7 +49,7 @@ public class RoomServiceImpl implements RoomService {
     public Room disconnect(UUID id) {
         Room room = getById(id);
         room.disconnect(userService.getCurrent());
-        if (room.getRoomData().checkFinish()){
+        if (room.getRoomData() != null && room.getRoomData().checkFinish()) {
             return finish(room.getId());
         }
         if (room.getUsers().size() == 1) {

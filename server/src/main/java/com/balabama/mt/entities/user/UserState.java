@@ -51,6 +51,10 @@ public class UserState {
 
     }
 
+    public void finish(){
+
+    }
+
     public void disconnect(){
     }
 }
