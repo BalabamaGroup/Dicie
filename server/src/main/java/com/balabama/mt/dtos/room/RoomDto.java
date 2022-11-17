@@ -36,7 +36,8 @@ public class RoomDto {
 
     @JsonIgnore
     public UserWithState getUser(Long userId) {
-        return users.stream().filter(user -> Objects.equals(user.getId(), userId)).findFirst().orElseThrow(() -> MTException.notFound(UserWithState.class, userId, "id"));
+        return users.stream().filter(user -> Objects.equals(user.getId(), userId)).findFirst()
+            .orElseThrow(() -> MTException.notFound(UserWithState.class, userId, "id"));
     }
 
 }
