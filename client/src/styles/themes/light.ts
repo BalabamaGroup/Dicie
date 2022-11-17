@@ -63,7 +63,13 @@ const light = {
   },
 
   input: {
-    background: colors.light.lighter,
+    default: {
+      background: colors.light.default,
+    },
+    virant: {
+      background: colors.light.lighter,
+    },
+
     placeholderText: colors.neutral[40],
     text: colors.dark.default,
     textInvalid: colors.dark.default,
@@ -79,6 +85,22 @@ const light = {
 
     note: {
       text: colors.red,
+    },
+  },
+
+  toggle: {
+    wrapperBackground: gradients.indigo_purple.value,
+    toggleBackground: colors.light.default,
+
+    forsed: {
+      light: {
+        wrapperBackground: gradients.indigo_purple.value,
+        toggleBackground: colors.light.default,
+      },
+      dark: {
+        wrapperBackground: gradients.yellow_green.value,
+        toggleBackground: colors.dark.default,
+      },
     },
   },
 };

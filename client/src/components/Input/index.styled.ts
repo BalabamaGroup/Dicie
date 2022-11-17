@@ -37,6 +37,7 @@ export const Wrapper = styled.div<{
   multiInputData?: multiInputDataType | undefined;
   isNoteVisible: boolean | undefined;
   noteTextHeight: number;
+  variant: 'default' | 'vibrant';
 }>`
   max-width: 100%;
   flex-direction: column;
@@ -54,6 +55,7 @@ export const Wrapper = styled.div<{
 export const InputWrapper = styled.div<{
   isFocus: boolean;
   isValid: boolean;
+  variant: 'default' | 'vibrant';
 }>`
   cursor: pointer;
   position: relative;
@@ -64,7 +66,10 @@ export const InputWrapper = styled.div<{
   align-items: center;
   justify-content: space-between;
 
-  background: ${({ theme }) => theme.input.background};
+  background: ${({ variant, theme }) =>
+    variant === 'default'
+      ? theme.input.default.background
+      : theme.input.vibrant.background};
 
   color: ${({ isFocus, isValid, theme }) =>
     !isValid && !isFocus ? theme.input.textInvalid : theme.input.text};
@@ -77,7 +82,9 @@ export const InputWrapper = styled.div<{
       : `none`};
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<{
+  size: 'large' | 'medium';
+}>`
   all: unset;
 
   font-weight: 500;
@@ -86,7 +93,8 @@ export const Input = styled.input`
 
   height: 20px;
   width: 100%;
-  padding: 26px 32px 26px 32px;
+
+  padding: ${({ size }) => (size === 'large' ? '24px 32px' : '16px 24px')};
 
   ::placeholder {
     color: ${({ theme }) => theme.input.placeholderText};

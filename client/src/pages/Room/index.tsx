@@ -33,7 +33,9 @@ const Room = () => {
         <div>
           {roomData?.users &&
             roomData.users.map((user: UserInGame) => (
-              <p key={user.id}>{user.username}</p>
+              <p key={user.id}>
+                {user.username} - {user.points}
+              </p>
             ))}
           <button onClick={onStartGame}>Start game</button>
           <button onClick={onDisconnect}>Disconnect</button>

@@ -70,6 +70,8 @@ const MainStage = ({
 
       <QuestionTable currentUserPlayer={currentUserPlayer} />
 
+      <h3>{currentUserPlayer.points}</h3>
+
       {players.map((player) => (
         <Player
           key={player.id}

@@ -1,8 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import routes from '@/common/constants/routes';
+import { size } from '@/common/utils/device';
 import useAuth from '@/hooks/useAuth';
 import useTheme from '@/hooks/useTheme';
+import useWindowWidth from '@/hooks/useWindowWidth';
 
 import * as Styled from './index.styled';
 
@@ -14,6 +16,10 @@ const NavBar = ({ forsedTextColor }: NavBarProps) => {
   const navigate = useNavigate();
   const { signOut } = useAuth();
   const { toggleTheme } = useTheme();
+
+  const windowWindth = useWindowWidth(100);
+
+  if (windowWindth < size.tablet) return null;
 
   return (
     <Styled.NavBar forsedTextColor={forsedTextColor}>

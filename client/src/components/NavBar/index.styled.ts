@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 
 export const NavBar = styled.div<{
   forsedTextColor: 'light' | 'dark' | undefined;
-  theme: any;
 }>`
   padding: 0 64px;
   height: 64px;
@@ -15,15 +14,20 @@ export const NavBar = styled.div<{
   width: 100%;
   background: ${({ theme }) => theme && theme.navbar.background};
 
-  color: ${({ forsedTextColor, theme }) =>
-    forsedTextColor
-      ? forsedTextColor === 'light'
-        ? theme.navbar.forsedTextLight
-        : theme.navbar.forsedTextDark
-      : theme && theme.navbar.text};
+  .navbar-logo,
+  .navbar-link {
+    color: ${({ forsedTextColor, theme }) =>
+      forsedTextColor
+        ? forsedTextColor === 'light'
+          ? theme.navbar.forsedTextLight
+          : theme.navbar.forsedTextDark
+        : theme && theme.navbar.text};
+  }
 `;
 
-export const Logo = styled.div`
+export const Logo = styled.div.attrs({
+  className: 'navbar-logo',
+})`
   cursor: pointer;
   font-weight: 800;
   font-size: 32px;
@@ -38,7 +42,9 @@ export const LinksWrapper = styled.div`
   gap: 32px;
 `;
 
-export const Link = styled.div`
+export const Link = styled.div.attrs({
+  className: 'navbar-link',
+})`
   cursor: pointer;
   font-weight: 600;
   font-size: 16px;
