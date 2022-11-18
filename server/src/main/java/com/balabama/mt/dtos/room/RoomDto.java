@@ -29,6 +29,7 @@ public class RoomDto {
     private UUID id;
     private UserDto admin;
     private Boolean isPrivate;
+    private Boolean voiceChatEnabled = false;
 
     @JsonIgnore
     public List<Long> getIds() {

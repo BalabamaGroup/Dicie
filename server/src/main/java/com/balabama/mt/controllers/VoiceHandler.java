@@ -2,6 +2,7 @@ package com.balabama.mt.controllers;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -25,10 +26,10 @@ public class VoiceHandler extends TextWebSocketHandler {
     }
 
     @Override
-    public void handleTextMessage(WebSocketSession session, TextMessage message)
-        throws IOException {
+    public void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
+        String roomId = Objects.requireNonNull(session.getUri()).getQuery();
         for (WebSocketSession webSocketSession : sessions) {
-            if (!session.equals(webSocketSession)) {
+            if (!session.equals(webSocketSession) && Objects.equals(Objects.requireNonNull(webSocketSession.getUri()).getQuery(), roomId)) {
                 webSocketSession.sendMessage(message);
             }
         }

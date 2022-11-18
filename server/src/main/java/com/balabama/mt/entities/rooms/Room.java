@@ -60,6 +60,7 @@ public class Room {
     private User admin;
     private Boolean isPrivate = false;
     private String password;
+    private Boolean voiceChatEnabled = false;
 
     private void addUser(User user) {
         if (this.users.contains(user)) {
