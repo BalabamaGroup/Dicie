@@ -1,6 +1,7 @@
 package com.balabama.mt.controllers;
 
 import com.balabama.mt.converters.RoomDtoConverter;
+import com.balabama.mt.dtos.ConnectDto;
 import com.balabama.mt.dtos.room.RoomCreateDto;
 import com.balabama.mt.dtos.room.RoomDashboardDto;
 import com.balabama.mt.dtos.room.RoomDto;
@@ -53,7 +54,8 @@ public class RoomController {
     }
 
     @PutMapping("/connect/{id}")
-    public void connect(@PathVariable UUID id) {
+    public void connect(@PathVariable UUID id, @RequestBody(required = false) ConnectDto connectDto) {
+        service.passwordValidate(id, connectDto.getPassword());
         webSocketHandler.sendRoomMessage(converter.convertRoom(service.connect(id)));
     }
 

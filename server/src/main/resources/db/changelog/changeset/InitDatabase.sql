@@ -14,13 +14,15 @@ create table game
 );
 create table room
 (
-    id        varchar(36)  not null
+    id         varchar(36)  not null
         primary key,
-    max_users int null,
-    min_users int null,
-    name      varchar(255) not null,
-    start     bit null,
-    game      bigint null,
+    max_users  int null,
+    min_users  int null,
+    name       varchar(255) not null,
+    password   varchar(255) null,
+    is_private bit null,
+    start      bit null,
+    game       bigint null,
     constraint UK_aa58c9de9eu0v585le47w25my
         unique (name),
     constraint FKnfwcytp8m89dqetjy1x4en8d

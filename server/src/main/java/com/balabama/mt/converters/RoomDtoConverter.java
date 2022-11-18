@@ -45,6 +45,10 @@ public class RoomDtoConverter extends BaseDtoConverter {
         if (roomService.existByName(dtoIn.getName())) {
             throw MTException.alreadyExistByName(Room.class, dtoIn.getName());
         }
+        if (dtoIn.getPassword() != null) {
+            room.setPassword(dtoIn.getPassword());
+            room.setIsPrivate(true);
+        }
         return room;
     }
 
@@ -63,6 +67,7 @@ public class RoomDtoConverter extends BaseDtoConverter {
         roomDto.setStart(room.getStart());
         roomDto.setName(room.getName());
         roomDto.setId(room.getId());
+        roomDto.setIsPrivate(room.getIsPrivate());
         return roomDto;
     }
 }
