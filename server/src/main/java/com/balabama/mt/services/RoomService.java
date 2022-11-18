@@ -20,8 +20,12 @@ public interface RoomService {
     Room getById(UUID id);
 
     Room connect(UUID id);
+
     Room disconnect(UUID id);
 
     void delete(UUID id);
+
     void delete(Room room);
+
+    void passwordValidate(UUID id, String password);
 }

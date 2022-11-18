@@ -25,6 +25,7 @@ import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name = "room")
@@ -57,6 +58,8 @@ public class Room {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "admin_id", referencedColumnName = "id")
     private User admin;
+    private Boolean isPrivate = false;
+    private String password;
 
     private void addUser(User user) {
         if (this.users.contains(user)) {
@@ -147,9 +150,23 @@ public class Room {
         }
     }
 
+    public void validatePassword(String password) {
+        if (!isPrivate) {
+            return;
+        }
+        if (password == null || !new BCryptPasswordEncoder().matches(password, this.password)) {
+            throw new MTException(HttpStatus.FORBIDDEN, "Bro, password is not correct");
+        }
+
+    }
+
     public <T> void validateGame(Class<T> clazz) {
         if (clazz.isInstance(getGame())) {
             throw new MTException(HttpStatus.INTERNAL_SERVER_ERROR, "Game is not " + clazz.getName());
         }
+    }
+
+    public void setPassword(String password) {
+        this.password = new BCryptPasswordEncoder().encode(password);
     }
 }
