@@ -15,7 +15,7 @@ public interface RoomService {
 
     Room start(UUID id);
 
-    Room finish(UUID id);
+    Room finish(Room id);
 
     Room getById(UUID id);
 

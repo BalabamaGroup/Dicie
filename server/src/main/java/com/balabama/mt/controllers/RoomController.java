@@ -5,7 +5,9 @@ import com.balabama.mt.dtos.ConnectDto;
 import com.balabama.mt.dtos.room.RoomCreateDto;
 import com.balabama.mt.dtos.room.RoomDashboardDto;
 import com.balabama.mt.dtos.room.RoomDto;
+import com.balabama.mt.entities.rooms.Room;
 import com.balabama.mt.services.RoomService;
+import com.balabama.mt.services.UserService;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RoomController {
 
     private final RoomService service;
+    private final UserService userService;
     private final RoomDtoConverter converter;
     private final WebSocketHandler webSocketHandler;
 
@@ -50,7 +53,9 @@ public class RoomController {
 
     @PostMapping("/finish/{id}")
     public void finish(@PathVariable UUID id) {
-        webSocketHandler.sendRoomMessage(converter.convertRoom(service.finish(id)));
+        Room room = service.getById(id);
+        room.isAdmin(userService.getCurrent());
+        webSocketHandler.sendRoomMessage(converter.convertRoom(service.finish(room)));
     }
 
     @PutMapping("/connect/{id}")

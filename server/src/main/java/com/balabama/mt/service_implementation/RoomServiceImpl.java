@@ -1,6 +1,7 @@
 package com.balabama.mt.service_implementation;
 
 import com.balabama.mt.entities.rooms.Room;
+import com.balabama.mt.entities.user.User;
 import com.balabama.mt.exceptions.MTException;
 import com.balabama.mt.repositories.RoomRepository;
 import com.balabama.mt.services.RoomService;
@@ -50,10 +51,10 @@ public class RoomServiceImpl implements RoomService {
         Room room = getById(id);
         room.disconnect(userService.getCurrent());
         if (room.getRoomData() != null && room.getRoomData().checkFinish()) {
-            return finish(room.getId());
+            return finish(room);
         }
         if (room.getRoomData() != null && room.getStart() && room.getUsers().size() == 1) {
-            finish(room.getId());
+            finish(room);
         }
         if (room.getUsers().isEmpty()) {
             delete(room);
@@ -83,14 +84,14 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public Room start(UUID id) {
         Room room = getById(id);
+        room.isAdmin(userService.getCurrent());
         room.start();
         save(room);
         return room;
     }
 
     @Override
-    public Room finish(UUID id) {
-        Room room = getById(id);
+    public Room finish(Room room) {
         room = save(room);
         room.finish();
         return save(room);

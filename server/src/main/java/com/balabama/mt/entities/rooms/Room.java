@@ -170,4 +170,10 @@ public class Room {
     public void setPassword(String password) {
         this.password = new BCryptPasswordEncoder().encode(password);
     }
+
+    public void isAdmin(User user) {
+        if (!admin.equals(user)) {
+            throw new MTException(HttpStatus.FORBIDDEN, "You are not an admin");
+        }
+    }
 }

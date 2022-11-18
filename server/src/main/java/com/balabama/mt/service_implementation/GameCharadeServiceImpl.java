@@ -73,7 +73,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         currentUserCharadeState.checkWord(word);
         RoomCharadeData roomData = (RoomCharadeData) roomService.save(current.getRoom()).getRoomData();
         if (roomData.checkFinish()) {
-            return roomService.finish(roomData.getRoom().getId());
+            return roomService.finish(roomData.getRoom());
         } else {
             return roomService.save(roomData.changeTurn());
         }
