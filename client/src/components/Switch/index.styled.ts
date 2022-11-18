@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 export const Switch = styled.div`
   display: flex;
@@ -30,7 +30,6 @@ export const SwitchOption = styled.div<{ isChosen: boolean | undefined }>`
     display: inline-block;
   }
 
-  transition: all 0.2s ease-in-out;
   ${({ isChosen }) =>
     !isChosen
       ? css`
@@ -53,7 +52,6 @@ export const SwitchOption = styled.div<{ isChosen: boolean | undefined }>`
           .higlighting {
             background-color: ${({ theme }) =>
               theme.switch.isChosen.highlighting};
-            transition: all 0.2s ease-in-out;
           }
         `}
 `;

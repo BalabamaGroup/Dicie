@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+
 import { multiInputDataType } from '@/components/MultiInput';
 
 const getMultiInputDataBorderRadiusCss = (
@@ -6,7 +7,7 @@ const getMultiInputDataBorderRadiusCss = (
 ) => {
   if (!multiInputData) return ` .input_input-wrapper { border-radius: 16px; } `;
   return multiInputData.isSeparate
-    ? ` .input_input-wrapper { border-radius: 16px; } `
+    ? ` .input_input-wrapper { border-radius: 16px; }; z-index: 10;`
     : multiInputData.isTopSeparate
     ? ` .input_input-wrapper { border-radius: 16px 16px 0 0; } `
     : multiInputData.isBottomSeparate
@@ -36,12 +37,12 @@ export const Wrapper = styled.div<{
   multiInputData?: multiInputDataType | undefined;
   isNoteVisible: boolean | undefined;
   noteTextHeight: number;
+  variant: 'default' | 'vibrant';
 }>`
   max-width: 100%;
   flex-direction: column;
   height: auto;
 
-  transition: all 0.2s ease-in-out;
   ${({ isNoteVisible, noteTextHeight }) =>
     getWrapperHeightDataCss(isNoteVisible, noteTextHeight)};
 
@@ -54,6 +55,7 @@ export const Wrapper = styled.div<{
 export const InputWrapper = styled.div<{
   isFocus: boolean;
   isValid: boolean;
+  variant: 'default' | 'vibrant';
 }>`
   cursor: pointer;
   position: relative;
@@ -64,9 +66,10 @@ export const InputWrapper = styled.div<{
   align-items: center;
   justify-content: space-between;
 
-  transition: all 0.2s ease-in-out;
-
-  background: ${({ theme }) => theme.input.background};
+  background: ${({ variant, theme }) =>
+    variant === 'default'
+      ? theme.input.default.background
+      : theme.input.vibrant.background};
 
   color: ${({ isFocus, isValid, theme }) =>
     !isValid && !isFocus ? theme.input.textInvalid : theme.input.text};
@@ -79,7 +82,9 @@ export const InputWrapper = styled.div<{
       : `none`};
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<{
+  size: 'large' | 'medium';
+}>`
   all: unset;
 
   font-weight: 500;
@@ -88,7 +93,8 @@ export const Input = styled.input`
 
   height: 20px;
   width: 100%;
-  padding: 26px 32px 26px 32px;
+
+  padding: ${({ size }) => (size === 'large' ? '24px 32px' : '16px 24px')};
 
   ::placeholder {
     color: ${({ theme }) => theme.input.placeholderText};
@@ -106,7 +112,6 @@ export const Icon = styled.div`
   background: ${({ theme }) =>
     `linear-gradient(to right, ${theme.input.icon.background} 50%, ${theme.input.icon.backgroundHover} 50%) left`};
   background-size: 200%;
-  transition: all 0.2s ease-in-out;
 
   &:hover {
     background-position: right;
@@ -129,9 +134,7 @@ export const Note = styled.div<{ isVisible: boolean | undefined }>`
   user-select: none;
   max-width: 100%;
 
-  color: ${({ theme }) => theme.input.note.text};
   border-radius: 0 0 16px 16px;
-  transition: all 0.2s ease-in-out;
   line-height: 20px;
 
   white-space: pre-line;
@@ -140,9 +143,11 @@ export const Note = styled.div<{ isVisible: boolean | undefined }>`
       ? css`
           transform: none;
           padding: 12px 32px 0px;
+          color: ${({ theme }) => theme.input.note.text};
         `
       : css`
           transform: translateY(-100%);
           padding: 0 32px;
+          color: transparent;
         `};
 `;

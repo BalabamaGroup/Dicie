@@ -12,6 +12,7 @@ export default User;
 
 export type UserInGame = {
   id: number;
+  points: number;
   username: string;
   email: string;
   role: string;

@@ -33,9 +33,9 @@ class AxiosClient {
           Toast.error(errTextJSON.errorMessage);
         }
         if (err.response?.status === 401) {
-          console.log();
           if (window.location.pathname !== routes.SIGN_IN)
             window.location.href = routes.SIGN_IN;
+          else Toast.error('Could not authorize with provided data');
           sessionStorage.removeItem('id');
           sessionStorage.removeItem('token');
         }

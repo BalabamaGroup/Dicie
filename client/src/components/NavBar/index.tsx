@@ -1,24 +1,29 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import routes from '@/common/constants/routes';
+import { size } from '@/common/utils/device';
 import useAuth from '@/hooks/useAuth';
 import useTheme from '@/hooks/useTheme';
+import useWindowWidth from '@/hooks/useWindowWidth';
 
 import * as Styled from './index.styled';
 
-const NavBar = () => {
+interface NavBarProps {
+  forsedTextColor?: 'light' | 'dark';
+}
+
+const NavBar = ({ forsedTextColor }: NavBarProps) => {
   const navigate = useNavigate();
   const { signOut } = useAuth();
-  const location = useLocation();
   const { toggleTheme } = useTheme();
 
-  const path = location.pathname;
+  const windowWindth = useWindowWidth(100);
 
-  if (path === routes.SIGN_IN || path === routes.SIGN_UP) return null;
+  if (windowWindth < size.tablet) return null;
 
   return (
-    <Styled.NavBar path={path}>
-      <Styled.Logo>Aspid</Styled.Logo>
+    <Styled.NavBar forsedTextColor={forsedTextColor}>
+      <Styled.Logo>Balabama</Styled.Logo>
 
       <Styled.LinksWrapper>
         <Styled.Link onClick={() => navigate(routes.HOME)}>Home</Styled.Link>

@@ -1,11 +1,15 @@
-import colors from '../colors';
+import Theme from '@/common/types/theme';
+
+import colors from '../colors/colors';
+import gradients from '../colors/gradients';
+import shadows from '../colors/shadows';
 
 const light = {
   page: {
-    background: colors.light.default,
+    background: gradients.light,
 
     auth: {
-      pictureBackground: '#C0BDF9',
+      pictureBackground: gradients.indigo_purple_light.value,
       headerMain: colors.dark.default,
       headerSub: colors.neutral[70],
       headerAccent: colors.purple,
@@ -14,19 +18,21 @@ const light = {
     home: {
       cards: {
         createRoom: {
-          background: colors.yellow,
+          background: gradients.yellow_green,
+          selectedBackground: colors.light.default,
           text: colors.dark.default,
-          shadowHover: colors.shadow.yellow.large,
+          shadowHover: shadows.yellow.large,
         },
         orLabel: {
           background: colors.light.default,
           text: colors.dark.default,
-          shadow: colors.shadow.light.large,
+          shadow: shadows.light.large,
         },
         joinRoom: {
-          background: colors.purple,
+          background: gradients.indigo_purple,
+          selectedBackground: colors.light.default,
           text: colors.light.default,
-          shadowHover: colors.shadow.purple.large,
+          shadowHover: shadows.purple.large,
         },
       },
     },
@@ -34,33 +40,41 @@ const light = {
 
   switch: {
     isChosen: {
-      background: colors.light.default,
+      background: 'none',
       text: colors.purple,
       highlighting: colors.purple,
     },
     background: colors.purple,
     text: colors.light.default,
-    shadow: colors.shadow.purple.small,
+    shadow: shadows.purple.small,
   },
 
   button: {
     background: colors.purple,
     text: colors.light.default,
-    shadow: colors.shadow.purple.medium,
+    shadow: shadows.purple.medium,
   },
 
   navbar: {
-    background: colors.light.default,
+    background: 'none',
     text: colors.dark.default,
+    forsedTextLight: colors.light.default,
+    forsedTextDark: colors.dark.default,
   },
 
   input: {
-    background: colors.light.lighter,
+    default: {
+      background: colors.light.default,
+    },
+    virant: {
+      background: colors.light.lighter,
+    },
+
     placeholderText: colors.neutral[40],
     text: colors.dark.default,
     textInvalid: colors.dark.default,
-    shadow: colors.shadow.purple.small,
-    shadowInvalid: colors.shadow.red.small,
+    shadow: shadows.purple.small,
+    shadowInvalid: shadows.red.small,
 
     icon: {
       fill: colors.neutral[40],
@@ -71,6 +85,22 @@ const light = {
 
     note: {
       text: colors.red,
+    },
+  },
+
+  toggle: {
+    wrapperBackground: gradients.indigo_purple.value,
+    toggleBackground: colors.light.default,
+
+    forsed: {
+      light: {
+        wrapperBackground: gradients.indigo_purple.value,
+        toggleBackground: colors.light.default,
+      },
+      dark: {
+        wrapperBackground: gradients.yellow_green.value,
+        toggleBackground: colors.dark.default,
+      },
     },
   },
 };

@@ -1,23 +1,29 @@
-import { createRef, useState, useEffect } from 'react';
+import { createRef, useEffect, useState } from 'react';
 import { ReactSVG } from 'react-svg';
-import * as Styled from './index.styled';
 
 import { getTextHeight } from '@/common/helpers/domHelpers';
-
 import { multiInputDataType } from '@/components/MultiInput';
+
+import * as Styled from './index.styled';
 
 export interface InputProps {
   id: string;
+  className?: string;
   type?: string;
   placeholder?: string;
+
+  size?: 'large' | 'medium';
+  variant?: 'default' | 'vibrant';
+
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 
-  focusOnLoad?: boolean;
   iconData?: {
     iconSrc: string;
     onClick: React.MouseEventHandler<HTMLDivElement>;
   };
+
+  focusOnLoad?: boolean;
 
   isValid?: boolean;
   setIsValid?: Function;
@@ -33,8 +39,12 @@ export interface InputProps {
 
 const Input = ({
   id,
+  className,
   type = 'text',
-  placeholder,
+  placeholder = '',
+  size = 'medium',
+  variant = 'default',
+
   value,
   onChange,
 
@@ -109,12 +119,14 @@ const Input = ({
 
   return (
     <Styled.Wrapper
-      className='input_wrapper'
+      className={`${className} input_wrapper`}
+      variant={variant}
       isNoteVisible={isFocus && !isValid}
       noteTextHeight={getTextHeight(currentNote, 20)}
       multiInputData={isMultiInputPart ? multiInputData : undefined}
     >
       <Styled.InputWrapper
+        variant={variant}
         className='input_input-wrapper'
         id={id}
         onMouseDown={onInputMouseDown}
@@ -123,6 +135,7 @@ const Input = ({
       >
         <Styled.Input
           type={type}
+          size={size}
           className='input_input'
           placeholder={placeholder}
           ref={inputRef}

@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+
 import RoomAPI from '@/api/room';
 import { UserInGame } from '@/common/types/user';
 import Game from '@/components/Game';
 import useRoomConnectionSocket from '@/hooks/useRoomConnectionSocket';
+
+import * as Styled from './index.styled';
 
 const Room = () => {
   const { roomId } = useParams();
@@ -25,12 +28,14 @@ const Room = () => {
   }, [roomId]);
 
   return (
-    <div>
+    <Styled.RoomPage>
       {roomData && !roomData.start ? (
         <div>
           {roomData?.users &&
             roomData.users.map((user: UserInGame) => (
-              <p key={user.id}>{user.username}</p>
+              <p key={user.id}>
+                {user.username} - {user.points}
+              </p>
             ))}
           <button onClick={onStartGame}>Start game</button>
           <button onClick={onDisconnect}>Disconnect</button>
@@ -42,7 +47,7 @@ const Room = () => {
         </div>
       )}
       {roomData && roomData.start && <Game.Charades gameData={roomData} />}
-    </div>
+    </Styled.RoomPage>
   );
 };
 

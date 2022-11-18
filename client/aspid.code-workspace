@@ -1,0 +1,41 @@
+{
+  "folders": [
+    {
+      "name": "🌎 root",
+      "path": "../"
+    },
+    {
+      "name": "📢 @/public",
+      "path": "./public"
+    },
+    {
+      "name": "📱 @/app",
+      "path": "./src"
+    }
+  ],
+  "settings": {
+    "importSorter.generalConfiguration.sortOnBeforeSave": true
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Client",
+        "type": "shell",
+        "command": "cd client \n npm run start",
+        "problemMatcher": []
+      },
+      {
+        "label": "Server",
+        "type": "shell",
+        "command": "cd server \n mvn clean spring-boot:run",
+        "problemMatcher": []
+      },
+      {
+        "label": "Production",
+        "type": "shell",
+        "command": "cd server \n mvn clean spring-boot:run -Dclient"
+      }
+    ]
+  }
+}

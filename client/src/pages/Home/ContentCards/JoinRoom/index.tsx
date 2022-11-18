@@ -1,9 +1,11 @@
-import RoomAPI from '@/api/room';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import { homeContentCards } from '@/common/constants';
-import * as Styled from './index.styled';
+
+import RoomAPI from '@/api/room';
 import UserAPI from '@/api/user';
+import { homeContentCards } from '@/common/constants';
+
+import * as Styled from './index.styled';
 
 interface JoinRoomCardProps {
   selectedCard: string;

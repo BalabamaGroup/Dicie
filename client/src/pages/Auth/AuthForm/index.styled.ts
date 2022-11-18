@@ -17,12 +17,7 @@ export const AuthForm = styled.div`
 export const AuthHeader = styled.div`
   width: 100%;
 
-  .colored {
-    color: ${({ theme }) => theme.page.auth.headerAccent};
-  }
-
   .main {
-    font-family: 'Inter';
     font-weight: 700;
     font-size: 40px;
     line-height: 50px;
@@ -33,10 +28,13 @@ export const AuthHeader = styled.div`
     @media ${mobileAndSmaller} {
       margin-bottom: 0px;
     }
+
+    .colored {
+      color: ${({ theme }) => theme.page.auth.headerAccent};
+    }
   }
 
   .subheader {
-    font-family: 'Inter';
     font-weight: 700;
     font-size: 14px;
     line-height: 18px;
@@ -61,7 +59,6 @@ export const MultiInputWrapper = styled.div<{ inputCount: number }>`
   .auth_multiinput {
     position: absolute;
     bottom: 0;
-
     width: 100%;
   }
 `;

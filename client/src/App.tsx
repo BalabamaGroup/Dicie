@@ -1,20 +1,19 @@
-import { Routes as RoutesRRD, Route, Navigate } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Routes from './common/constants/routes';
+import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { Navigate, Route, Routes as RoutesRRD } from 'react-router-dom';
 
+import Routes from './common/constants/routes';
+import ToastContainer from './components/Toast/ToastContainer';
 import About from './pages/About';
+import Auth from './pages/Auth';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Room from './pages/Room';
-import Auth from './pages/Auth';
-import ToastContainer from './components/Toast/ToastContainer';
-import NavBar from './components/NavBar';
-import Theme from './styles/Theme';
 import GlobalStyle from './styles/GlobalStyle';
-import React from 'react';
+import Theme from './styles/Theme';
 
 const queryClient = new QueryClient();
 
@@ -24,7 +23,6 @@ const App = () => {
       <GlobalStyle />
       <div className='App'>
         <QueryClientProvider client={queryClient}>
-          <NavBar />
           <RoutesRRD>
             <Route path={Routes.SIGN_IN} element={<Auth />} />
             <Route path={Routes.SIGN_UP} element={<Auth />} />

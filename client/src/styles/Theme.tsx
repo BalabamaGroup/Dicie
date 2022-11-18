@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
+
 import useTheme from '@/hooks/useTheme';
 
 import dark from './themes/dark';
@@ -12,15 +13,8 @@ const Theme = ({ children }: { children: any }) => {
 
   useEffect(() => {
     const themeListener = () => {
-      const theme = localStorage.getItem('theme');
-
-      if (theme === 'auto') {
-        const browserTheme = getBrowserTheme();
-        setTheme(browserTheme);
-        return;
-      }
-
-      theme && setTheme(theme);
+      const theme = getTheme;
+      setTheme(theme);
     };
 
     window.addEventListener('storage', themeListener);

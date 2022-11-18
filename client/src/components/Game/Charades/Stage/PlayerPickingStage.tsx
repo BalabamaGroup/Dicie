@@ -1,7 +1,9 @@
 import CharadesAPI from '@/api/game/charades';
 import { UserInGame } from '@/common/types/user';
+
 import Player from '../Player';
 import CurrentUserPlayer from '../Player/CurrentUserPlayer';
+
 interface PlayerPickingStageProps {
   currentUserPlayer: UserInGame;
   players: UserInGame[];

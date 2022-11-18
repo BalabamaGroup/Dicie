@@ -1,5 +1,6 @@
 import { Game } from '@/common/types/room';
 import { UserInGame } from '@/common/types/user';
+
 import Player from '../../Player';
 import CurrentUserPlayer from '../../Player/CurrentUserPlayer';
 import AnswerQuestion from './AnswerQuestion';
@@ -68,6 +69,8 @@ const MainStage = ({
       )}
 
       <QuestionTable currentUserPlayer={currentUserPlayer} />
+
+      <h3>{currentUserPlayer.points}</h3>
 
       {players.map((player) => (
         <Player
