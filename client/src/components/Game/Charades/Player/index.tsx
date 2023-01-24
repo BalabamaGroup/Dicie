@@ -1,6 +1,8 @@
 import { useState } from 'react';
+
 import CharadesAPI from '@/api/game/charades';
 import { UserInGame } from '@/common/types/user';
+
 import * as Styled from './index.styled';
 
 interface CharadeUserProps {
@@ -27,7 +29,6 @@ const Player = ({
   };
 
   const onSetWord = () => {
-    console.log('Blur');
     if (typeof word === 'string') CharadesAPI.setWord(player.id, { word });
     setWord('');
   };
@@ -47,13 +48,15 @@ const Player = ({
         <div>
           {player.state.selectedBy === currentUserPlayer.id &&
             stage === 'playerPicking' && (
-              <input
-                type='text'
-                disabled={+sessionStorage.id === player.id}
-                value={word}
-                onChange={onChangeWord}
-                onBlur={onSetWord}
-              />
+              <>
+                <input
+                  type='text'
+                  disabled={+sessionStorage.id === player.id}
+                  value={word}
+                  onChange={onChangeWord}
+                />
+                <button onClick={onSetWord}>Submit</button>
+              </>
             )}
         </div>
       </div>

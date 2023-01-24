@@ -9,6 +9,22 @@ export const CreateRoomCard = styled(HomeContentCard)<{
   selectedCard: string;
   cardKey: string;
 }>`
+  ${({ selectedCard }) =>
+    selectedCard === homeContentCards.CREATE_ROOM
+      ? css`
+          pointer-events: none;
+          & * {
+            pointer-events: all;
+            cursor: auto;
+          }
+        `
+      : css`
+          pointer-events: all;
+          & * {
+            pointer-events: none;
+          }
+        `}
+
   color: ${({ theme }) => theme.page.home.cards.createRoom.text};
 
   ${({ theme }) =>

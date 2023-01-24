@@ -26,25 +26,29 @@ const getMultiInputDataPaddingCss = (
 
 const getWrapperHeightDataCss = (
   isNoteVisible: boolean | undefined,
-  noteTextHeight: number
+  noteTextHeight: number,
+  size: 'large' | 'medium'
 ) => {
   return isNoteVisible
     ? ` height: calc(96px + ${noteTextHeight}px); `
-    : ` height: 72px; `;
+    : size === 'large'
+    ? ` height: 72px; `
+    : ` height : 48px `;
 };
 
 export const Wrapper = styled.div<{
   multiInputData?: multiInputDataType | undefined;
   isNoteVisible: boolean | undefined;
   noteTextHeight: number;
-  variant: 'default' | 'vibrant';
+  size: 'large' | 'medium';
+  componentTheme: any;
 }>`
   max-width: 100%;
   flex-direction: column;
   height: auto;
 
-  ${({ isNoteVisible, noteTextHeight }) =>
-    getWrapperHeightDataCss(isNoteVisible, noteTextHeight)};
+  ${({ isNoteVisible, noteTextHeight, size }) =>
+    getWrapperHeightDataCss(isNoteVisible, noteTextHeight, size)};
 
   ${({ multiInputData }) => getMultiInputDataBorderRadiusCss(multiInputData)}
 
@@ -55,68 +59,99 @@ export const Wrapper = styled.div<{
 export const InputWrapper = styled.div<{
   isFocus: boolean;
   isValid: boolean;
-  variant: 'default' | 'vibrant';
+  isVibrant: boolean;
+  size: 'large' | 'medium';
+  componentTheme: any;
 }>`
   cursor: pointer;
   position: relative;
+  height: ${({ size }) => (size === 'large' ? '72px' : '48px')};
+
   z-index: 2;
 
   display: flex;
   flex-direction: row;
+  gap: 2px;
   align-items: center;
   justify-content: space-between;
 
-  background: ${({ variant, theme }) =>
-    variant === 'default'
-      ? theme.input.default.background
-      : theme.input.vibrant.background};
+  background: ${({ isVibrant, componentTheme }) =>
+    !isVibrant ? componentTheme.background : componentTheme.backgroundVibrant};
 
-  color: ${({ isFocus, isValid, theme }) =>
-    !isValid && !isFocus ? theme.input.textInvalid : theme.input.text};
+  color: ${({ isFocus, isValid, componentTheme }) =>
+    !isValid && !isFocus ? componentTheme.textInvalid : componentTheme.text};
 
-  box-shadow: ${({ isFocus, isValid, theme }) =>
+  box-shadow: ${({ isFocus, isValid, componentTheme }) =>
     isFocus
       ? isValid
-        ? theme.input.shadow
-        : theme.input.shadowInvalid
+        ? componentTheme.shadow
+        : componentTheme.shadowInvalid
       : `none`};
+`;
+
+export const FocusBorder = styled.div<{
+  size: 'large' | 'medium';
+  isFocus: boolean;
+  isValid: boolean;
+  withIcon: boolean;
+  componentTheme: any;
+}>`
+  height: 100%;
+  width: 100%;
+  padding: 2px;
+  box-sizing: border-box;
+
+  .focus-border {
+    border-radius: ${({ withIcon }) => (withIcon ? '14px' : '14px')};
+    box-shadow: ${({ isFocus, isValid, componentTheme }) =>
+      isFocus
+        ? isValid
+          ? `inset 0px 0px 0px 1.5px #ab8af1`
+          : `inset 0px 0px 0px 1.5px ${componentTheme.note.text}`
+        : `none`};
+  }
 `;
 
 export const Input = styled.input<{
   size: 'large' | 'medium';
+  componentTheme: any;
 }>`
   all: unset;
+  box-sizing: border-box;
+  height: 100%;
 
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-
-  height: 20px;
   width: 100%;
 
-  padding: ${({ size }) => (size === 'large' ? '24px 32px' : '16px 24px')};
+  height: ${({ size }) => (size === 'large' ? '68px' : '44px')};
+  font-weight: ${({ size }) => (size === 'large' ? '600' : '600')};
+  font-size: ${({ size }) => (size === 'large' ? '18px' : '16px')};
+  line-height: ${({ size }) => (size === 'large' ? '20px' : '20px')};
+  padding: ${({ size }) => (size === 'large' ? '22px 30px' : '14px 24px')};
 
   ::placeholder {
-    color: ${({ theme }) => theme.input.placeholderText};
+    color: ${({ componentTheme }) => componentTheme.textPlaceholder};
   }
 `;
 
-export const Icon = styled.div`
+export const Icon = styled.div<{
+  size: 'large' | 'medium';
+  componentTheme: any;
+}>`
   height: 20px;
   width: 20px;
-  padding: 26px 26px 26px 26px;
+  padding: ${({ size }) => (size === 'large' ? '26px' : '14px')};
   border-radius: 0 14px 14px 0;
 
-  background-color: ${({ theme }) => theme.input.icon.background};
+  background-color: ${({ componentTheme }) => componentTheme.icon.background};
 
-  background: ${({ theme }) =>
-    `linear-gradient(to right, ${theme.input.icon.background} 50%, ${theme.input.icon.backgroundHover} 50%) left`};
+  background: ${({ componentTheme }) =>
+    `linear-gradient(to right, ${componentTheme.icon.background} 50%, ${componentTheme.icon.backgroundHover} 50%) left`};
   background-size: 200%;
 
   &:hover {
     background-position: right;
     svg * {
-      fill: ${({ theme }) => theme.input.icon.fillHover};
+      fill: ${({ componentTheme }) => componentTheme.icon.fillHover};
     }
   }
 
@@ -125,12 +160,15 @@ export const Icon = styled.div`
     width: 20px;
     * {
       transition: all 0.1s ease-in-out;
-      fill: ${({ theme }) => theme.input.icon.fill};
+      fill: ${({ componentTheme }) => componentTheme.icon.fill};
     }
   }
 `;
 
-export const Note = styled.div<{ isVisible: boolean | undefined }>`
+export const Note = styled.div<{
+  isVisible: boolean | undefined;
+  componentTheme: any;
+}>`
   user-select: none;
   max-width: 100%;
 
@@ -143,7 +181,7 @@ export const Note = styled.div<{ isVisible: boolean | undefined }>`
       ? css`
           transform: none;
           padding: 12px 32px 0px;
-          color: ${({ theme }) => theme.input.note.text};
+          color: ${({ componentTheme }) => componentTheme.note.text};
         `
       : css`
           transform: translateY(-100%);

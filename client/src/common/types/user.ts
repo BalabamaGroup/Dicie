@@ -24,8 +24,8 @@ export type UserCharadesState = {
   isGoing: boolean;
   ready: boolean;
   lastAnswer: 'YES' | 'NO' | 'WTF';
-  selectedBy: number;
-  selectedUser: number;
+  selectedBy: number | null;
+  selectedUser: number | null;
   winRound: boolean;
-  word: string;
+  word: string | null;
 };

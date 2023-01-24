@@ -3,8 +3,9 @@ import styled, { css } from 'styled-components';
 export const ToggleWrapper = styled.div<{
   value: boolean;
   size: 'large' | 'medium' | 'small';
-  forsedTheme: 'dark' | 'light' | undefined;
+  componentTheme: any;
 }>`
+  cursor: pointer;
   box-sizing: border-box;
   position: relative;
 
@@ -13,6 +14,7 @@ export const ToggleWrapper = styled.div<{
       ? css`
           height: 32px;
           width: 64px;
+          min-width: 64px;
           padding: 5px;
           border-radius: 16px;
         `
@@ -20,29 +22,28 @@ export const ToggleWrapper = styled.div<{
       ? css`
           height: 20px;
           width: 40px;
+          min-width: 40px;
           padding: 3px;
           border-radius: 10px;
         `
       : css`
           height: 14px;
           width: 28px;
+          min-width: 28px;
           padding: 2px;
           border-radius: 7px;
         `};
 
-  background: ${({ forsedTheme, theme }) =>
-    forsedTheme
-      ? forsedTheme === 'light'
-        ? theme.toggle.forsed.light.wrapperBackground
-        : theme.toggle.forsed.dark.wrapperBackground
-      : theme.toggle.wrapperBackground};
+  background: ${({ value, componentTheme }) =>
+    value ? componentTheme.wrapperBackground : componentTheme.toggleBackground};
 `;
 
 export const Toggle = styled.div<{
   value: boolean;
   size: 'large' | 'medium' | 'small';
-  forsedTheme: 'dark' | 'light' | undefined;
+  componentTheme: any;
 }>`
+  cursor: pointer;
   border-radius: 50%;
   position: absolute;
 
@@ -69,10 +70,6 @@ export const Toggle = styled.div<{
 
   transition: all 0.35s cubic-bezier(0.3, 1.8, 0.4, 0.7);
 
-  background: ${({ forsedTheme, theme }) =>
-    forsedTheme
-      ? forsedTheme === 'light'
-        ? theme.toggle.forsed.light.toggleBackground
-        : theme.toggle.forsed.dark.toggleBackground
-      : theme.toggle.toggleBackground};
+  background: ${({ value, componentTheme }) =>
+    value ? componentTheme.toggleBackground : componentTheme.wrapperBackground};
 `;

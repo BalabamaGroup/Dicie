@@ -1,6 +1,7 @@
 import { Game } from '@/common/types/room';
+
 import MainStage from './Stage/MainStage';
-import PlayerPickingStage from './Stage/PlayerPickingStage';
+import PlayerPickingStage from './Stage/PlayerPicking';
 
 interface CharadesProps {
   gameData: Game;
@@ -13,21 +14,20 @@ const Charades = ({ gameData }: CharadesProps) => {
     (user) => user.id === currentUserId
   );
 
+  if (!gameData.roomDataDto?.allUsersReady)
+    return (
+      <PlayerPickingStage
+        currentUserPlayer={currentUserPlayer}
+        players={players}
+      />
+    );
+
   return (
-    <div>
-      {!gameData.roomDataDto?.allUsersReady ? (
-        <PlayerPickingStage
-          currentUserPlayer={currentUserPlayer}
-          players={players}
-        />
-      ) : (
-        <MainStage
-          gameData={gameData}
-          currentUserPlayer={currentUserPlayer}
-          players={players}
-        />
-      )}
-    </div>
+    <MainStage
+      gameData={gameData}
+      currentUserPlayer={currentUserPlayer}
+      players={players}
+    />
   );
 };
 

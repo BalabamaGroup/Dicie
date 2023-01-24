@@ -35,7 +35,7 @@ const RoomSetupForm = ({
   const onChangeIsWithCommuninactions = () =>
     setIsWithCommuninactions(!isWithCommuninactions);
 
-  const [selectedCommunicationOption, SelectedCommunicationOption] =
+  const [selectedCommunicationOption, setSelectedCommunicationOption] =
     useState<string>('voice');
 
   const onCreateRoom = async () => {
@@ -44,12 +44,13 @@ const RoomSetupForm = ({
   };
 
   return (
-    <Styled.SetupRoomWrapper>
+    <Styled.SetupRoomWrapper isMobileView={isMobileView}>
       <Styled.SetupRoomHeader>Set up your room</Styled.SetupRoomHeader>
 
       <Styled.SetupRoomForm>
         <Input
           id={'room-name'}
+          theme='dark'
           value={roomName}
           placeholder='Name'
           onChange={onChangeRoomName}
@@ -63,7 +64,7 @@ const RoomSetupForm = ({
               value={isPrivate}
               onChange={onChangeIsPrivate}
               size={'medium'}
-              forsedTheme={'dark'}
+              theme={'dark'}
             />
             <div className='isprivate-main-text'>Make room private</div>
           </div>
@@ -75,8 +76,9 @@ const RoomSetupForm = ({
                 enter the password you created
               </div>
               <Input
-                className='isprivate-settings-password'
                 id={'room-name'}
+                className='isprivate-settings-password'
+                theme='dark'
                 value={roomPassword}
                 placeholder='Room password'
                 onChange={onChangeRoomPassword}
@@ -93,7 +95,7 @@ const RoomSetupForm = ({
               value={isWithCommuninactions}
               onChange={onChangeIsWithCommuninactions}
               size={'medium'}
-              forsedTheme={'dark'}
+              theme={'dark'}
             />
             <div className='communications-main-text'>
               Enable in-game player communication
@@ -107,22 +109,24 @@ const RoomSetupForm = ({
                 selectedOptionId={selectedCommunicationOption}
                 options={[
                   {
-                    id: 'voice',
-                    label: 'Voice chat',
+                    id: 'text',
+                    label: 'Text chat',
+                    onSelect: () => setSelectedCommunicationOption('text'),
                     content: (
                       <ReactSVG
                         className='communications-settings-radio-icon'
-                        src='/images/svgs/info.svg'
+                        src='/images/svgs/create-room-communucation-chat.svg'
                       />
                     ),
                   },
                   {
-                    id: 'text',
-                    label: 'Text chat',
+                    id: 'voice',
+                    label: 'Voice chat',
+                    onSelect: () => setSelectedCommunicationOption('voice'),
                     content: (
                       <ReactSVG
                         className='communications-settings-radio-icon'
-                        src='/images/svgs/info.svg'
+                        src='/images/svgs/create-room-communucation-voice.svg'
                       />
                     ),
                   },
@@ -133,15 +137,29 @@ const RoomSetupForm = ({
         </Styled.CommunicationsParam>
       </Styled.SetupRoomForm>
 
-      {isMobileView && onToggleSetupFormCompleted ? (
-        <Button isScale onClick={onToggleSetupFormCompleted}>
-          Choose game
-        </Button>
-      ) : (
-        <Button isScale onClick={onCreateRoom}>
-          Create room
-        </Button>
-      )}
+      <Styled.ButtonWrapper>
+        {isMobileView && onToggleSetupFormCompleted ? (
+          <Button
+            isPrimary
+            isScale
+            theme='dark'
+            onClick={onToggleSetupFormCompleted}
+            size='large'
+          >
+            Choose game
+          </Button>
+        ) : (
+          <Button
+            isPrimary
+            isScale
+            theme='dark'
+            onClick={onCreateRoom}
+            size='large'
+          >
+            Create room
+          </Button>
+        )}
+      </Styled.ButtonWrapper>
     </Styled.SetupRoomWrapper>
   );
 };

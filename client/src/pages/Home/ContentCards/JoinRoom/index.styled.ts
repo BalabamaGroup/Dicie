@@ -11,6 +11,21 @@ export const JoinRoomCard = styled(HomeContentCard)<{
 }>`
   color: ${({ theme }) => theme.page.home.cards.joinRoom.text};
 
+  ${({ selectedCard }) =>
+    selectedCard === homeContentCards.JOIN_ROOM
+      ? css`
+          pointer-events: none;
+          & * {
+            pointer-events: all;
+          }
+        `
+      : css`
+          pointer-events: all;
+          & * {
+            pointer-events: none;
+          }
+        `}
+
   ${({ theme }) =>
     createGradientTransition({
       gradient: theme.page.home.cards.joinRoom.background,

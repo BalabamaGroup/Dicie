@@ -1,5 +1,6 @@
-import { useState } from "react";
-import * as Styled from "./index.styled";
+import { useState } from 'react';
+
+import * as Styled from './index.styled';
 
 interface SwitchProps {
   className?: string;
@@ -16,10 +17,8 @@ const Switch = ({ className, options }: SwitchProps) => {
     options.find((opt) => opt.defaultChoice) || options[0]
   );
 
-  console.log(currentOption);
-
   return (
-    <Styled.Switch className={className || ""}>
+    <Styled.Switch className={className || ''}>
       {options.map((opt) => (
         <Styled.SwitchOption
           key={opt.id}
@@ -30,7 +29,7 @@ const Switch = ({ className, options }: SwitchProps) => {
           }}
         >
           {opt.label}
-          <div className="higlighting"></div>
+          <div className='higlighting'></div>
         </Styled.SwitchOption>
       ))}
     </Styled.Switch>

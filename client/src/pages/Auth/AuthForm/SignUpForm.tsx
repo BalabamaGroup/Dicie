@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
+import { useQuery } from 'react-query';
 
 import { RoleTypes } from '@/common/constants';
 import {
-  getEmailValidationData,
-  getMatchPasswordValidationData,
-  getPasswordValidationData,
-  getUsernameValidationData,
+    getEmailValidationData, getMatchPasswordValidationData, getPasswordValidationData,
+    getUsernameValidationData
 } from '@/common/utils/validation';
-
-import * as Styled from './index.styled';
+import Button from '@/components/Button';
 import Input from '@/components/Input';
 import MultiInput from '@/components/MultiInput';
-import Button from '@/components/Button';
-import { useQuery } from 'react-query';
 import useAuth from '@/hooks/useAuth';
+
+import * as Styled from './index.styled';
 
 interface signUpProps {
   username: {
@@ -94,7 +92,7 @@ const SignUpForm = ({
     <Styled.AuthForm>
       <Styled.AuthHeader>
         <div className='main'>
-          Welcome to <span className='colored'>Aspid</span>
+          Welcome to <span className='colored'>Dicie</span>
         </div>
         <div className='subheader'>Become the true embodiment of darkness</div>
         <div className='subheader'>And there are also party games</div>
@@ -105,6 +103,7 @@ const SignUpForm = ({
           <Input
             id={'signUp-username'}
             key={'signUp-username'}
+            size='large'
             placeholder='Username'
             value={username.value}
             onChange={username.onChange}
@@ -122,6 +121,7 @@ const SignUpForm = ({
           <Input
             id={'signUp-email'}
             key={'signUp-email'}
+            size='large'
             type={'email'}
             placeholder='Email'
             value={email.value}
@@ -140,6 +140,7 @@ const SignUpForm = ({
           <Input
             id={'signUp-username'}
             key={'signUp-passsword'}
+            size='large'
             type={passwordIsVisible ? 'text' : 'password'}
             placeholder='Password'
             value={password.value}
@@ -160,6 +161,7 @@ const SignUpForm = ({
           <Input
             id={'signUp-email'}
             key={'signUp-passsword-repeat'}
+            size='large'
             type={matchPasswordIsVisible ? 'text' : 'password'}
             placeholder='Repeat password'
             value={matchPassword.value}
@@ -182,9 +184,11 @@ const SignUpForm = ({
       </Styled.MultiInputWrapper>
 
       <Button
+        isPrimary
         isScale={true}
         onClick={onSignUp}
-        // disabled={
+        size='large'
+        // isDisabled={
         //   !usernameIsValid ||
         //   !passwordIsValid ||
         //   !matchPasswordIsValid ||

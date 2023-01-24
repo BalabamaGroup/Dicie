@@ -14,7 +14,12 @@ const CreateRoomCard = ({ selectedCard, onSelect }: CreateRoomCardProps) => {
     <Styled.CreateRoomCard
       cardKey={homeContentCards.CREATE_ROOM}
       selectedCard={selectedCard}
-      onClick={onSelect}
+      {...(selectedCard !== homeContentCards.CREATE_ROOM && {
+        onClick: onSelect,
+      })}
+      // onClick={
+      //   selectedCard !== homeContentCards.CREATE_ROOM ? onSelect : () => {}
+      // }
     >
       {selectedCard === homeContentCards.DEFAULT ? (
         <CreateRoomDefaultState />

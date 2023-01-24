@@ -1,22 +1,16 @@
 const colors = {
-  purple: '#8986F5',
+  light: '#ECEEFE',
+  dark: '#181621',
+
+  white: '#F5F6FF',
+  black: '#100F16',
+
+  purple: '#a385f5',
   yellow: '#F2F586',
 
   green: '#6DE36B',
   orange: '#FFA84B',
   red: '#FC3057',
-
-  light: {
-    default: '#F7F4FC',
-    lighter: '#FDFDFE',
-    seethrough: '',
-  },
-
-  dark: {
-    default: '#201E1F',
-    darker: '#131214',
-    seethrough: 'rgba(32, 30, 31, 0.5)',
-  },
 
   neutral: {
     20: '#DEDBE2',
