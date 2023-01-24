@@ -1,9 +1,17 @@
-import { commonPageWithNavbarStyles } from '@/styles/commonStyles';
 import styled from 'styled-components';
 
-export const RoomPage = styled.section`
-  ${commonPageWithNavbarStyles}
+import { commonPageStyles } from '@/styles/commonStyles';
 
-  background : ${({ theme }) => theme.page.background};
-  color: ${({ theme }) => theme.page.color};
+export const RoomPage = styled.section`
+  ${commonPageStyles}
+
+  background : ${({ theme }) => theme.page.background.value};
+  color: ${({ theme }) => theme.page.text};
+`;
+
+export const RoomLoadedContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
 `;

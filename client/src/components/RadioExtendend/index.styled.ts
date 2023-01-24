@@ -13,6 +13,10 @@ export const RadioExtendedOption = styled.div<{ isSelected: boolean }>`
   display: flex;
   flex-direction: column;
 
+  * {
+    cursor: pointer;
+  }
+
   .option-header {
     border-radius: 16px 16px 0 0;
     color: #fff;
@@ -26,13 +30,29 @@ export const RadioExtendedOption = styled.div<{ isSelected: boolean }>`
     align-items: center;
     justify-content: flex-start;
     gap: 8px;
+
+    .radio-indicator-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      background-color: #201e1f;
+      border-radius: 50%;
+
+      .radio-indicator {
+        ${({ isSelected }) => !isSelected && 'display: none'};
+        width: 8px;
+        height: 8px;
+        background-color: yellow;
+        border-radius: 50%;
+      }
+    }
   }
 
   .option-content {
     border-radius: 0 0 16px 16px;
-    height: 100%;
-    width: 100%;
-    padding: 16px 0;
+    padding: 22px 0;
     box-sizing: border-box;
     background-color: #201e1f;
     display: flex;

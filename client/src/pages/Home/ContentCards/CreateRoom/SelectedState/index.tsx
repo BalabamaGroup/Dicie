@@ -18,7 +18,7 @@ const CreateRoomSelectedState = ({}: CreateRoomSelectedStateProps) => {
   const onChoosegame = (gameId: number) => setChosenGameID(gameId);
 
   const windowWindth = useWindowWidth(100);
-  return windowWindth < size.tablet ? (
+  return windowWindth < size.desktop ? (
     <Styled.SelectedStateMobileView>
       {!setupFormCompleted ? (
         <RoomSetupForm

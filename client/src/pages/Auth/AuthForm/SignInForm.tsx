@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
-import * as Styled from './index.styled';
+import Button from '@/components/Button';
 import Input from '@/components/Input';
 import MultiInput from '@/components/MultiInput';
-import Button from '@/components/Button';
 import useAuth from '@/hooks/useAuth';
+
+import * as Styled from './index.styled';
 
 interface signInProps {
   username: {
@@ -44,6 +45,7 @@ const SignInForm = ({ username, password }: signInProps) => {
           <Input
             id={'signUp-username'}
             key={'signUp-username'}
+            size='large'
             placeholder='Username'
             value={username.value}
             onChange={username.onChange}
@@ -51,6 +53,7 @@ const SignInForm = ({ username, password }: signInProps) => {
           <Input
             id={'signUp-username'}
             key={'signUp-passsword'}
+            size='large'
             placeholder='Password'
             type={passwordIsVisible ? 'text' : 'password'}
             iconData={{
@@ -65,7 +68,7 @@ const SignInForm = ({ username, password }: signInProps) => {
         </MultiInput>
       </Styled.MultiInputWrapper>
 
-      <Button isScale={true} onClick={onSignIn}>
+      <Button isPrimary isScale onClick={onSignIn} size='large'>
         Sign In
       </Button>
     </Styled.AuthForm>

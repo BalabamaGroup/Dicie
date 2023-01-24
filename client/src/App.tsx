@@ -12,6 +12,7 @@ import Auth from './pages/Auth';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Room from './pages/Room';
+import VoiceChatTest from './pages/VoiceChatTest';
 import GlobalStyle from './styles/GlobalStyle';
 import Theme from './styles/Theme';
 
@@ -30,6 +31,7 @@ const App = () => {
             <Route path={Routes.ABOUT} element={<About />} />
             <Route path={Routes.CONTACT} element={<Contact />} />
             <Route path={Routes.ROOM} element={<Room />} />
+            <Route path={'/voicechat'} element={<VoiceChatTest />} />
             <Route path='*' element={<Navigate to={Routes.HOME} replace />} />
           </RoutesRRD>
           <ToastContainer />

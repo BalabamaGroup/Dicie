@@ -1,20 +1,36 @@
 import styled from 'styled-components';
 
-export const SetupRoomWrapper = styled.div<{}>`
-  padding: 32px 32px;
+import { tabletAndSmaller } from '@/common/utils/device';
+
+export const SetupRoomWrapper = styled.div<{
+  isMobileView: boolean;
+}>`
   gap: 32px;
+
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  height: 100%;
-  border-radius: 32px 0 0 32px;
+  height: calc(100vh - 128px);
+  @media ${tabletAndSmaller} {
+    height: calc(100vh - 96px);
+  }
+
   background-color: #131214;
+
+  padding: 32px 32px;
+  @media ${tabletAndSmaller} {
+    padding: 20px 20px;
+  }
+
+  border-radius: ${({ isMobileView }) =>
+    isMobileView ? '32px' : '32px 0 0 32px'};
 `;
 
 export const SetupRoomHeader = styled.div`
+  flex-shrink: 0;
   width: 100%;
   font-weight: 700;
   font-size: 40px;
@@ -26,11 +42,11 @@ export const SetupRoomForm = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 100%;
   box-sizing: border-box;
-  height: 100%;
+  width: 100%;
   max-width: 400px;
   text-align: left;
+  overflow-y: auto;
 `;
 
 export const MakePrivateParam = styled.div`
@@ -45,6 +61,9 @@ export const MakePrivateParam = styled.div`
 
     .isprivate-main-text {
       color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
     }
   }
 
@@ -53,7 +72,10 @@ export const MakePrivateParam = styled.div`
     flex-direction: column;
     gap: 8px;
     .isprivate-settings-text {
+      font-size: 12px;
       color: #fff;
+      font-weight: 400;
+      margin: 4px 0;
     }
   }
 `;
@@ -75,12 +97,18 @@ export const CommunicationsParam = styled.div`
 
   .communications-settings {
     .communications-settings-radio {
+      margin-top: 12px;
       .communications-settings-radio-icon {
         svg {
-          width: 96px !important;
-          height: 96px !important;
         }
       }
     }
   }
+`;
+
+export const ButtonWrapper = styled.div<{}>`
+  margin-top: auto;
+  width: 100%;
+  max-width: 400px;
+  flex-shrink: 0;
 `;

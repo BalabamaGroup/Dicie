@@ -3,17 +3,20 @@ import { ReactSVG } from 'react-svg';
 
 import { getTextHeight } from '@/common/helpers/domHelpers';
 import { multiInputDataType } from '@/components/MultiInput';
+import useComponentTheme from '@/hooks/useComponentTheme';
 
+import { InputThemeDark, InputThemeLight } from './componentTheme';
 import * as Styled from './index.styled';
 
 export interface InputProps {
-  id: string;
+  id?: string;
   className?: string;
   type?: string;
   placeholder?: string;
 
+  theme?: 'auto' | 'light' | 'dark';
   size?: 'large' | 'medium';
-  variant?: 'default' | 'vibrant';
+  isVibrant?: boolean;
 
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
@@ -38,12 +41,14 @@ export interface InputProps {
 }
 
 const Input = ({
-  id,
+  id = 'input',
   className,
   type = 'text',
   placeholder = '',
+
+  theme = 'auto',
   size = 'medium',
-  variant = 'default',
+  isVibrant = false,
 
   value,
   onChange,
@@ -63,9 +68,15 @@ const Input = ({
 
   focusOnLoad = false,
 }: InputProps) => {
+  const inputRef = createRef<HTMLInputElement>();
+
   const isMultiInputPart = !!multiInputData && !!onChangeMultiInputData;
 
-  const inputRef = createRef<HTMLInputElement>();
+  const componentTheme = useComponentTheme(
+    theme,
+    InputThemeLight,
+    InputThemeDark
+  );
 
   const [isFocus, setIsFocus] = useState(false);
   const onFocus = () => {
@@ -85,9 +96,7 @@ const Input = ({
     onFocus();
   };
 
-  const onInputMouseDown = (e: any) => {
-    e.preventDefault();
-  };
+  const onInputMouseDown = (e: any) => e.preventDefault();
 
   useEffect(() => {
     if (focusOnLoad && inputRef?.current) inputRef.current.focus();
@@ -119,34 +128,53 @@ const Input = ({
 
   return (
     <Styled.Wrapper
+      size={size}
       className={`${className} input_wrapper`}
-      variant={variant}
       isNoteVisible={isFocus && !isValid}
       noteTextHeight={getTextHeight(currentNote, 20)}
       multiInputData={isMultiInputPart ? multiInputData : undefined}
+      componentTheme={componentTheme}
     >
       <Styled.InputWrapper
-        variant={variant}
+        size={size}
+        isVibrant={isVibrant}
         className='input_input-wrapper'
         id={id}
         onMouseDown={onInputMouseDown}
         isFocus={isFocus}
         isValid={isValid}
+        componentTheme={componentTheme}
       >
-        <Styled.Input
-          type={type}
+        <Styled.FocusBorder
+          className='focus-border-wrapper'
           size={size}
-          className='input_input'
-          placeholder={placeholder}
-          ref={inputRef}
-          value={value}
-          onClick={onInputClick}
-          onChange={onChange}
-          onFocus={onFocus}
-          onBlur={onBlur}
-        />
+          isFocus={isFocus}
+          isValid={isValid}
+          withIcon={!!iconData}
+          componentTheme={componentTheme}
+        >
+          <div className='focus-border'>
+            <Styled.Input
+              type={type}
+              size={size}
+              className='input_input'
+              placeholder={placeholder}
+              ref={inputRef}
+              value={value}
+              onClick={onInputClick}
+              onChange={onChange}
+              onFocus={onFocus}
+              onBlur={onBlur}
+              componentTheme={componentTheme}
+            />
+          </div>
+        </Styled.FocusBorder>
         {iconData && (
-          <Styled.Icon className='input_icon' onClick={iconData.onClick}>
+          <Styled.Icon
+            onClick={iconData.onClick}
+            size={size}
+            componentTheme={componentTheme}
+          >
             <ReactSVG src={iconData.iconSrc} />
           </Styled.Icon>
         )}
@@ -156,6 +184,7 @@ const Input = ({
         className='input_note'
         onMouseDown={onInputMouseDown}
         isVisible={isFocus && !isValid}
+        componentTheme={componentTheme}
       >
         {currentNote}
       </Styled.Note>

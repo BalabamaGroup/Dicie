@@ -13,11 +13,15 @@ const Home = ({}: HomeProps) => {
     homeContentCards.DEFAULT
   );
 
-  const onSelectCreateRoom = () => {
+  const onSelectCreateRoom = (e: any) => {
+    if (selectedCard === homeContentCards.CREATE_ROOM) return;
+    e.preventDefault();
     setSelectedCard(homeContentCards.CREATE_ROOM);
   };
 
-  const onSelectJoinRoom = () => {
+  const onSelectJoinRoom = (e: any) => {
+    if (selectedCard === homeContentCards.JOIN_ROOM) return;
+    e.preventDefault();
     setSelectedCard(homeContentCards.JOIN_ROOM);
   };
 

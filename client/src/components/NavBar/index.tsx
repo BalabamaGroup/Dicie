@@ -23,11 +23,14 @@ const NavBar = ({ forsedTextColor }: NavBarProps) => {
 
   return (
     <Styled.NavBar forsedTextColor={forsedTextColor}>
-      <Styled.Logo>Balabama</Styled.Logo>
+      <Styled.Logo>Dicie</Styled.Logo>
 
       <Styled.LinksWrapper>
+        <Styled.Link onClick={() => navigate('/voicechat')}>
+          WebRTC test
+        </Styled.Link>
         <Styled.Link onClick={() => navigate(routes.HOME)}>Home</Styled.Link>
-        <Styled.Link onClick={() => navigate(routes.ABOUT)}>About</Styled.Link>
+        {/* <Styled.Link onClick={() => navigate(routes.ABOUT)}>About</Styled.Link> */}
         <Styled.Link onClick={toggleTheme}>Toggle theme</Styled.Link>
         <Styled.Link onClick={signOut}>Sign out</Styled.Link>
       </Styled.LinksWrapper>

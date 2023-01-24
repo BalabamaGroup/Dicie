@@ -1,16 +1,17 @@
-import Theme from '@/common/types/theme';
-
 import colors from '../colors/colors';
 import gradients from '../colors/gradients';
 import shadows from '../colors/shadows';
 
-const dark = {
+const dark: any = {
+  name: 'dark',
+
   page: {
     background: gradients.dark,
+    text: colors.light,
 
     auth: {
       pictureBackground: gradients.yellow_green_light.value,
-      headerMain: colors.light.default,
+      headerMain: colors.light,
       headerSub: colors.neutral[30],
       headerAccent: colors.yellow,
     },
@@ -22,20 +23,31 @@ const dark = {
         },
         createRoom: {
           background: gradients.yellow_green,
-          selectedBackground: colors.dark.default,
-          text: colors.dark.default,
+          selectedBackground: colors.dark,
+          text: colors.dark,
           shadowHover: shadows.yellow.large,
         },
         orLabel: {
-          background: colors.dark.default,
-          text: colors.light.default,
+          background: colors.dark,
+          text: colors.light,
           shadow: shadows.dark.large,
         },
         joinRoom: {
           background: gradients.indigo_purple,
-          selectedBackground: colors.dark.default,
-          text: colors.light.default,
+          selectedBackground: colors.dark,
+          text: colors.light,
           shadowHover: shadows.purple.large,
+        },
+      },
+    },
+  },
+
+  game: {
+    guessBoo: {
+      playerPicking: {
+        currentUserPanel: {
+          background: gradients.yellow_green.value,
+          text: colors.dark,
         },
       },
     },
@@ -48,61 +60,35 @@ const dark = {
       highlighting: colors.yellow,
     },
     background: colors.yellow,
-    text: colors.dark.default,
+    text: colors.dark,
     shadow: shadows.yellow.small,
   },
 
   button: {
     background: gradients.yellow_green.value,
-    text: colors.dark.default,
+    text: colors.dark,
     shadow: shadows.yellow.small,
   },
 
   navbar: {
     background: 'none',
-    text: colors.light.default,
-    forsedTextLight: colors.light.default,
-    forsedTextDark: colors.dark.default,
-  },
-
-  input: {
-    default: {
-      background: colors.dark.default,
-    },
-    virant: {
-      background: colors.dark.darker,
-    },
-
-    placeholderText: colors.neutral[60],
-    text: colors.light.default,
-    textInvalid: colors.red,
-    shadow: shadows.dark.small,
-    shadowInvalid: shadows.red.small,
-
-    icon: {
-      fill: colors.neutral[60],
-      fillHover: colors.dark.darker,
-      backgroundHover: colors.yellow,
-      background: 'transparent',
-    },
-
-    note: {
-      text: colors.red,
-    },
+    text: colors.light,
+    forsedTextLight: colors.light,
+    forsedTextDark: colors.dark,
   },
 
   toggle: {
     wrapperBackground: gradients.yellow_green.value,
-    toggleBackground: colors.dark.default,
+    toggleBackground: colors.dark,
 
     forsed: {
       light: {
         wrapperBackground: gradients.indigo_purple.value,
-        toggleBackground: colors.light.default,
+        toggleBackground: colors.light,
       },
       dark: {
         wrapperBackground: gradients.yellow_green.value,
-        toggleBackground: colors.dark.default,
+        toggleBackground: colors.dark,
       },
     },
   },
