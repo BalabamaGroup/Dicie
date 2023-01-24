@@ -1,17 +1,14 @@
-package com.balabama.mt.dtos.room;
+package com.balabama.mt.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RoomCreateDto {
+public class ConnectDto {
 
-    private Long gameId;
-    private String name;
     private String password;
-    private Boolean voiceChatEnabled;
+
 }
