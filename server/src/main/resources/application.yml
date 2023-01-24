@@ -6,7 +6,7 @@ spring:
     contexts: test
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/mt?useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: mtUser
     password: password
   jpa:
