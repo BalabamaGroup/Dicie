@@ -6,7 +6,7 @@ export const apiUrl = () => {
   console.log(window.location.hostname, hostname);
 
   console.log('Api URL', Protocols.DEFAULT + hostname);
-  return Protocols.DEFAULT + hostname + ':8080' + '/api/';
+  return Protocols.DEFAULT + window.location.hostname + ':8080' + '/api/';
 };
 
 export const socketUrl = () => {
@@ -15,5 +15,5 @@ export const socketUrl = () => {
   console.log(window.location.hostname, hostname);
 
   console.log('Socket URL', Protocols.DEFAULT + window.location.hostname);
-  return Protocols.SOCKET + hostname + ':8080' + '/socket/';
+  return Protocols.SOCKET + window.location.hostname + ':8080' + '/socket/';
 };
