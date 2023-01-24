@@ -76,6 +76,11 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public void passwordValidate(UUID id, String password) {
+        getById(id).validatePassword(password);
+    }
+
+    @Override
     public Room start(UUID id) {
         Room room = getById(id);
         room.start();
