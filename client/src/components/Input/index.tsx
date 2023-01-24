@@ -143,32 +143,24 @@ const Input = ({
         onMouseDown={onInputMouseDown}
         isFocus={isFocus}
         isValid={isValid}
+        withIcon={!!iconData}
         componentTheme={componentTheme}
       >
-        <Styled.FocusBorder
-          className='focus-border-wrapper'
-          size={size}
-          isFocus={isFocus}
-          isValid={isValid}
-          withIcon={!!iconData}
-          componentTheme={componentTheme}
-        >
+        <div className='focus-border-wrapper'>
           <div className='focus-border'>
-            {/* <Styled.Input
+            <input
               type={type}
-              size={size}
-              className='input_input'
-              placeholder={placeholder}
               ref={inputRef}
-              value={value}
               onClick={onInputClick}
+              value={value}
               onChange={onChange}
               onFocus={onFocus}
               onBlur={onBlur}
-              componentTheme={componentTheme}
-            /> */}
+              className='input_input'
+              placeholder={placeholder}
+            />
           </div>
-        </Styled.FocusBorder>
+        </div>
         {iconData && (
           <Styled.Icon
             onClick={iconData.onClick}

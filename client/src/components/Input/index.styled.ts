@@ -63,6 +63,7 @@ export const InputWrapper = styled.div<{
   isValid: boolean;
   isVibrant: boolean;
   size: 'large' | 'medium';
+  withIcon: boolean;
   componentTheme: InputThemeType;
 }>`
   cursor: pointer;
@@ -89,46 +90,39 @@ export const InputWrapper = styled.div<{
         ? componentTheme.shadow
         : componentTheme.shadowInvalid
       : `none`};
-`;
 
-export const FocusBorder = styled.div<{
-  size: 'large' | 'medium';
-  isFocus: boolean;
-  isValid: boolean;
-  withIcon: boolean;
-  componentTheme: InputThemeType;
-}>`
-  height: 100%;
-  width: 100%;
-  padding: 2px;
-  box-sizing: border-box;
+  .focus-border-wrapper {
+    height: 100%;
+    width: 100%;
+    padding: 2px;
+    box-sizing: border-box;
 
-  .focus-border {
-    border-radius: ${({ withIcon }) => (withIcon ? '14px' : '14px')};
-    box-shadow: ${({ isFocus, isValid, componentTheme }) =>
-      isFocus
-        ? isValid
-          ? `inset 0px 0px 0px 1.5px #ab8af1`
-          : `inset 0px 0px 0px 1.5px ${componentTheme.note.text}`
-        : `none`};
+    .focus-border {
+      border-radius: ${({ withIcon }) => (withIcon ? '14px' : '14px')};
+      box-shadow: ${({ isFocus, isValid, componentTheme }) =>
+        isFocus
+          ? isValid
+            ? `inset 0px 0px 0px 1.5px #ab8af1`
+            : `inset 0px 0px 0px 1.5px ${componentTheme.note.text}`
+          : `none`};
+    }
   }
-`;
 
-export const Input = styled.input<{
-  size: 'large' | 'medium';
-  componentTheme: InputThemeType;
-}>`
-  all: unset;
-  box-sizing: border-box;
-  height: 100%;
+  .input_input {
+    all: unset;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    height: ${({ size }) => (size === 'large' ? '68px' : '44px')};
+    font-weight: ${({ size }) => (size === 'large' ? '600' : '600')};
+    font-size: ${({ size }) => (size === 'large' ? '18px' : '16px')};
+    line-height: ${({ size }) => (size === 'large' ? '20px' : '20px')};
+    padding: ${({ size }) => (size === 'large' ? '22px 30px' : '14px 24px')};
 
-  width: 100%;
-
-  height: ${({ size }) => (size === 'large' ? '68px' : '44px')};
-  font-weight: ${({ size }) => (size === 'large' ? '600' : '600')};
-  font-size: ${({ size }) => (size === 'large' ? '18px' : '16px')};
-  line-height: ${({ size }) => (size === 'large' ? '20px' : '20px')};
-  padding: ${({ size }) => (size === 'large' ? '22px 30px' : '14px 24px')};
+    ::placeholder {
+      color: ${({ componentTheme }) => componentTheme.textPlaceholder};
+    }
+  }
 `;
 
 export const Icon = styled.div<{
@@ -174,11 +168,12 @@ export const Note = styled.div<{
   line-height: 20px;
 
   white-space: pre-line;
-  ${({ isVisible }) =>
+  ${({ isVisible, componentTheme }) =>
     isVisible
       ? css`
           transform: none;
           padding: 12px 32px 0px;
+          color: ${componentTheme.note.text};
         `
       : css`
           transform: translateY(-100%);
