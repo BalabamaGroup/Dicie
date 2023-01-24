@@ -28,17 +28,17 @@ jobs:
         run: |
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'ENDSSH'
           cd /home/mt
-          rm -rf mt-1.1-SNAPSHOT.war
-          rm -rf .mt-1.1-SNAPSHOT.war
+          rm -rf mt-0.0.1-SNAPSHOT.jar
+          rm -rf mt-0.0.1-SNAPSHOT.jar
           ENDSSH
-          scp ./server/target/mt-1.1-SNAPSHOT.war ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/mt/mt-1.1-SNAPSHOT.war
+          scp ./server/target/mt-0.0.1-SNAPSHOT.jar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/mt/mt-0.0.1-SNAPSHOT.jar
       - name: Run a script on remote server (start the application)
         if: always()
         uses: fifsky/ssh-action@master
         with:
           command: |
             killall -9 java
-            cd /home/mt && java -jar mt-1.1-SNAPSHOT.war &
+            cd /home/mt && java -jar mt-0.0.1-SNAPSHOT.jar &
           host: ${{ secrets.SSH_HOST }}
           user: ${{ secrets.SSH_USER }}
           pass: ${{ secrets.SSH_PASSWORD }}
