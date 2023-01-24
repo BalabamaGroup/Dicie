@@ -12,13 +12,14 @@
   <groupId>com.balabama</groupId>
   <artifactId>mt</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
   <name>server</name>
   <description>server</description>
   <properties>
     <frontend-maven-plugin.version>1.12.1</frontend-maven-plugin.version>
     <nodeJs.version>v18.12.1</nodeJs.version>
     <java.version>17</java.version>
-    <mysql-connector-java.version>5.7.34</mysql-connector-java.version>
+    <mysql-connector-java.version>5.1.47</mysql-connector-java.version>
     <liquibase-maven-plugin.version>4.16.1</liquibase-maven-plugin.version>
     <testcontainer.version>1.17.4</testcontainer.version>
     <frontend-src-dir>${project.basedir}/../client</frontend-src-dir>
@@ -224,6 +225,21 @@
                 </configuration>
               </execution>
             </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-maven-plugin</artifactId>
+            <version>${liquibase-maven-plugin.version}</version>
+            <configuration>
+              <driver>com.mysql.cj.jdbc.Driver</driver>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+              </dependency>
+            </dependencies>
           </plugin>
         </plugins>
       </build>
