@@ -54,7 +54,7 @@ const VoiceChatTest = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('candidate', async ({ detail: candidate }) => {
+    window.addEventListener('candidate', async ({ detail: candidate }: any) => {
       console.log('got candidate', candidate);
       try {
         await pc?.addIceCandidate(candidate);
@@ -63,7 +63,7 @@ const VoiceChatTest = () => {
       }
     });
 
-    window.addEventListener('offer', async ({ detail: offer }) => {
+    window.addEventListener('offer', async ({ detail: offer }: any) => {
       console.log('got offer', offer);
       try {
         pc?.setRemoteDescription(new RTCSessionDescription(offer));
@@ -79,7 +79,7 @@ const VoiceChatTest = () => {
       }
     });
 
-    window.addEventListener('answer', async ({ detail: answer }) => {
+    window.addEventListener('answer', async ({ detail: answer }: any) => {
       console.log('got answer', answer);
       try {
         const remoteDesc = new RTCSessionDescription(answer);

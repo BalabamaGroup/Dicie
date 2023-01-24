@@ -43,7 +43,7 @@ const Player = ({
         )}
       </Styled.Player>
       <Styled.PlayerUsername>
-        <div className='username' title={player.state.word}>
+        <div className='username' title={player.state.word || ''}>
           {player.username}
         </div>
       </Styled.PlayerUsername>

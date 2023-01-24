@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components';
 
 import { multiInputDataType } from '@/components/MultiInput';
 
+import { InputThemeType } from './componentTheme';
+
 const getMultiInputDataBorderRadiusCss = (
   multiInputData: multiInputDataType | undefined
 ) => {
@@ -41,7 +43,7 @@ export const Wrapper = styled.div<{
   isNoteVisible: boolean | undefined;
   noteTextHeight: number;
   size: 'large' | 'medium';
-  componentTheme: any;
+  componentTheme: InputThemeType;
 }>`
   max-width: 100%;
   flex-direction: column;
@@ -61,7 +63,7 @@ export const InputWrapper = styled.div<{
   isValid: boolean;
   isVibrant: boolean;
   size: 'large' | 'medium';
-  componentTheme: any;
+  componentTheme: InputThemeType;
 }>`
   cursor: pointer;
   position: relative;
@@ -94,7 +96,7 @@ export const FocusBorder = styled.div<{
   isFocus: boolean;
   isValid: boolean;
   withIcon: boolean;
-  componentTheme: any;
+  componentTheme: InputThemeType;
 }>`
   height: 100%;
   width: 100%;
@@ -114,7 +116,7 @@ export const FocusBorder = styled.div<{
 
 export const Input = styled.input<{
   size: 'large' | 'medium';
-  componentTheme: any;
+  componentTheme: InputThemeType;
 }>`
   all: unset;
   box-sizing: border-box;
@@ -127,15 +129,11 @@ export const Input = styled.input<{
   font-size: ${({ size }) => (size === 'large' ? '18px' : '16px')};
   line-height: ${({ size }) => (size === 'large' ? '20px' : '20px')};
   padding: ${({ size }) => (size === 'large' ? '22px 30px' : '14px 24px')};
-
-  ::placeholder {
-    color: ${({ componentTheme }) => componentTheme.textPlaceholder};
-  }
 `;
 
 export const Icon = styled.div<{
   size: 'large' | 'medium';
-  componentTheme: any;
+  componentTheme: InputThemeType;
 }>`
   height: 20px;
   width: 20px;
@@ -167,7 +165,7 @@ export const Icon = styled.div<{
 
 export const Note = styled.div<{
   isVisible: boolean | undefined;
-  componentTheme: any;
+  componentTheme: InputThemeType;
 }>`
   user-select: none;
   max-width: 100%;
@@ -181,7 +179,6 @@ export const Note = styled.div<{
       ? css`
           transform: none;
           padding: 12px 32px 0px;
-          color: ${({ componentTheme }) => componentTheme.note.text};
         `
       : css`
           transform: translateY(-100%);

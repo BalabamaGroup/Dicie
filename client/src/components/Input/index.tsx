@@ -5,7 +5,7 @@ import { getTextHeight } from '@/common/helpers/domHelpers';
 import { multiInputDataType } from '@/components/MultiInput';
 import useComponentTheme from '@/hooks/useComponentTheme';
 
-import { InputThemeDark, InputThemeLight } from './componentTheme';
+import { InputThemeDark, InputThemeLight, InputThemeType } from './componentTheme';
 import * as Styled from './index.styled';
 
 export interface InputProps {
@@ -72,7 +72,7 @@ const Input = ({
 
   const isMultiInputPart = !!multiInputData && !!onChangeMultiInputData;
 
-  const componentTheme = useComponentTheme(
+  const componentTheme: InputThemeType = useComponentTheme(
     theme,
     InputThemeLight,
     InputThemeDark
@@ -154,7 +154,7 @@ const Input = ({
           componentTheme={componentTheme}
         >
           <div className='focus-border'>
-            <Styled.Input
+            {/* <Styled.Input
               type={type}
               size={size}
               className='input_input'
@@ -166,7 +166,7 @@ const Input = ({
               onFocus={onFocus}
               onBlur={onBlur}
               componentTheme={componentTheme}
-            />
+            /> */}
           </div>
         </Styled.FocusBorder>
         {iconData && (

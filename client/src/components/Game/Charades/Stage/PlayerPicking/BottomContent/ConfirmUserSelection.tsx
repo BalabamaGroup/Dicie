@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import CharadesAPI from '@/api/game/charades';
-import { UserInGame } from '@/common/types/highlightedUser';
+import { UserInGame } from '@/common/types/user';
 import { mobileAndSmaller, tabletAndSmaller } from '@/common/utils/device';
 import Button from '@/components/Button';
 
