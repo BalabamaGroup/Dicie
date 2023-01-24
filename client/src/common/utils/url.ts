@@ -5,8 +5,8 @@ export const apiUrl = () => {
   if (hostname !== 'localhost') hostname = '164.92.151.90';
   console.log(window.location.hostname, hostname);
 
-  console.log('Api URL', Protocols.DEFAULT + window.location.hostname);
-  return Protocols.DEFAULT + window.location.hostname + ':8080' + '/api/';
+  console.log('Api URL', Protocols.DEFAULT + hostname);
+  return Protocols.DEFAULT + hostname + ':8080' + '/api/';
 };
 
 export const socketUrl = () => {

@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
-import routes from '@/common/constants/routes';
 
+import routes from '@/common/constants/routes';
 import { apiUrl } from '@/common/utils/url';
 import Toast from '@/components/Toast';
 
