@@ -1,4 +1,4 @@
-import debounce from 'lodash/debounce';
+import debounce from 'lodash.debounce';
 import { useEffect, useState } from 'react';
 
 function useWindowWidth(delay = 700) {
