@@ -3,11 +3,9 @@ export const Protocols = Object.freeze({
   SOCKET: 'ws://',
 });
 
-export const Hosts = Object.freeze({
-  CLIENT: 'localhost:3000/',
-  SERVER: 'localhost:8080/',
-  SERVER_API: 'localhost:8080/api/',
-  SERVER_SOCKET: 'localhost:8080/socket',
+export const Ports = Object.freeze({
+  DEFAULT: ':8080',
+  CLIENT_DEV: ':3000',
 });
 
 export const RoleTypes = Object.freeze({

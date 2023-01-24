@@ -1,9 +1,11 @@
-import { Hosts, Protocols } from '@/common/constants';
+import { Ports, Protocols } from '@/common/constants';
 
 export const apiUrl = () => {
-  return Protocols.DEFAULT + window.location.hostname + ':8080' + '/api/';
+  return Protocols.DEFAULT + window.location.hostname + Ports.DEFAULT + '/api/';
 };
 
 export const socketUrl = () => {
-  return Protocols.SOCKET + window.location.hostname + ':8080' + '/socket/';
+  return (
+    Protocols.SOCKET + window.location.hostname + Ports.DEFAULT + '/socket/'
+  );
 };
