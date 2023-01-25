@@ -52,6 +52,7 @@ const RoomSettings = ({}: RoomSettingsProps) => {
               </div>
               <div className='room-password-form'>
                 <Input
+                  theme={'dark'}
                   id={'room-password'}
                   className='isprivate-settings-password'
                   value={roomPassword}

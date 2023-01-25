@@ -6,6 +6,6 @@ export const apiUrl = () => {
 
 export const socketUrl = () => {
   return (
-    Protocols.SOCKET + window.location.hostname + Ports.DEFAULT + '/socket/'
+    Protocols.SOCKET + window.location.hostname + Ports.DEFAULT + '/socket'
   );
 };

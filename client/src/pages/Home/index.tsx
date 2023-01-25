@@ -1,7 +1,9 @@
 import { useState } from 'react';
 
 import { homeContentCards } from '@/common/constants';
+import Loader from '@/components/Loader';
 import NavBar from '@/components/NavBar';
+import useCurrentUser from '@/hooks/useCurrentUser';
 
 import ContentCards from './ContentCards';
 import * as Styled from './index.styled';
@@ -9,6 +11,10 @@ import * as Styled from './index.styled';
 export interface HomeProps {}
 
 const Home = ({}: HomeProps) => {
+  // return <Loader />;
+
+  const { isLoading: currentUserIsLoading } = useCurrentUser();
+
   const [selectedCard, setSelectedCard] = useState<string>(
     homeContentCards.DEFAULT
   );
@@ -37,11 +43,15 @@ const Home = ({}: HomeProps) => {
         }
       />
       <Styled.HomeContent>
-        <ContentCards
-          selectedCard={selectedCard}
-          onSelectCreateRoom={onSelectCreateRoom}
-          onSelectJoinRoom={onSelectJoinRoom}
-        />
+        {currentUserIsLoading ? (
+          <Loader />
+        ) : (
+          <ContentCards
+            selectedCard={selectedCard}
+            onSelectCreateRoom={onSelectCreateRoom}
+            onSelectJoinRoom={onSelectJoinRoom}
+          />
+        )}
       </Styled.HomeContent>
     </Styled.HomePage>
   );

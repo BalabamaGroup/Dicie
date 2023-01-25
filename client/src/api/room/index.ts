@@ -1,5 +1,6 @@
-import { request } from '..';
 import Room from '@/common/types/room';
+
+import { request } from '../';
 
 export default class RoomAPI {
   static createRoom = (data: {
@@ -37,6 +38,7 @@ export default class RoomAPI {
     const options = {
       method: 'put',
       url: `room/connect/${id}`,
+      data: { password: null },
     };
 
     return request(options).then((res: Promise<Room>) => res);

@@ -102,8 +102,8 @@ export const InputWrapper = styled.div<{
       box-shadow: ${({ isFocus, isValid, componentTheme }) =>
         isFocus
           ? isValid
-            ? `inset 0px 0px 0px 1.5px #ab8af1`
-            : `inset 0px 0px 0px 1.5px ${componentTheme.note.text}`
+            ? `inset 0px 0px 0px 1.5px ${componentTheme.focusBorder}`
+            : `inset 0px 0px 0px 1.5px ${componentTheme.textInvalid}`
           : `none`};
     }
   }
@@ -113,6 +113,7 @@ export const InputWrapper = styled.div<{
     box-sizing: border-box;
     height: 100%;
     width: 100%;
+    transition: color 0s;
     height: ${({ size }) => (size === 'large' ? '68px' : '44px')};
     font-weight: ${({ size }) => (size === 'large' ? '600' : '600')};
     font-size: ${({ size }) => (size === 'large' ? '18px' : '16px')};
@@ -173,7 +174,7 @@ export const Note = styled.div<{
       ? css`
           transform: none;
           padding: 12px 32px 0px;
-          color: ${componentTheme.note.text};
+          color: ${componentTheme.textInvalid};
         `
       : css`
           transform: translateY(-100%);

@@ -43,7 +43,7 @@ export const CreateRoomCard = styled(HomeContentCard)<{
       : css`
           ${transitionGradient({
             id: '-createRoom',
-            color: theme.page.home.cards.createRoom.selectedBackground,
+            color: theme.page.home.cards.createRoom.chooseGameBackground,
           })}
         `}
 `;

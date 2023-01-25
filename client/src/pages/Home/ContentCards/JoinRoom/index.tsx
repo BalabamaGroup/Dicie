@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import RoomAPI from '@/api/room';
 import UserAPI from '@/api/user';
 import { homeContentCards } from '@/common/constants';
+import useCurrentUser from '@/hooks/useCurrentUser';
 
 import * as Styled from './index.styled';
 
@@ -15,28 +16,19 @@ interface JoinRoomCardProps {
 const JoinRoomCard = ({ selectedCard, onSelect }: JoinRoomCardProps) => {
   const navigate = useNavigate();
 
-  const {
-    data: currentRoomId,
-    error: currentRoomIdError,
-    isLoading: currentRoomIdIsLoading,
-    refetch: currentRoomIdRefetch,
-  } = useQuery('currentRoom', async () => {
-    const currUser = await UserAPI.getCurrentUser();
-    return currUser.roomId;
-  });
-
+  const { data: currUser, refetch: currUserRefetch } = useCurrentUser();
   const { data: rooms, isLoading: roomsIsLoading } = useQuery('rooms', () => {
     return RoomAPI.getRooms();
   });
 
   const onReturnToCurrRoom = () => {
-    if (currentRoomId) navigate(`/room/${currentRoomId}`);
+    if (currUser?.roomId) navigate(`/room/${currUser?.roomId}`);
   };
 
   const onDisconnectFromCurrRoom = async () => {
-    if (currentRoomId) {
-      await RoomAPI.disconnectFromRoom(currentRoomId);
-      currentRoomIdRefetch();
+    if (currUser?.roomId) {
+      await RoomAPI.disconnectFromRoom(currUser?.roomId);
+      currUserRefetch();
     }
   };
 
@@ -60,7 +52,7 @@ const JoinRoomCard = ({ selectedCard, onSelect }: JoinRoomCardProps) => {
       ) : (
         <div>
           <div>
-            {currentRoomId && (
+            {currUser?.roomId && (
               <h4>
                 <button onClick={onReturnToCurrRoom}>
                   Return to your room
@@ -78,7 +70,7 @@ const JoinRoomCard = ({ selectedCard, onSelect }: JoinRoomCardProps) => {
               rooms.map((room: any) => (
                 <div key={room.id}>
                   <button
-                    disabled={!!currentRoomId}
+                    disabled={!!currUser?.roomId}
                     onClick={() => onGoToRoom(room.id)}
                   >
                     {room.name}

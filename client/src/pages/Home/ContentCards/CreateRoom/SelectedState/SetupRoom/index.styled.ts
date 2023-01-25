@@ -18,8 +18,6 @@ export const SetupRoomWrapper = styled.div<{
     height: calc(100vh - 96px);
   }
 
-  background-color: #131214;
-
   padding: 32px 32px;
   @media ${tabletAndSmaller} {
     padding: 20px 20px;

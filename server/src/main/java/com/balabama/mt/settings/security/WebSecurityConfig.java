@@ -71,7 +71,7 @@ public class WebSecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                    .allowedMethods("*").allowedOrigins("http://localhost:3000", "http://localhost:8080","http://164.92.151.90:8080" ,"http://dicie.net").allowCredentials(true);
+                    .allowedMethods("*").allowedOrigins("http://localhost:3000", "http://localhost:8080","http://164.92.151.90:8080" ,"http://dicie.net:8080").allowCredentials(true);
             }
         };
     }

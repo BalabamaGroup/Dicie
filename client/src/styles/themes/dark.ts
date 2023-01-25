@@ -23,7 +23,8 @@ const dark: any = {
         },
         createRoom: {
           background: gradients.yellow_green,
-          selectedBackground: colors.dark,
+          selectedBackground: colors.black,
+          chooseGameBackground: colors.black,
           text: colors.dark,
           shadowHover: shadows.yellow.large,
         },
