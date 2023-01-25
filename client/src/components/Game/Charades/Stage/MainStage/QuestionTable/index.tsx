@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
+
 import CharadesAPI from '@/api/game/charades';
 import { UserInGame } from '@/common/types/user';
 
@@ -50,6 +51,7 @@ const QuestionTable = ({ currentUserPlayer }: QuestionTableProps) => {
               justifyContent: 'space-between',
               alignItems: 'center',
               gap: '20px',
+              color: 'black',
               background:
                 tableData.answer === 'YES'
                   ? 'lightgreen'

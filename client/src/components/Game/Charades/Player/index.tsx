@@ -42,7 +42,7 @@ const Player = ({
       stage={stage}
     >
       <div onClick={onSelectUser}>
-        <p>
+        <p style={{ color: 'black' }}>
           {player.username} {`- ${player.state.word}`}
         </p>
         <div>
