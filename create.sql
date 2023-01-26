@@ -1,3 +1,3 @@
-CREATE USER 'mtUser'@'%' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON * . * TO 'mtUser'@'%';
-CREATE DATABASE mt;
+CREATE USER 'dicie'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON * . * TO 'dicie'@'%';
+CREATE DATABASE dicie;
