@@ -1,16 +1,21 @@
 import { useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
+import Button from '@/components/Button';
 import GameButton from '@/components/GameButton';
 import games from '@/components/GameButton/games';
 
 import * as Styled from './index.styled';
 
 interface ChooseGameProps {
+  onCreateRoom: React.MouseEventHandler<HTMLButtonElement>;
   onToggleIsMobileSetupCompleted: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const ChooseGame = ({ onToggleIsMobileSetupCompleted }: ChooseGameProps) => {
+const ChooseGame = ({
+  onCreateRoom,
+  onToggleIsMobileSetupCompleted,
+}: ChooseGameProps) => {
   const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
   const onSelectGame = (gameId: number) => {
     setSelectedGameId(gameId);
@@ -34,6 +39,16 @@ const ChooseGame = ({ onToggleIsMobileSetupCompleted }: ChooseGameProps) => {
           />
         ))}
       </Styled.GameList>
+
+      <Button
+        className='create-room-button'
+        isPrimary
+        isScale
+        onClick={onCreateRoom}
+        size='large'
+      >
+        Create room
+      </Button>
     </Styled.ChooseGame>
   );
 };

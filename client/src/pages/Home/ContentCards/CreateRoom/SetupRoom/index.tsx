@@ -1,8 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import RoomAPI from '@/api/room';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import RadioExtended from '@/components/RadioExtendend';
@@ -12,38 +9,40 @@ import Toggle from '@/components/Toggle';
 import * as Styled from './index.styled';
 
 interface RoomSetupFormProps {
+  roomName: string;
+  onChangeRoomName: React.ChangeEventHandler<HTMLInputElement>;
+
+  isPrivate: boolean;
+  onChangeIsPrivate: React.MouseEventHandler<HTMLDivElement>;
+  roomPassword: string;
+  onChangeRoomPassword: React.ChangeEventHandler<HTMLInputElement>;
+
+  isWithCommuninactions: boolean;
+  onChangeIsWithCommuninactions: React.MouseEventHandler<HTMLDivElement>;
+  selectedCommunicationOption: string;
+  setSelectedCommunicationOption: Function;
+
   isMobileSetupCompleted?: boolean;
   onToggleIsMobileSetupCompleted: React.MouseEventHandler<HTMLButtonElement>;
+
+  onCreateRoom: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const SetupRoom = ({
+  roomName,
+  onChangeRoomName,
+  isPrivate,
+  onChangeIsPrivate,
+  roomPassword,
+  onChangeRoomPassword,
+  isWithCommuninactions,
+  onChangeIsWithCommuninactions,
+  selectedCommunicationOption,
+  setSelectedCommunicationOption,
+  onCreateRoom,
   isMobileSetupCompleted = false,
   onToggleIsMobileSetupCompleted,
 }: RoomSetupFormProps) => {
-  const navigate = useNavigate();
-
-  const [roomName, setRoomName] = useState('');
-  const onChangeRoomName = (e: any) => setRoomName(e.target.value);
-
-  const [isPrivate, setIsPrivate] = useState<boolean>(false);
-  const onChangeIsPrivate = () => setIsPrivate(!isPrivate);
-
-  const [roomPassword, setRoomPassword] = useState('');
-  const onChangeRoomPassword = (e: any) => setRoomPassword(e.target.value);
-
-  const [isWithCommuninactions, setIsWithCommuninactions] =
-    useState<boolean>(false);
-  const onChangeIsWithCommuninactions = () =>
-    setIsWithCommuninactions(!isWithCommuninactions);
-
-  const [selectedCommunicationOption, setSelectedCommunicationOption] =
-    useState<string>('voice');
-
-  const onCreateRoom = async () => {
-    const newRoom = await RoomAPI.createRoom({ gameId: 1, name: roomName });
-    navigate(`/room/${newRoom.id}`);
-  };
-
   return (
     <Styled.SetupRoom
       className='setup-room'

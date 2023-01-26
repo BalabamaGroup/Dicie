@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import RoomAPI from '@/api/room';
 import { homeContentCards } from '@/common/constants';
 
 import ChooseGame from './ChooseGame';
@@ -12,6 +14,30 @@ interface CreateRoomCardProps {
 }
 
 const CreateRoomCard = ({ selectedCard, onSelect }: CreateRoomCardProps) => {
+  const navigate = useNavigate();
+
+  const [roomName, setRoomName] = useState('');
+  const onChangeRoomName = (e: any) => setRoomName(e.target.value);
+
+  const [isPrivate, setIsPrivate] = useState<boolean>(false);
+  const onChangeIsPrivate = () => setIsPrivate(!isPrivate);
+
+  const [roomPassword, setRoomPassword] = useState('');
+  const onChangeRoomPassword = (e: any) => setRoomPassword(e.target.value);
+
+  const [isWithCommuninactions, setIsWithCommuninactions] =
+    useState<boolean>(false);
+  const onChangeIsWithCommuninactions = () =>
+    setIsWithCommuninactions(!isWithCommuninactions);
+
+  const [selectedCommunicationOption, setSelectedCommunicationOption] =
+    useState<string>('voice');
+
+  const onCreateRoom = async () => {
+    const newRoom = await RoomAPI.createRoom({ gameId: 1, name: roomName });
+    navigate(`/room/${newRoom.id}`);
+  };
+
   const [isMobileSetupCompleted, setIsMobileSetupCompleted] =
     useState<boolean>(false);
 
@@ -32,10 +58,22 @@ const CreateRoomCard = ({ selectedCard, onSelect }: CreateRoomCardProps) => {
       ) : (
         <Styled.CreateRoom isMobileSetupCompleted={isMobileSetupCompleted}>
           <SetupRoom
+            roomName={roomName}
+            onChangeRoomName={onChangeRoomName}
+            isPrivate={isPrivate}
+            onChangeIsPrivate={onChangeIsPrivate}
+            roomPassword={roomPassword}
+            onChangeRoomPassword={onChangeRoomPassword}
+            isWithCommuninactions={isWithCommuninactions}
+            onChangeIsWithCommuninactions={onChangeIsWithCommuninactions}
+            selectedCommunicationOption={selectedCommunicationOption}
+            setSelectedCommunicationOption={setSelectedCommunicationOption}
+            onCreateRoom={onCreateRoom}
             isMobileSetupCompleted={isMobileSetupCompleted}
             onToggleIsMobileSetupCompleted={onToggleIsMobileSetupCompleted}
           />
           <ChooseGame
+            onCreateRoom={onCreateRoom}
             onToggleIsMobileSetupCompleted={onToggleIsMobileSetupCompleted}
           />
         </Styled.CreateRoom>

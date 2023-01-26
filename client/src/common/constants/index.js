@@ -1,5 +1,5 @@
 export const Protocols = Object.freeze({
-  DEFAULT: 'https://',
+  DEFAULT: 'http://',
   SOCKET: 'ws://',
 });
 
@@ -19,7 +19,7 @@ export const authFormViews = Object.freeze({
 });
 
 export const games = Object.freeze({
-  CHARADES: 1,
+  GUESS_BOO: 1,
 });
 
 export const homeContentCards = Object.freeze({
