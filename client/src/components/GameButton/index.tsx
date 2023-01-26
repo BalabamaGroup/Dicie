@@ -8,15 +8,17 @@ interface GameButtonProps {
     name: string;
     icon: string;
   };
-  onClick: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 const GameButton = ({ game, onClick }: GameButtonProps) => {
   return (
-    <Styled.GameButton onClick={onClick}>
-      <ReactSVG src={game.icon} />
-      {game.name}
-    </Styled.GameButton>
+    <Styled.GameButtonWrapper>
+      <Styled.GameButton onClick={onClick}>
+        <ReactSVG src={game.icon} />
+        {game.name}
+      </Styled.GameButton>
+    </Styled.GameButtonWrapper>
   );
 };
 
