@@ -20,7 +20,7 @@ public class WebSocketServerConfiguration implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(webSocketHandler,"/socket**").setAllowedOrigins("http://localhost:3000", "http://localhost:8080", "https://dicie.net", "https://dicie.net:8080");
+        registry.addHandler(webSocketHandler,"/socket**").setAllowedOrigins("http://localhost:3000", "http://localhost:8080", "http://165.232.96.113/","http://165.232.96.113:8080" ,"https://dicie.net", "https://dicie.net:8080","http://dicie.net", "http://dicie.net:8080");
     }
 
 }
