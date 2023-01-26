@@ -5,13 +5,13 @@ export const size = {
 };
 
 export const mobileAndSmaller = `(max-width: ${size.mobile}px)`;
-export const mobileAndBigger = `(min-width: ${size.mobile}px)`;
+export const mobileAndBigger = `(min-width: ${size.mobile - 1}px)`;
 
 export const tabletAndSmaller = `(max-width: ${size.tablet}px)`;
-export const tabletAndBigger = `(min-width: ${size.tablet}px)`;
+export const tabletAndBigger = `(min-width: ${size.tablet - 1}px)`;
 
 export const desktopAndSmaller = `(max-width: ${size.desktop}px)`;
-export const desktopAndBigger = `(min-width: ${size.desktop}px)`;
+export const desktopAndBigger = `(min-width: ${size.desktop - 1}px)`;
 
 export const isMobile = () => {
   return window.innerWidth <= size.mobile;
@@ -26,7 +26,7 @@ export const isDesktop = () => {
 };
 
 export const isTouchDevice = !!(
-  typeof window !== "undefined" &&
-  typeof navigator !== "undefined" &&
-  ("ontouchstart" in window || navigator.maxTouchPoints > 0)
+  typeof window !== 'undefined' &&
+  typeof navigator !== 'undefined' &&
+  ('ontouchstart' in window || navigator.maxTouchPoints > 0)
 );

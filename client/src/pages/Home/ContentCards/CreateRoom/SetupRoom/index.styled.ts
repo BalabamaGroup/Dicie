@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { tabletAndSmaller } from '@/common/utils/device';
+import { desktopAndSmaller, tabletAndSmaller } from '@/common/utils/device';
 
-export const SetupRoomWrapper = styled.div<{
-  isMobileView: boolean;
+export const SetupRoom = styled.div<{
+  isMobileSetupCompleted: boolean;
 }>`
   gap: 32px;
 
@@ -20,29 +20,31 @@ export const SetupRoomWrapper = styled.div<{
 
   padding: 32px 32px;
   @media ${tabletAndSmaller} {
-    padding: 20px 20px;
+    padding: 20px;
   }
 
-  border-radius: ${({ isMobileView }) =>
-    isMobileView ? '32px' : '32px 0 0 32px'};
+  border-radius: ${({ isMobileSetupCompleted }) =>
+    !isMobileSetupCompleted ? '32px' : '32px 0 0 32px'};
+
+  .setup-room-form-scroll {
+    width: 100%;
+    max-width: 400px;
+  }
 `;
 
 export const SetupRoomHeader = styled.div`
   flex-shrink: 0;
   width: 100%;
   font-weight: 700;
-  font-size: 40px;
-  line-height: 40px;
-  color: #fff;
+  font-size: 32px;
 `;
 
 export const SetupRoomForm = styled.div`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 400px;
+  padding: 0 20px;
   text-align: left;
   overflow-y: auto;
 `;
@@ -58,7 +60,6 @@ export const MakePrivateParam = styled.div`
     gap: 16px;
 
     .isprivate-main-text {
-      color: #fff;
       font-weight: 600;
       font-size: 14px;
       line-height: 20px;
@@ -71,7 +72,6 @@ export const MakePrivateParam = styled.div`
     gap: 8px;
     .isprivate-settings-text {
       font-size: 12px;
-      color: #fff;
       font-weight: 400;
       margin: 4px 0;
     }
@@ -83,14 +83,11 @@ export const CommunicationsParam = styled.div`
   flex-direction: column;
 
   .communications-main {
+    font-weight: 600;
     padding: 8px 0;
     display: flex;
     flex-direction: row;
     gap: 16px;
-
-    .communications-main-text {
-      color: #fff;
-    }
   }
 
   .communications-settings {
@@ -104,9 +101,28 @@ export const CommunicationsParam = styled.div`
   }
 `;
 
-export const ButtonWrapper = styled.div<{}>`
+export const ButtonWrapper = styled.div<{
+  isMobileSetupCompleted: boolean;
+}>`
   margin-top: auto;
   width: 100%;
   max-width: 400px;
   flex-shrink: 0;
+
+  .choose-game-button {
+    display: none;
+  }
+
+  @media ${desktopAndSmaller} {
+    ${({ isMobileSetupCompleted }) =>
+      !isMobileSetupCompleted &&
+      css`
+        .choose-game-button {
+          display: block;
+        }
+        .create-room-button {
+          display: none;
+        }
+      `}
+  }
 `;

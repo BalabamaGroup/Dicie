@@ -2,11 +2,11 @@ import colors from '@/styles/colors/colors';
 import gradients from '@/styles/colors/gradients';
 
 export const ToggleThemeLight = {
-  wrapperBackground: gradients.indigo_purple.value,
-  toggleBackground: colors.light,
+  wrapperBackground: colors.purple,
+  toggleBackground: colors.white,
 };
 
 export const ToggleThemeDark = {
-  wrapperBackground: gradients.yellow_green.value,
+  wrapperBackground: colors.yellow,
   toggleBackground: colors.dark,
 };

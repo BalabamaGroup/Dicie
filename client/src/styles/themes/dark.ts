@@ -18,14 +18,12 @@ const dark: any = {
 
     home: {
       cards: {
-        default: {
-          background: gradients.dark,
-        },
         createRoom: {
+          defaultText: colors.dark,
           background: gradients.yellow_green,
           selectedBackground: colors.black,
-          chooseGameBackground: colors.black,
-          text: colors.dark,
+          chooseGameBackground: colors.dark,
+          text: colors.light,
           shadowHover: shadows.yellow.large,
         },
         orLabel: {
@@ -34,6 +32,7 @@ const dark: any = {
           shadow: shadows.dark.large,
         },
         joinRoom: {
+          defaultText: colors.light,
           background: gradients.indigo_purple,
           selectedBackground: colors.dark,
           text: colors.light,

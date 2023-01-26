@@ -19,8 +19,10 @@ const light = {
     home: {
       cards: {
         createRoom: {
+          defaultText: colors.dark,
           background: gradients.yellow_green,
           selectedBackground: colors.light,
+          chooseGameBackground: colors.white,
           text: colors.dark,
           shadowHover: shadows.yellow.large,
         },
@@ -30,6 +32,7 @@ const light = {
           shadow: shadows.light.large,
         },
         joinRoom: {
+          defaultText: colors.light,
           background: gradients.indigo_purple,
           selectedBackground: colors.light,
           text: colors.light,
@@ -72,22 +75,6 @@ const light = {
     text: colors.dark,
     forsedTextLight: colors.light,
     forsedTextDark: colors.dark,
-  },
-
-  toggle: {
-    wrapperBackground: gradients.indigo_purple.value,
-    toggleBackground: colors.light,
-
-    forsed: {
-      light: {
-        wrapperBackground: gradients.indigo_purple.value,
-        toggleBackground: colors.light,
-      },
-      dark: {
-        wrapperBackground: gradients.yellow_green.value,
-        toggleBackground: colors.dark,
-      },
-    },
   },
 };
 
