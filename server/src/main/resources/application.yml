@@ -27,4 +27,4 @@ spring:
     activate:
       on-profile: prod
 mt:
-  root-uri: http://dicie.net:8080
+  root-uri: http://165.232.96.113:8080
