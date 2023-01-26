@@ -55,6 +55,7 @@ const SetupRoom = ({
         <Styled.SetupRoomForm>
           <Input
             id={'room-name'}
+            label='Room name'
             value={roomName}
             placeholder='Name'
             onChange={onChangeRoomName}
@@ -116,7 +117,7 @@ const SetupRoom = ({
                       content: (
                         <ReactSVG
                           className='communications-settings-radio-icon'
-                          src='/images/svgs/create-room-communucation-chat.svg'
+                          src='/images/svgs/chat-messages.svg'
                         />
                       ),
                     },
@@ -127,7 +128,7 @@ const SetupRoom = ({
                       content: (
                         <ReactSVG
                           className='communications-settings-radio-icon'
-                          src='/images/svgs/create-room-communucation-voice.svg'
+                          src='/images/svgs/volume-up.svg'
                         />
                       ),
                     },

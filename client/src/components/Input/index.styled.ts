@@ -38,6 +38,18 @@ const getWrapperHeightDataCss = (
     : ` height : 48px `;
 };
 
+export const LabelWrapper = styled.div<{}>`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  label {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+  }
+`;
+
 export const Wrapper = styled.div<{
   multiInputData?: multiInputDataType | undefined;
   isNoteVisible: boolean | undefined;
@@ -66,7 +78,7 @@ export const InputWrapper = styled.div<{
   withIcon: boolean;
   componentTheme: InputThemeType;
 }>`
-  cursor: pointer;
+  cursor: text;
   position: relative;
   height: ${({ size }) => (size === 'large' ? '72px' : '48px')};
 

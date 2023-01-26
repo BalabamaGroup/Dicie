@@ -1,3 +1,4 @@
+import RadioExtended from '../../components/RadioExtendend/index';
 import colors from '../colors/colors';
 import gradients from '../colors/gradients';
 import shadows from '../colors/shadows';
@@ -68,6 +69,15 @@ const light = {
     background: colors.purple,
     text: colors.light,
     shadow: shadows.purple.medium,
+  },
+
+  radioExtended: {
+    text: colors.dark,
+    headerBackground: colors.light_neutral,
+    bodyBackground: colors.white,
+    indicator: colors.purple,
+    indicatorBackground: colors.white,
+    icon: colors.dark,
   },
 
   navbar: {

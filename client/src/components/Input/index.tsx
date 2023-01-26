@@ -12,6 +12,7 @@ export interface InputProps {
   id?: string;
   className?: string;
   type?: string;
+  label?: string;
   placeholder?: string;
 
   theme?: 'auto' | 'light' | 'dark';
@@ -44,6 +45,7 @@ const Input = ({
   id = 'input',
   className,
   type = 'text',
+  label,
   placeholder = '',
 
   theme = 'auto',
@@ -127,60 +129,63 @@ const Input = ({
   }, dependancies);
 
   return (
-    <Styled.Wrapper
-      size={size}
-      className={`${className} input_wrapper`}
-      isNoteVisible={isFocus && !isValid}
-      noteTextHeight={getTextHeight(currentNote, 20)}
-      multiInputData={isMultiInputPart ? multiInputData : undefined}
-      componentTheme={componentTheme}
-    >
-      <Styled.InputWrapper
+    <Styled.LabelWrapper>
+      {label && <label htmlFor={id}>{label}</label>}
+      <Styled.Wrapper
         size={size}
-        isVibrant={isVibrant}
-        className='input_input-wrapper'
-        id={id}
-        onMouseDown={onInputMouseDown}
-        isFocus={isFocus}
-        isValid={isValid}
-        withIcon={!!iconData}
+        className={`${className} input_wrapper`}
+        isNoteVisible={isFocus && !isValid}
+        noteTextHeight={getTextHeight(currentNote, 20)}
+        multiInputData={isMultiInputPart ? multiInputData : undefined}
         componentTheme={componentTheme}
       >
-        <div className='focus-border-wrapper'>
-          <div className='focus-border'>
-            <input
-              type={type}
-              ref={inputRef}
-              onClick={onInputClick}
-              value={value}
-              onChange={onChange}
-              onFocus={onFocus}
-              onBlur={onBlur}
-              className='input_input'
-              placeholder={placeholder}
-            />
+        <Styled.InputWrapper
+          size={size}
+          isVibrant={isVibrant}
+          className='input_input-wrapper'
+          onMouseDown={onInputMouseDown}
+          isFocus={isFocus}
+          isValid={isValid}
+          withIcon={!!iconData}
+          componentTheme={componentTheme}
+        >
+          <div className='focus-border-wrapper'>
+            <div className='focus-border'>
+              <input
+                id={id}
+                type={type}
+                ref={inputRef}
+                onClick={onInputClick}
+                value={value}
+                onChange={onChange}
+                onFocus={onFocus}
+                onBlur={onBlur}
+                className='input_input'
+                placeholder={placeholder}
+              />
+            </div>
           </div>
-        </div>
-        {iconData && (
-          <Styled.Icon
-            onClick={iconData.onClick}
-            size={size}
-            componentTheme={componentTheme}
-          >
-            <ReactSVG src={iconData.iconSrc} />
-          </Styled.Icon>
-        )}
-      </Styled.InputWrapper>
+          {iconData && (
+            <Styled.Icon
+              onClick={iconData.onClick}
+              size={size}
+              componentTheme={componentTheme}
+            >
+              <ReactSVG src={iconData.iconSrc} />
+            </Styled.Icon>
+          )}
+        </Styled.InputWrapper>
 
-      <Styled.Note
-        className='input_note'
-        onMouseDown={onInputMouseDown}
-        isVisible={isFocus && !isValid}
-        componentTheme={componentTheme}
-      >
-        {currentNote}
-      </Styled.Note>
-    </Styled.Wrapper>
+        <Styled.Note
+          className='input_note'
+          onMouseDown={onInputMouseDown}
+          isVisible={isFocus && !isValid}
+          componentTheme={componentTheme}
+        >
+          {currentNote}
+        </Styled.Note>
+      </Styled.Wrapper>
+    </Styled.LabelWrapper>
   );
 };
 

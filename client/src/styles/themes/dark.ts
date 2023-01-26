@@ -70,27 +70,20 @@ const dark: any = {
     shadow: shadows.yellow.small,
   },
 
+  radioExtended: {
+    text: colors.light,
+    headerBackground: colors.dark_neutral,
+    bodyBackground: colors.dark,
+    indicator: colors.yellow,
+    indicatorBackground: colors.dark,
+    icon: colors.light,
+  },
+
   navbar: {
     background: 'none',
     text: colors.light,
     forsedTextLight: colors.light,
     forsedTextDark: colors.dark,
-  },
-
-  toggle: {
-    wrapperBackground: gradients.yellow_green.value,
-    toggleBackground: colors.dark,
-
-    forsed: {
-      light: {
-        wrapperBackground: gradients.indigo_purple.value,
-        toggleBackground: colors.light,
-      },
-      dark: {
-        wrapperBackground: gradients.yellow_green.value,
-        toggleBackground: colors.dark,
-      },
-    },
   },
 };
 

@@ -21,6 +21,7 @@ export const ContentCards = styled.div<{
   background-size: 100% 100%;
 
   will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.5, 0.25, 0, 1);
 
   @media ${tabletAndBigger} {
     width: calc(200% - 256px - 32px);
