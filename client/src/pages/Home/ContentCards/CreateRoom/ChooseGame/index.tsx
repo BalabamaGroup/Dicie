@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
 import GameButton from '@/components/GameButton';
@@ -10,6 +11,11 @@ interface ChooseGameProps {
 }
 
 const ChooseGame = ({ onToggleIsMobileSetupCompleted }: ChooseGameProps) => {
+  const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
+  const onSelectGame = (gameId: number) => {
+    setSelectedGameId(gameId);
+  };
+
   return (
     <Styled.ChooseGame className='choose-game'>
       <Styled.Header>
@@ -20,7 +26,12 @@ const ChooseGame = ({ onToggleIsMobileSetupCompleted }: ChooseGameProps) => {
       </Styled.Header>
       <Styled.GameList>
         {games.map((game) => (
-          <GameButton key={game.id} game={game} />
+          <GameButton
+            key={game.id}
+            game={game}
+            isSelected={selectedGameId === game.id}
+            onClick={() => onSelectGame(game.id)}
+          />
         ))}
       </Styled.GameList>
     </Styled.ChooseGame>

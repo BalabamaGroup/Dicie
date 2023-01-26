@@ -8,12 +8,13 @@ interface GameButtonProps {
     name: string;
     icon: string;
   };
+  isSelected?: boolean;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const GameButton = ({ game, onClick }: GameButtonProps) => {
+const GameButton = ({ game, isSelected = false, onClick }: GameButtonProps) => {
   return (
-    <Styled.GameButtonWrapper>
+    <Styled.GameButtonWrapper isSelected={isSelected}>
       <Styled.GameButton onClick={onClick}>
         <ReactSVG src={game.icon} className='game-button-icon' />
       </Styled.GameButton>

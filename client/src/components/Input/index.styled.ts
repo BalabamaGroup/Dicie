@@ -41,7 +41,7 @@ const getWrapperHeightDataCss = (
 export const LabelWrapper = styled.div<{}>`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 
   label {
     cursor: pointer;

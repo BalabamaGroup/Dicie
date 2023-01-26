@@ -85,6 +85,13 @@ const dark: any = {
     forsedTextLight: colors.light,
     forsedTextDark: colors.dark,
   },
+
+  gameButton: {
+    text: colors.light,
+    background: 'none',
+    textSelected: colors.dark,
+    backgroundSelected: colors.yellow,
+  },
 };
 
 export default dark;
