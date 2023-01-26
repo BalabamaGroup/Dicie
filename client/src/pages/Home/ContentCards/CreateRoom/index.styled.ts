@@ -38,7 +38,11 @@ export const CreateRoomCard = styled(HomeContentCard)<{
 
   ${({ selectedCard, cardKey, theme }) =>
     selectedCard === homeContentCards.DEFAULT
-      ? css``
+      ? css`
+          &:hover {
+            box-shadow: 0px 0px 256px rgba(242, 245, 134, 0.75);
+          }
+        `
       : selectedCard === cardKey
       ? css`
           ${transitionGradient({

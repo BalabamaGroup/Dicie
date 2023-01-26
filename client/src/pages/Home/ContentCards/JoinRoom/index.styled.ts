@@ -38,7 +38,7 @@ export const JoinRoomCard = styled(HomeContentCard)<{
     selectedCard === homeContentCards.DEFAULT
       ? css`
           &:hover {
-            /* box-shadow: 0px 0px 256px rgba(242, 245, 134, 0.75); */
+            box-shadow: 0px 0px 256px rgba(106, 101, 255, 0.75);
           }
         `
       : selectedCard === cardKey
