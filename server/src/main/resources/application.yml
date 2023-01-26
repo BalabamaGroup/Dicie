@@ -28,3 +28,10 @@ spring:
       on-profile: prod
 mt:
   root-uri: http://165.232.96.113:8080
+server:
+  ssl:
+    key-alias: tomcat
+    key-store: /etc/letsencrypt/live/dicie.net/keystore.p12
+    key-store-password: BAla228bama
+    enabled: true
+    key-store-type: PKCS12
