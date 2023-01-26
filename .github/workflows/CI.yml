@@ -36,10 +36,4 @@ jobs:
         if: always()
         uses: fifsky/ssh-action@master
         with:
-          command: |
-            killall -9 java
-            cd /home/mt && java -jar -Dspring.profiles.active=prod mt-0.0.1-SNAPSHOT.war &
-          host: ${{ secrets.SSH_HOST }}
-          user: ${{ secrets.SSH_USER }}
-          pass: ${{ secrets.SSH_PASSWORD }}
-          args: "-tt"
+          command: systemctl restart dicie

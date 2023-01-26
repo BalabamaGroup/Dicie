@@ -5,9 +5,9 @@ spring:
     enabled: true
     contexts: test
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/mt?useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+    url: jdbc:mysql://127.0.0.1:3306/dicie?useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: mtUser
+    username: dicie
     password: password
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
