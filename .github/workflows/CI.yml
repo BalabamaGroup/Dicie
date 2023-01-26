@@ -35,4 +35,9 @@ jobs:
         if: always()
         uses: fifsky/ssh-action@master
         with:
-          command: systemctl restart dicie
+          command: |
+            systemctl restart dicie &
+          host: ${{ secrets.SSH_HOST }}
+          user: ${{ secrets.SSH_USER }}
+          pass: ${{ secrets.SSH_PASSWORD }}
+          args: "-tt"
