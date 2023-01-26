@@ -30,7 +30,7 @@ const useRoomConnectionSocket = () => {
     return () => ws.current?.close();
   }, [ws, gettingData]);
 
-  return { socket: ws, roomData: data, status };
+  return { data, status };
 };
 
 export default useRoomConnectionSocket;

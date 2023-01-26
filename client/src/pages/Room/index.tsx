@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import RoomAPI from '@/api/room';
-import { UserInGame } from '@/common/types/user';
 import Game from '@/components/Game';
 import useRoomConnectionSocket from '@/hooks/useRoomConnectionSocket';
 
@@ -12,21 +11,22 @@ import RoomUsers from './RoomUsers';
 
 const Room = () => {
   const { roomId } = useParams();
-  const { roomData } = useRoomConnectionSocket();
+  const { data: roomData, status: socketStatus } = useRoomConnectionSocket();
   const navigate = useNavigate();
 
-  const onDisconnect = async () => {
-    roomId && (await RoomAPI.disconnectFromRoom(roomId));
-    navigate('/');
-  };
+  // const onDisconnect = async () => {
+  //   roomId && (await RoomAPI.disconnectFromRoom(roomId));
+  //   navigate('/');
+  // };
 
-  const onFinishGame = async () => roomId && (await RoomAPI.finishGame(roomId));
+  // const onFinishGame = async () => roomId && (await RoomAPI.finishGame(roomId));
 
   useEffect(() => {
     const conectToRoom = async () =>
       roomId && RoomAPI.connectToRoom(roomId).catch(() => navigate('/'));
-    conectToRoom();
-  }, [roomId]);
+
+    if (socketStatus) conectToRoom();
+  }, [socketStatus]);
 
   return (
     <Styled.RoomPage>
