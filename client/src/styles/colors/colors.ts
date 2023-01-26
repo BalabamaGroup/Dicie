@@ -1,8 +1,10 @@
 const colors = {
+  light_neutral: '#E1E4F8',
   light: '#ECEEFE',
-  dark: '#181621',
-
   white: '#F5F6FF',
+
+  dark_neutral: '#302C40',
+  dark: '#181621',
   black: '#100F16',
 
   purple: '#a385f5',

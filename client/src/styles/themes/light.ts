@@ -1,3 +1,4 @@
+import RadioExtended from '../../components/RadioExtendend/index';
 import colors from '../colors/colors';
 import gradients from '../colors/gradients';
 import shadows from '../colors/shadows';
@@ -19,8 +20,10 @@ const light = {
     home: {
       cards: {
         createRoom: {
+          defaultText: colors.dark,
           background: gradients.yellow_green,
           selectedBackground: colors.light,
+          chooseGameBackground: colors.white,
           text: colors.dark,
           shadowHover: shadows.yellow.large,
         },
@@ -30,6 +33,7 @@ const light = {
           shadow: shadows.light.large,
         },
         joinRoom: {
+          defaultText: colors.light,
           background: gradients.indigo_purple,
           selectedBackground: colors.light,
           text: colors.light,
@@ -67,6 +71,15 @@ const light = {
     shadow: shadows.purple.medium,
   },
 
+  radioExtended: {
+    text: colors.dark,
+    headerBackground: colors.light_neutral,
+    bodyBackground: colors.white,
+    indicator: colors.purple,
+    indicatorBackground: colors.white,
+    icon: colors.dark,
+  },
+
   navbar: {
     background: 'none',
     text: colors.dark,
@@ -74,20 +87,11 @@ const light = {
     forsedTextDark: colors.dark,
   },
 
-  toggle: {
-    wrapperBackground: gradients.indigo_purple.value,
-    toggleBackground: colors.light,
-
-    forsed: {
-      light: {
-        wrapperBackground: gradients.indigo_purple.value,
-        toggleBackground: colors.light,
-      },
-      dark: {
-        wrapperBackground: gradients.yellow_green.value,
-        toggleBackground: colors.dark,
-      },
-    },
+  gameButton: {
+    text: colors.dark,
+    background: 'none',
+    textSelected: colors.light,
+    backgroundSelected: colors.purple,
   },
 };
 

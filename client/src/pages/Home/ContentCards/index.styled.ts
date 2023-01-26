@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
 import { homeContentCards } from '@/common/constants';
-import { createGradientTransition, transitionGradient } from '@/common/helpers/styleHelpers';
 import { tabletAndBigger, tabletAndSmaller } from '@/common/utils/device';
 
 export const ContentCardsWrapper = styled.div<{
@@ -20,6 +19,9 @@ export const ContentCards = styled.div<{
   display: flex;
   flex-direction: row;
   background-size: 100% 100%;
+
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.5, 0.25, 0, 1);
 
   @media ${tabletAndBigger} {
     width: calc(200% - 256px - 32px);
@@ -117,7 +119,6 @@ export const HomeContentCard = styled.div<{
         `
       : selectedCard === cardKey
       ? css`
-          background: ${({ theme }) => theme.page.background};
           width: 100%;
           border-radius: 32px;
           @media ${tabletAndSmaller} {

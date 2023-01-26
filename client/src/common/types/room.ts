@@ -1,10 +1,9 @@
-import User, { UserInGame } from "./user";
+import User, { UserInGame } from './user';
 
 type Room = {
   id: string;
   name: string;
   start: boolean;
-
   admin: User;
   users: User[];
 };

@@ -23,6 +23,7 @@ const gradients = {
       points: ['0%', '100%'],
     },
   },
+
   light: {
     value: 'linear-gradient(120deg, #EEEEFF 10%, #E4F3FF 25%, #F7EBFF 80%);',
     angle: '120deg',

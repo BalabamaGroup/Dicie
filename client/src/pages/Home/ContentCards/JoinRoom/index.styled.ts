@@ -32,17 +32,26 @@ export const JoinRoomCard = styled(HomeContentCard)<{
       id: '-joinRoom',
     })}
 
-  ${({ selectedCard, theme }) =>
+
+
+  ${({ selectedCard, cardKey, theme }) =>
     selectedCard === homeContentCards.DEFAULT
       ? css`
           &:hover {
             box-shadow: 0px 0px 256px rgba(106, 101, 255, 0.75);
           }
         `
-      : css`
+      : selectedCard === cardKey
+      ? css`
           ${transitionGradient({
             id: '-joinRoom',
             color: theme.page.home.cards.joinRoom.selectedBackground,
+          })}
+        `
+      : css`
+          ${transitionGradient({
+            id: '-joinRoom',
+            color: theme.page.home.cards.joinRoom.background,
           })}
         `}
 `;

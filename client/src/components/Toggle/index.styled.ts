@@ -5,7 +5,8 @@ export const ToggleWrapper = styled.div<{
   size: 'large' | 'medium' | 'small';
   componentTheme: any;
 }>`
-  cursor: pointer;
+  cursor: pointer !important;
+
   box-sizing: border-box;
   position: relative;
 
@@ -43,7 +44,7 @@ export const Toggle = styled.div<{
   size: 'large' | 'medium' | 'small';
   componentTheme: any;
 }>`
-  cursor: pointer;
+  cursor: pointer !important;
   border-radius: 50%;
   position: absolute;
 

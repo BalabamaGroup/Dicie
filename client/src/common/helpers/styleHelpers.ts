@@ -154,6 +154,9 @@ export const transitionGradient = ({
       ${`--color1${id}: ${color};`}
       ${`--color2${id}: ${color};`}
       ${`--color3${id}: ${color};`}
+      ${`--point1${id}: 0%;`};
+      ${`--point2${id}: 50%;`};
+      ${`--point3${id}: 100%;`};
     `;
   }
 

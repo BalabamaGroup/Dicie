@@ -1,5 +1,5 @@
 export const Protocols = Object.freeze({
-  DEFAULT: 'http://',
+  DEFAULT: 'https://',
   SOCKET: 'ws://',
 });
 

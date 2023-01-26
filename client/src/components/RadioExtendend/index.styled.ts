@@ -19,17 +19,19 @@ export const RadioExtendedOption = styled.div<{ isSelected: boolean }>`
 
   .option-header {
     border-radius: 16px 16px 0 0;
-    color: #fff;
+    color: ${({ theme }) => theme.radioExtended.text};
     padding: 0 16px;
     box-sizing: border-box;
     height: 24px;
     width: 100%;
-    background-color: #38373a;
+    background-color: ${({ theme }) => theme.radioExtended.headerBackground};
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     gap: 8px;
+    font-weight: 600;
+    font-size: 12px;
 
     .radio-indicator-wrapper {
       display: flex;
@@ -37,14 +39,15 @@ export const RadioExtendedOption = styled.div<{ isSelected: boolean }>`
       justify-content: center;
       width: 14px;
       height: 14px;
-      background-color: #201e1f;
+      background-color: ${({ theme }) =>
+        theme.radioExtended.indicatorBackground};
       border-radius: 50%;
 
       .radio-indicator {
         ${({ isSelected }) => !isSelected && 'display: none'};
         width: 8px;
         height: 8px;
-        background-color: yellow;
+        background-color: ${({ theme }) => theme.radioExtended.indicator};
         border-radius: 50%;
       }
     }
@@ -52,13 +55,20 @@ export const RadioExtendedOption = styled.div<{ isSelected: boolean }>`
 
   .option-content {
     border-radius: 0 0 16px 16px;
-    padding: 22px 0;
+    padding: 12px 0;
     box-sizing: border-box;
-    background-color: #201e1f;
+    background-color: ${({ theme }) => theme.radioExtended.bodyBackground};
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     color: #fff;
+
+    svg {
+      height: 48px;
+      path {
+        fill: ${({ theme }) => theme.radioExtended.icon};
+      }
+    }
   }
 `;

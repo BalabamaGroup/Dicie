@@ -9,7 +9,7 @@ export const HomePage = styled.section<{ selectedCard: string }>`
   ${commonPageStyles}
 
   width: 100vw;
-  color: ${({ theme }) => theme.page.color};
+  color: ${({ theme }) => theme.page.text};
 
   ${({ theme }) =>
     createGradientTransition({

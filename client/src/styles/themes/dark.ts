@@ -18,14 +18,12 @@ const dark: any = {
 
     home: {
       cards: {
-        default: {
-          background: gradients.dark,
-        },
         createRoom: {
+          defaultText: colors.dark,
           background: gradients.yellow_green,
           selectedBackground: colors.black,
-          chooseGameBackground: colors.black,
-          text: colors.dark,
+          chooseGameBackground: colors.dark,
+          text: colors.light,
           shadowHover: shadows.yellow.large,
         },
         orLabel: {
@@ -34,6 +32,7 @@ const dark: any = {
           shadow: shadows.dark.large,
         },
         joinRoom: {
+          defaultText: colors.light,
           background: gradients.indigo_purple,
           selectedBackground: colors.dark,
           text: colors.light,
@@ -71,6 +70,15 @@ const dark: any = {
     shadow: shadows.yellow.small,
   },
 
+  radioExtended: {
+    text: colors.light,
+    headerBackground: colors.dark_neutral,
+    bodyBackground: colors.dark,
+    indicator: colors.yellow,
+    indicatorBackground: colors.dark,
+    icon: colors.light,
+  },
+
   navbar: {
     background: 'none',
     text: colors.light,
@@ -78,20 +86,11 @@ const dark: any = {
     forsedTextDark: colors.dark,
   },
 
-  toggle: {
-    wrapperBackground: gradients.yellow_green.value,
-    toggleBackground: colors.dark,
-
-    forsed: {
-      light: {
-        wrapperBackground: gradients.indigo_purple.value,
-        toggleBackground: colors.light,
-      },
-      dark: {
-        wrapperBackground: gradients.yellow_green.value,
-        toggleBackground: colors.dark,
-      },
-    },
+  gameButton: {
+    text: colors.light,
+    background: 'none',
+    textSelected: colors.dark,
+    backgroundSelected: colors.yellow,
   },
 };
 

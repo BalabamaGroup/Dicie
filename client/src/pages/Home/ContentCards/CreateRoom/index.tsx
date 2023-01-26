@@ -1,8 +1,10 @@
+import { useState } from 'react';
+
 import { homeContentCards } from '@/common/constants';
 
-import CreateRoomDefaultState from './DefaultState';
+import ChooseGame from './ChooseGame';
 import * as Styled from './index.styled';
-import CreateRoomSelectedState from './SelectedState';
+import SetupRoom from './SetupRoom';
 
 interface CreateRoomCardProps {
   selectedCard: string;
@@ -10,21 +12,33 @@ interface CreateRoomCardProps {
 }
 
 const CreateRoomCard = ({ selectedCard, onSelect }: CreateRoomCardProps) => {
+  const [isMobileSetupCompleted, setIsMobileSetupCompleted] =
+    useState<boolean>(false);
+
+  const onToggleIsMobileSetupCompleted = () =>
+    setIsMobileSetupCompleted(!isMobileSetupCompleted);
+
   return (
     <Styled.CreateRoomCard
       cardKey={homeContentCards.CREATE_ROOM}
       selectedCard={selectedCard}
-      {...(selectedCard !== homeContentCards.CREATE_ROOM && {
-        onClick: onSelect,
-      })}
-      // onClick={
-      //   selectedCard !== homeContentCards.CREATE_ROOM ? onSelect : () => {}
-      // }
+      onClick={onSelect}
     >
       {selectedCard === homeContentCards.DEFAULT ? (
-        <CreateRoomDefaultState />
+        <div>
+          <div className='header main'>{`Create your \n own room`}</div>
+          <div className='header sub'>And make others obey your will</div>
+        </div>
       ) : (
-        <CreateRoomSelectedState />
+        <Styled.CreateRoom isMobileSetupCompleted={isMobileSetupCompleted}>
+          <SetupRoom
+            isMobileSetupCompleted={isMobileSetupCompleted}
+            onToggleIsMobileSetupCompleted={onToggleIsMobileSetupCompleted}
+          />
+          <ChooseGame
+            onToggleIsMobileSetupCompleted={onToggleIsMobileSetupCompleted}
+          />
+        </Styled.CreateRoom>
       )}
     </Styled.CreateRoomCard>
   );
