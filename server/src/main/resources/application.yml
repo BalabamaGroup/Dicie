@@ -21,3 +21,10 @@ mt:
   app:
     jwtSecret: mtSecretKey
     jwtExpirationMs: 86400000
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+mt:
+  root-uri: http://dicie.net:8080
