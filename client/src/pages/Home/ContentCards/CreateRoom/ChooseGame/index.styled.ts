@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { desktopAndBigger, desktopAndSmaller } from '@/common/utils/device';
+import { desktopAndBigger, desktopAndSmaller, mobileAndSmaller } from '@/common/utils/device';
 
 export const ChooseGame = styled.div<{}>`
   display: flex;
@@ -63,6 +63,12 @@ export const GameList = styled.div<{}>`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
+  align-content: flex-start;
   justify-content: space-between;
+  align-items: center;
+
+  gap: 32px;
+  @media ${mobileAndSmaller} {
+    grid-template-columns: 1fr 1fr;
+  }
 `;

@@ -15,9 +15,9 @@ const GameButton = ({ game, onClick }: GameButtonProps) => {
   return (
     <Styled.GameButtonWrapper>
       <Styled.GameButton onClick={onClick}>
-        <ReactSVG src={game.icon} />
-        {game.name}
+        <ReactSVG src={game.icon} className='game-button-icon' />
       </Styled.GameButton>
+      {game.name}
     </Styled.GameButtonWrapper>
   );
 };
