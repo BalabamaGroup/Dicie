@@ -10,23 +10,14 @@ import RoomSettings from './RoomSettings';
 import RoomUsers from './RoomUsers';
 
 const Room = () => {
+  const navigate = useNavigate();
   const { roomId } = useParams();
   const { data: roomData, status: socketStatus } = useRoomConnectionSocket();
-  const navigate = useNavigate();
-
-  // const onDisconnect = async () => {
-  //   roomId && (await RoomAPI.disconnectFromRoom(roomId));
-  //   navigate('/');
-  // };
-
-  // const onFinishGame = async () => roomId && (await RoomAPI.finishGame(roomId));
 
   useEffect(() => {
-    const conectToRoom = async () =>
-      roomId && RoomAPI.connectToRoom(roomId).catch(() => navigate('/'));
-
-    if (socketStatus) conectToRoom();
-  }, [socketStatus]);
+    if (socketStatus && roomId)
+      RoomAPI.connectToRoom(roomId).catch(() => navigate('/'));
+  }, [socketStatus, roomId]);
 
   return (
     <Styled.RoomPage>

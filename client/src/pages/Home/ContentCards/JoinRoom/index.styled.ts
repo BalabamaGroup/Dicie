@@ -49,9 +49,9 @@ export const JoinRoomCard = styled(HomeContentCard)<{
           })}
         `
       : css`
-          ${transitionGradient({
+          /* ${transitionGradient({
             id: '-joinRoom',
             color: theme.page.home.cards.joinRoom.background,
-          })}
+          })} */
         `}
 `;

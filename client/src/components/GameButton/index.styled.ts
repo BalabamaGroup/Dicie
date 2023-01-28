@@ -7,7 +7,7 @@ export const GameButtonWrapper = styled.div<{
   box-sizing: border-box;
 
   padding: 0 0 5px 0;
-  border-radius: 22px 22px 16px 16px;
+  border-radius: 22px 22px 8px 8px;
 
   display: flex;
   flex-direction: column;

@@ -33,16 +33,31 @@ const CreateRoomCard = ({ selectedCard, onSelect }: CreateRoomCardProps) => {
   const [selectedCommunicationOption, setSelectedCommunicationOption] =
     useState<string>('voice');
 
-  const onCreateRoom = async () => {
-    const newRoom = await RoomAPI.createRoom({ gameId: 1, name: roomName });
-    navigate(`/room/${newRoom.id}`);
+  const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
+  const onSelectGame = (gameId: number) => {
+    setSelectedGameId(gameId);
   };
 
   const [isMobileSetupCompleted, setIsMobileSetupCompleted] =
     useState<boolean>(false);
-
   const onToggleIsMobileSetupCompleted = () =>
     setIsMobileSetupCompleted(!isMobileSetupCompleted);
+
+  const onCreateRoom = async () => {
+    if (!canCreateRoom) return;
+
+    const newRoom = await RoomAPI.createRoom({
+      gameId: selectedGameId,
+      name: roomName,
+    });
+
+    navigate(`/room/${newRoom.id}`);
+  };
+
+  const canCreateRoom =
+    !!roomName && !(isPrivate && !roomPassword) && !!selectedGameId;
+
+  const canCompleteMobileSetup = !!roomName && !(isPrivate && !roomPassword);
 
   return (
     <Styled.CreateRoomCard
@@ -58,6 +73,9 @@ const CreateRoomCard = ({ selectedCard, onSelect }: CreateRoomCardProps) => {
       ) : (
         <Styled.CreateRoom isMobileSetupCompleted={isMobileSetupCompleted}>
           <SetupRoom
+            onCreateRoom={onCreateRoom}
+            canCreateRoom={canCreateRoom}
+            canCompleteMobileSetup={canCompleteMobileSetup}
             roomName={roomName}
             onChangeRoomName={onChangeRoomName}
             isPrivate={isPrivate}
@@ -68,12 +86,14 @@ const CreateRoomCard = ({ selectedCard, onSelect }: CreateRoomCardProps) => {
             onChangeIsWithCommuninactions={onChangeIsWithCommuninactions}
             selectedCommunicationOption={selectedCommunicationOption}
             setSelectedCommunicationOption={setSelectedCommunicationOption}
-            onCreateRoom={onCreateRoom}
             isMobileSetupCompleted={isMobileSetupCompleted}
             onToggleIsMobileSetupCompleted={onToggleIsMobileSetupCompleted}
           />
           <ChooseGame
             onCreateRoom={onCreateRoom}
+            canCreateRoom={canCreateRoom}
+            selectedGameId={selectedGameId}
+            onSelectGame={onSelectGame}
             onToggleIsMobileSetupCompleted={onToggleIsMobileSetupCompleted}
           />
         </Styled.CreateRoom>

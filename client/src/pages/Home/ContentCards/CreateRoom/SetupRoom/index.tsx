@@ -9,6 +9,10 @@ import Toggle from '@/components/Toggle';
 import * as Styled from './index.styled';
 
 interface RoomSetupFormProps {
+  onCreateRoom: React.MouseEventHandler<HTMLButtonElement>;
+  canCreateRoom: boolean;
+  canCompleteMobileSetup: boolean;
+
   roomName: string;
   onChangeRoomName: React.ChangeEventHandler<HTMLInputElement>;
 
@@ -24,11 +28,12 @@ interface RoomSetupFormProps {
 
   isMobileSetupCompleted?: boolean;
   onToggleIsMobileSetupCompleted: React.MouseEventHandler<HTMLButtonElement>;
-
-  onCreateRoom: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const SetupRoom = ({
+  onCreateRoom,
+  canCreateRoom,
+  canCompleteMobileSetup,
   roomName,
   onChangeRoomName,
   isPrivate,
@@ -39,7 +44,6 @@ const SetupRoom = ({
   onChangeIsWithCommuninactions,
   selectedCommunicationOption,
   setSelectedCommunicationOption,
-  onCreateRoom,
   isMobileSetupCompleted = false,
   onToggleIsMobileSetupCompleted,
 }: RoomSetupFormProps) => {
@@ -141,6 +145,7 @@ const SetupRoom = ({
 
       <Styled.ButtonWrapper isMobileSetupCompleted={isMobileSetupCompleted}>
         <Button
+          isDisabled={!canCreateRoom}
           className='create-room-button'
           isPrimary
           isScale
@@ -155,6 +160,7 @@ const SetupRoom = ({
           isScale
           onClick={onToggleIsMobileSetupCompleted}
           size='large'
+          isDisabled={!canCompleteMobileSetup}
         >
           Choose game
         </Button>

@@ -73,3 +73,15 @@ export const GameList = styled.div<{}>`
     grid-template-columns: 1fr 1fr;
   }
 `;
+
+export const ButtonWrapper = styled.div<{}>`
+  margin-top: auto;
+  width: 100%;
+  max-width: 400px;
+  flex-shrink: 0;
+  @media ${desktopAndBigger} {
+    .choose-game_create-room-button {
+      display: none;
+    }
+  }
+`;

@@ -54,10 +54,10 @@ export const CreateRoomCard = styled(HomeContentCard)<{
           .choose-game {
             opacity: 0;
           }
-          ${transitionGradient({
+          /* ${transitionGradient({
             id: '-createRoom',
             gradient: theme.page.home.cards.createRoom.background,
-          })}
+          })} */
         `}
 `;
 

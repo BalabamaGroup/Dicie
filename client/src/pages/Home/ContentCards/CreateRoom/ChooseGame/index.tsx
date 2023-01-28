@@ -9,18 +9,19 @@ import * as Styled from './index.styled';
 
 interface ChooseGameProps {
   onCreateRoom: React.MouseEventHandler<HTMLButtonElement>;
+  canCreateRoom: boolean;
+  selectedGameId: number | null;
+  onSelectGame: Function;
   onToggleIsMobileSetupCompleted: React.MouseEventHandler<HTMLDivElement>;
 }
 
 const ChooseGame = ({
   onCreateRoom,
+  canCreateRoom,
+  selectedGameId,
+  onSelectGame,
   onToggleIsMobileSetupCompleted,
 }: ChooseGameProps) => {
-  const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
-  const onSelectGame = (gameId: number) => {
-    setSelectedGameId(gameId);
-  };
-
   return (
     <Styled.ChooseGame className='choose-game'>
       <Styled.Header>
@@ -29,6 +30,7 @@ const ChooseGame = ({
         </div>
         Pick a game
       </Styled.Header>
+
       <Styled.GameList>
         {games.map((game) => (
           <GameButton
@@ -40,15 +42,18 @@ const ChooseGame = ({
         ))}
       </Styled.GameList>
 
-      <Button
-        className='create-room-button'
-        isPrimary
-        isScale
-        onClick={onCreateRoom}
-        size='large'
-      >
-        Create room
-      </Button>
+      <Styled.ButtonWrapper>
+        <Button
+          className='choose-game_create-room-button'
+          isPrimary
+          isScale
+          onClick={onCreateRoom}
+          size='large'
+          isDisabled={!canCreateRoom}
+        >
+          Create room
+        </Button>
+      </Styled.ButtonWrapper>
     </Styled.ChooseGame>
   );
 };
