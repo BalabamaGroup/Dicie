@@ -29,7 +29,7 @@ export const InputThemeLight: InputThemeType = {
 
   text: colors.dark,
   textPlaceholder: colors.neutral[40],
-  textInvalid: colors.dark,
+  textInvalid: colors.red,
 
   focusBorder: colors.purple,
   focusBorderInvalid: colors.red,

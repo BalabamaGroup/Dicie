@@ -7,6 +7,7 @@ import { InputThemeType } from './componentTheme';
 const getMultiInputDataBorderRadiusCss = (
   multiInputData: multiInputDataType | undefined
 ) => {
+  console.log(multiInputData);
   if (!multiInputData) return ` .input_input-wrapper { border-radius: 16px; } `;
   return multiInputData.isSeparate
     ? ` .input_input-wrapper { border-radius: 16px; }; z-index: 10;`
@@ -14,7 +15,7 @@ const getMultiInputDataBorderRadiusCss = (
     ? ` .input_input-wrapper { border-radius: 16px 16px 0 0; } `
     : multiInputData.isBottomSeparate
     ? ` .input_input-wrapper { border-radius: 0 0 16px 16px; } `
-    : ` .input_input-wrapper { border-radius: 0; }`;
+    : ` .input_input-wrapper { border-radius: 0px; }`;
 };
 
 const getMultiInputDataPaddingCss = (
@@ -115,7 +116,7 @@ export const InputWrapper = styled.div<{
         isFocus
           ? isValid
             ? `inset 0px 0px 0px 1.5px ${componentTheme.focusBorder}`
-            : `inset 0px 0px 0px 1.5px ${componentTheme.textInvalid}`
+            : `inset 0px 0px 0px 1.5px ${componentTheme.focusBorderInvalid}`
           : `none`};
     }
   }
@@ -142,6 +143,10 @@ export const Icon = styled.div<{
   size: 'large' | 'medium';
   componentTheme: InputThemeType;
 }>`
+  min-height: 20px;
+  min-width: 20px;
+
+  cursor: pointer;
   height: 20px;
   width: 20px;
   padding: ${({ size }) => (size === 'large' ? '26px' : '14px')};
