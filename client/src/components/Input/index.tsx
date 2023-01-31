@@ -14,6 +14,7 @@ export interface InputProps {
   type?: string;
   label?: string;
   placeholder?: string;
+  autoComplete?: string;
 
   theme?: 'auto' | 'light' | 'dark';
   size?: 'large' | 'medium';
@@ -47,6 +48,7 @@ const Input = ({
   type = 'text',
   label,
   placeholder = '',
+  autoComplete = 'off',
 
   theme = 'auto',
   size = 'medium',
@@ -129,11 +131,10 @@ const Input = ({
   }, dependancies);
 
   return (
-    <Styled.LabelWrapper>
+    <Styled.LabelWrapper className={`${className} label_wrapper`}>
       {label && <label htmlFor={id}>{label}</label>}
       <Styled.Wrapper
         size={size}
-        className={`${className} input_wrapper`}
         isNoteVisible={isFocus && !isValid}
         noteTextHeight={getTextHeight(currentNote, 20)}
         multiInputData={isMultiInputPart ? multiInputData : undefined}
@@ -162,6 +163,7 @@ const Input = ({
                 onBlur={onBlur}
                 className='input_input'
                 placeholder={placeholder}
+                autoComplete={autoComplete}
               />
             </div>
           </div>
