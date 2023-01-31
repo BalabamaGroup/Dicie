@@ -7,7 +7,6 @@ import { InputThemeType } from './componentTheme';
 const getMultiInputDataBorderRadiusCss = (
   multiInputData: multiInputDataType | undefined
 ) => {
-  console.log(multiInputData);
   if (!multiInputData) return ` .input_input-wrapper { border-radius: 16px; } `;
   return multiInputData.isSeparate
     ? ` .input_input-wrapper { border-radius: 16px; }; z-index: 10;`
