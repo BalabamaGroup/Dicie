@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
-import useWebRTC from '../../hooks/useWebRTC';
+import useWebRTC from '@/shared/hooks/useWebRTC';
+
 import Video from './video';
 
 const VoiceChatTest = () => {

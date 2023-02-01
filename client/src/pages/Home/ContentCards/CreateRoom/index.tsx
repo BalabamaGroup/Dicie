@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import RoomAPI from '@/api/room';
-import { homeContentCards } from '@/common/constants';
+import RoomAPI from '@/shared/api/room';
+import { homeContentCards } from '@/shared/constants';
 
 import ChooseGame from './ChooseGame';
 import * as Styled from './index.styled';
@@ -89,6 +89,7 @@ const CreateRoomCard = ({ selectedCard, onSelect }: CreateRoomCardProps) => {
             isMobileSetupCompleted={isMobileSetupCompleted}
             onToggleIsMobileSetupCompleted={onToggleIsMobileSetupCompleted}
           />
+
           <ChooseGame
             onCreateRoom={onCreateRoom}
             canCreateRoom={canCreateRoom}

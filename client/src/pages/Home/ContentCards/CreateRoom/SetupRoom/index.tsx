@@ -1,10 +1,10 @@
 import { ReactSVG } from 'react-svg';
 
-import Button from '@/components/Button';
-import Input from '@/components/Input';
-import RadioExtended from '@/components/RadioExtendend';
-import Scroll from '@/components/Scroll';
-import Toggle from '@/components/Toggle';
+import Button from '@/shared/ui/Button';
+import Input from '@/shared/ui/Input';
+import RadioExtended from '@/shared/ui/RadioExtendend';
+import Scroll from '@/shared/ui/Scroll';
+import Toggle from '@/shared/ui/Toggle';
 
 import * as Styled from './index.styled';
 

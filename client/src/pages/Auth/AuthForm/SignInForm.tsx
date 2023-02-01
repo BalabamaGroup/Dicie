@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import Button from '@/components/Button';
-import Input from '@/components/Input';
-import MultiInput from '@/components/MultiInput';
-import useAuth from '@/hooks/useAuth';
+import useAuth from '@/shared/hooks/useAuth';
+import Button from '@/shared/ui/Button';
+import Input from '@/shared/ui/Input';
+import MultiInput from '@/shared/ui/MultiInput';
 
 import * as Styled from './index.styled';
 

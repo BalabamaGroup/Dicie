@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import RoomAPI from '@/api/room';
-import Game from '@/components/Game';
-import useRoomConnectionSocket from '@/hooks/useRoomConnectionSocket';
+import GuessBoo from '@/games/GuessBoo';
+import Game from '@/games/index';
+import RoomAPI from '@/shared/api/room';
+import useRoomConnectionSocket from '@/shared/hooks/useRoomConnectionSocket';
 
 import * as Styled from './index.styled';
 import RoomSettings from './RoomSettings';
@@ -32,7 +33,7 @@ const Room = () => {
           <button onClick={onDisconnect}>Disconnect</button> */}
         </div>
       )}
-      {roomData && roomData.start && <Game.Charades gameData={roomData} />}
+      {roomData && roomData.start && <GuessBoo gameData={roomData} />}
     </Styled.RoomPage>
   );
 };

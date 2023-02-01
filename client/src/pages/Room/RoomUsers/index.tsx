@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import RoomAPI from '@/api/room';
-import { Game } from '@/common/types/room';
-import { UserInGame } from '@/common/types/user';
+import RoomAPI from '@/shared/api/room';
+import { Game } from '@/shared/types/room';
+import { UserInGame } from '@/shared/types/user';
 
 import * as Styled from './index.styled';
 

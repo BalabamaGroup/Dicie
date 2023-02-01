@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { desktopAndSmaller, tabletAndSmaller } from '@/common/utils/device';
+import { desktopAndSmaller, tabletAndSmaller } from '@/shared/utils/device';
 
 export const SetupRoom = styled.div<{
   isMobileSetupCompleted: boolean;

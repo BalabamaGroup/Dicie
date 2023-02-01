@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { mobileAndSmaller } from '@/common/utils/device';
+
+import { mobileAndSmaller } from '@/shared/utils/device';
 
 export const AuthForm = styled.div`
   width: 400px;

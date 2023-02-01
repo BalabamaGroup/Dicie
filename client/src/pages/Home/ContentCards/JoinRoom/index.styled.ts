@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import { homeContentCards } from '@/common/constants';
-import { createGradientTransition, transitionGradient } from '@/common/helpers/styleHelpers';
+import { homeContentCards } from '@/shared/constants';
+import { createGradientTransition, transitionGradient } from '@/shared/lib/styleHelpers';
 
 import { HomeContentCard } from '../index.styled';
 

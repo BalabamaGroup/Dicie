@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-import { desktopAndSmaller, mobileAndSmaller } from '@/common/utils/device';
-import { commonPageStyles } from '@/styles/commonStyles';
+import { desktopAndSmaller, mobileAndSmaller } from '@/shared/utils/device';
+
+// import { commonPageStyles } from '@/styles/commonStyles';
 
 export const SignUp = styled.section`
-  ${commonPageStyles}
+  /* ${commonPageStyles} */
 
   box-sizing: border-box;
   background: ${({ theme }) => theme.page.background.value};

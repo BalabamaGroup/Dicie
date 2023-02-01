@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { desktopAndBigger, desktopAndSmaller, mobileAndSmaller } from '@/common/utils/device';
+import { desktopAndBigger, desktopAndSmaller, mobileAndSmaller } from '@/shared/utils/device';
 
 export const ChooseGame = styled.div<{}>`
   display: flex;

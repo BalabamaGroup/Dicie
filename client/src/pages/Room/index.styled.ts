@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
-import { commonPageStyles } from '@/styles/commonStyles';
-
 export const RoomPage = styled.section`
-  ${commonPageStyles}
+  /* ${commonPageStyles} */
 
-  background : ${({ theme }) => theme.page.background.value};
+  background: ${({ theme }) => theme.page.background.value};
   color: ${({ theme }) => theme.page.text};
 `;
 

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { homeContentCards } from '@/common/constants';
-import Loader from '@/components/Loader';
-import NavBar from '@/components/NavBar';
-import useCurrentUser from '@/hooks/useCurrentUser';
+import { homeContentCards } from '@/shared/constants';
+import useCurrentUser from '@/shared/hooks/useCurrentUser';
+import Loader from '@/shared/ui/Loader';
+import NavBar from '@/shared/ui/NavBar';
 
 import ContentCards from './ContentCards';
 import * as Styled from './index.styled';

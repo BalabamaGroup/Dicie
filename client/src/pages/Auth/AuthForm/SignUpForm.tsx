@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 
-import { RoleTypes } from '@/common/constants';
+import { RoleTypes } from '@/shared/constants';
+import useAuth from '@/shared/hooks/useAuth';
+import Button from '@/shared/ui/Button';
+import Input from '@/shared/ui/Input';
+import MultiInput from '@/shared/ui/MultiInput';
 import {
     getEmailValidationData, getMatchPasswordValidationData, getPasswordValidationData,
     getUsernameValidationData
-} from '@/common/utils/validation';
-import Button from '@/components/Button';
-import Input from '@/components/Input';
-import MultiInput from '@/components/MultiInput';
-import useAuth from '@/hooks/useAuth';
+} from '@/shared/utils/validation';
 
 import * as Styled from './index.styled';
 

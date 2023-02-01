@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import { homeContentCards } from '@/common/constants';
-import { tabletAndBigger, tabletAndSmaller } from '@/common/utils/device';
+import { homeContentCards } from '@/shared/constants';
+import { tabletAndBigger, tabletAndSmaller } from '@/shared/utils/device';
 
 export const ContentCardsWrapper = styled.div<{
   selectedCard: string;

@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-import { homeContentCards } from '@/common/constants';
-import { createGradientTransition, transitionGradient } from '@/common/helpers/styleHelpers';
-import { desktopAndSmaller } from '@/common/utils/device';
+import { homeContentCards } from '@/shared/constants';
+import { createGradientTransition, transitionGradient } from '@/shared/lib/styleHelpers';
+import { desktopAndSmaller } from '@/shared/utils/device';
 
 import { HomeContentCard } from '../index.styled';
 

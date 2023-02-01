@@ -20,21 +20,17 @@
     "baseUrl": "src",
     "paths": {
       // "@/*": ["./"],
-      "@/api/*": ["./api/*"],
-      "@/common/*": ["./common/*"],
-      "@/components/*": ["./components/*"],
-      "@/hooks/*": ["./hooks/*"],
+      "@/app/*": ["./app/*"],
       "@/pages/*": ["./pages/*"],
-      "@/styles/*": ["./styles/*"]
+      "@/games/*": ["./games/*"],
+      "@/shared/*": ["./shared/*"]
     }
   },
   "include": [
     // "./src",
-    "./src/api",
-    "./src/common",
-    "./src/components",
-    "./src/hooks",
+    "./src/app",
     "./src/pages",
-    "./src/styles"
+    "./src/games",
+    "./src/shared"
   ]
 }

@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import RoomAPI from '@/api/room';
-import Button from '@/components/Button';
-import Input from '@/components/Input';
-import RadioExtended from '@/components/RadioExtendend';
-import Toggle from '@/components/Toggle';
+import RoomAPI from '@/shared/api/room';
+import Button from '@/shared/ui/Button';
+import Input from '@/shared/ui/Input';
+import RadioExtended from '@/shared/ui/RadioExtendend';
+import Toggle from '@/shared/ui/Toggle';
 
 import * as Styled from './index.styled';
 

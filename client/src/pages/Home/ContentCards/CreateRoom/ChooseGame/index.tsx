@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
-import Button from '@/components/Button';
-import GameButton from '@/components/GameButton';
-import games from '@/components/GameButton/games';
+import Button from '@/shared/ui/Button';
+import GameButton from '@/shared/ui/GameButton';
+import games from '@/shared/ui/GameButton/games';
 
 import * as Styled from './index.styled';
 

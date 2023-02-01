@@ -1,10 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import routes from '@/common/constants/routes';
+
+import routes from '@/shared/constants/routes';
+import useTheme from '@/shared/hooks/useTheme';
+import Switch from '@/shared/ui/Switch';
+
 import AuthForm from './AuthForm';
-
-import Switch from '@/components/Switch';
-import useTheme from '@/hooks/useTheme';
-
 import * as Styled from './index.styled';
 
 const SignUp = () => {

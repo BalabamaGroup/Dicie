@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { homeContentCards } from '@/common/constants';
-import { createGradientTransition, transitionGradient } from '@/common/helpers/styleHelpers';
-import { tabletAndSmaller } from '@/common/utils/device';
-import { commonPageStyles } from '@/styles/commonStyles';
+import { commonPageStyles } from '@/app/styles/commonStyles';
+import { homeContentCards } from '@/shared/constants';
+import { createGradientTransition, transitionGradient } from '@/shared/lib/styleHelpers';
+import { tabletAndSmaller } from '@/shared/utils/device';
 
 export const HomePage = styled.section<{ selectedCard: string }>`
   ${commonPageStyles}

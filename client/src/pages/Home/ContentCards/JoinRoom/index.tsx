@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
-import RoomAPI from '@/api/room';
-import UserAPI from '@/api/user';
-import { homeContentCards } from '@/common/constants';
-import useCurrentUser from '@/hooks/useCurrentUser';
+import RoomAPI from '@/shared/api/room';
+import UserAPI from '@/shared/api/user';
+import { homeContentCards } from '@/shared/constants';
+import useCurrentUser from '@/shared/hooks/useCurrentUser';
 
 import * as Styled from './index.styled';
 
