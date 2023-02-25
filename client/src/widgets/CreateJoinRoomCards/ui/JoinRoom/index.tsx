@@ -10,7 +10,7 @@ import * as Styled from './index.styled';
 
 interface JoinRoomCardProps {
   selectedCard: string;
-  onSelect: React.ReactEventHandler<HTMLDivElement>;
+  onSelect: any;
 }
 
 const JoinRoomCard = ({ selectedCard, onSelect }: JoinRoomCardProps) => {

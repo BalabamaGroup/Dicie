@@ -4,7 +4,7 @@ import { homeContentCards } from '@/shared/constants';
 import { createGradientTransition, transitionGradient } from '@/shared/lib/styleHelpers';
 import { desktopAndSmaller } from '@/shared/utils/device';
 
-import { HomeContentCard } from '../index.styled';
+import { HomeContentCard } from '../ui/index.styled';
 
 export const CreateRoomCard = styled(HomeContentCard)<{
   selectedCard: string;

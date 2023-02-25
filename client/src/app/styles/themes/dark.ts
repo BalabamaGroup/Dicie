@@ -82,8 +82,8 @@ const dark: any = {
   navbar: {
     background: 'none',
     text: colors.light,
-    forsedTextLight: colors.light,
-    forsedTextDark: colors.dark,
+    textLight: colors.light,
+    textDark: colors.dark,
   },
 
   gameButton: {

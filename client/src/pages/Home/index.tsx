@@ -1,57 +1,29 @@
 import { useState } from 'react';
 
-import { homeContentCards } from '@/shared/constants';
 import useCurrentUser from '@/shared/hooks/useCurrentUser';
 import Loader from '@/shared/ui/Loader';
 import NavBar from '@/shared/ui/NavBar';
+import useCreateJoinRoomCards from '@/widgets/CreateJoinRoomCards/model/useCreateJoinRoomCards';
+import CreateJoinRoomCards from '@/widgets/CreateJoinRoomCards/ui';
 
-import ContentCards from './ContentCards';
 import * as Styled from './index.styled';
 
 export interface HomeProps {}
 
 const Home = ({}: HomeProps) => {
-  // return <Loader />;
-
   const { isLoading: currentUserIsLoading } = useCurrentUser();
 
-  const [selectedCard, setSelectedCard] = useState<string>(
-    homeContentCards.DEFAULT
-  );
-
-  const onSelectCreateRoom = (e: any) => {
-    if (selectedCard === homeContentCards.CREATE_ROOM) return;
-    e.preventDefault();
-    setSelectedCard(homeContentCards.CREATE_ROOM);
-  };
-
-  const onSelectJoinRoom = (e: any) => {
-    if (selectedCard === homeContentCards.JOIN_ROOM) return;
-    e.preventDefault();
-    setSelectedCard(homeContentCards.JOIN_ROOM);
-  };
+  const selectedCard = useCreateJoinRoomCards((state) => state.selectedCard);
+  const isCreateRoom = useCreateJoinRoomCards((state) => state.isCreateRoom);
+  const isJoinRoom = useCreateJoinRoomCards((state) => state.isJoinRoom);
 
   return (
     <Styled.HomePage selectedCard={selectedCard}>
       <NavBar
-        forsedTextColor={
-          selectedCard === homeContentCards.CREATE_ROOM
-            ? 'dark'
-            : selectedCard === homeContentCards.JOIN_ROOM
-            ? 'light'
-            : undefined
-        }
+        textColor={isCreateRoom ? 'dark' : isJoinRoom ? 'light' : 'auto'}
       />
       <Styled.HomeContent>
-        {currentUserIsLoading ? (
-          <Loader />
-        ) : (
-          <ContentCards
-            selectedCard={selectedCard}
-            onSelectCreateRoom={onSelectCreateRoom}
-            onSelectJoinRoom={onSelectJoinRoom}
-          />
-        )}
+        {currentUserIsLoading ? <Loader /> : <CreateJoinRoomCards />}
       </Styled.HomeContent>
     </Styled.HomePage>
   );

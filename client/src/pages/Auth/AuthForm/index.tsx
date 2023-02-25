@@ -1,4 +1,7 @@
 import { useState } from 'react';
+
+import { useAuthForm } from '@/widgets/AuthForm/model/useAuthForm';
+
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
 
@@ -7,19 +10,25 @@ interface AuthFormProps {
 }
 
 const AuthForm = ({ type }: AuthFormProps) => {
-  const [username, setUsername] = useState('');
+  const username = useAuthForm((state) => state.username);
+  const email = useAuthForm((state) => state.email);
+  const password = useAuthForm((state) => state.password);
+  const matchPassword = useAuthForm((state) => state.matchPassword);
+
+  const setUsername = useAuthForm((state) => state.setUsername);
+  const setEmail = useAuthForm((state) => state.setEmail);
+  const setPassword = useAuthForm((state) => state.setPassword);
+  const setMatchPassword = useAuthForm((state) => state.setMatchPassword);
+
   const onChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) =>
     setUsername(e.target.value);
 
-  const [email, setEmail] = useState('');
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
 
-  const [password, setPassword] = useState('');
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
     setPassword(e.target.value);
 
-  const [matchPassword, setMatchPassword] = useState('');
   const onChangeMatchPassword = (e: React.ChangeEvent<HTMLInputElement>) =>
     setMatchPassword(e.target.value);
 

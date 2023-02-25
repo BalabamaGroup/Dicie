@@ -6,12 +6,12 @@ import useAuth from '@/shared/hooks/useAuth';
 import Button from '@/shared/ui/Button';
 import Input from '@/shared/ui/Input';
 import MultiInput from '@/shared/ui/MultiInput';
+import { useAuthForm } from '@/widgets/AuthForm/model/useAuthForm';
+
 import {
     getEmailValidationData, getMatchPasswordValidationData, getPasswordValidationData,
     getUsernameValidationData
-} from '@/shared/utils/validation';
-import { useAuthForm } from '@/widgets/AuthForm/model/useAuthForm';
-
+} from '../lib/validation';
 import * as Styled from './index.styled';
 
 interface signUpProps {}

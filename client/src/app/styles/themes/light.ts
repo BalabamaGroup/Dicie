@@ -1,4 +1,3 @@
-import RadioExtended from '../../components/RadioExtendend/index';
 import colors from '../colors/colors';
 import gradients from '../colors/gradients';
 import shadows from '../colors/shadows';
@@ -83,8 +82,8 @@ const light = {
   navbar: {
     background: 'none',
     text: colors.dark,
-    forsedTextLight: colors.light,
-    forsedTextDark: colors.dark,
+    textLight: colors.light,
+    textDark: colors.dark,
   },
 
   gameButton: {

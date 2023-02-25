@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const RoomPage = styled.section`
-  /* ${commonPageStyles} */
+  width: 100vw;
+  height: 100vh;
 
   background: ${({ theme }) => theme.page.background.value};
   color: ${({ theme }) => theme.page.text};

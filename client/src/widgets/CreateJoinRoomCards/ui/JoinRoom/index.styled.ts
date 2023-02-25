@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { homeContentCards } from '@/shared/constants';
 import { createGradientTransition, transitionGradient } from '@/shared/lib/styleHelpers';
 
-import { HomeContentCard } from '../index.styled';
+import { HomeContentCard } from '../ui/index.styled';
 
 export const JoinRoomCard = styled(HomeContentCard)<{
   selectedCard: string;

@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-import { commonPageStyles } from '@/app/styles/commonStyles';
 import { homeContentCards } from '@/shared/constants';
 import { createGradientTransition, transitionGradient } from '@/shared/lib/styleHelpers';
 import { tabletAndSmaller } from '@/shared/utils/device';
 
 export const HomePage = styled.section<{ selectedCard: string }>`
-  ${commonPageStyles}
+  width: 100vw;
+  height: 100vh;
 
   width: 100vw;
   color: ${({ theme }) => theme.page.text};

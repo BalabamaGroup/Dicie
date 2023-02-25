@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const NavBar = styled.div<{
-  forsedTextColor: 'light' | 'dark' | undefined;
+  textColor: 'light' | 'dark' | 'auto';
 }>`
   padding: 0 64px;
   height: 64px;
@@ -16,11 +16,11 @@ export const NavBar = styled.div<{
 
   .navbar-logo,
   .navbar-link {
-    color: ${({ forsedTextColor, theme }) =>
-      forsedTextColor
-        ? forsedTextColor === 'light'
-          ? theme.navbar.forsedTextLight
-          : theme.navbar.forsedTextDark
+    color: ${({ textColor, theme }) =>
+      textColor === 'light'
+        ? theme.navbar.textLight
+        : textColor === 'dark'
+        ? theme.navbar.textDark
         : theme && theme.navbar.text};
   }
 `;

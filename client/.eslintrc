@@ -5,7 +5,9 @@
       "alias": [
         ["@/app", "./src/app"],
         ["@/pages", "./src/pages"],
-        ["@/games", "./src/games"],
+        ["@/widgets", "./src/widgets"],
+        ["@/features", "./src/features"],
+        ["@/entities", "./src/entities"],
         ["@/shared", "./src/shared"]
       ]
     }

@@ -10,7 +10,7 @@ import SetupRoom from './SetupRoom';
 
 interface CreateRoomCardProps {
   selectedCard: string;
-  onSelect: React.ReactEventHandler<HTMLDivElement>;
+  onSelect: any;
 }
 
 const CreateRoomCard = ({ selectedCard, onSelect }: CreateRoomCardProps) => {

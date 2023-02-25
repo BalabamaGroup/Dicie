@@ -22,7 +22,9 @@
       // "@/*": ["./"],
       "@/app/*": ["./app/*"],
       "@/pages/*": ["./pages/*"],
-      "@/games/*": ["./games/*"],
+      "@/widgets/*": ["./widgets/*"],
+      "@/features/*": ["./features/*"],
+      "@/entities/*": ["./entities/*"],
       "@/shared/*": ["./shared/*"]
     }
   },
@@ -30,7 +32,9 @@
     // "./src",
     "./src/app",
     "./src/pages",
-    "./src/games",
+    "./src/widgets",
+    "./src/features",
+    "./src/entities",
     "./src/shared"
   ]
 }

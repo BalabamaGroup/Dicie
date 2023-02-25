@@ -21,6 +21,9 @@ export default defineConfig({
     }),
     viteTsconfigPaths(),
   ],
+  define: {
+    global: {},
+  },
   build: {
     outDir: 'build',
   },

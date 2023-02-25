@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import routes from '@/shared/constants/routes';
 import useAuth from '@/shared/hooks/useAuth';
@@ -9,20 +9,20 @@ import { size } from '@/shared/utils/device';
 import * as Styled from './index.styled';
 
 interface NavBarProps {
-  forsedTextColor?: 'light' | 'dark';
+  textColor: 'light' | 'dark' | 'auto';
 }
 
-const NavBar = ({ forsedTextColor }: NavBarProps) => {
+const NavBar = ({ textColor }: NavBarProps) => {
   const navigate = useNavigate();
-  const { signOut } = useAuth();
   const { toggleTheme } = useTheme();
+  const { signOut } = useAuth();
 
   const windowWindth = useWindowWidth(100);
 
   if (windowWindth < size.tablet) return null;
 
   return (
-    <Styled.NavBar forsedTextColor={forsedTextColor}>
+    <Styled.NavBar textColor={textColor}>
       <Styled.Logo>Dicie</Styled.Logo>
 
       <Styled.LinksWrapper>

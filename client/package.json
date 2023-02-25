@@ -13,6 +13,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/styled-components": "^5.1.26",
+    "@types/webrtc": "^0.0.33",
     "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -20,9 +21,11 @@
     "react-router-dom": "^6.4.1",
     "react-svg": "^15.1.9",
     "react-toastify": "^9.0.8",
+    "simple-peer": "^9.11.1",
     "styled-components": "^5.3.6",
     "typeface-nunito": "^1.1.13",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zustand": "^4.3.2"
   },
   "devDependencies": {
     "@types/jest": "^27.5.2",
@@ -30,6 +33,7 @@
     "@types/node": "^16.11.62",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
+    "@types/simple-peer": "^9.11.5",
     "@vitejs/plugin-react": "^2.2.0",
     "babel-plugin-styled-components": "^2.0.7",
     "eslint": "^8.27.0",
