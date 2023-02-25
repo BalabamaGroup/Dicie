@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import RoomAPI from '@/api/room';
-import Game from '@/components/Game';
+import GuessBoo from '@/games/GuessBoo';
 import useRoomConnectionSocket from '@/hooks/useRoomConnectionSocket';
 
 import * as Styled from './index.styled';
@@ -32,7 +32,7 @@ const Room = () => {
           <button onClick={onDisconnect}>Disconnect</button> */}
         </div>
       )}
-      {roomData && roomData.start && <Game.Charades gameData={roomData} />}
+      {roomData && roomData.start && <GuessBoo gameData={roomData} />}
     </Styled.RoomPage>
   );
 };

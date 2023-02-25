@@ -1,12 +1,11 @@
 import { Game } from '@/common/types/room';
 import { UserInGame } from '@/common/types/user';
 
-import Player from '../../Player';
-import CurrentUserPlayer from '../../Player/CurrentUserPlayer';
 import AnswerQuestion from './AnswerQuestion';
 import AnswerVisualizer from './AnswerVisualizer';
 import AskQuestion from './AskQuestion';
 import CheckWord from './CheckWord';
+import PlayersSlider from './PlayersSlider';
 import QuestionTable from './QuestionTable';
 
 interface MainStageProps {
@@ -15,11 +14,7 @@ interface MainStageProps {
   players: UserInGame[];
 }
 
-const MainStage = ({
-  gameData,
-  currentUserPlayer,
-  players,
-}: MainStageProps) => {
+const Main = ({ gameData, currentUserPlayer, players }: MainStageProps) => {
   const isMyTurn = currentUserPlayer.state.isGoing;
   const questionIsAsked = !!gameData.roomDataDto.currentQuestion;
   const iHaveAnsweredQuestion = !!currentUserPlayer.state.lastAnswer;
@@ -29,7 +24,9 @@ const MainStage = ({
 
   return (
     <div>
-      <CurrentUserPlayer player={currentUserPlayer} />
+      <PlayersSlider />
+
+      {/* <CurrentUserPlayer player={currentUserPlayer} /> */}
 
       {iHaveWon && (
         <h1 style={{ width: '100%', textAlign: 'center' }}>You've won!</h1>
@@ -73,14 +70,15 @@ const MainStage = ({
       <h3>{currentUserPlayer.points}</h3>
 
       {players.map((player) => (
-        <Player
-          key={player.id}
-          player={player}
-          currentUserPlayer={currentUserPlayer}
-        />
+        // <Player
+        //   key={player.id}
+        //   player={player}
+        //   currentUserPlayer={currentUserPlayer}
+        // />
+        <div>{player.email}</div>
       ))}
     </div>
   );
 };
 
-export default MainStage;
+export default Main;

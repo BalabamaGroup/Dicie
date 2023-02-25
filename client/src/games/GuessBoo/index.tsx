@@ -1,13 +1,13 @@
 import { Game } from '@/common/types/room';
 
-import MainStage from './Stage/MainStage';
+import Main from './Stage/MainStage';
 import PlayerPickingStage from './Stage/PlayerPicking';
 
-interface CharadesProps {
+interface GuessBooProps {
   gameData: Game;
 }
 
-const Charades = ({ gameData }: CharadesProps) => {
+const GuessBoo = ({ gameData }: GuessBooProps) => {
   const currentUserId = +(sessionStorage.getItem('id') || -1);
   const players = gameData.users.filter((user) => user.id !== currentUserId);
   const [currentUserPlayer] = gameData.users.filter(
@@ -23,7 +23,7 @@ const Charades = ({ gameData }: CharadesProps) => {
     );
 
   return (
-    <MainStage
+    <Main
       gameData={gameData}
       currentUserPlayer={currentUserPlayer}
       players={players}
@@ -31,4 +31,4 @@ const Charades = ({ gameData }: CharadesProps) => {
   );
 };
 
-export default Charades;
+export default GuessBoo;

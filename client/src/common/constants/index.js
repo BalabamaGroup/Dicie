@@ -1,6 +1,6 @@
 export const Protocols = Object.freeze({
-  DEFAULT: 'https://',
-  SOCKET: 'wss://',
+  DEFAULT: 'http://',
+  SOCKET: 'ws://',
 });
 
 export const Ports = Object.freeze({

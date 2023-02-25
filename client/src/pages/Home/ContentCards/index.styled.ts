@@ -98,7 +98,7 @@ export const HomeContentCard = styled.div<{
     max-width: 380px;
   }
   .main {
-    font-weight: 800;
+    font-weight: 700;
     font-size: 48px;
     line-height: 58px;
     white-space: pre-line;

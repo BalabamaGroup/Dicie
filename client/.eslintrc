@@ -6,6 +6,7 @@
         ["@/api", "./src/api"],
         ["@/common", "./src/common"],
         ["@/components", "./src/components"],
+        ["@/games", "./src/games"],
         ["@/hooks", "./src/hooks"],
         ["@/pages", "./src/pages"],
         ["@/styles", "./src/styles"]

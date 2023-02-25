@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import CharadesAPI from '@/api/game/charades';
 import { UserInGame } from '@/common/types/user';
 import Button from '@/components/Button';
+import Player from '@/components/Player';
 
 import BottomContent from './BottomContent/index';
 import * as Styled from './index.styled';
-import Player from './Player';
 import TopMessage from './TopMessage/index.';
 
 interface PlayerPickingStageProps {
@@ -39,14 +39,23 @@ const PlayerPickingStage = ({
     const avialablePlayers = players.filter(
       (player) => !player.state.selectedBy && player.id !== currentUserPlayer.id
     );
-
     if (avialablePlayers.length !== 2) return null;
-
     const disabledPlayer = avialablePlayers.filter(
       (player) => player.state.selectedUser
     );
-
     return disabledPlayer.length ? disabledPlayer[0].id : null;
+  };
+
+  const disabledByLoopsPlayerId = getDisabledByLoopsPlayerId();
+
+  const onSelectUser = (player: UserInGame) => {
+    if (
+      !isCurrentUserTurn ||
+      player.state.selectedBy ||
+      (disabledByLoopsPlayerId && disabledByLoopsPlayerId === player.id)
+    )
+      return;
+    setHighlightedUserId(player.id);
   };
 
   useEffect(() => {
@@ -66,11 +75,17 @@ const PlayerPickingStage = ({
         {players.map((player) => (
           <Player
             key={player.id}
-            player={player}
-            isCurrentUserTurn={isCurrentUserTurn}
+            canBeHighlighted
             isHighlighted={highlightedUserId === player.id}
-            setHighlightedUserId={setHighlightedUserId}
-            disabledByLoopsPlayerId={getDisabledByLoopsPlayerId()}
+            isClickable={isCurrentUserTurn}
+            onClick={() => onSelectUser(player)}
+            label={player.state.word}
+            outsideLabel={player.username}
+            isDisabled={
+              isCurrentUserTurn &&
+              (!!player.state.selectedBy ||
+                disabledByLoopsPlayerId === player.id)
+            }
           />
         ))}
       </Styled.PlayersList>

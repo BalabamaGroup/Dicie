@@ -23,6 +23,7 @@
       "@/api/*": ["./api/*"],
       "@/common/*": ["./common/*"],
       "@/components/*": ["./components/*"],
+      "@/games/*": ["./games/*"],
       "@/hooks/*": ["./hooks/*"],
       "@/pages/*": ["./pages/*"],
       "@/styles/*": ["./styles/*"]
@@ -33,6 +34,7 @@
     "./src/api",
     "./src/common",
     "./src/components",
+    "./src/games",
     "./src/hooks",
     "./src/pages",
     "./src/styles"
