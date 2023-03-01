@@ -1,12 +1,17 @@
 package com.balabama.mt.service_implementation;
 
+import com.balabama.mt.entities.rooms.Chat;
 import com.balabama.mt.entities.rooms.Room;
 import com.balabama.mt.exceptions.MTException;
+import com.balabama.mt.repositories.ChatRepository;
 import com.balabama.mt.repositories.RoomRepository;
+import com.balabama.mt.services.ChatService;
 import com.balabama.mt.services.RoomService;
 import com.balabama.mt.services.UserService;
+
 import java.util.List;
 import java.util.UUID;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +21,7 @@ import org.springframework.stereotype.Service;
 public class RoomServiceImpl implements RoomService {
 
     private final RoomRepository roomRepository;
+    private final ChatService chatService;
     private final UserService userService;
 
     @Override
@@ -25,7 +31,11 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public Room save(Room newRoom) {
-        return roomRepository.save(newRoom);
+        Room room = roomRepository.save(newRoom);
+        if (!chatService.existById(room.getId())) {
+            chatService.save(new Chat(room.getId()));
+        }
+        return room;
     }
 
     @Override
@@ -70,8 +80,10 @@ public class RoomServiceImpl implements RoomService {
         delete(room);
     }
 
+
     @Override
     public void delete(Room room) {
+        chatService.delete(room.getId());
         roomRepository.delete(room);
     }
 
