@@ -11,7 +11,7 @@ const light = {
     text: colors.dark,
 
     auth: {
-      pictureBackground: gradients.indigo_purple_light.value,
+      pictureBackground: gradients.indigo_purple.value,
       headerMain: colors.dark,
       headerSub: colors.neutral[70],
       headerAccent: colors.purple,
@@ -21,7 +21,7 @@ const light = {
       cards: {
         createRoom: {
           defaultText: colors.dark,
-          background: gradients.yellow_green_dark,
+          background: gradients.yellow_green,
           selectedBackground: colors.light,
           chooseGameBackground: colors.white,
           text: colors.dark,

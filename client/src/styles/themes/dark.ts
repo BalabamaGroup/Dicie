@@ -10,7 +10,7 @@ const dark: any = {
     text: colors.light,
 
     auth: {
-      pictureBackground: gradients.yellow_green_light.value,
+      pictureBackground: gradients.yellow_green.value,
       headerMain: colors.light,
       headerSub: colors.neutral[30],
       headerAccent: colors.yellow,
@@ -20,7 +20,7 @@ const dark: any = {
       cards: {
         createRoom: {
           defaultText: colors.dark,
-          background: gradients.yellow_green_dark,
+          background: gradients.yellow_green,
           selectedBackground: colors.black,
           chooseGameBackground: colors.dark,
           text: colors.light,
@@ -46,7 +46,7 @@ const dark: any = {
     guessBoo: {
       playerPicking: {
         currentUserPanel: {
-          background: gradients.yellow_green_dark.value,
+          background: gradients.yellow_green.value,
           text: colors.dark,
         },
       },
@@ -69,7 +69,7 @@ const dark: any = {
     text: colors.light,
     shadow: shadows.dark.medium,
 
-    backgroundPrimary: gradients.yellow_green_dark.value,
+    backgroundPrimary: gradients.yellow_green.value,
     textPrimary: colors.dark,
     shadowPrimary: colors.yellow,
 
