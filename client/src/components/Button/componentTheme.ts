@@ -20,7 +20,7 @@ export const ButtonThemeDark = {
   text: colors.light,
   shadow: shadows.dark.medium,
 
-  backgroundPrimary: gradients.yellow_green_dark.value,
+  backgroundPrimary: gradients.yellow_green.value,
   textPrimary: colors.dark,
   shadowPrimary: shadows.yellow.small,
 

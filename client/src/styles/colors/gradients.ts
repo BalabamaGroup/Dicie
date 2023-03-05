@@ -32,14 +32,6 @@ const gradients = {
     points: ['10%', '25%', '80%'],
   },
 
-  yellow_green_light: {
-    value: 'linear-gradient(135deg, #FEFFD7 12.5%, #DDFCCA 87.5%);',
-    angle: '135deg',
-    colorsNum: 2,
-    colors: ['#FEFFD7', '#DDFCCA'],
-    points: ['12.5%', '87.5%'],
-  },
-
   yellow_green_dark: {
     value: 'linear-gradient(135deg, #F2F586 12.5%, #B0F586 87.5%);',
     angle: '135deg',
@@ -48,19 +40,27 @@ const gradients = {
     points: ['12.5%', '87.5%'],
   },
 
-  indigo_purple_light: {
-    value: 'linear-gradient(135deg, #DAD9FF 12.5%, #E8D0FF 87.5%);',
+  yellow_green_light: {
+    value: 'linear-gradient(135deg, #F9FAC3 12.5%, #D8FAC3 87.5%);',
     angle: '135deg',
     colorsNum: 2,
-    colors: ['#DAD9FF', '#E8D0FF'],
+    colors: ['#F9FAC3', '#D8FAC3'],
     points: ['12.5%', '87.5%'],
   },
 
   indigo_purple_dark: {
-    value: 'linear-gradient(135deg, #8986F5 12.5%, #BD86F5 87.5%);',
+    value: 'linear-gradient(135deg, #8986F5 12.5%, #BE86F5 87.5%);',
     angle: '135deg',
     colorsNum: 2,
-    colors: ['#8986F5', '#BD86F5'],
+    colors: ['#8986F5', '#BE86F5'],
+    points: ['12.5%', '87.5%'],
+  },
+
+  indigo_purple_light: {
+    value: 'linear-gradient(135deg, #C5C3FA 12.5%, #DEC3FA 87.5%);',
+    angle: '135deg',
+    colorsNum: 2,
+    colors: ['#C5C3FA', '#DEC3FA'],
     points: ['12.5%', '87.5%'],
   },
 };
