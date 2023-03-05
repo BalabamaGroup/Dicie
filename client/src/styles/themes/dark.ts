@@ -10,7 +10,7 @@ const dark: any = {
     text: colors.light,
 
     auth: {
-      pictureBackground: gradients.yellow_green.value,
+      pictureBackground: gradients.yellow_green_dark.value,
       headerMain: colors.light,
       headerSub: colors.neutral[30],
       headerAccent: colors.yellow_dark,
@@ -39,7 +39,7 @@ const dark: any = {
     guessBoo: {
       playerPicking: {
         currentUserPanel: {
-          background: gradients.yellow_green.value,
+          background: gradients.yellow_green_dark.value,
           text: colors.dark,
         },
       },

@@ -10,7 +10,7 @@ const light = {
     text: colors.dark,
 
     auth: {
-      pictureBackground: gradients.indigo_purple.value,
+      pictureBackground: gradients.indigo_purple_dark.value,
       headerMain: colors.dark,
       headerSub: colors.neutral[70],
       headerAccent: colors.indigo_dark,
