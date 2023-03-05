@@ -11,8 +11,6 @@ import * as Styled from './index.styled';
 export interface HomeProps {}
 
 const Home = ({}: HomeProps) => {
-  // return <Loader />;
-
   const { isLoading: currentUserIsLoading } = useCurrentUser();
 
   const [selectedCard, setSelectedCard] = useState<string>(
@@ -44,7 +42,7 @@ const Home = ({}: HomeProps) => {
       />
       <Styled.HomeContent>
         {currentUserIsLoading ? (
-          <Loader />
+          <Loader.Circle />
         ) : (
           <ContentCards
             selectedCard={selectedCard}

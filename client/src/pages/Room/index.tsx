@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import RoomAPI from '@/api/room';
+import Loader from '@/components/Loader';
+import NavBar from '@/components/NavBar';
 import GuessBoo from '@/games/GuessBoo';
 import useRoomConnectionSocket from '@/hooks/useRoomConnectionSocket';
 
@@ -19,20 +21,26 @@ const Room = () => {
       RoomAPI.connectToRoom(roomId).catch(() => navigate('/'));
   }, [socketStatus, roomId]);
 
+  if (!roomData || (roomData && roomData.start === undefined))
+    return (
+      <Styled.RoomPage>
+        <NavBar revertTextColor />
+        <Loader.Circle />
+      </Styled.RoomPage>
+    );
+
   return (
     <Styled.RoomPage>
-      {roomData && !roomData.start ? (
+      <NavBar revertTextColor />
+
+      {!roomData?.start ? (
         <Styled.RoomLoadedContent>
           <RoomUsers roomData={roomData} />
           <RoomSettings />
         </Styled.RoomLoadedContent>
       ) : (
-        <div>
-          {/* <button onClick={onFinishGame}>Finish game</button>
-          <button onClick={onDisconnect}>Disconnect</button> */}
-        </div>
+        <GuessBoo gameData={roomData} />
       )}
-      {roomData && roomData.start && <GuessBoo gameData={roomData} />}
     </Styled.RoomPage>
   );
 };

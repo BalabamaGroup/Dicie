@@ -21,7 +21,7 @@ const light = {
       cards: {
         createRoom: {
           defaultText: colors.dark,
-          background: gradients.yellow_green,
+          background: gradients.yellow_green_dark,
           selectedBackground: colors.light,
           chooseGameBackground: colors.white,
           text: colors.dark,
@@ -66,9 +66,16 @@ const light = {
   },
 
   button: {
-    background: colors.purple,
-    text: colors.light,
-    shadow: shadows.purple.medium,
+    background: colors.light,
+    text: colors.dark,
+    shadow: shadows.light.medium,
+
+    backgroundPrimary: colors.purple,
+    textPrimary: colors.light,
+    shadowPrimary: shadows.purple.medium,
+
+    textOutline: colors.light,
+    borderOutline: colors.light,
   },
 
   radioExtended: {
@@ -81,8 +88,9 @@ const light = {
   },
 
   navbar: {
-    background: 'none',
+    background: colors.white,
     text: colors.dark,
+    revertText: colors.light,
     forsedTextLight: colors.light,
     forsedTextDark: colors.dark,
   },

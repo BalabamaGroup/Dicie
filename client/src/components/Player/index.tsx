@@ -4,6 +4,9 @@ import * as Styled from './index.styled';
 
 interface PlayerProps {
   //   player: UserInGame;
+  id?: string;
+  className?: string;
+  size?: 'small' | 'medium' | 'large';
 
   isClickable?: boolean;
   onClick: React.MouseEventHandler<HTMLDivElement>;
@@ -19,6 +22,9 @@ interface PlayerProps {
 
 const Player = ({
   //   player,
+  id,
+  className,
+  size = 'medium',
 
   canBeHighlighted = false,
   isHighlighted = false,
@@ -32,28 +38,31 @@ const Player = ({
 }: PlayerProps) => {
   return (
     <Styled.PlayerWrapper
+      id={id}
+      className={className}
       onClick={onClick}
       isDisabled={isDisabled}
       isClickable={isClickable}
     >
       <Styled.Player
+        size={size}
         canBeHighlighted={canBeHighlighted}
         isHighlighted={isHighlighted}
       >
         {label && (
-          <Styled.PlayerCharacter>
+          <Styled.PlayerLabel size={size}>
             <div className='character' title={label}>
               {label}
             </div>
-          </Styled.PlayerCharacter>
+          </Styled.PlayerLabel>
         )}
       </Styled.Player>
       {outsideLabel && (
-        <Styled.PlayerUsername>
+        <Styled.PlayerOutsideLabel size={size}>
           <div className='username' title={outsideLabel}>
             {outsideLabel}
           </div>
-        </Styled.PlayerUsername>
+        </Styled.PlayerOutsideLabel>
       )}
     </Styled.PlayerWrapper>
   );

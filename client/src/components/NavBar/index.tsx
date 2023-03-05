@@ -9,10 +9,11 @@ import useWindowWidth from '@/hooks/useWindowWidth';
 import * as Styled from './index.styled';
 
 interface NavBarProps {
+  revertTextColor?: boolean;
   forsedTextColor?: 'light' | 'dark';
 }
 
-const NavBar = ({ forsedTextColor }: NavBarProps) => {
+const NavBar = ({ revertTextColor = false, forsedTextColor }: NavBarProps) => {
   const navigate = useNavigate();
   const { signOut } = useAuth();
   const { toggleTheme } = useTheme();
@@ -22,7 +23,10 @@ const NavBar = ({ forsedTextColor }: NavBarProps) => {
   if (windowWindth < size.tablet) return null;
 
   return (
-    <Styled.NavBar forsedTextColor={forsedTextColor}>
+    <Styled.NavBar
+      revertTextColor={revertTextColor}
+      forsedTextColor={forsedTextColor}
+    >
       <Styled.Logo>Dicie</Styled.Logo>
 
       <Styled.LinksWrapper>

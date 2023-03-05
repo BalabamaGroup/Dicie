@@ -32,7 +32,7 @@ const gradients = {
     points: ['10%', '25%', '80%'],
   },
 
-  yellow_green: {
+  yellow_green_dark: {
     value: 'linear-gradient(135deg, #F2F586 12.5%, #B0F586 87.5%);',
     angle: '135deg',
     colorsNum: 2,
@@ -48,7 +48,7 @@ const gradients = {
     points: ['12.5%', '87.5%'],
   },
 
-  indigo_purple: {
+  indigo_purple_dark: {
     value: 'linear-gradient(135deg, #8986F5 12.5%, #BE86F5 87.5%);',
     angle: '135deg',
     colorsNum: 2,

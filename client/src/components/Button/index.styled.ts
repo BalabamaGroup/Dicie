@@ -6,7 +6,6 @@ export const Button = styled.button<{
   size: 'large' | 'medium' | 'small';
   isPrimary: boolean;
   isOutline: boolean;
-  componentTheme: any;
 }>`
   all: unset;
   user-select: none;
@@ -23,44 +22,44 @@ export const Button = styled.button<{
   width: ${({ isScale }) => (isScale ? '100%' : 'auto')};
 
   // DEFAULT
-  ${({ componentTheme }) => css`
-    background: ${componentTheme.background};
-    color: ${componentTheme.text};
+  ${({ theme }) => css`
+    background: ${theme.button.background};
+    color: ${theme.button.text};
     &:hover {
-      box-shadow: ${componentTheme.shadow};
+      box-shadow: ${theme.button.shadow};
     }
     &:active {
       transition: box-shadow 0.05s ease-in, background 0.1s ease-in-out;
-      box-shadow: ${componentTheme.shadowPrimary},
-        inset 0px 0px 0px 2px ${componentTheme.borderOutline};
+      box-shadow: ${theme.button.shadowPrimary},
+        inset 0px 0px 0px 2px ${theme.button.borderOutline};
     }
   `}
 
   // PRIMARY
-  ${({ isPrimary, componentTheme }) =>
+  ${({ isPrimary, theme }) =>
     isPrimary &&
     css`
-      background: ${componentTheme.backgroundPrimary};
-      color: ${componentTheme.textPrimary};
+      background: ${theme.button.backgroundPrimary};
+      color: ${theme.button.textPrimary};
       &:hover {
-        box-shadow: ${componentTheme.shadowPrimary};
+        box-shadow: ${theme.button.shadowPrimary};
       }
       &:active {
-        box-shadow: ${componentTheme.shadowPrimary},
-          inset 0px 0px 0px 2px ${componentTheme.borderOutline};
+        box-shadow: ${theme.button.shadowPrimary},
+          inset 0px 0px 0px 2px ${theme.button.borderOutline};
       }
     `}
 
   // OUTLINE
-  ${({ isOutline, isPrimary, componentTheme }) =>
+  ${({ isOutline, isPrimary, theme }) =>
     isOutline &&
     !isPrimary &&
     css`
       background: none;
-      color: ${componentTheme.textOutline};
-      box-shadow: inset 0px 0px 0px 2px ${componentTheme.borderOutline};
+      color: ${theme.button.textOutline};
+      box-shadow: inset 0px 0px 0px 2px ${theme.button.borderOutline};
       &:hover {
-        box-shadow: inset 0px 0px 0px 2px ${componentTheme.borderOutline};
+        box-shadow: inset 0px 0px 0px 2px ${theme.button.borderOutline};
         background: rgba(255, 255, 255, 0.25);
       }
       &:active {

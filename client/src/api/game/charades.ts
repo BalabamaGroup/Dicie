@@ -1,4 +1,4 @@
-import { request } from '..';
+import { request } from '../';
 
 export default class CharadesAPI {
   static selectUser = (id: number) => {
@@ -29,7 +29,7 @@ export default class CharadesAPI {
     request(options);
   };
 
-  static askQuestion = (data: { question: string }) => {
+  static askQuestion = async (data: { question: string }) => {
     const options = {
       method: 'post',
       url: `game_charade/ask_question`,
@@ -72,7 +72,7 @@ export default class CharadesAPI {
     );
   };
 
-  static checkWord = (data: { word: string }) => {
+  static checkWord = async (data: { word: string }) => {
     const options = {
       method: 'post',
       url: `game_charade/check_word`,

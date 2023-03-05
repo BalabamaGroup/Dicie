@@ -12,6 +12,12 @@ const Theme = ({ children }: { children: any }) => {
   const [theme, setTheme] = useState<string | null>(getTheme());
 
   useEffect(() => {
+    let meId = sessionStorage.getItem('id');
+    if (meId && meId === '17') {
+      setTheme('light');
+      return;
+    }
+
     const themeListener = () => {
       const theme = getTheme;
       setTheme(theme);

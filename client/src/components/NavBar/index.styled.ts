@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const NavBar = styled.div<{
+  revertTextColor: boolean;
   forsedTextColor: 'light' | 'dark' | undefined;
 }>`
   padding: 0 64px;
@@ -12,16 +13,20 @@ export const NavBar = styled.div<{
 
   box-sizing: border-box;
   width: 100%;
-  background: ${({ theme }) => theme && theme.navbar.background};
+
+  .navbar-logo,
+  .navbar-link {
+    color: ${({ revertTextColor, theme }) =>
+      revertTextColor ? theme.navbar.revertText : theme.navbar.text};
+  }
 
   .navbar-logo,
   .navbar-link {
     color: ${({ forsedTextColor, theme }) =>
-      forsedTextColor
-        ? forsedTextColor === 'light'
-          ? theme.navbar.forsedTextLight
-          : theme.navbar.forsedTextDark
-        : theme && theme.navbar.text};
+      forsedTextColor &&
+      (forsedTextColor === 'light'
+        ? theme.navbar.forsedTextLight
+        : theme.navbar.forsedTextDark)};
   }
 `;
 

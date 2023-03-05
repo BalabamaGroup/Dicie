@@ -1,33 +1,23 @@
 import { Game } from '@/common/types/room';
 
-import Main from './Stage/MainStage';
-import PlayerPickingStage from './Stage/PlayerPicking';
+import Main from './Main';
+import Setup from './Setup';
 
 interface GuessBooProps {
   gameData: Game;
 }
 
 const GuessBoo = ({ gameData }: GuessBooProps) => {
-  const currentUserId = +(sessionStorage.getItem('id') || -1);
-  const players = gameData.users.filter((user) => user.id !== currentUserId);
-  const [currentUserPlayer] = gameData.users.filter(
-    (user) => user.id === currentUserId
-  );
+  const gameIsSetup = gameData.roomDataDto.allUsersReady;
 
-  if (!gameData.roomDataDto?.allUsersReady)
-    return (
-      <PlayerPickingStage
-        currentUserPlayer={currentUserPlayer}
-        players={players}
-      />
-    );
+  const meId = +(sessionStorage.getItem('id') || -1);
+  const [mePlayer] = gameData.users.filter((u) => u.id === meId);
+  const otherPlayers = gameData.users.filter((u) => u.id !== meId);
 
-  return (
-    <Main
-      gameData={gameData}
-      currentUserPlayer={currentUserPlayer}
-      players={players}
-    />
+  return !gameIsSetup ? (
+    <Setup mePlayer={mePlayer} otherPlayers={otherPlayers} />
+  ) : (
+    <Main gameData={gameData} mePlayer={mePlayer} otherPlayers={otherPlayers} />
   );
 };
 

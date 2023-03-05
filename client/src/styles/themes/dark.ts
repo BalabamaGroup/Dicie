@@ -20,7 +20,7 @@ const dark: any = {
       cards: {
         createRoom: {
           defaultText: colors.dark,
-          background: gradients.yellow_green,
+          background: gradients.yellow_green_dark,
           selectedBackground: colors.black,
           chooseGameBackground: colors.dark,
           text: colors.light,
@@ -46,7 +46,7 @@ const dark: any = {
     guessBoo: {
       playerPicking: {
         currentUserPanel: {
-          background: gradients.yellow_green.value,
+          background: gradients.yellow_green_dark.value,
           text: colors.dark,
         },
       },
@@ -65,9 +65,16 @@ const dark: any = {
   },
 
   button: {
-    background: gradients.yellow_green.value,
-    text: colors.dark,
-    shadow: shadows.yellow.small,
+    background: colors.dark,
+    text: colors.light,
+    shadow: shadows.dark.medium,
+
+    backgroundPrimary: gradients.yellow_green_dark.value,
+    textPrimary: colors.dark,
+    shadowPrimary: colors.yellow,
+
+    textOutline: colors.dark,
+    borderOutline: colors.dark,
   },
 
   radioExtended: {
@@ -80,8 +87,9 @@ const dark: any = {
   },
 
   navbar: {
-    background: 'none',
+    background: colors.black,
     text: colors.light,
+    revertText: colors.dark,
     forsedTextLight: colors.light,
     forsedTextDark: colors.dark,
   },

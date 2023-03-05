@@ -1,8 +1,5 @@
 import React, { MouseEventHandler } from 'react';
 
-import useComponentTheme from '@/hooks/useComponentTheme';
-
-import { ButtonThemeDark, ButtonThemeLight } from './componentTheme';
 import * as Styled from './index.styled';
 
 interface ButtonProps {
@@ -23,24 +20,16 @@ const Button = ({
   children,
   onClick,
   size = 'medium',
-  theme = 'auto',
   isPrimary = false,
   isOutline = false,
   isDisabled = false,
   isScale = false,
 }: ButtonProps) => {
-  const componentTheme = useComponentTheme(
-    theme,
-    ButtonThemeLight,
-    ButtonThemeDark
-  );
-
   return (
     <Styled.Button
       className={className}
       onClick={onClick}
       size={size}
-      componentTheme={componentTheme}
       isPrimary={isPrimary}
       isOutline={isOutline}
       disabled={isDisabled}
