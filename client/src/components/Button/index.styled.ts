@@ -23,15 +23,15 @@ export const Button = styled.button<{
 
   // DEFAULT
   ${({ theme }) => css`
-    background: ${theme.button.background};
-    color: ${theme.button.text};
+    background: ${theme.background};
+    color: ${theme.text};
     &:hover {
-      box-shadow: ${theme.button.shadow};
+      box-shadow: ${theme.shadow};
     }
     &:active {
       transition: box-shadow 0.05s ease-in, background 0.1s ease-in-out;
-      box-shadow: ${theme.button.shadowPrimary},
-        inset 0px 0px 0px 2px ${theme.button.borderOutline};
+      box-shadow: ${theme.shadowPrimary},
+        inset 0px 0px 0px 2px ${theme.borderOutline};
     }
   `}
 
@@ -39,14 +39,14 @@ export const Button = styled.button<{
   ${({ isPrimary, theme }) =>
     isPrimary &&
     css`
-      background: ${theme.button.backgroundPrimary};
-      color: ${theme.button.textPrimary};
+      background: ${theme.backgroundPrimary};
+      color: ${theme.textPrimary};
       &:hover {
-        box-shadow: ${theme.button.shadowPrimary};
+        box-shadow: ${theme.shadowPrimary};
       }
       &:active {
-        box-shadow: ${theme.button.shadowPrimary},
-          inset 0px 0px 0px 2px ${theme.button.borderOutline};
+        box-shadow: ${theme.shadowPrimary},
+          inset 0px 0px 0px 2px ${theme.borderOutline};
       }
     `}
 
@@ -56,10 +56,10 @@ export const Button = styled.button<{
     !isPrimary &&
     css`
       background: none;
-      color: ${theme.button.textOutline};
-      box-shadow: inset 0px 0px 0px 2px ${theme.button.borderOutline};
+      color: ${theme.textOutline};
+      box-shadow: inset 0px 0px 0px 2px ${theme.borderOutline};
       &:hover {
-        box-shadow: inset 0px 0px 0px 2px ${theme.button.borderOutline};
+        box-shadow: inset 0px 0px 0px 2px ${theme.borderOutline};
         background: rgba(255, 255, 255, 0.25);
       }
       &:active {

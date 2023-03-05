@@ -23,7 +23,7 @@ export type UserInGame = {
 export type UserCharadesState = {
   isGoing: boolean;
   ready: boolean;
-  lastAnswer: 'YES' | 'NO' | 'WTF';
+  lastAnswer: 'YES' | 'NO' | 'WTF' | null;
   selectedBy: number | null;
   selectedUser: number | null;
   winRound: boolean;

@@ -1,4 +1,3 @@
-import RadioExtended from '../../components/RadioExtendend/index';
 import colors from '../colors/colors';
 import gradients from '../colors/gradients';
 import shadows from '../colors/shadows';
@@ -14,31 +13,24 @@ const light = {
       pictureBackground: gradients.indigo_purple_light.value,
       headerMain: colors.dark,
       headerSub: colors.neutral[70],
-      headerAccent: colors.purple,
+      headerAccent: colors.indigo_dark,
     },
 
     home: {
-      cards: {
-        createRoom: {
-          defaultText: colors.dark,
-          background: gradients.yellow_green_dark,
-          selectedBackground: colors.light,
-          chooseGameBackground: colors.white,
-          text: colors.dark,
-          shadowHover: shadows.yellow.large,
-        },
-        orLabel: {
-          background: colors.light,
-          text: colors.dark,
-          shadow: shadows.light.large,
-        },
-        joinRoom: {
-          defaultText: colors.light,
-          background: gradients.indigo_purple,
-          selectedBackground: colors.light,
-          text: colors.light,
-          shadowHover: shadows.purple.large,
-        },
+      createRoomCard: {
+        defaultText: colors.dark,
+        background: gradients.yellow_green_light,
+        selectedBackground: colors.light,
+        chooseGameBackground: colors.white,
+        text: colors.dark,
+        shadowHover: shadows.yellow.large,
+      },
+      joinRoomCard: {
+        defaultText: colors.dark,
+        text: colors.dark,
+        background: gradients.indigo_purple_light,
+        selectedBackground: colors.light,
+        shadowHover: shadows.purple.large,
       },
     },
   },
@@ -47,7 +39,7 @@ const light = {
     guessBoo: {
       playerPicking: {
         currentUserPanel: {
-          background: gradients.indigo_purple.value,
+          background: gradients.indigo_purple_dark.value,
           text: colors.light,
         },
       },
@@ -57,32 +49,42 @@ const light = {
   switch: {
     isChosen: {
       background: 'none',
-      text: colors.purple,
-      highlighting: colors.purple,
+      text: colors.indigo_dark,
+      highlighting: colors.indigo_dark,
     },
-    background: colors.purple,
+    background: colors.indigo_dark,
     text: colors.light,
     shadow: shadows.purple.small,
   },
 
   button: {
-    background: colors.light,
-    text: colors.dark,
-    shadow: shadows.light.medium,
-
-    backgroundPrimary: colors.purple,
-    textPrimary: colors.light,
-    shadowPrimary: shadows.purple.medium,
-
-    textOutline: colors.light,
-    borderOutline: colors.light,
+    indigo: {
+      background: colors.light,
+      text: colors.dark,
+      shadow: shadows.light.medium,
+      backgroundPrimary: colors.indigo_dark,
+      textPrimary: colors.light,
+      shadowPrimary: shadows.purple.medium,
+      textOutline: colors.light,
+      borderOutline: colors.light,
+    },
+    yellow: {
+      background: colors.light,
+      text: colors.dark,
+      shadow: shadows.light.medium,
+      backgroundPrimary: colors.yellow_dark,
+      textPrimary: colors.dark,
+      shadowPrimary: shadows.purple.medium,
+      textOutline: colors.light,
+      borderOutline: colors.light,
+    },
   },
 
   radioExtended: {
     text: colors.dark,
     headerBackground: colors.light_neutral,
     bodyBackground: colors.white,
-    indicator: colors.purple,
+    indicator: colors.indigo_dark,
     indicatorBackground: colors.white,
     icon: colors.dark,
   },
@@ -99,7 +101,7 @@ const light = {
     text: colors.dark,
     background: 'none',
     textSelected: colors.light,
-    backgroundSelected: colors.purple,
+    backgroundSelected: colors.indigo_dark,
   },
 };
 

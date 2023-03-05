@@ -1,29 +1,7 @@
 import colors from '@/styles/colors/colors';
 import shadows from '@/styles/colors/shadows';
 
-export type InputThemeType = {
-  background: string;
-  backgroundVibrant: string;
-
-  text: string;
-  textPlaceholder: string;
-  textInvalid: string;
-
-  focusBorder: string;
-  focusBorderInvalid: string;
-
-  shadow: string;
-  shadowInvalid: string;
-
-  icon: {
-    fill: string;
-    fillHover: string;
-    background: string;
-    backgroundHover: string;
-  };
-};
-
-export const InputThemeLight: InputThemeType = {
+export const lightComponentTheme = {
   background: colors.white,
   backgroundVibrant: colors.light,
 
@@ -31,7 +9,7 @@ export const InputThemeLight: InputThemeType = {
   textPlaceholder: colors.neutral[40],
   textInvalid: colors.red,
 
-  focusBorder: colors.purple,
+  focusBorder: colors.indigo_dark,
   focusBorderInvalid: colors.red,
 
   shadow: shadows.purple.small,
@@ -41,11 +19,11 @@ export const InputThemeLight: InputThemeType = {
     fill: colors.neutral[40],
     fillHover: colors.white,
     background: colors.white,
-    backgroundHover: colors.purple,
+    backgroundHover: colors.indigo_dark,
   },
 };
 
-export const InputThemeDark: InputThemeType = {
+export const darkComponentTheme = {
   background: colors.dark,
   backgroundVibrant: colors.black,
 
@@ -53,7 +31,7 @@ export const InputThemeDark: InputThemeType = {
   textPlaceholder: colors.neutral[60],
   textInvalid: colors.red,
 
-  focusBorder: colors.yellow,
+  focusBorder: colors.yellow_dark,
   focusBorderInvalid: colors.red,
 
   shadow: shadows.dark.small,
@@ -63,6 +41,6 @@ export const InputThemeDark: InputThemeType = {
     fill: colors.neutral[60],
     fillHover: colors.black,
     background: 'transparent',
-    backgroundHover: colors.yellow,
+    backgroundHover: colors.yellow_dark,
   },
 };

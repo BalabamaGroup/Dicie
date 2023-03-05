@@ -7,8 +7,11 @@ const colors = {
   dark: '#181621',
   black: '#100F16',
 
-  purple: '#8986F5',
-  yellow: '#d0f485',
+  indigo_light: '#B9B7EF',
+  indigo_dark: '#8986F5',
+
+  yellow_light: '#FEFFD7 ',
+  yellow_dark: '#d0f485',
 
   green: '#6DE36B',
   orange: '#FFA84B',

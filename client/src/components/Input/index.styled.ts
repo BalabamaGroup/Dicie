@@ -2,8 +2,6 @@ import styled, { css } from 'styled-components';
 
 import { multiInputDataType } from '@/components/MultiInput';
 
-import { InputThemeType } from './componentTheme';
-
 const getMultiInputDataBorderRadiusCss = (
   multiInputData: multiInputDataType | undefined
 ) => {
@@ -55,7 +53,7 @@ export const Wrapper = styled.div<{
   isNoteVisible: boolean | undefined;
   noteTextHeight: number;
   size: 'large' | 'medium';
-  componentTheme: InputThemeType;
+  componentTheme: any;
 }>`
   max-width: 100%;
   flex-direction: column;
@@ -76,7 +74,7 @@ export const InputWrapper = styled.div<{
   isVibrant: boolean;
   size: 'large' | 'medium';
   withIcon: boolean;
-  componentTheme: InputThemeType;
+  componentTheme: any;
 }>`
   cursor: text;
   position: relative;
@@ -140,7 +138,7 @@ export const InputWrapper = styled.div<{
 
 export const Icon = styled.div<{
   size: 'large' | 'medium';
-  componentTheme: InputThemeType;
+  componentTheme: any;
 }>`
   min-height: 20px;
   min-width: 20px;
@@ -176,7 +174,7 @@ export const Icon = styled.div<{
 
 export const Note = styled.div<{
   isVisible: boolean | undefined;
-  componentTheme: InputThemeType;
+  componentTheme: any;
 }>`
   user-select: none;
   max-width: 100%;

@@ -5,7 +5,7 @@ import { getTextHeight } from '@/common/helpers/domHelpers';
 import { multiInputDataType } from '@/components/MultiInput';
 import useComponentTheme from '@/hooks/useComponentTheme';
 
-import { InputThemeDark, InputThemeLight, InputThemeType } from './componentTheme';
+import { darkComponentTheme, lightComponentTheme } from './componentTheme';
 import * as Styled from './index.styled';
 
 export interface InputProps {
@@ -76,11 +76,11 @@ const Input = ({
 
   const isMultiInputPart = !!multiInputData && !!onChangeMultiInputData;
 
-  const componentTheme: InputThemeType = useComponentTheme(
+  const componentTheme = useComponentTheme({
     theme,
-    InputThemeLight,
-    InputThemeDark
-  );
+    lightComponentTheme,
+    darkComponentTheme,
+  });
 
   const [isFocus, setIsFocus] = useState(false);
   const onFocus = () => {

@@ -1,4 +1,7 @@
 import React, { MouseEventHandler } from 'react';
+import { useTheme } from 'styled-components';
+
+import { ComponentColor } from '@/common/types/theme';
 
 import * as Styled from './index.styled';
 
@@ -9,6 +12,7 @@ interface ButtonProps {
 
   size?: 'large' | 'medium' | 'small';
   theme?: 'auto' | 'light' | 'dark';
+  color?: ComponentColor;
   isPrimary?: boolean;
   isOutline?: boolean;
   isDisabled?: boolean;
@@ -20,16 +24,22 @@ const Button = ({
   children,
   onClick,
   size = 'medium',
+  color = 'yellow',
   isPrimary = false,
   isOutline = false,
   isDisabled = false,
   isScale = false,
 }: ButtonProps) => {
+  let theme: any = useTheme();
+  theme = theme.button[color];
+
   return (
     <Styled.Button
       className={className}
       onClick={onClick}
       size={size}
+      theme={theme}
+      color={color}
       isPrimary={isPrimary}
       isOutline={isOutline}
       disabled={isDisabled}

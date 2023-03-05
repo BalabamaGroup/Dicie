@@ -7,7 +7,7 @@ export const ButtonThemeLight = {
   text: colors.dark,
   shadow: shadows.light.medium,
 
-  backgroundPrimary: gradients.indigo_purple.value,
+  backgroundPrimary: gradients.indigo_purple_dark.value,
   textPrimary: colors.light,
   shadowPrimary: shadows.purple.medium,
 

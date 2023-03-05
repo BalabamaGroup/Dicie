@@ -13,31 +13,24 @@ const dark: any = {
       pictureBackground: gradients.yellow_green_light.value,
       headerMain: colors.light,
       headerSub: colors.neutral[30],
-      headerAccent: colors.yellow,
+      headerAccent: colors.yellow_dark,
     },
 
     home: {
-      cards: {
-        createRoom: {
-          defaultText: colors.dark,
-          background: gradients.yellow_green_dark,
-          selectedBackground: colors.black,
-          chooseGameBackground: colors.dark,
-          text: colors.light,
-          shadowHover: shadows.yellow.large,
-        },
-        orLabel: {
-          background: colors.dark,
-          text: colors.light,
-          shadow: shadows.dark.large,
-        },
-        joinRoom: {
-          defaultText: colors.light,
-          background: gradients.indigo_purple,
-          selectedBackground: colors.dark,
-          text: colors.light,
-          shadowHover: shadows.purple.large,
-        },
+      createRoomCard: {
+        defaultText: colors.dark,
+        background: gradients.yellow_green_dark,
+        selectedBackground: colors.black,
+        chooseGameBackground: colors.dark,
+        text: colors.light,
+        shadowHover: shadows.yellow.large,
+      },
+      joinRoomCard: {
+        defaultText: colors.light,
+        background: gradients.indigo_purple_dark,
+        selectedBackground: colors.dark,
+        text: colors.light,
+        shadowHover: shadows.purple.large,
       },
     },
   },
@@ -56,32 +49,42 @@ const dark: any = {
   switch: {
     isChosen: {
       background: 'none',
-      text: colors.yellow,
-      highlighting: colors.yellow,
+      text: colors.yellow_dark,
+      highlighting: colors.yellow_dark,
     },
-    background: colors.yellow,
+    background: colors.yellow_dark,
     text: colors.dark,
     shadow: shadows.yellow.small,
   },
 
   button: {
-    background: colors.dark,
-    text: colors.light,
-    shadow: shadows.dark.medium,
-
-    backgroundPrimary: gradients.yellow_green_dark.value,
-    textPrimary: colors.dark,
-    shadowPrimary: colors.yellow,
-
-    textOutline: colors.dark,
-    borderOutline: colors.dark,
+    indigo: {
+      background: colors.dark,
+      text: colors.light,
+      shadow: shadows.dark.medium,
+      backgroundPrimary: gradients.yellow_green_dark.value,
+      textPrimary: colors.light,
+      shadowPrimary: colors.indigo_dark,
+      textOutline: colors.dark,
+      borderOutline: colors.dark,
+    },
+    yellow: {
+      background: colors.dark,
+      text: colors.light,
+      shadow: shadows.dark.medium,
+      backgroundPrimary: gradients.yellow_green_dark.value,
+      textPrimary: colors.dark,
+      shadowPrimary: colors.yellow_dark,
+      textOutline: colors.dark,
+      borderOutline: colors.dark,
+    },
   },
 
   radioExtended: {
     text: colors.light,
     headerBackground: colors.dark_neutral,
     bodyBackground: colors.dark,
-    indicator: colors.yellow,
+    indicator: colors.yellow_dark,
     indicatorBackground: colors.dark,
     icon: colors.light,
   },
@@ -98,7 +101,7 @@ const dark: any = {
     text: colors.light,
     background: 'none',
     textSelected: colors.dark,
-    backgroundSelected: colors.yellow,
+    backgroundSelected: colors.yellow_dark,
   },
 };
 

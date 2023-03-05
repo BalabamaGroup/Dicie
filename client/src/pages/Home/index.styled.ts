@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 import { homeContentCards } from '@/common/constants';
-import { createGradientTransition, transitionGradient } from '@/common/helpers/styleHelpers';
+import {
+  createGradientTransition,
+  transitionGradient,
+} from '@/common/helpers/styleHelpers';
 import { tabletAndSmaller } from '@/common/utils/device';
 import { commonPageStyles } from '@/styles/commonStyles';
 
@@ -26,12 +29,12 @@ export const HomePage = styled.section<{ selectedCard: string }>`
       : selectedCard === homeContentCards.CREATE_ROOM
       ? transitionGradient({
           id: '-homePageBackground',
-          gradient: theme.page.home.cards.createRoom.background,
+          gradient: theme.page.home.createRoomCard.background,
         })
       : selectedCard === homeContentCards.JOIN_ROOM &&
         transitionGradient({
           id: '-homePageBackground',
-          gradient: theme.page.home.cards.joinRoom.background,
+          gradient: theme.page.home.joinRoomCard.background,
         })};
 `;
 

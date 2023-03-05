@@ -72,6 +72,7 @@ const SetupRoom = ({
                 value={isPrivate}
                 onChange={onChangeIsPrivate}
                 size={'medium'}
+                color={'yellow'}
               />
               <div className='isprivate-main-text'>Make room private</div>
             </div>
@@ -101,6 +102,7 @@ const SetupRoom = ({
                 value={isWithCommuninactions}
                 onChange={onChangeIsWithCommuninactions}
                 size={'medium'}
+                color={'yellow'}
               />
               <div className='communications-main-text'>
                 Enable in-game player communication
@@ -145,6 +147,7 @@ const SetupRoom = ({
 
       <Styled.ButtonWrapper isMobileSetupCompleted={isMobileSetupCompleted}>
         <Button
+          color='yellow'
           isDisabled={!canCreateRoom}
           className='create-room-button'
           isPrimary
@@ -155,6 +158,7 @@ const SetupRoom = ({
           Create room
         </Button>
         <Button
+          color='yellow'
           className='choose-game-button'
           isPrimary
           isScale

@@ -1,7 +1,10 @@
 import styled, { css } from 'styled-components';
 
 import { homeContentCards } from '@/common/constants';
-import { createGradientTransition, transitionGradient } from '@/common/helpers/styleHelpers';
+import {
+  createGradientTransition,
+  transitionGradient,
+} from '@/common/helpers/styleHelpers';
 
 import { HomeContentCard } from '../index.styled';
 
@@ -9,7 +12,7 @@ export const JoinRoomCard = styled(HomeContentCard)<{
   selectedCard: string;
   cardKey: string;
 }>`
-  color: ${({ theme }) => theme.page.home.cards.joinRoom.text};
+  color: ${({ theme }) => theme.page.home.joinRoomCard.text};
 
   ${({ selectedCard }) =>
     selectedCard === homeContentCards.JOIN_ROOM
@@ -28,7 +31,7 @@ export const JoinRoomCard = styled(HomeContentCard)<{
 
   ${({ theme }) =>
     createGradientTransition({
-      gradient: theme.page.home.cards.joinRoom.background,
+      gradient: theme.page.home.joinRoomCard.background,
       id: '-joinRoom',
     })}
 
@@ -45,13 +48,13 @@ export const JoinRoomCard = styled(HomeContentCard)<{
       ? css`
           ${transitionGradient({
             id: '-joinRoom',
-            color: theme.page.home.cards.joinRoom.selectedBackground,
+            color: theme.page.home.joinRoomCard.selectedBackground,
           })}
         `
       : css`
           /* ${transitionGradient({
             id: '-joinRoom',
-            color: theme.page.home.cards.joinRoom.background,
+            color: theme.page.home.joinRoomCard.background,
           })} */
         `}
 `;

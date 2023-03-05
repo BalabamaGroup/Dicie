@@ -1,16 +1,39 @@
 import { useTheme } from 'styled-components';
 
-const useComponentTheme = (
-  theme: 'auto' | 'light' | 'dark',
-  lightComponentTheme: any,
-  darkComponentTheme: any
-) => {
+import {
+  ComponentColor,
+  ComponentTheme,
+  ComponentThemes,
+} from '@/common/types/theme';
+
+interface useComponentThemeProps {
+  theme: ComponentTheme;
+  color?: ComponentColor;
+  lightComponentTheme: any;
+  darkComponentTheme: any;
+}
+
+const useComponentTheme = ({
+  theme,
+  color,
+  lightComponentTheme,
+  darkComponentTheme,
+}: useComponentThemeProps) => {
   const autoTheme: any = useTheme();
 
-  if ((theme === 'auto' && autoTheme.name === 'light') || theme === 'light')
-    return lightComponentTheme;
+  const isLight =
+    (theme === ComponentThemes.auto &&
+      autoTheme.name === ComponentThemes.light) ||
+    theme === ComponentThemes.light;
 
-  return darkComponentTheme;
+  let componentTheme;
+
+  if (isLight) componentTheme = lightComponentTheme;
+  else componentTheme = darkComponentTheme;
+
+  if (color && componentTheme[color]) componentTheme = componentTheme[color];
+
+  return componentTheme;
 };
 
 export default useComponentTheme;

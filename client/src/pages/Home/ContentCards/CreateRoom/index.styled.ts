@@ -1,7 +1,10 @@
 import styled, { css } from 'styled-components';
 
 import { homeContentCards } from '@/common/constants';
-import { createGradientTransition, transitionGradient } from '@/common/helpers/styleHelpers';
+import {
+  createGradientTransition,
+  transitionGradient,
+} from '@/common/helpers/styleHelpers';
 import { desktopAndSmaller } from '@/common/utils/device';
 
 import { HomeContentCard } from '../index.styled';
@@ -11,7 +14,7 @@ export const CreateRoomCard = styled(HomeContentCard)<{
   cardKey: string;
 }>`
   .header {
-    color: ${({ theme }) => theme.page.home.cards.createRoom.defaultText};
+    color: ${({ theme }) => theme.page.home.createRoomCard.defaultText};
   }
 
   ${({ selectedCard }) =>
@@ -33,7 +36,7 @@ export const CreateRoomCard = styled(HomeContentCard)<{
   ${({ theme }) =>
     createGradientTransition({
       id: '-createRoom',
-      gradient: theme.page.home.cards.createRoom.background,
+      gradient: theme.page.home.createRoomCard.background,
     })}
 
   ${({ selectedCard, cardKey, theme }) =>
@@ -47,7 +50,7 @@ export const CreateRoomCard = styled(HomeContentCard)<{
       ? css`
           ${transitionGradient({
             id: '-createRoom',
-            color: theme.page.home.cards.createRoom.selectedBackground,
+            color: theme.page.home.createRoomCard.selectedBackground,
           })}
         `
       : css`
@@ -56,7 +59,7 @@ export const CreateRoomCard = styled(HomeContentCard)<{
           }
           /* ${transitionGradient({
             id: '-createRoom',
-            gradient: theme.page.home.cards.createRoom.background,
+            gradient: theme.page.home.createRoomCard.background,
           })} */
         `}
 `;

@@ -36,7 +36,7 @@ export const ToggleWrapper = styled.div<{
         `};
 
   background: ${({ value, componentTheme }) =>
-    value ? componentTheme.wrapperBackground : componentTheme.toggleBackground};
+    !value ? componentTheme.backgroundOff : componentTheme.backgroundOn};
 `;
 
 export const Toggle = styled.div<{
@@ -47,6 +47,9 @@ export const Toggle = styled.div<{
   cursor: pointer !important;
   border-radius: 50%;
   position: absolute;
+
+  transition: transform 0.35s cubic-bezier(0.3, 1.8, 0.4, 0.7),
+    background 0.3s ease-in-out;
 
   ${({ value }) => (value ? ` transform: translateX(100%); ` : ` left: 0; `)};
 
@@ -69,8 +72,6 @@ export const Toggle = styled.div<{
           margin-left: ${value ? '4px' : '2px'};
         `};
 
-  transition: all 0.35s cubic-bezier(0.3, 1.8, 0.4, 0.7);
-
   background: ${({ value, componentTheme }) =>
-    value ? componentTheme.toggleBackground : componentTheme.wrapperBackground};
+    !value ? componentTheme.toggleOff : componentTheme.toggleOn};
 `;
