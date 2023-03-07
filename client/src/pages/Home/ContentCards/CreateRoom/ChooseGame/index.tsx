@@ -44,7 +44,7 @@ const ChooseGame = ({
 
       <Styled.ButtonWrapper>
         <Button
-          color='yellow'
+          color='lime'
           className='choose-game_create-room-button'
           isPrimary
           isScale

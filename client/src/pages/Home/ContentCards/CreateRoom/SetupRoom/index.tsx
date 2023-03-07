@@ -58,6 +58,7 @@ const SetupRoom = ({
         <Styled.SetupRoomForm>
           <Input
             id={'room-name'}
+            color={'lime'}
             label='Room name'
             value={roomName}
             placeholder='Name'
@@ -72,7 +73,7 @@ const SetupRoom = ({
                 value={isPrivate}
                 onChange={onChangeIsPrivate}
                 size={'medium'}
-                color={'yellow'}
+                color={'lime'}
               />
               <div className='isprivate-main-text'>Make room private</div>
             </div>
@@ -85,6 +86,7 @@ const SetupRoom = ({
                 </div>
                 <Input
                   id={'room-name'}
+                  color={'lime'}
                   className='isprivate-settings-password'
                   value={roomPassword}
                   placeholder='Room password'
@@ -102,7 +104,7 @@ const SetupRoom = ({
                 value={isWithCommuninactions}
                 onChange={onChangeIsWithCommuninactions}
                 size={'medium'}
-                color={'yellow'}
+                color={'lime'}
               />
               <div className='communications-main-text'>
                 Enable in-game player communication
@@ -112,6 +114,7 @@ const SetupRoom = ({
             {isWithCommuninactions && (
               <div className='communications-settings'>
                 <RadioExtended
+                  color={'lime'}
                   className={'communications-settings-radio'}
                   selectedOptionId={selectedCommunicationOption}
                   options={[
@@ -147,7 +150,7 @@ const SetupRoom = ({
 
       <Styled.ButtonWrapper isMobileSetupCompleted={isMobileSetupCompleted}>
         <Button
-          color='yellow'
+          color='lime'
           isDisabled={!canCreateRoom}
           className='create-room-button'
           isPrimary
@@ -158,7 +161,7 @@ const SetupRoom = ({
           Create room
         </Button>
         <Button
-          color='yellow'
+          color='lime'
           className='choose-game-button'
           isPrimary
           isScale

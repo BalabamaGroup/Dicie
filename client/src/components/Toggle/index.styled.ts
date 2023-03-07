@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 export const ToggleWrapper = styled.div<{
   value: boolean;
   size: 'large' | 'medium' | 'small';
-  componentTheme: any;
 }>`
   cursor: pointer !important;
 
@@ -35,21 +34,21 @@ export const ToggleWrapper = styled.div<{
           border-radius: 7px;
         `};
 
-  background: ${({ value, componentTheme }) =>
-    !value ? componentTheme.backgroundOff : componentTheme.backgroundOn};
+  transition: background 0.175s ease-in-out;
+  background: ${({ value, theme }) =>
+    !value ? theme.backgroundOff : theme.backgroundOn};
 `;
 
 export const Toggle = styled.div<{
   value: boolean;
   size: 'large' | 'medium' | 'small';
-  componentTheme: any;
 }>`
   cursor: pointer !important;
   border-radius: 50%;
   position: absolute;
 
   transition: transform 0.35s cubic-bezier(0.3, 1.8, 0.4, 0.7),
-    background 0.3s ease-in-out;
+    background 0.175s ease-in-out;
 
   ${({ value }) => (value ? ` transform: translateX(100%); ` : ` left: 0; `)};
 
@@ -72,6 +71,6 @@ export const Toggle = styled.div<{
           margin-left: ${value ? '4px' : '2px'};
         `};
 
-  background: ${({ value, componentTheme }) =>
-    !value ? componentTheme.toggleOff : componentTheme.toggleOn};
+  background: ${({ value, theme }) =>
+    !value ? theme.toggleOff : theme.toggleOn};
 `;

@@ -3,8 +3,10 @@ import { useQuery } from 'react-query';
 
 import { RoleTypes } from '@/common/constants';
 import {
-    getEmailValidationData, getMatchPasswordValidationData, getPasswordValidationData,
-    getUsernameValidationData
+  getEmailValidationData,
+  getMatchPasswordValidationData,
+  getPasswordValidationData,
+  getUsernameValidationData,
 } from '@/common/utils/validation';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
@@ -95,7 +97,7 @@ const SignUpForm = ({
           Welcome to <span className='colored'>Dicie</span>
         </div>
         <div className='subheader'>Become the true embodiment of darkness</div>
-        <div className='subheader'>And there are also party games</div>
+        <div className='subheader'>( and there are also some party games )</div>
       </Styled.AuthHeader>
 
       <Styled.MultiInputWrapper inputCount={4}>

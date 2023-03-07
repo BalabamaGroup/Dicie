@@ -4,6 +4,7 @@ import {
   desktopAndBigger,
   desktopAndSmaller,
   mobileAndSmaller,
+  tabletAndBigger,
 } from '@/common/utils/device';
 
 export const ChooseGame = styled.div<{}>`
@@ -24,6 +25,10 @@ export const ChooseGame = styled.div<{}>`
   border-radius: 0 32px 32px 0;
   @media ${desktopAndSmaller} {
     border-radius: 32px;
+  }
+  @media ${desktopAndBigger} {
+    border-left: 2px solid
+      ${({ theme }) => theme.page.home.createRoomCard.border};
   }
 `;
 

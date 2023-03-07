@@ -19,12 +19,12 @@ export const RadioExtendedOption = styled.div<{ isSelected: boolean }>`
 
   .option-header {
     border-radius: 16px 16px 0 0;
-    color: ${({ theme }) => theme.radioExtended.text};
+    color: ${({ theme }) => theme.text};
     padding: 0 16px;
     box-sizing: border-box;
     height: 24px;
     width: 100%;
-    background-color: ${({ theme }) => theme.radioExtended.headerBackground};
+    background-color: ${({ theme }) => theme.headerBackground};
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -39,15 +39,15 @@ export const RadioExtendedOption = styled.div<{ isSelected: boolean }>`
       justify-content: center;
       width: 14px;
       height: 14px;
-      background-color: ${({ theme }) =>
-        theme.radioExtended.indicatorBackground};
+      background-color: ${({ theme }) => theme.indicatorBackground};
       border-radius: 50%;
+      box-sizing: border-box;
 
       .radio-indicator {
         ${({ isSelected }) => !isSelected && 'display: none'};
-        width: 8px;
-        height: 8px;
-        background-color: ${({ theme }) => theme.radioExtended.indicator};
+        width: 7px;
+        height: 7px;
+        background-color: ${({ theme }) => theme.indicator};
         border-radius: 50%;
       }
     }
@@ -57,7 +57,7 @@ export const RadioExtendedOption = styled.div<{ isSelected: boolean }>`
     border-radius: 0 0 16px 16px;
     padding: 12px 0;
     box-sizing: border-box;
-    background-color: ${({ theme }) => theme.radioExtended.bodyBackground};
+    background-color: ${({ theme }) => theme.bodyBackground};
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -67,7 +67,7 @@ export const RadioExtendedOption = styled.div<{ isSelected: boolean }>`
     svg {
       height: 48px;
       path {
-        fill: ${({ theme }) => theme.radioExtended.icon};
+        fill: ${({ theme }) => theme.icon};
       }
     }
   }

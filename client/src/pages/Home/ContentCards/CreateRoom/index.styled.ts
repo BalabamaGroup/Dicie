@@ -13,6 +13,8 @@ export const CreateRoomCard = styled(HomeContentCard)<{
   selectedCard: string;
   cardKey: string;
 }>`
+  border: 2px solid ${({ theme }) => theme.page.home.createRoomCard.border};
+
   .header {
     color: ${({ theme }) => theme.page.home.createRoomCard.defaultText};
   }
@@ -46,21 +48,12 @@ export const CreateRoomCard = styled(HomeContentCard)<{
             box-shadow: 0px 0px 256px rgba(242, 245, 134, 0.75);
           }
         `
-      : selectedCard === cardKey
-      ? css`
+      : selectedCard === cardKey &&
+        css`
           ${transitionGradient({
             id: '-createRoom',
             color: theme.page.home.createRoomCard.selectedBackground,
           })}
-        `
-      : css`
-          .choose-game {
-            opacity: 0;
-          }
-          /* ${transitionGradient({
-            id: '-createRoom',
-            gradient: theme.page.home.createRoomCard.background,
-          })} */
         `}
 `;
 

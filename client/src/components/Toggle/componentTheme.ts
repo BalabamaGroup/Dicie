@@ -2,31 +2,31 @@ import colors from '@/styles/colors/colors';
 
 export const lightComponentTheme = {
   indigo: {
-    backgroundOff: colors.white,
-    toggleOff: colors.indigo_light,
-    backgroundOn: colors.indigo_dark,
-    toggleOn: colors.light,
+    backgroundOff: colors.indigo[0],
+    toggleOff: colors.indigo.light,
+    backgroundOn: colors.indigo.base,
+    toggleOn: colors.indigo[20],
   },
-  yellow: {
-    backgroundOff: colors.yellow_light,
-    toggleOff: colors.yellow_dark,
-    backgroundOn: colors.yellow_dark,
-    toggleOn: colors.dark,
+  lime: {
+    backgroundOff: colors.lime.light,
+    toggleOff: colors.lime.base,
+    backgroundOn: colors.lime.base,
+    toggleOn: colors.indigo[80],
   },
 };
 
 export const darkComponentTheme = {
   indigo: {
-    backgroundOff: colors.dark,
-    toggleOff: colors.indigo_dark,
-    backgroundOn: colors.indigo_dark,
-    toggleOn: colors.white,
+    backgroundOff: colors.indigo[80],
+    toggleOff: colors.indigo.base,
+    backgroundOn: colors.indigo.base,
+    toggleOn: colors.indigo[0],
   },
-  yellow: {
-    backgroundOff: colors.dark,
-    toggleOff: colors.yellow_dark,
-    backgroundOn: colors.yellow_dark,
-    toggleOn: colors.dark,
+  lime: {
+    backgroundOff: colors.indigo[80],
+    toggleOff: colors.lime.base,
+    backgroundOn: colors.lime.base,
+    toggleOn: colors.indigo[80],
   },
 };
 

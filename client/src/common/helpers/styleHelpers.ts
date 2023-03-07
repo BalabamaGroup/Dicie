@@ -74,9 +74,9 @@ export const createGradientTransition = ({
             var(${`--color3${id}`}) var(${`--point3${id}`})
         );`};
 
-        transition: all 0.3s cubic-bezier(0.5, 0.25, 0, 1),
-          ${`--color1${id}`} 0.3s, ${`--color2${id}`} 0.3s,
-          ${`--color3${id}`} 0.3s;
+        transition: ${`--color1${id}`} 0.3s ease-in-out,
+          ${`--color2${id}`} 0.3s ease-in-out,
+          ${`--color3${id}`} 0.3s ease-in-out;
       `;
 
     case 3:
@@ -130,9 +130,9 @@ export const createGradientTransition = ({
             var(${`--color3${id}`}) var(${`--point3${id}`})
         );`};
 
-        transition: all 0.3s cubic-bezier(0.5, 0.25, 0, 1),
-          ${`--color1${id}`} 0.3s, ${`--color2${id}`} 0.3s,
-          ${`--color3${id}`} 0.3s;
+        transition: ${`--color1${id}`} 0.3s ease-in-out,
+          ${`--color2${id}`} 0.3s ease-in-out,
+          ${`--color3${id}`} 0.3s ease-in-out;
       `;
 
     default:

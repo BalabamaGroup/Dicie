@@ -1,40 +1,35 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useTheme as useThemeSC } from 'styled-components';
 
 import routes from '@/common/constants/routes';
-import { size } from '@/common/utils/device';
+import { ComponentColor } from '@/common/types/theme';
 import useAuth from '@/hooks/useAuth';
 import useTheme from '@/hooks/useTheme';
-import useWindowWidth from '@/hooks/useWindowWidth';
 
 import * as Styled from './index.styled';
 
 interface NavBarProps {
-  revertTextColor?: boolean;
-  forsedTextColor?: 'light' | 'dark';
+  color: ComponentColor;
+  shade: 'light' | 'dark';
 }
 
-const NavBar = ({ revertTextColor = false, forsedTextColor }: NavBarProps) => {
+const NavBar = ({ color, shade = 'light' }: NavBarProps) => {
   const navigate = useNavigate();
   const { signOut } = useAuth();
   const { toggleTheme } = useTheme();
 
-  const windowWindth = useWindowWidth(100);
-
-  if (windowWindth < size.tablet) return null;
+  let theme: any = useThemeSC();
+  theme = theme.navbar[color || theme.navbar.default];
 
   return (
-    <Styled.NavBar
-      revertTextColor={revertTextColor}
-      forsedTextColor={forsedTextColor}
-    >
+    <Styled.NavBar shade={shade} theme={theme}>
       <Styled.Logo>Dicie</Styled.Logo>
 
       <Styled.LinksWrapper>
-        <Styled.Link onClick={() => navigate('/voicechat')}>
+        {/* <Styled.Link onClick={() => navigate('/voicechat')}>
           WebRTC test
-        </Styled.Link>
+        </Styled.Link> */}
         <Styled.Link onClick={() => navigate(routes.HOME)}>Home</Styled.Link>
-        {/* <Styled.Link onClick={() => navigate(routes.ABOUT)}>About</Styled.Link> */}
         <Styled.Link onClick={toggleTheme}>Toggle theme</Styled.Link>
         <Styled.Link onClick={signOut}>Sign out</Styled.Link>
       </Styled.LinksWrapper>

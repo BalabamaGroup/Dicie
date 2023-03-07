@@ -1,4 +1,20 @@
 const gradients = {
+  no_gradient_page_bg_light: {
+    value: 'linear-gradient(120deg, #ECEEFE 10%, #ECEEFE 25%, #ECEEFE 80%);',
+    angle: '120deg',
+    colorsNum: 3,
+    colors: ['#ECEEFE', '#ECEEFE', '#ECEEFE'],
+    points: ['10%', '25%', '80%'],
+  },
+
+  no_gradient_page_bg_dark: {
+    value: 'linear-gradient(120deg, #141414 10%, #141414 25%, #141414 80%);',
+    angle: '120deg',
+    colorsNum: 3,
+    colors: ['#141414', '#141414', '#141414'],
+    points: ['10%', '25%', '80%'],
+  },
+
   dark: {
     value: 'linear-gradient(120deg, #27272A 10%, #1F252A 25%, #110619 80%);',
     angle: '120deg',
@@ -32,7 +48,7 @@ const gradients = {
     points: ['10%', '25%', '80%'],
   },
 
-  yellow_green_dark: {
+  lime_green_dark: {
     value: 'linear-gradient(135deg, #F2F586 12.5%, #B0F586 87.5%);',
     angle: '135deg',
     colorsNum: 2,
@@ -40,7 +56,7 @@ const gradients = {
     points: ['12.5%', '87.5%'],
   },
 
-  yellow_green_light: {
+  lime_green_light: {
     value: 'linear-gradient(135deg, #F9FAC3 12.5%, #D8FAC3 87.5%);',
     angle: '135deg',
     colorsNum: 2,

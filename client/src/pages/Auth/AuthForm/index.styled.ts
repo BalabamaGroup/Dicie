@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { mobileAndSmaller } from '@/common/utils/device';
 
 export const AuthForm = styled.div`
@@ -18,7 +19,7 @@ export const AuthHeader = styled.div`
   width: 100%;
 
   .main {
-    font-weight: 700;
+    font-weight: 800;
     font-size: 40px;
     line-height: 50px;
     text-align: center;

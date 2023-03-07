@@ -16,10 +16,10 @@ export const Button = styled.button<{
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  transition: 0.2s ease-in-out;
   text-align: center;
 
   width: ${({ isScale }) => (isScale ? '100%' : 'auto')};
+  transition: box-shadow 0.05s ease-in, background 0.1s ease-in-out;
 
   // DEFAULT
   ${({ theme }) => css`
@@ -29,7 +29,6 @@ export const Button = styled.button<{
       box-shadow: ${theme.shadow};
     }
     &:active {
-      transition: box-shadow 0.05s ease-in, background 0.1s ease-in-out;
       box-shadow: ${theme.shadowPrimary},
         inset 0px 0px 0px 2px ${theme.borderOutline};
     }

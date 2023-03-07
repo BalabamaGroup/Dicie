@@ -36,9 +36,8 @@ export const CurrentPlayer = styled.div<{}>`
   justify-content: center;
   gap: 64px;
   background: ${({ theme }) =>
-    theme.game.guessBoo.playerPicking.currentUserPanel.background};
-  color: ${({ theme }) =>
-    theme.game.guessBoo.playerPicking.currentUserPanel.text};
+    theme.game.guessBoo.setup.currentUserPanel.background};
+  color: ${({ theme }) => theme.game.guessBoo.setup.currentUserPanel.text};
 
   padding: 32px;
   box-sizing: border-box;

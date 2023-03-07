@@ -58,7 +58,6 @@ export const ButtonWrapper = styled.div<{ isQuestion: boolean }>`
     opacity: 1;
   }
 
-  transition: 0.3s ease-in-out;
   ${({ isQuestion }) =>
     isQuestion &&
     css`

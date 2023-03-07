@@ -5,42 +5,56 @@ import shadows from '../colors/shadows';
 const dark: any = {
   name: 'dark',
 
+  navbar: {
+    default: 'lime',
+    indigo: {
+      light: colors.indigo[20],
+      dark: colors.indigo[80],
+    },
+    lime: {
+      light: colors.lime[20],
+      dark: colors.lime[80],
+    },
+  },
+
   page: {
-    background: gradients.dark,
-    text: colors.light,
+    background: gradients.no_gradient_page_bg_dark,
+    text: colors.indigo[20],
 
     auth: {
-      pictureBackground: gradients.yellow_green_dark.value,
-      headerMain: colors.light,
+      pictureBackground: gradients.lime_green_light.value,
+      headerMain: colors.indigo[20],
       headerSub: colors.neutral[30],
-      headerAccent: colors.yellow_dark,
+      headerAccent: colors.lime.base,
     },
 
     home: {
       createRoomCard: {
-        defaultText: colors.dark,
-        background: gradients.yellow_green_dark,
-        selectedBackground: colors.black,
-        chooseGameBackground: colors.dark,
-        text: colors.light,
-        shadowHover: shadows.yellow.large,
+        defaultText: colors.lime[80],
+        background: gradients.lime_green_dark,
+        selectedBackground: colors.lime[100],
+        chooseGameBackground: colors.lime[80],
+        text: colors.lime[20],
+        border: 'transparent',
+        shadowHover: shadows.lime.large,
       },
       joinRoomCard: {
-        defaultText: colors.light,
+        defaultText: colors.indigo[20],
         background: gradients.indigo_purple_dark,
-        selectedBackground: colors.dark,
-        text: colors.light,
-        shadowHover: shadows.purple.large,
+        selectedBackground: colors.indigo[80],
+        text: colors.indigo[20],
+        border: 'transparent',
+        shadowHover: shadows.indigo.large,
       },
     },
   },
 
   game: {
     guessBoo: {
-      playerPicking: {
+      setup: {
         currentUserPanel: {
-          background: gradients.yellow_green_dark.value,
-          text: colors.dark,
+          background: gradients.lime_green_dark.value,
+          text: colors.indigo[80],
         },
       },
     },
@@ -49,59 +63,125 @@ const dark: any = {
   switch: {
     isChosen: {
       background: 'none',
-      text: colors.yellow_dark,
-      highlighting: colors.yellow_dark,
+      text: colors.lime[20],
+      highlighting: colors.lime[20],
     },
-    background: colors.yellow_dark,
-    text: colors.dark,
-    shadow: shadows.yellow.small,
+    background: colors.lime.base,
+    text: colors.indigo[80],
+    shadow: shadows.lime.small,
+  },
+
+  input: {
+    default: 'lime',
+    indigo: {
+      background: colors.indigo[80],
+      backgroundVibrant: colors.indigo[100],
+
+      text: colors.indigo[20],
+      textPlaceholder: colors.neutral[60],
+      textInvalid: colors.red.dark,
+
+      focusBorder: colors.indigo.base,
+      focusBorderInvalid: colors.red.dark,
+
+      shadow: shadows.dark.small,
+      shadowInvalid: shadows.red.small,
+
+      icon: {
+        fill: colors.neutral[60],
+        fillHover: colors.indigo[100],
+        background: 'transparent',
+        backgroundHover: colors.lime.base,
+      },
+    },
+    lime: {
+      background: colors.lime[80],
+      backgroundVibrant: colors.lime[100],
+
+      text: colors.lime[20],
+      textPlaceholder: colors.neutral[60],
+      textInvalid: colors.red.dark,
+
+      focusBorder: colors.lime.base,
+      focusBorderInvalid: colors.red.dark,
+
+      shadow: shadows.dark.small,
+      shadowInvalid: shadows.red.small,
+
+      icon: {
+        fill: colors.neutral[60],
+        fillHover: colors.lime[100],
+        background: 'transparent',
+        backgroundHover: colors.lime.base,
+      },
+    },
   },
 
   button: {
+    default: 'lime',
     indigo: {
-      background: colors.dark,
-      text: colors.light,
+      background: colors.indigo[80],
+      text: colors.indigo[20],
       shadow: shadows.dark.medium,
-      backgroundPrimary: gradients.yellow_green_dark.value,
-      textPrimary: colors.light,
-      shadowPrimary: colors.indigo_dark,
-      textOutline: colors.dark,
-      borderOutline: colors.dark,
+      backgroundPrimary: colors.indigo.base,
+      textPrimary: colors.indigo[20],
+      shadowPrimary: colors.indigo.base,
+      textOutline: colors.indigo[80],
+      borderOutline: colors.indigo[80],
     },
-    yellow: {
-      background: colors.dark,
-      text: colors.light,
+    lime: {
+      background: colors.indigo[80],
+      text: colors.indigo[20],
       shadow: shadows.dark.medium,
-      backgroundPrimary: gradients.yellow_green_dark.value,
-      textPrimary: colors.dark,
-      shadowPrimary: colors.yellow_dark,
-      textOutline: colors.dark,
-      borderOutline: colors.dark,
+      backgroundPrimary: colors.lime.base,
+      textPrimary: colors.indigo[80],
+      shadowPrimary: colors.lime.base,
+      textOutline: colors.indigo[80],
+      borderOutline: colors.indigo[80],
+    },
+  },
+
+  toggle: {
+    default: 'lime',
+    indigo: {
+      backgroundOff: colors.indigo[80],
+      toggleOff: colors.indigo.base,
+      backgroundOn: colors.indigo.base,
+      toggleOn: colors.indigo[0],
+    },
+    lime: {
+      backgroundOff: colors.indigo[80],
+      toggleOff: colors.lime.base,
+      backgroundOn: colors.lime.base,
+      toggleOn: colors.indigo[80],
     },
   },
 
   radioExtended: {
-    text: colors.light,
-    headerBackground: colors.dark_neutral,
-    bodyBackground: colors.dark,
-    indicator: colors.yellow_dark,
-    indicatorBackground: colors.dark,
-    icon: colors.light,
-  },
-
-  navbar: {
-    background: colors.black,
-    text: colors.light,
-    revertText: colors.dark,
-    forsedTextLight: colors.light,
-    forsedTextDark: colors.dark,
+    default: 'lime',
+    indigo: {
+      text: colors.indigo[20],
+      headerBackground: colors.indigo[60],
+      bodyBackground: colors.indigo[80],
+      indicator: colors.lime.base,
+      indicatorBackground: colors.indigo[80],
+      icon: colors.indigo[20],
+    },
+    lime: {
+      text: colors.lime[20],
+      headerBackground: colors.lime[60],
+      bodyBackground: colors.lime[80],
+      indicator: colors.lime.base,
+      indicatorBackground: colors.lime[80],
+      icon: colors.lime[20],
+    },
   },
 
   gameButton: {
-    text: colors.light,
+    text: colors.indigo[20],
     background: 'none',
-    textSelected: colors.dark,
-    backgroundSelected: colors.yellow_dark,
+    textSelected: colors.indigo[80],
+    backgroundSelected: colors.lime.base,
   },
 };
 

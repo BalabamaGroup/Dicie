@@ -32,13 +32,8 @@ const Home = ({}: HomeProps) => {
   return (
     <Styled.HomePage selectedCard={selectedCard}>
       <NavBar
-        forsedTextColor={
-          selectedCard === homeContentCards.CREATE_ROOM
-            ? 'dark'
-            : selectedCard === homeContentCards.JOIN_ROOM
-            ? 'light'
-            : undefined
-        }
+        color={selectedCard === homeContentCards.JOIN_ROOM ? 'indigo' : 'lime'}
+        shade={'dark'}
       />
       <Styled.HomeContent>
         {currentUserIsLoading ? (

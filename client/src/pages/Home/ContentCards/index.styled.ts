@@ -21,7 +21,7 @@ export const ContentCards = styled.div<{
   background-size: 100% 100%;
 
   will-change: transform;
-  transition: transform 0.3s cubic-bezier(0.5, 0.25, 0, 1);
+  transition: transform 0.6s cubic-bezier(0.51, 0.92, 0.1, 1.1);
 
   @media ${tabletAndBigger} {
     width: calc(200% - 256px - 32px);
@@ -110,6 +110,11 @@ export const HomeContentCard = styled.div<{
     line-height: 17px;
   }
 
+  & > * {
+    will-change: opacity;
+    transition: opacity 0.3s ease-in-out;
+  }
+
   ${({ cardKey, selectedCard }) =>
     selectedCard === homeContentCards.DEFAULT
       ? css`
@@ -128,6 +133,9 @@ export const HomeContentCard = styled.div<{
       : css`
           width: 100%;
           border-radius: 32px;
+          & > * {
+            opacity: 0;
+          }
           @media ${tabletAndSmaller} {
             height: 100%;
           }

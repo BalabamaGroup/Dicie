@@ -13,6 +13,7 @@ export const JoinRoomCard = styled(HomeContentCard)<{
   cardKey: string;
 }>`
   color: ${({ theme }) => theme.page.home.joinRoomCard.text};
+  border: 2px solid ${({ theme }) => theme.page.home.joinRoomCard.border};
 
   ${({ selectedCard }) =>
     selectedCard === homeContentCards.JOIN_ROOM

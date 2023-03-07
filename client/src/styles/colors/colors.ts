@@ -1,21 +1,40 @@
 const colors = {
-  light_neutral: '#E1E4F8',
-  light: '#ECEEFE',
-  white: '#F5F6FF',
+  green: {
+    light: '#AAE8A9',
+    dark: '#59DE56',
+  },
+  orange: {
+    light: '#FFD9B1',
+    dark: '#F39A3A',
+  },
+  red: {
+    light: '#FF95A9',
+    dark: '#FC3057',
+  },
 
-  dark_neutral: '#302C40',
-  dark: '#181621',
-  black: '#100F16',
+  lime: {
+    0: '#FFFFFF',
+    20: '#F7FFF4',
+    light: '#E6FFD6',
+    base: '#D0F485',
+    dark: '#5D7C1A',
+    40: '#888888',
+    60: '#383A37',
+    80: '#161616',
+    100: '#0D0D0D',
+  },
 
-  indigo_light: '#B9B7EF',
-  indigo_dark: '#8986F5',
-
-  yellow_light: '#FEFFD7 ',
-  yellow_dark: '#d0f485',
-
-  green: '#6DE36B',
-  orange: '#FFA84B',
-  red: '#FC3057',
+  indigo: {
+    light: '#CECBFE',
+    base: '#8986F5',
+    dark: '#3430BE',
+    0: '#F5F6FF',
+    20: '#ECEEFE',
+    40: '#888888',
+    60: '#38373A',
+    80: '#181621',
+    100: '#100F16',
+  },
 
   neutral: {
     20: '#DEDBE2',

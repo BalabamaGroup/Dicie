@@ -24,14 +24,14 @@ const Button = ({
   children,
   onClick,
   size = 'medium',
-  color = 'yellow',
+  color,
   isPrimary = false,
   isOutline = false,
   isDisabled = false,
   isScale = false,
 }: ButtonProps) => {
   let theme: any = useTheme();
-  theme = theme.button[color];
+  theme = theme.button[color || theme.button.default];
 
   return (
     <Styled.Button

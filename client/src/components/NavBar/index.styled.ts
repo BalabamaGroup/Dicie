@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components';
 
+import { tabletAndSmaller } from '@/common/utils/device';
+
 export const NavBar = styled.div<{
-  revertTextColor: boolean;
-  forsedTextColor: 'light' | 'dark' | undefined;
+  shade: 'light' | 'dark';
 }>`
   padding: 0 64px;
   height: 64px;
@@ -16,17 +17,12 @@ export const NavBar = styled.div<{
 
   .navbar-logo,
   .navbar-link {
-    color: ${({ revertTextColor, theme }) =>
-      revertTextColor ? theme.navbar.revertText : theme.navbar.text};
+    color: ${({ shade, theme }) =>
+      shade === 'light' ? theme.light : theme.dark};
   }
 
-  .navbar-logo,
-  .navbar-link {
-    color: ${({ forsedTextColor, theme }) =>
-      forsedTextColor &&
-      (forsedTextColor === 'light'
-        ? theme.navbar.forsedTextLight
-        : theme.navbar.forsedTextDark)};
+  @media ${tabletAndSmaller} {
+    display: none;
   }
 `;
 

@@ -1,11 +1,11 @@
 import { createRef, useEffect, useState } from 'react';
 import { ReactSVG } from 'react-svg';
+import { useTheme } from 'styled-components';
 
 import { getTextHeight } from '@/common/helpers/domHelpers';
+import { ComponentColor } from '@/common/types/theme';
 import { multiInputDataType } from '@/components/MultiInput';
-import useComponentTheme from '@/hooks/useComponentTheme';
 
-import { darkComponentTheme, lightComponentTheme } from './componentTheme';
 import * as Styled from './index.styled';
 
 export interface InputProps {
@@ -16,7 +16,7 @@ export interface InputProps {
   placeholder?: string;
   autoComplete?: string;
 
-  theme?: 'auto' | 'light' | 'dark';
+  color?: ComponentColor;
   size?: 'large' | 'medium';
   isVibrant?: boolean;
 
@@ -50,7 +50,7 @@ const Input = ({
   placeholder = '',
   autoComplete = 'off',
 
-  theme = 'auto',
+  color,
   size = 'medium',
   isVibrant = false,
 
@@ -75,12 +75,6 @@ const Input = ({
   const inputRef = createRef<HTMLInputElement>();
 
   const isMultiInputPart = !!multiInputData && !!onChangeMultiInputData;
-
-  const componentTheme = useComponentTheme({
-    theme,
-    lightComponentTheme,
-    darkComponentTheme,
-  });
 
   const [isFocus, setIsFocus] = useState(false);
   const onFocus = () => {
@@ -130,6 +124,9 @@ const Input = ({
     setIsValid(isExistanceValid && isRegexValid && isCustomTestValid);
   }, dependancies);
 
+  let theme: any = useTheme();
+  theme = theme.input[color || theme.input.default];
+
   return (
     <Styled.LabelWrapper className={`${className} label_wrapper`}>
       {label && <label htmlFor={id}>{label}</label>}
@@ -138,7 +135,7 @@ const Input = ({
         isNoteVisible={isFocus && !isValid}
         noteTextHeight={getTextHeight(currentNote, 20)}
         multiInputData={isMultiInputPart ? multiInputData : undefined}
-        componentTheme={componentTheme}
+        theme={theme}
       >
         <Styled.InputWrapper
           size={size}
@@ -148,7 +145,7 @@ const Input = ({
           isFocus={isFocus}
           isValid={isValid}
           withIcon={!!iconData}
-          componentTheme={componentTheme}
+          theme={theme}
         >
           <div className='focus-border-wrapper'>
             <div className='focus-border'>
@@ -168,11 +165,7 @@ const Input = ({
             </div>
           </div>
           {iconData && (
-            <Styled.Icon
-              onClick={iconData.onClick}
-              size={size}
-              componentTheme={componentTheme}
-            >
+            <Styled.Icon onClick={iconData.onClick} size={size} theme={theme}>
               <ReactSVG src={iconData.iconSrc} />
             </Styled.Icon>
           )}
@@ -182,7 +175,7 @@ const Input = ({
           className='input_note'
           onMouseDown={onInputMouseDown}
           isVisible={isFocus && !isValid}
-          componentTheme={componentTheme}
+          theme={theme}
         >
           {currentNote}
         </Styled.Note>

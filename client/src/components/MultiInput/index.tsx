@@ -1,7 +1,9 @@
-import { useState, cloneElement } from "react";
-import * as Styled from "./index.styled";
+import { cloneElement, useState } from 'react';
+
+import * as Styled from './index.styled';
 
 export type multiInputDataType = {
+  length: number;
   index: number;
   isSeparate: boolean;
   isTopSeparate: boolean;
@@ -20,6 +22,7 @@ const MultiInput = ({
   children,
 }: MultiInputProps) => {
   const defaultData = children.map((child, i) => ({
+    length: children.length,
     index: i,
     isSeparate: false,
     isTopSeparate: false,

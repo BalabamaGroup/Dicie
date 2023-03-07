@@ -80,9 +80,7 @@ export const AnswerBubble = styled.div<{
   height: 72px;
   padding: 16px;
 
-  transition-property: width, background;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-in-out;
+  transition: width 0.3s ease-in-out, background 0.3s ease-in-out;
 
   .given-answer {
     text-transform: lowercase;
