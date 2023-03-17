@@ -13,15 +13,15 @@ const colors = {
   },
 
   lime: {
-    0: '#FFFFFF',
-    20: '#F7FFF4',
-    light: '#E6FFD6',
-    base: '#D0F485',
-    dark: '#5D7C1A',
+    0: '#FFF5F5',
+    20: '#FEECEC',
+    light: '#FFBBBB',
+    base: '#DE4040',
+    dark: '#A61616',
     40: '#888888',
-    60: '#383A37',
-    80: '#161616',
-    100: '#0D0D0D',
+    60: '#3A3737',
+    80: '#211616',
+    100: '#160F0F',
   },
 
   indigo: {
