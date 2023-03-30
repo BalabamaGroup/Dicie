@@ -9,12 +9,10 @@ import { useColorStore } from '@/stores/ColorStore';
 import ContentCards from './ContentCards';
 import * as Styled from './index.styled';
 
-export interface HomeProps {}
-
-const Home = ({}: HomeProps) => {
+const Home = () => {
   const { isLoading: currentUserIsLoading } = useCurrentUser();
 
-  const isWait = useColorStore((s) => s.color.home) === 'indigo';
+  // const isWait = useColorStore((s) => s.color.home) === 'indigo';
   const setWait = useColorStore((s) => () => s.setWait('home'));
   const setGo = useColorStore((s) => () => s.setGo('home'));
 
