@@ -26,6 +26,7 @@
       "@/games/*": ["./games/*"],
       "@/hooks/*": ["./hooks/*"],
       "@/pages/*": ["./pages/*"],
+      "@/stores/*": ["./stores/*"],
       "@/styles/*": ["./styles/*"]
     }
   },
@@ -37,6 +38,7 @@
     "./src/games",
     "./src/hooks",
     "./src/pages",
+    "./src/stores",
     "./src/styles"
   ]
 }

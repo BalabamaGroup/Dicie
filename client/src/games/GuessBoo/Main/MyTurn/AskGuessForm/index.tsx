@@ -50,6 +50,7 @@ const AskGuessForm = () => {
 
       <Styled.SwitchInput className='question-form-switch-input'>
         <Switch
+          color='lime'
           className='question-form-switch'
           options={[
             {
@@ -66,6 +67,7 @@ const AskGuessForm = () => {
           ]}
         />
         <Input
+          color='lime'
           className='question-form-input'
           value={inputValue}
           onChange={onChangeInputValue}
@@ -79,6 +81,7 @@ const AskGuessForm = () => {
           Be careful, if the guess is wrong, you will skip a turn
         </div>
         <Button
+          color='lime'
           className='question-form-button'
           isPrimary
           isScale

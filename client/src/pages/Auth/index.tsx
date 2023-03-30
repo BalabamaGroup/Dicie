@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useTheme } from 'styled-components';
 
 import routes from '@/common/constants/routes';
 import Switch from '@/components/Switch';
+import { useThemeStore } from '@/stores/ThemeStore';
 
 import AuthForm from './AuthForm';
 import * as Styled from './index.styled';
@@ -12,6 +12,8 @@ const SignUp = () => {
 
   const location = useLocation();
   const formType = location.pathname === routes.SIGN_UP ? 'signUp' : 'signIn';
+
+  const theme = useThemeStore((state) => state.theme);
 
   const onSignIn = (e: any) => {
     // e.preventDefault();
@@ -23,16 +25,15 @@ const SignUp = () => {
     navigate(routes.SIGN_UP);
   };
 
-  const theme: any = useTheme();
-
   return (
     <Styled.SignUp>
       <Styled.AuthPicture>
-        <img src={`/images/pngs/auth-picture.${theme.name}.png`} alt='' />
+        <img src={`/images/pngs/auth-picture.light.png`} alt='' />
       </Styled.AuthPicture>
 
       <Styled.AuthContent>
         <Switch
+          color='indigo'
           className='auth_switch'
           options={[
             {

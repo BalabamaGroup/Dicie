@@ -1,12 +1,14 @@
 import styled, { css } from 'styled-components';
 
 export const NoQuestion = styled.div`
+  margin-top: auto;
   height: 32px;
   min-height: 32px;
   width: 100%;
 `;
 
 export const AnswerVisualizer = styled.div<{}>`
+  margin-top: auto;
   display: flex;
   flex-direction: row;
   align-items: center;

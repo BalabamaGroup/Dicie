@@ -1,10 +1,13 @@
 import styled, { css } from 'styled-components';
 
-export const GameButtonWrapper = styled.div<{
-  isSelected: boolean;
-}>`
+import { ComponentColor } from '@/common/types/theme';
+
+export const GameButtonWrapper = styled.div<{}>`
   cursor: pointer;
   box-sizing: border-box;
+
+  width: 76px;
+  height: 92px;
 
   padding: 0 0 5px 0;
   border-radius: 22px 22px 8px 8px;
@@ -18,16 +21,35 @@ export const GameButtonWrapper = styled.div<{
   font-weight: 600;
   font-size: 10px;
   line-height: 10px;
+`;
 
-  ${({ isSelected, theme }) =>
+export const GameButtonHighlight = styled.div<{
+  color: ComponentColor;
+  isSelected: boolean;
+}>`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 72px;
+  height: 72px;
+  padding: 2px;
+  border-radius: 20px;
+
+  transition: border 0.1s ease-in-out;
+  ${({ isSelected, color, theme }) =>
     !isSelected
       ? css`
-          color: ${theme.gameButton.text};
-          background: ${theme.gameButton.background};
+          border: 2px solid transparent;
+          /* color: ${theme.gameButton.text};
+          background: ${theme.gameButton.background}; */
         `
       : css`
-          color: ${theme.gameButton.textSelected};
-          background: ${theme.gameButton.backgroundSelected};
+          border: 2px solid
+            ${color === 'indigo'
+              ? theme.gameButton.highlightBorderWait
+              : theme.gameButton.highlightBorderGo};
+          /* color: ${theme.gameButton.textSelected};
+          background: ${theme.gameButton.backgroundSelected}; */
         `}
 `;
 

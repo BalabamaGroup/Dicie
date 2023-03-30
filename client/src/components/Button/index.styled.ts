@@ -5,7 +5,6 @@ export const Button = styled.button<{
   isScale: boolean;
   size: 'large' | 'medium' | 'small';
   isPrimary: boolean;
-  isOutline: boolean;
 }>`
   all: unset;
   user-select: none;
@@ -19,7 +18,8 @@ export const Button = styled.button<{
   text-align: center;
 
   width: ${({ isScale }) => (isScale ? '100%' : 'auto')};
-  transition: box-shadow 0.05s ease-in, background 0.1s ease-in-out;
+  transition: box-shadow 0.05s ease-in, background 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
 
   // DEFAULT
   ${({ theme }) => css`
@@ -45,24 +45,7 @@ export const Button = styled.button<{
       }
       &:active {
         box-shadow: ${theme.shadowPrimary},
-          inset 0px 0px 0px 2px ${theme.borderOutline};
-      }
-    `}
-
-  // OUTLINE
-  ${({ isOutline, isPrimary, theme }) =>
-    isOutline &&
-    !isPrimary &&
-    css`
-      background: none;
-      color: ${theme.textOutline};
-      box-shadow: inset 0px 0px 0px 2px ${theme.borderOutline};
-      &:hover {
-        box-shadow: inset 0px 0px 0px 2px ${theme.borderOutline};
-        background: rgba(255, 255, 255, 0.25);
-      }
-      &:active {
-        background: rgba(255, 255, 255, 0.15);
+          inset 0px 0px 0px 2px ${theme.textPrimary};
       }
     `}
 
@@ -95,7 +78,7 @@ export const Button = styled.button<{
     disabled &&
     css`
       cursor: default;
-      opacity: 0.5;
+      opacity: 0.25;
       pointer-events: none;
     `};
 `;

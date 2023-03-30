@@ -87,7 +87,7 @@ export const InputWrapper = styled.div<{
   gap: 2px;
   align-items: center;
   justify-content: space-between;
-  transition: color 0.2s ease-in-out, background 0.2s ease-in-out,
+  transition: color 0.2s ease-in-out, background 0.3s ease-in-out,
     box-shadow 0.2s ease-in-out;
   z-index: 2;
 

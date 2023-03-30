@@ -7,26 +7,26 @@ export default class CharadesAPI {
       url: `game_charade/select_user/${id}`,
     };
 
-    request(options);
+    return request(options).then((res: Promise<void>) => res);
   };
 
-  static setReady = () => {
+  static setReady = async () => {
     const options = {
       method: 'post',
       url: `game_charade/ready`,
     };
 
-    request(options);
+    return request(options).then((res: Promise<void>) => res);
   };
 
-  static setWord = (id: number, data: { word: string }) => {
+  static setWord = async (id: number, data: { word: string }) => {
     const options = {
       method: 'post',
       url: `game_charade/set_word/${id}`,
       data,
     };
 
-    request(options);
+    return request(options).then((res: Promise<void>) => res);
   };
 
   static askQuestion = async (data: { question: string }) => {
@@ -36,7 +36,7 @@ export default class CharadesAPI {
       data,
     };
 
-    request(options);
+    return request(options).then((res: Promise<void>) => res);
   };
 
   static answerQuestion = (data: { charadeAnswer: string }) => {
@@ -46,7 +46,7 @@ export default class CharadesAPI {
       data,
     };
 
-    request(options);
+    return request(options).then((res: Promise<void>) => res);
   };
 
   static acceptAnswer = async (): Promise<void> => {
@@ -79,6 +79,6 @@ export default class CharadesAPI {
       data,
     };
 
-    request(options);
+    return request(options).then((res: Promise<void>) => res);
   };
 }

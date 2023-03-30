@@ -24,24 +24,28 @@ const Room = () => {
   if (!roomData || (roomData && roomData.start === undefined))
     return (
       <Styled.RoomPage>
-        <NavBar revertTextColor />
         <Loader.Circle />
       </Styled.RoomPage>
     );
 
-  return (
-    <Styled.RoomPage>
-      <NavBar revertTextColor />
-
-      {!roomData?.start ? (
-        <Styled.RoomLoadedContent>
+  if (!roomData.start)
+    return (
+      <Styled.RoomPage>
+        <NavBar page='room' />
+        <Styled.RoomContent>
           <RoomUsers roomData={roomData} />
           <RoomSettings />
-        </Styled.RoomLoadedContent>
-      ) : (
-        <GuessBoo gameData={roomData} />
-      )}
-    </Styled.RoomPage>
+        </Styled.RoomContent>
+      </Styled.RoomPage>
+    );
+
+  return (
+    <Styled.GamePage>
+      <NavBar page='guessBoo' />
+      <Styled.GameContent>
+        <GuessBoo gameData={roomData} />;
+      </Styled.GameContent>
+    </Styled.GamePage>
   );
 };
 

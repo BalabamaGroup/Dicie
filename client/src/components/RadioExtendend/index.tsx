@@ -1,12 +1,12 @@
-import { useTheme } from 'styled-components';
-
 import { ComponentColor } from '@/common/types/theme';
+import { useThemeStore } from '@/stores/ThemeStore';
+import radioExtendedTheme from '@/styles/themes/componentThemes/radioExtendedTheme';
 
 import * as Styled from './index.styled';
 
 interface RadioExtendedProps {
   className?: string;
-  color?: ComponentColor;
+  color: ComponentColor;
   options: Array<{
     id: string;
     label: string;
@@ -22,16 +22,16 @@ const RadioExtended = ({
   options,
   selectedOptionId,
 }: RadioExtendedProps) => {
-  let theme: any = useTheme();
-  theme = theme.radioExtended[color || theme.radioExtended.default];
+  const theme = useThemeStore((state) => state.theme);
+  const componentTheme = radioExtendedTheme[theme][color];
 
   return (
-    <Styled.RadioExtended theme={theme} className={className}>
+    <Styled.RadioExtended theme={componentTheme} className={className}>
       {options.map((option) => (
         <Styled.RadioExtendedOption
           id={option.id}
           key={option.id}
-          theme={theme}
+          theme={componentTheme}
           isSelected={option.id === selectedOptionId}
           onClick={option.onSelect}
         >

@@ -16,18 +16,18 @@ const gradients = {
   },
 
   lime_green_dark: {
-    value: 'linear-gradient(135deg, #DE4040 12.5%, #E26A37 87.5%);',
+    value: 'linear-gradient(135deg, #F2F586 12.5%, #B0F586 87.5%);',
     angle: '135deg',
     colorsNum: 2,
-    colors: ['#DE4040', '#E26A37'],
+    colors: ['#F2F586', '#B0F586'],
     points: ['12.5%', '87.5%'],
   },
 
   lime_green_light: {
-    value: 'linear-gradient(135deg, #FFBBBB 12.5%, #FFCFB4 87.5%);',
+    value: 'linear-gradient(135deg, #DEFFCD 12.5%, #FFFCCF 87.5%);',
     angle: '135deg',
     colorsNum: 2,
-    colors: ['#FFBBBB', '#FFCFB4'],
+    colors: ['#DEFFCD', '#FFFCCF'],
     points: ['12.5%', '87.5%'],
   },
 

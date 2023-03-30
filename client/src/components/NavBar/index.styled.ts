@@ -3,8 +3,10 @@ import styled, { css } from 'styled-components';
 import { tabletAndSmaller } from '@/common/utils/device';
 
 export const NavBar = styled.div<{
-  shade: 'light' | 'dark';
+  isWait: boolean;
 }>`
+  position: fixed;
+
   padding: 0 64px;
   height: 64px;
 
@@ -17,8 +19,9 @@ export const NavBar = styled.div<{
 
   .navbar-logo,
   .navbar-link {
-    color: ${({ shade, theme }) =>
-      shade === 'light' ? theme.light : theme.dark};
+    transition: color 0.3s ease-in-out;
+    color: ${({ isWait, theme }) =>
+      isWait ? theme.navbar.wait : theme.navbar.go};
   }
 
   @media ${tabletAndSmaller} {

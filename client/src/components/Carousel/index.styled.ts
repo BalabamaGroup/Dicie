@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { ComponentColor } from '@/common/types/theme';
+
 export const Carousel = styled.div<{ maxWidth: number }>`
   display: flex;
   flex-direction: row;
@@ -13,6 +15,7 @@ export const Carousel = styled.div<{ maxWidth: number }>`
 `;
 
 export const Arrow = styled.div<{
+  color: ComponentColor;
   isDisabled: boolean;
 }>`
   user-select: none;
@@ -27,6 +30,16 @@ export const Arrow = styled.div<{
   .arrow {
     width: 16px;
     height: 16px;
+
+    svg {
+      path {
+        transition: fill 0.3s ease-in-out;
+        fill: ${({ color, theme }) =>
+          color === 'indigo'
+            ? theme.carousel.arrowWait
+            : theme.carousel.arrowGo};
+      }
+    }
   }
 
   ${({ isDisabled }) =>
@@ -56,6 +69,9 @@ export const CarouselItems = styled.div<{
     gap: ${`${gap}px`};
   `}
 
+  & > *:first-child {
+    transition: margin-left 0.3s ease-in-out;
+  }
   ${({ shift, itemWidth, gap }) => css`
     & > *:first-child {
       margin-left: ${`-${shift * (itemWidth + gap)}px`};

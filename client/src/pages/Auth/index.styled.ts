@@ -7,7 +7,7 @@ export const SignUp = styled.section`
   ${commonPageStyles}
 
   box-sizing: border-box;
-  background: ${({ theme }) => theme.page.background.value};
+  background: ${({ theme }) => theme.page.auth.background};
 
   padding: 32px;
 

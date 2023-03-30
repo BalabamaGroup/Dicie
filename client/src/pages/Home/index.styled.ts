@@ -39,10 +39,12 @@ export const HomePage = styled.section<{ selectedCard: string }>`
 `;
 
 export const HomeContent = styled.div`
-  height: calc(100vh - 64px);
+  height: 100vh;
+  padding-top: 64px;
   @media ${tabletAndSmaller} {
-    height: calc(100vh);
+    padding-top: 0;
   }
+  box-sizing: border-box;
   width: 100%;
   display: flex;
   align-items: center;

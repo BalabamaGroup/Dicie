@@ -34,6 +34,7 @@ const ChooseGame = ({
       <Styled.GameList>
         {games.map((game) => (
           <GameButton
+            color='lime'
             key={game.id}
             game={game}
             isSelected={selectedGameId === game.id}

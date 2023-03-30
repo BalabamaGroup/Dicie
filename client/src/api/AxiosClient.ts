@@ -22,7 +22,7 @@ class AxiosClient {
     if (token) options.headers = { Authorization: `Bearer ${token}` };
     return this.host(options)
       .then((res: any) => {
-        console.log(res);
+        // console.log(res);
         if (!res || !res.data || res.isAxiosError) return null;
         return res.data;
       })

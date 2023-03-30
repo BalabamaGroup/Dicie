@@ -14,18 +14,23 @@ const MyTurn = ({ gameState, otherPlayers }: MyTurnProps) => {
   return (
     <Styled.MyTurn>
       <Styled.MyTurnContentWrapper>
-        <Styled.AskGuessFormWrapper formSubmitted={!!gameState.currentQuestion}>
-          <AskGuessForm />
-        </Styled.AskGuessFormWrapper>
-        <Styled.ReceivedAnswerWrapper
-          formSubmitted={!!gameState.currentQuestion}
-        >
-          <Conversation
-            otherPlayers={otherPlayers}
-            currentQuestion={gameState.currentQuestion}
-            responseConterYes={gameState.responseCounterYes}
-          />
-        </Styled.ReceivedAnswerWrapper>
+        {!gameState.currentQuestion ? (
+          <Styled.AskGuessFormWrapper
+            formSubmitted={!!gameState.currentQuestion}
+          >
+            <AskGuessForm />
+          </Styled.AskGuessFormWrapper>
+        ) : (
+          <Styled.ReceivedAnswerWrapper
+            formSubmitted={!!gameState.currentQuestion}
+          >
+            <Conversation
+              otherPlayers={otherPlayers}
+              currentQuestion={gameState.currentQuestion}
+              responseConterYes={gameState.responseCounterYes}
+            />
+          </Styled.ReceivedAnswerWrapper>
+        )}
       </Styled.MyTurnContentWrapper>
     </Styled.MyTurn>
   );

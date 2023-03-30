@@ -1,18 +1,26 @@
 import { useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
+import { ComponentColor } from '@/common/types/theme';
 import useWindowWidth from '@/hooks/useWindowWidth';
 
 import * as Styled from './index.styled';
 
 interface CarouselProps {
+  color: ComponentColor;
   maxWidth: number;
   itemWidth: number;
   gap: number;
   children: React.ReactNode[];
 }
 
-const Carousel = ({ maxWidth, itemWidth, gap, children }: CarouselProps) => {
+const Carousel = ({
+  color,
+  maxWidth,
+  itemWidth,
+  gap,
+  children,
+}: CarouselProps) => {
   const [shift, setShift] = useState<number>(0);
 
   let width = maxWidth;
@@ -32,7 +40,7 @@ const Carousel = ({ maxWidth, itemWidth, gap, children }: CarouselProps) => {
 
   return (
     <Styled.Carousel maxWidth={maxWidth}>
-      <Styled.Arrow onClick={shiftMinus} isDisabled={shift <= 0}>
+      <Styled.Arrow onClick={shiftMinus} isDisabled={shift <= 0} color={color}>
         <ReactSVG className='arrow' src='/images/svgs/arrow.left.svg' />
       </Styled.Arrow>
 

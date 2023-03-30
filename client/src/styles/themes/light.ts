@@ -3,28 +3,20 @@ import gradients from '../colors/gradients';
 import shadows from '../colors/shadows';
 
 const light = {
-  name: 'light',
-
   navbar: {
-    default: 'indigo',
-    indigo: {
-      light: colors.indigo[20],
-      dark: colors.indigo[80],
-    },
-    lime: {
-      light: colors.lime[20],
-      dark: colors.lime[80],
-    },
+    wait: colors.indigo[80],
+    go: colors.lime[80],
   },
 
   page: {
     background: gradients.no_gradient_page_bg_light,
-    text: '#141414',
+    text: colors.indigo[80],
 
     auth: {
+      background: colors.indigo[20],
       pictureBackground: gradients.indigo_purple_light.value,
-      headerMain: colors.indigo[60],
-      headerSub: colors.indigo[40],
+      headerMain: colors.indigo[80],
+      headerSub: colors.indigo[60],
       headerAccent: colors.indigo.base,
     },
 
@@ -49,134 +41,71 @@ const light = {
     },
   },
 
-  game: {
-    guessBoo: {
-      setup: {
-        backgroundWait: gradients.indigo_purple_light.value,
-        backgroundGo: gradients.lime_green_light.value,
-        currentUserPanel: {
-          background: gradients.indigo_purple_dark.value,
-          text: colors.indigo[20],
+  guessBooGame: {
+    setup: {
+      backgroundWait: gradients.indigo_purple_light,
+      backgroundGo: gradients.lime_green_light,
+      actionArea: {
+        backgroundWait: colors.indigo[20],
+        backgroundGo: colors.lime[0],
+        intructionText: colors.lime[100],
+
+        intructionTextWait: colors.indigo[80],
+        intructionSpanTextWait: colors.indigo.base,
+        intructionTextGo: colors.lime[80],
+
+        secondaryLabelText: colors.lime[60],
+        secondaryLabelSpanText: colors.lime.dark,
+        selectPlayerWarningText: colors.orange.dark,
+      },
+      otherPlayers: {
+        backgroundWait: colors.indigo[0],
+        backgroundGo: colors.lime[0],
+      },
+    },
+    main: {
+      backgroundWait: gradients.indigo_purple_light,
+      backgroundGo: gradients.lime_green_light,
+      game: {
+        backgroundWait: colors.indigo[0],
+        backgroundGo: colors.lime[0],
+        answerVisualizerDefaultWait: colors.indigo[20],
+        answerVisualizerDefaultGo: colors.lime[20],
+        yes: colors.green.light,
+        no: colors.red.light,
+        wtf: colors.orange.light,
+        myTurn: {
+          askGuessFormHeader: colors.lime[80],
+          guessWarning: colors.orange.dark,
+          convoMyQuestionBackground: colors.lime.base,
+          convoMyQuestionText: colors.lime.text.dark,
+
+          convoOthersAnswerBackground: colors.lime[20],
+          convoOthersAnswerText: colors.lime.text.dark,
+
+          convoMyAnswerBackground: colors.lime[20],
+          convoMyAnswerAskAgainBg: colors.lime.base,
+          convoMyAnswerAskAgainText: colors.lime.text.dark,
+          convoMyAnswerSkipTurnBg: colors.red.dark,
+          convoMyAnswerSkipTurnText: colors.lime.text.light,
+          convoMyAnswerContinueBg: colors.lime.base,
+          convoMyAnswerContinueText: colors.lime.text.dark,
+        },
+        othersTurn: {
+          myQuestionBackgroundWriting: colors.indigo[20],
+          myQuestionTextWriting: colors.indigo[80],
+          myQuestionBackgroundAsked: colors.indigo.base,
+          myQuestionTextAsked: colors.indigo[20],
+          othersAnswerBackground: colors.indigo[0],
+          othersAnswerText: colors.indigo[80],
         },
       },
     },
   },
 
-  switch: {
-    isChosen: {
-      background: 'none',
-      text: colors.indigo[60],
-      highlighting: colors.indigo[60],
-    },
-    background: colors.indigo.light,
-    text: colors.indigo[80],
-    shadow: shadows.indigo.small,
-  },
-
-  input: {
-    default: 'indigo',
-    indigo: {
-      background: colors.indigo[0],
-      backgroundVibrant: colors.indigo[20],
-
-      text: colors.indigo[80],
-      textPlaceholder: colors.neutral[40],
-      textInvalid: colors.red.light,
-
-      focusBorder: colors.indigo.base,
-      focusBorderInvalid: colors.red.light,
-
-      shadow: shadows.indigo.small,
-      shadowInvalid: shadows.red.small,
-
-      icon: {
-        fill: colors.neutral[40],
-        fillHover: colors.indigo[80],
-        background: colors.indigo[0],
-        backgroundHover: colors.indigo.light,
-      },
-    },
-    lime: {
-      background: colors.lime[20],
-      backgroundVibrant: colors.lime[20],
-
-      text: colors.lime[100],
-      textPlaceholder: colors.neutral[60],
-      textInvalid: colors.red.light,
-
-      focusBorder: colors.lime.base,
-      focusBorderInvalid: colors.red.light,
-
-      shadow: shadows.lime.small,
-      shadowInvalid: shadows.red.small,
-
-      icon: {
-        fill: colors.neutral[40],
-        fillHover: colors.lime[0],
-        background: colors.lime[0],
-        backgroundHover: colors.lime.base,
-      },
-    },
-  },
-
-  button: {
-    default: 'indigo',
-    indigo: {
-      background: colors.indigo[20],
-      text: colors.indigo[80],
-      shadow: shadows.light.medium,
-      backgroundPrimary: colors.indigo.light,
-      textPrimary: colors.indigo[80],
-      shadowPrimary: shadows.indigo.medium,
-      textOutline: colors.indigo[20],
-      borderOutline: colors.indigo[20],
-    },
-    lime: {
-      background: colors.lime[20],
-      text: colors.lime[80],
-      shadow: shadows.light.medium,
-      backgroundPrimary: colors.lime.light,
-      textPrimary: colors.lime[80],
-      shadowPrimary: shadows.lime.medium,
-      textOutline: colors.lime[20],
-      borderOutline: colors.lime[20],
-    },
-  },
-
-  toggle: {
-    default: 'indigo',
-    indigo: {
-      backgroundOff: colors.indigo[0],
-      toggleOff: colors.indigo.light,
-      backgroundOn: colors.indigo.base,
-      toggleOn: colors.indigo[20],
-    },
-    lime: {
-      backgroundOff: colors.lime.light,
-      toggleOff: colors.lime.base,
-      backgroundOn: colors.lime.base,
-      toggleOn: colors.lime.dark,
-    },
-  },
-
-  radioExtended: {
-    default: 'indigo',
-    indigo: {
-      text: colors.indigo[80],
-      headerBackground: colors.indigo.light,
-      bodyBackground: colors.indigo[0],
-      indicator: colors.indigo.base,
-      indicatorBackground: colors.indigo[0],
-      icon: colors.indigo[80],
-    },
-    lime: {
-      text: colors.lime[80],
-      headerBackground: colors.lime.light,
-      bodyBackground: colors.lime[20],
-      indicator: colors.lime.dark,
-      indicatorBackground: colors.lime[0],
-      icon: colors.lime[80],
-    },
+  carousel: {
+    arrowWait: colors.indigo[80],
+    arrowGo: colors.lime[80],
   },
 
   gameButton: {
@@ -184,6 +113,8 @@ const light = {
     background: 'none',
     textSelected: colors.indigo[20],
     backgroundSelected: colors.indigo.base,
+    highlightBorderWait: colors.indigo[80],
+    highlightBorderGo: colors.lime[80],
   },
 };
 

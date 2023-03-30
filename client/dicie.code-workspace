@@ -14,7 +14,16 @@
     }
   ],
   "settings": {
-    "importSorter.generalConfiguration.sortOnBeforeSave": true
+    "importSorter.generalConfiguration.sortOnBeforeSave": true,
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "**/node_modules": true
+    }
   },
   "tasks": {
     "version": "2.0.0",
