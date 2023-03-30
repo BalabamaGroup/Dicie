@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 
-import CharadesAPI from '@/api/game/charades';
 import { UserInGame } from '@/common/types/user';
-import Button from '@/components/Button';
-import Player from '@/components/Player';
+import { thresholds } from '@/common/utils/device';
+import SidePanel from '@/components/SidePanel';
+import useWindowWidth from '@/hooks/useWindowWidth';
+import { useColorStore } from '@/stores/ColorStore';
 
-import BottomContent from './BottomContent/index';
+import ActionArea from './ActionArea';
 import * as Styled from './index.styled';
-import TopMessage from './TopMessage/index.';
+import OtherPlayers from './OtherPlayers';
 
 interface SetupProps {
   mePlayer: UserInGame;
@@ -15,109 +16,51 @@ interface SetupProps {
 }
 
 const Setup = ({ mePlayer, otherPlayers }: SetupProps) => {
-  const [highlightedUserId, setHighlightedUserId] = useState<number | null>(
-    mePlayer.state.selectedUser
-  );
-  const [highlightedUser] = otherPlayers.filter(
-    (player) => player.id === highlightedUserId
-  );
-  const [selectedUser] = otherPlayers.filter(
-    (player) => player.id === mePlayer.state.selectedUser
+  const isMyTurn = mePlayer.state.isGoing || !!mePlayer.state.selectedUser;
+  const isMeReady = mePlayer.state.ready;
+  const [highlightedPlayer, setHighlightedPlayer] = useState<UserInGame | null>(
+    null
   );
 
-  const isCurrentUserTurn =
-    mePlayer.state.isGoing && !mePlayer.state.selectedUser;
-  const isUserHighlighted = !!highlightedUserId;
-  const isUserSelected = !!mePlayer.state.selectedUser;
-  const isCharacterSet = !!selectedUser?.state.word;
-  const isReady = mePlayer.state.ready;
+  const displayWidth = useWindowWidth(100);
 
-  const getDisabledByLoopsPlayerId = () => {
-    const avialablePlayers = otherPlayers.filter(
-      (player) => !player.state.selectedBy && player.id !== mePlayer.id
-    );
-    if (avialablePlayers.length !== 2) return null;
-    const disabledPlayer = avialablePlayers.filter(
-      (player) => player.state.selectedUser
-    );
-    return disabledPlayer.length ? disabledPlayer[0].id : null;
-  };
-
-  const disabledByLoopsPlayerId = getDisabledByLoopsPlayerId();
-
-  const onSelectUser = (player: UserInGame) => {
-    if (
-      !isCurrentUserTurn ||
-      player.state.selectedBy ||
-      (disabledByLoopsPlayerId && disabledByLoopsPlayerId === player.id)
-    )
-      return;
-    setHighlightedUserId(player.id);
-  };
+  const isWait = useColorStore((s) => s.color.guessBoo) === 'indigo';
+  const setWait = useColorStore((s) => () => s.setWait('guessBoo'));
+  const setGo = useColorStore((s) => () => s.setGo('guessBoo'));
 
   useEffect(() => {
-    if (!isCurrentUserTurn || mePlayer.state.selectedUser) return;
-    const avialablePlayers = otherPlayers.filter(
-      (player) => !player.state.selectedBy && player.id !== mePlayer.id
-    );
-
-    if (avialablePlayers.length !== 1) return;
-    CharadesAPI.selectUser(avialablePlayers[0].id);
-    setHighlightedUserId(avialablePlayers[0].id);
-  }, [isCurrentUserTurn]);
+    const localIsGo = isMyTurn && !isMeReady;
+    if (localIsGo && isWait) setGo();
+    else if (!localIsGo && !isWait) setWait();
+  }, [isMyTurn, isMeReady]);
 
   return (
-    <Styled.Setup>
-      <Styled.PlayersList>
-        {otherPlayers.map((player) => (
-          <Player
-            size='large'
-            key={player.id}
-            canBeHighlighted
-            isHighlighted={highlightedUserId === player.id}
-            isClickable={isCurrentUserTurn}
-            onClick={() => onSelectUser(player)}
-            label={player.state.word}
-            outsideLabel={player.username}
-            isDisabled={
-              isCurrentUserTurn &&
-              (!!player.state.selectedBy ||
-                disabledByLoopsPlayerId === player.id)
-            }
-          />
-        ))}
-      </Styled.PlayersList>
-
-      {isCharacterSet && (
-        <div className='mobile-ready-button-wrapper'>
-          <Button
-            className='mobile-ready-button'
-            onClick={() => CharadesAPI.setReady()}
-            isPrimary
-            isScale
-          >
-            {isReady ? "I'm not ready" : 'I am ready!'}
-          </Button>
-        </div>
-      )}
-
-      <Styled.CurrentPlayer>
-        <TopMessage
-          isCurrentUserTurn={isCurrentUserTurn}
-          isUserSelected={isUserSelected}
-          isCharacterSet={isCharacterSet}
-          isReady={isReady}
+    <Styled.Setup isWait={isWait}>
+      <Styled.SetupContent>
+        <ActionArea
+          isMyTurn={isMyTurn}
+          mePlayer={mePlayer}
+          highlightedPlayer={highlightedPlayer}
+          setHighlightedPlayer={setHighlightedPlayer}
         />
-        <div className='current-user-avatar'></div>
-        <BottomContent
-          highlightedUser={highlightedUser}
-          selectedUser={selectedUser}
-          isUserHighlighted={isUserHighlighted}
-          isUserSelected={isUserSelected}
-          isCharacterSet={isCharacterSet}
-          isReady={isReady}
+
+        <OtherPlayers
+          isMyTurn={isMyTurn}
+          mePlayer={mePlayer}
+          otherPlayers={otherPlayers}
+          highlightedPlayer={highlightedPlayer}
+          setHighlightedPlayer={setHighlightedPlayer}
         />
-      </Styled.CurrentPlayer>
+      </Styled.SetupContent>
+
+      <SidePanel
+        color={isWait ? 'indigo' : 'lime'}
+        isCollapsed={displayWidth < thresholds.guessBoo.setup.sidePanelCollapse}
+        isHorizontal={
+          displayWidth < thresholds.guessBoo.setup.sidePanelHorizontal
+        }
+      />
+      {/* <SidePanel collapseOn={1440} bottomOn={1280} /> */}
     </Styled.Setup>
   );
 };

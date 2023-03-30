@@ -3,102 +3,111 @@ import gradients from '../colors/gradients';
 import shadows from '../colors/shadows';
 
 const dark: any = {
-  name: 'dark',
+  navbar: {
+    wait: colors.indigo[20],
+    go: colors.lime[80],
+  },
 
   page: {
-    background: gradients.dark,
-    text: colors.light,
+    background: gradients.no_gradient_page_bg_dark,
+    text: colors.indigo[20],
 
     auth: {
-      pictureBackground: gradients.yellow_green_light.value,
-      headerMain: colors.light,
-      headerSub: colors.neutral[30],
-      headerAccent: colors.yellow,
+      background: colors.indigo[80],
+      pictureBackground: gradients.indigo_purple_dark.value,
+      headerMain: colors.indigo[20],
+      headerSub: colors.indigo[40],
+      headerAccent: colors.indigo.base,
     },
 
     home: {
-      cards: {
-        createRoom: {
-          defaultText: colors.dark,
-          background: gradients.yellow_green_dark,
-          selectedBackground: colors.black,
-          chooseGameBackground: colors.dark,
-          text: colors.light,
-          shadowHover: shadows.yellow.large,
+      createRoomCard: {
+        defaultText: colors.lime[80],
+        background: gradients.lime_green_dark,
+        selectedBackground: colors.lime[100],
+        chooseGameBackground: colors.lime[80],
+        text: colors.lime[20],
+        border: 'transparent',
+        shadowHover: shadows.lime.large,
+      },
+      joinRoomCard: {
+        defaultText: colors.indigo[20],
+        background: gradients.indigo_purple_dark,
+        selectedBackground: colors.indigo[80],
+        text: colors.indigo[20],
+        border: 'transparent',
+        shadowHover: shadows.indigo.large,
+      },
+    },
+  },
+
+  guessBooGame: {
+    setup: {
+      backgroundWait: gradients.indigo_purple_dark,
+      backgroundGo: gradients.lime_green_dark,
+      actionArea: {
+        backgroundWait: colors.indigo[100],
+        backgroundGo: colors.lime[100],
+        intructionTextWait: colors.indigo[20],
+        intructionSpanTextWait: colors.indigo.base,
+        intructionTextGo: colors.lime[20],
+        secondaryLabelText: colors.lime[40],
+        secondaryLabelSpanText: colors.lime.base,
+        selectPlayerWarningText: colors.orange.dark,
+      },
+      otherPlayers: {
+        backgroundWait: colors.indigo[100],
+        backgroundGo: colors.lime[100],
+      },
+    },
+    main: {
+      backgroundWait: gradients.indigo_purple_dark,
+      backgroundGo: gradients.lime_green_dark,
+      game: {
+        backgroundWait: colors.indigo[100],
+        backgroundGo: colors.lime[100],
+        answerVisualizerDefaultWait: colors.indigo[80],
+        answerVisualizerDefaultGo: colors.lime[80],
+        yes: colors.green.dark,
+        no: colors.red.dark,
+        wtf: colors.orange.dark,
+        myTurn: {
+          askGuessFormHeader: colors.lime.text.light,
+          guessWarning: colors.orange.dark,
+          convoMyQuestionBackground: colors.lime.base,
+          convoMyQuestionText: colors.lime.text.dark,
+          convoOthersAnswerBackground: colors.lime[80],
+          convoOthersAnswerText: colors.lime.text.light,
+          convoMyAnswerBackground: colors.lime[80],
+          convoMyAnswerAskAgainBg: colors.lime.base,
+          convoMyAnswerAskAgainText: colors.lime.text.dark,
+          convoMyAnswerSkipTurnBg: colors.red.dark,
+          convoMyAnswerSkipTurnText: colors.lime.text.light,
+          convoMyAnswerContinueBg: colors.lime.base,
+          convoMyAnswerContinueText: colors.lime.text.dark,
         },
-        orLabel: {
-          background: colors.dark,
-          text: colors.light,
-          shadow: shadows.dark.large,
-        },
-        joinRoom: {
-          defaultText: colors.light,
-          background: gradients.indigo_purple,
-          selectedBackground: colors.dark,
-          text: colors.light,
-          shadowHover: shadows.purple.large,
+        othersTurn: {
+          myQuestionBackgroundWriting: colors.indigo[80],
+          myQuestionTextWriting: colors.indigo[20],
+          myQuestionBackgroundAsked: colors.indigo.base,
+          myQuestionTextAsked: colors.indigo[20],
+          othersAnswerBackground: colors.indigo[100],
+          othersAnswerText: colors.indigo.text.light,
         },
       },
     },
   },
 
-  game: {
-    guessBoo: {
-      playerPicking: {
-        currentUserPanel: {
-          background: gradients.yellow_green_dark.value,
-          text: colors.dark,
-        },
-      },
-    },
-  },
-
-  switch: {
-    isChosen: {
-      background: 'none',
-      text: colors.yellow,
-      highlighting: colors.yellow,
-    },
-    background: colors.yellow,
-    text: colors.dark,
-    shadow: shadows.yellow.small,
-  },
-
-  button: {
-    background: colors.dark,
-    text: colors.light,
-    shadow: shadows.dark.medium,
-
-    backgroundPrimary: gradients.yellow_green_dark.value,
-    textPrimary: colors.dark,
-    shadowPrimary: colors.yellow,
-
-    textOutline: colors.dark,
-    borderOutline: colors.dark,
-  },
-
-  radioExtended: {
-    text: colors.light,
-    headerBackground: colors.dark_neutral,
-    bodyBackground: colors.dark,
-    indicator: colors.yellow,
-    indicatorBackground: colors.dark,
-    icon: colors.light,
-  },
-
-  navbar: {
-    background: colors.black,
-    text: colors.light,
-    revertText: colors.dark,
-    forsedTextLight: colors.light,
-    forsedTextDark: colors.dark,
+  carousel: {
+    arrowWait: colors.indigo[20],
+    arrowGo: colors.lime.text.light,
   },
 
   gameButton: {
-    text: colors.light,
+    text: colors.indigo[20],
     background: 'none',
-    textSelected: colors.dark,
-    backgroundSelected: colors.yellow,
+    textSelected: colors.indigo[80],
+    backgroundSelected: colors.lime.base,
   },
 };
 

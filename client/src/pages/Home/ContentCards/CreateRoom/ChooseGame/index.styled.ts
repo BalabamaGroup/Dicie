@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-import { desktopAndBigger, desktopAndSmaller, mobileAndSmaller } from '@/common/utils/device';
+import {
+  desktopAndBigger,
+  desktopAndSmaller,
+  mobileAndSmaller,
+  tabletAndBigger,
+} from '@/common/utils/device';
 
 export const ChooseGame = styled.div<{}>`
   display: flex;
@@ -15,11 +20,15 @@ export const ChooseGame = styled.div<{}>`
   box-sizing: border-box;
 
   background: ${({ theme }) =>
-    theme.page.home.cards.createRoom.chooseGameBackground};
+    theme.page.home.createRoomCard.chooseGameBackground};
 
   border-radius: 0 32px 32px 0;
   @media ${desktopAndSmaller} {
     border-radius: 32px;
+  }
+  @media ${desktopAndBigger} {
+    border-left: 2px solid
+      ${({ theme }) => theme.page.home.createRoomCard.border};
   }
 `;
 
@@ -43,7 +52,7 @@ export const Header = styled.div<{}>`
       height: 24px;
       path {
         cursor: pointer;
-        fill: ${({ theme }) => theme.page.home.cards.createRoom.text};
+        fill: ${({ theme }) => theme.page.home.createRoomCard.text};
       }
     }
   }

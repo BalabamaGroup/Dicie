@@ -32,8 +32,13 @@ const JoinRoomCard = ({ selectedCard, onSelect }: JoinRoomCardProps) => {
     }
   };
 
-  const onGoToRoom = (id: string) => {
-    navigate(`/room/${id}`);
+  const onGoToRoom = async (id: string) => {
+    try {
+      await RoomAPI.connectToRoom(id);
+      navigate(`/room/${id}`);
+    } catch (e) {
+      console.log('Room is unavialable');
+    }
   };
 
   return (

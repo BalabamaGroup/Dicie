@@ -24,9 +24,28 @@ const OthersTurn = ({
 
   return (
     <Styled.OthersTurn currentQuestion={currentQuestion}>
-      <Styled.Qestion>
-        <Player onClick={() => {}} label={goingUser.state.word} size='large' />
-
+      <Styled.Qestion currentQuestion={currentQuestion}>
+        <Player
+          className='others-turn-player'
+          color='indigo'
+          form='tile'
+          onClick={() => {}}
+          tileContent={{
+            label: goingUser.state.word,
+            outsideLabel: goingUser.username,
+          }}
+          size='large'
+        />
+        <Player
+          className='others-turn-player-mobile'
+          color='indigo'
+          form='tile'
+          onClick={() => {}}
+          tileContent={{
+            label: goingUser.state.word,
+          }}
+          size='large'
+        />
         <Styled.MessageBubble currentQuestion={currentQuestion}>
           {currentQuestion || [
             `${goingUser.username} is writing a question `,

@@ -1,10 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+
 import routes from '@/common/constants/routes';
-import AuthForm from './AuthForm';
-
 import Switch from '@/components/Switch';
-import useTheme from '@/hooks/useTheme';
+import { useThemeStore } from '@/stores/ThemeStore';
 
+import AuthForm from './AuthForm';
 import * as Styled from './index.styled';
 
 const SignUp = () => {
@@ -13,33 +13,39 @@ const SignUp = () => {
   const location = useLocation();
   const formType = location.pathname === routes.SIGN_UP ? 'signUp' : 'signIn';
 
-  const { getTheme } = useTheme();
-  const theme = getTheme();
+  const theme = useThemeStore((state) => state.theme);
+
+  const onSignIn = (e: any) => {
+    // e.preventDefault();
+    navigate(routes.SIGN_IN);
+  };
+
+  const onSignUp = (e: any) => {
+    // e.preventDefault();
+    navigate(routes.SIGN_UP);
+  };
 
   return (
     <Styled.SignUp>
       <Styled.AuthPicture>
-        <img src={`/images/pngs/auth-picture.${theme}.png`} alt='' />
+        <img src={`/images/pngs/auth-picture.light.png`} alt='' />
       </Styled.AuthPicture>
 
       <Styled.AuthContent>
         <Switch
+          color='indigo'
           className='auth_switch'
           options={[
             {
               id: 'signin',
               label: 'Sign In',
-              onClick: () => {
-                navigate(routes.SIGN_IN);
-              },
+              onClick: onSignIn,
               defaultChoice: formType === 'signIn',
             },
             {
               id: 'signup',
               label: 'Sign Up',
-              onClick: () => {
-                navigate(routes.SIGN_UP);
-              },
+              onClick: onSignUp,
               defaultChoice: formType === 'signUp',
             },
           ]}

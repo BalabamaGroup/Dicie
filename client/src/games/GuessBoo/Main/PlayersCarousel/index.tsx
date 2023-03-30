@@ -12,9 +12,13 @@ interface PlayersCarouselProps {
 const PlayersCarousel = ({ otherPlayers }: PlayersCarouselProps) => {
   const displayWidth = useWindowWidth();
 
+  let maxWidth;
+  if (displayWidth >= 1024) maxWidth = displayWidth - 528;
+  else maxWidth = displayWidth - 176;
+
   return (
-    <Styled.PlayersCarouselWrapper>
-      <Carousel maxWidth={displayWidth - 528} itemWidth={96} gap={16}>
+    <Styled.PlayersCarouselWrapper className='players-carousel'>
+      <Carousel maxWidth={maxWidth} itemWidth={96} gap={16}>
         {[
           ...otherPlayers,
           ...otherPlayers,
@@ -24,10 +28,15 @@ const PlayersCarousel = ({ otherPlayers }: PlayersCarouselProps) => {
           ...otherPlayers,
         ].map((player, i) => (
           <Player
+            size='medium'
             key={i}
             onClick={() => {}}
-            label={player.state.word}
-            outsideLabel={player.username}
+            form='tile'
+            color='indigo'
+            tileContent={{
+              label: player.state.word,
+              outsideLabel: player.username,
+            }}
           />
         ))}
       </Carousel>

@@ -36,6 +36,7 @@ const RoomSettings = ({}: RoomSettingsProps) => {
         <Styled.MakePrivateParam className='isprivate'>
           <div className='isprivate-main'>
             <Toggle
+              color='lime'
               className='isprivate-main-toggle'
               value={isPrivate}
               onChange={onChangeIsPrivate}
@@ -52,7 +53,7 @@ const RoomSettings = ({}: RoomSettingsProps) => {
               </div>
               <div className='room-password-form'>
                 <Input
-                  theme={'dark'}
+                  color='lime'
                   id={'room-password'}
                   className='isprivate-settings-password'
                   value={roomPassword}
@@ -61,6 +62,7 @@ const RoomSettings = ({}: RoomSettingsProps) => {
                   size={'medium'}
                 />
                 <Button
+                  color='indigo'
                   isPrimary
                   size={'medium'}
                   onClick={() => {}}
@@ -76,6 +78,7 @@ const RoomSettings = ({}: RoomSettingsProps) => {
         <Styled.CommunicationsParam className='communications'>
           <div className='communications-main'>
             <Toggle
+              color='lime'
               className='communications-main-toggle'
               value={isWithCommuninactions}
               onChange={onChangeIsWithCommuninactions}
@@ -89,6 +92,7 @@ const RoomSettings = ({}: RoomSettingsProps) => {
           {isWithCommuninactions && (
             <div className='communications-settings'>
               <RadioExtended
+                color='lime'
                 className={'communications-settings-radio'}
                 selectedOptionId={selectedCommunicationOption}
                 options={[
@@ -122,6 +126,7 @@ const RoomSettings = ({}: RoomSettingsProps) => {
       </Styled.RoomSettingsForm>
 
       <Button
+        color='indigo'
         isPrimary
         className={'start-game-button'}
         onClick={onStartGame}

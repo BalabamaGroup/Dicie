@@ -4,6 +4,19 @@ export const size = {
   desktop: 1025,
 };
 
+export const thresholds = {
+  guessBoo: {
+    setup: {
+      sidePanelCollapse: 1400,
+      sidePanelHorizontal: 1200,
+    },
+    main: {
+      sidePanelCollapse: size.desktop + 1,
+      sidePanelHorizontal: size.tablet + 1,
+    },
+  },
+};
+
 export const mobileAndSmaller = `(max-width: ${size.mobile}px)`;
 export const mobileAndBigger = `(min-width: ${size.mobile - 1}px)`;
 

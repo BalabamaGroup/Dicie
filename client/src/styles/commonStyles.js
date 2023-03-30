@@ -7,7 +7,6 @@ export const commonPageStyles = css`
 
 export const commonPageWithNavbarStyles = css`
   width: 100vw;
+  height: 100vh;
   padding-top: 64px;
-  height: calc(100vh - 64px);
-  /* height: 100vh; */
 `;

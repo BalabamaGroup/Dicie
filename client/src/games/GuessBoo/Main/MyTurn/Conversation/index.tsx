@@ -40,6 +40,8 @@ const Conversation = ({
     if (!player.state.winRound) lastPlayer = false;
   });
 
+  console.log(responseConterYes);
+
   const canMakeAnotherTurn =
     lastPlayer ||
     ((finalAnswer === 'Yes' || finalAnswer === 'Wtf') && responseConterYes < 3);
@@ -58,7 +60,12 @@ const Conversation = ({
       currentQuestion={currentQuestion}
       finalAnswer={finalAnswer}
     >
-      <Player className='conversation-player' onClick={() => {}} size='large' />
+      <Player
+        color='indigo'
+        className='conversation-player'
+        onClick={() => {}}
+        size='medium'
+      />
 
       <Styled.ConversationContent className='conversation-content'>
         <Styled.MyQuestion>{currentQuestion}</Styled.MyQuestion>
@@ -85,7 +92,7 @@ const Conversation = ({
               </div>,
             ]
           ) : (
-            <div className='continue' onClick={onSkipTurn}>
+            <div className='continue' onClick={onAskAgain}>
               Continue
             </div>
           )}

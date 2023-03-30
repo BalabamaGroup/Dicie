@@ -1,46 +1,15 @@
+import eyeClosed from 'images/svgs/eye.closed.svg.png';
+import eyeOpened from 'images/svgs/eye.opened.svg.png';
 import { createRef, useEffect, useState } from 'react';
 import { ReactSVG } from 'react-svg';
+import { useThemeStore } from 'stores/ThemeStore';
 
 import { getTextHeight } from '@/common/helpers/domHelpers';
-import { multiInputDataType } from '@/components/MultiInput';
-import useComponentTheme from '@/hooks/useComponentTheme';
+import inputTheme from '@/styles/themes/componentThemes/inputTheme';
 
-import { InputThemeDark, InputThemeLight, InputThemeType } from './componentTheme';
 import * as Styled from './index.styled';
-
-export interface InputProps {
-  id?: string;
-  className?: string;
-  type?: string;
-  label?: string;
-  placeholder?: string;
-  autoComplete?: string;
-
-  theme?: 'auto' | 'light' | 'dark';
-  size?: 'large' | 'medium';
-  isVibrant?: boolean;
-
-  value: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-
-  iconData?: {
-    iconSrc: string;
-    onClick: React.MouseEventHandler<HTMLDivElement>;
-  };
-
-  focusOnLoad?: boolean;
-
-  isValid?: boolean;
-  setIsValid?: Function;
-  validationData?: { regex: RegExp; note: string };
-  existanceData?: { values: Array<string>; note: string };
-  customTest?: { test: Function; note: string };
-  customDependancies?: Array<any>;
-
-  multiInputData?: multiInputDataType;
-  multiInputDataIndex?: number;
-  onChangeMultiInputData?: Function;
-}
+import { InputProps } from './interface';
+import useInputValidation from './useInputValidation';
 
 const Input = ({
   id = 'input',
@@ -49,50 +18,41 @@ const Input = ({
   label,
   placeholder = '',
   autoComplete = 'off',
-
-  theme = 'auto',
+  color,
   size = 'medium',
   isVibrant = false,
-
   value,
   onChange,
-
   iconData,
-
   isValid = true,
   setIsValid,
-
   validationData,
   existanceData,
   customTest,
   customDependancies,
-
   multiInputData,
   onChangeMultiInputData,
-
   focusOnLoad = false,
 }: InputProps) => {
   const inputRef = createRef<HTMLInputElement>();
 
+  const [isFocus, setIsFocus] = useState(false);
+  const [currentNote, setCurrentNote] = useState('');
+
+  let theme = useThemeStore((state) => state.theme);
+  const componentTheme = inputTheme[theme][color];
+
   const isMultiInputPart = !!multiInputData && !!onChangeMultiInputData;
 
-  const componentTheme: InputThemeType = useComponentTheme(
-    theme,
-    InputThemeLight,
-    InputThemeDark
-  );
-
-  const [isFocus, setIsFocus] = useState(false);
   const onFocus = () => {
     setIsFocus(true);
     isMultiInputPart && onChangeMultiInputData(true);
   };
+
   const onBlur = () => {
     setIsFocus(false);
     isMultiInputPart && onChangeMultiInputData(false);
   };
-
-  const [currentNote, setCurrentNote] = useState('');
 
   const onInputClick = () => {
     if (!inputRef?.current) return;
@@ -100,35 +60,24 @@ const Input = ({
     onFocus();
   };
 
-  const onInputMouseDown = (e: any) => e.preventDefault();
+  const onInputMouseDown = (e: any) => {
+    e.preventDefault();
+  };
 
   useEffect(() => {
     if (focusOnLoad && inputRef?.current) inputRef.current.focus();
   }, []);
 
-  let dependancies = [value];
-  if (customDependancies) dependancies = [dependancies, ...customDependancies];
-
-  useEffect(() => {
-    if (isValid === undefined || !setIsValid) return;
-
-    let isRegexValid = true;
-    if (validationData) isRegexValid = validationData.regex.test(value);
-
-    let isExistanceValid = true;
-    if (existanceData)
-      isExistanceValid = !existanceData.values.find((ev) => value === ev);
-
-    let isCustomTestValid = true;
-    if (customTest) isCustomTestValid = customTest.test();
-
-    if (validationData && !isRegexValid) setCurrentNote(validationData.note);
-    else if (customTest && !isCustomTestValid) setCurrentNote(customTest.note);
-    else if (existanceData && !isExistanceValid)
-      setCurrentNote(existanceData.note);
-
-    setIsValid(isExistanceValid && isRegexValid && isCustomTestValid);
-  }, dependancies);
+  useInputValidation({
+    inputValue: value,
+    setCurrentNote,
+    isValid,
+    setIsValid,
+    validationData,
+    existanceData,
+    customTest,
+    customDependancies,
+  });
 
   return (
     <Styled.LabelWrapper className={`${className} label_wrapper`}>
@@ -137,8 +86,8 @@ const Input = ({
         size={size}
         isNoteVisible={isFocus && !isValid}
         noteTextHeight={getTextHeight(currentNote, 20)}
-        multiInputData={isMultiInputPart ? multiInputData : undefined}
-        componentTheme={componentTheme}
+        multiInputData={multiInputData}
+        theme={componentTheme}
       >
         <Styled.InputWrapper
           size={size}
@@ -148,7 +97,7 @@ const Input = ({
           isFocus={isFocus}
           isValid={isValid}
           withIcon={!!iconData}
-          componentTheme={componentTheme}
+          theme={componentTheme}
         >
           <div className='focus-border-wrapper'>
             <div className='focus-border'>
@@ -171,7 +120,7 @@ const Input = ({
             <Styled.Icon
               onClick={iconData.onClick}
               size={size}
-              componentTheme={componentTheme}
+              theme={componentTheme}
             >
               <ReactSVG src={iconData.iconSrc} />
             </Styled.Icon>
@@ -182,7 +131,7 @@ const Input = ({
           className='input_note'
           onMouseDown={onInputMouseDown}
           isVisible={isFocus && !isValid}
-          componentTheme={componentTheme}
+          theme={componentTheme}
         >
           {currentNote}
         </Styled.Note>

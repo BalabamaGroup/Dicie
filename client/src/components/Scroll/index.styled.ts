@@ -5,13 +5,10 @@ export const Scroll = styled.div<{
 }>`
   overflow-y: auto;
   overflow-x: hidden;
-  padding-left: 6px;
-  margin: 0 -6px;
-  scrollbar-gutter: stable;
+  padding: 0 8px;
 
   &::-webkit-scrollbar {
     width: 6px;
-    margin-right: -6px;
   }
   &::-webkit-scrollbar-track {
     border-radius: 8px;

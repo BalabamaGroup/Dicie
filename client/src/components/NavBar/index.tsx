@@ -1,42 +1,46 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
+import RoomAPI from '@/api/room';
 import routes from '@/common/constants/routes';
-import { size } from '@/common/utils/device';
 import useAuth from '@/hooks/useAuth';
-import useTheme from '@/hooks/useTheme';
-import useWindowWidth from '@/hooks/useWindowWidth';
+import { useColorStore } from '@/stores/ColorStore';
+import { useGameStore } from '@/stores/GameStore';
+import { useThemeStore } from '@/stores/ThemeStore';
 
 import * as Styled from './index.styled';
 
 interface NavBarProps {
-  revertTextColor?: boolean;
-  forsedTextColor?: 'light' | 'dark';
+  page?: 'home' | 'room' | 'guessBoo';
 }
 
-const NavBar = ({ revertTextColor = false, forsedTextColor }: NavBarProps) => {
+const NavBar = ({ page }: NavBarProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { roomId } = useParams();
+
+  const setAutoTheme: any = useThemeStore((s) => s.setAutoTheme);
+  const toggleTheme: any = useThemeStore((s) => s.toggleTheme);
+  const onDisconnect = async () => {
+    roomId && (await RoomAPI.disconnectFromRoom(roomId));
+    navigate('/');
+  };
   const { signOut } = useAuth();
-  const { toggleTheme } = useTheme();
 
-  const windowWindth = useWindowWidth(100);
-
-  if (windowWindth < size.tablet) return null;
+  const color = useColorStore((state) => state.color[page || 'home']);
 
   return (
-    <Styled.NavBar
-      revertTextColor={revertTextColor}
-      forsedTextColor={forsedTextColor}
-    >
+    <Styled.NavBar isWait={color === 'indigo'}>
       <Styled.Logo>Dicie</Styled.Logo>
 
       <Styled.LinksWrapper>
-        <Styled.Link onClick={() => navigate('/voicechat')}>
+        {/* <Styled.Link onClick={() => navigate('/voicechat')}>
           WebRTC test
-        </Styled.Link>
+        </Styled.Link> */}
         <Styled.Link onClick={() => navigate(routes.HOME)}>Home</Styled.Link>
-        {/* <Styled.Link onClick={() => navigate(routes.ABOUT)}>About</Styled.Link> */}
+        <Styled.Link onClick={setAutoTheme}>Auto theme</Styled.Link>
         <Styled.Link onClick={toggleTheme}>Toggle theme</Styled.Link>
         <Styled.Link onClick={signOut}>Sign out</Styled.Link>
+        {roomId && <Styled.Link onClick={onDisconnect}>Leave room</Styled.Link>}
       </Styled.LinksWrapper>
     </Styled.NavBar>
   );

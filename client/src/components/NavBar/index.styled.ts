@@ -1,9 +1,12 @@
 import styled, { css } from 'styled-components';
 
+import { tabletAndSmaller } from '@/common/utils/device';
+
 export const NavBar = styled.div<{
-  revertTextColor: boolean;
-  forsedTextColor: 'light' | 'dark' | undefined;
+  isWait: boolean;
 }>`
+  position: fixed;
+
   padding: 0 64px;
   height: 64px;
 
@@ -16,17 +19,13 @@ export const NavBar = styled.div<{
 
   .navbar-logo,
   .navbar-link {
-    color: ${({ revertTextColor, theme }) =>
-      revertTextColor ? theme.navbar.revertText : theme.navbar.text};
+    transition: color 0.3s ease-in-out;
+    color: ${({ isWait, theme }) =>
+      isWait ? theme.navbar.wait : theme.navbar.go};
   }
 
-  .navbar-logo,
-  .navbar-link {
-    color: ${({ forsedTextColor, theme }) =>
-      forsedTextColor &&
-      (forsedTextColor === 'light'
-        ? theme.navbar.forsedTextLight
-        : theme.navbar.forsedTextDark)};
+  @media ${tabletAndSmaller} {
+    display: none;
   }
 `;
 

@@ -1,4 +1,8 @@
 import React, { MouseEventHandler } from 'react';
+import { useThemeStore } from 'stores/ThemeStore';
+
+import { ComponentColor } from '@/common/types/theme';
+import buttonTheme from '@/styles/themes/componentThemes/buttonTheme';
 
 import * as Styled from './index.styled';
 
@@ -8,9 +12,8 @@ interface ButtonProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
 
   size?: 'large' | 'medium' | 'small';
-  theme?: 'auto' | 'light' | 'dark';
+  color: ComponentColor;
   isPrimary?: boolean;
-  isOutline?: boolean;
   isDisabled?: boolean;
   isScale?: boolean;
 }
@@ -20,18 +23,22 @@ const Button = ({
   children,
   onClick,
   size = 'medium',
+  color,
   isPrimary = false,
-  isOutline = false,
   isDisabled = false,
   isScale = false,
 }: ButtonProps) => {
+  const theme = useThemeStore((state) => state.theme);
+  const componentTheme = buttonTheme[theme][color];
+
   return (
     <Styled.Button
       className={className}
       onClick={onClick}
       size={size}
+      theme={componentTheme}
+      color={color}
       isPrimary={isPrimary}
-      isOutline={isOutline}
       disabled={isDisabled}
       isScale={isScale}
     >

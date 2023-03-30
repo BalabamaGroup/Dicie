@@ -1,15 +1,21 @@
+import eyeClosed from '/images/svgs/eye.closed.svg';
+import eyeOpened from '/images/svgs/eye.opened.svg';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { RoleTypes } from '@/common/constants';
 import {
-    getEmailValidationData, getMatchPasswordValidationData, getPasswordValidationData,
-    getUsernameValidationData
+  getEmailValidationData,
+  getMatchPasswordValidationData,
+  getPasswordValidationData,
+  getUsernameValidationData,
 } from '@/common/utils/validation';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import MultiInput from '@/components/MultiInput';
 import useAuth from '@/hooks/useAuth';
+import useImagePreloader from '@/hooks/useImagePreloader';
+import { useThemeStore } from '@/stores/ThemeStore';
 
 import * as Styled from './index.styled';
 
@@ -88,6 +94,14 @@ const SignUpForm = ({
     setTakenEmails(emails);
   });
 
+  useImagePreloader([eyeClosed, eyeOpened]);
+
+  const eyeClosedSvg = eyeClosed;
+  const eyeOpenedSvg = eyeOpened;
+
+  const theme = useThemeStore((state) => state.theme);
+  const defaultColor = theme === 'light' ? 'indigo' : 'lime';
+
   return (
     <Styled.AuthForm>
       <Styled.AuthHeader>
@@ -95,15 +109,17 @@ const SignUpForm = ({
           Welcome to <span className='colored'>Dicie</span>
         </div>
         <div className='subheader'>Become the true embodiment of darkness</div>
-        <div className='subheader'>And there are also party games</div>
+        <div className='subheader'>( and there are also some party games )</div>
       </Styled.AuthHeader>
 
       <Styled.MultiInputWrapper inputCount={4}>
         <MultiInput className='auth_multiinput' isScale={true}>
           <Input
+            isVibrant
             id={'signUp-username'}
             key={'signUp-username'}
             size='large'
+            color='indigo'
             placeholder='Username'
             value={username.value}
             onChange={username.onChange}
@@ -119,9 +135,11 @@ const SignUpForm = ({
           />
 
           <Input
+            isVibrant
             id={'signUp-email'}
             key={'signUp-email'}
             size='large'
+            color='indigo'
             type={'email'}
             placeholder='Email'
             value={email.value}
@@ -138,17 +156,17 @@ const SignUpForm = ({
           />
 
           <Input
-            id={'signUp-username'}
+            isVibrant
+            id={'signUp-password'}
             key={'signUp-passsword'}
             size='large'
+            color='indigo'
             type={passwordIsVisible ? 'text' : 'password'}
             placeholder='Password'
             value={password.value}
             onChange={password.onChange}
             iconData={{
-              iconSrc: passwordIsVisible
-                ? '/images/svgs/eye.closed.svg'
-                : '/images/svgs/eye.opened.svg',
+              iconSrc: passwordIsVisible ? eyeClosedSvg : eyeOpenedSvg,
               onClick: togglePasswordIsvisible,
             }}
             isValid={passwordIsValid}
@@ -159,9 +177,11 @@ const SignUpForm = ({
           />
 
           <Input
-            id={'signUp-email'}
+            isVibrant
+            id={'signUp-passsword-repeat'}
             key={'signUp-passsword-repeat'}
             size='large'
+            color='indigo'
             type={matchPasswordIsVisible ? 'text' : 'password'}
             placeholder='Repeat password'
             value={matchPassword.value}
@@ -184,6 +204,7 @@ const SignUpForm = ({
       </Styled.MultiInputWrapper>
 
       <Button
+        color='indigo'
         isPrimary
         isScale={true}
         onClick={onSignUp}

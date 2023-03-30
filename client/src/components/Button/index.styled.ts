@@ -5,7 +5,6 @@ export const Button = styled.button<{
   isScale: boolean;
   size: 'large' | 'medium' | 'small';
   isPrimary: boolean;
-  isOutline: boolean;
 }>`
   all: unset;
   user-select: none;
@@ -16,22 +15,22 @@ export const Button = styled.button<{
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  transition: 0.2s ease-in-out;
   text-align: center;
 
   width: ${({ isScale }) => (isScale ? '100%' : 'auto')};
+  transition: box-shadow 0.05s ease-in, background 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
 
   // DEFAULT
   ${({ theme }) => css`
-    background: ${theme.button.background};
-    color: ${theme.button.text};
+    background: ${theme.background};
+    color: ${theme.text};
     &:hover {
-      box-shadow: ${theme.button.shadow};
+      box-shadow: ${theme.shadow};
     }
     &:active {
-      transition: box-shadow 0.05s ease-in, background 0.1s ease-in-out;
-      box-shadow: ${theme.button.shadowPrimary},
-        inset 0px 0px 0px 2px ${theme.button.borderOutline};
+      box-shadow: ${theme.shadowPrimary},
+        inset 0px 0px 0px 2px ${theme.borderOutline};
     }
   `}
 
@@ -39,31 +38,14 @@ export const Button = styled.button<{
   ${({ isPrimary, theme }) =>
     isPrimary &&
     css`
-      background: ${theme.button.backgroundPrimary};
-      color: ${theme.button.textPrimary};
+      background: ${theme.backgroundPrimary};
+      color: ${theme.textPrimary};
       &:hover {
-        box-shadow: ${theme.button.shadowPrimary};
+        box-shadow: ${theme.shadowPrimary};
       }
       &:active {
-        box-shadow: ${theme.button.shadowPrimary},
-          inset 0px 0px 0px 2px ${theme.button.borderOutline};
-      }
-    `}
-
-  // OUTLINE
-  ${({ isOutline, isPrimary, theme }) =>
-    isOutline &&
-    !isPrimary &&
-    css`
-      background: none;
-      color: ${theme.button.textOutline};
-      box-shadow: inset 0px 0px 0px 2px ${theme.button.borderOutline};
-      &:hover {
-        box-shadow: inset 0px 0px 0px 2px ${theme.button.borderOutline};
-        background: rgba(255, 255, 255, 0.25);
-      }
-      &:active {
-        background: rgba(255, 255, 255, 0.15);
+        box-shadow: ${theme.shadowPrimary},
+          inset 0px 0px 0px 2px ${theme.textPrimary};
       }
     `}
 
@@ -96,7 +78,7 @@ export const Button = styled.button<{
     disabled &&
     css`
       cursor: default;
-      opacity: 0.5;
+      opacity: 0.25;
       pointer-events: none;
     `};
 `;

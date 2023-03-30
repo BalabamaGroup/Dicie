@@ -34,6 +34,7 @@ const ChooseGame = ({
       <Styled.GameList>
         {games.map((game) => (
           <GameButton
+            color='lime'
             key={game.id}
             game={game}
             isSelected={selectedGameId === game.id}
@@ -44,6 +45,7 @@ const ChooseGame = ({
 
       <Styled.ButtonWrapper>
         <Button
+          color='lime'
           className='choose-game_create-room-button'
           isPrimary
           isScale

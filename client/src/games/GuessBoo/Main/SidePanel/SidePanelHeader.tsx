@@ -14,7 +14,7 @@ interface SidePanelHeaderProps {
 const SidePanelHeader = ({ tabs }: SidePanelHeaderProps) => {
   return (
     <Styled.SidePanelHeader>
-      <Switch options={tabs} />
+      <Switch color='indigo' options={tabs} />
     </Styled.SidePanelHeader>
   );
 };

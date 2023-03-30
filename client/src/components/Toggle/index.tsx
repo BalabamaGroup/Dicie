@@ -1,6 +1,7 @@
-import useComponentTheme from '@/hooks/useComponentTheme';
+import { ComponentColor } from '@/common/types/theme';
+import { useThemeStore } from '@/stores/ThemeStore';
+import toggleTheme from '@/styles/themes/componentThemes/toggleTheme';
 
-import { ToggleThemeDark, ToggleThemeLight } from './componentTheme';
 import * as Styled from './index.styled';
 
 interface ToggleProps {
@@ -8,7 +9,7 @@ interface ToggleProps {
   value: boolean;
   onChange: React.MouseEventHandler<HTMLDivElement>;
   size?: 'large' | 'medium' | 'small';
-  theme?: 'auto' | 'dark' | 'light';
+  color: ComponentColor;
 }
 
 const Toggle = ({
@@ -16,13 +17,10 @@ const Toggle = ({
   value,
   onChange,
   size = 'medium',
-  theme = 'auto',
+  color,
 }: ToggleProps) => {
-  const componentTheme = useComponentTheme(
-    theme,
-    ToggleThemeLight,
-    ToggleThemeDark
-  );
+  const theme = useThemeStore((state) => state.theme);
+  const componentTheme = toggleTheme[theme][color];
 
   return (
     <Styled.ToggleWrapper
@@ -30,13 +28,9 @@ const Toggle = ({
       value={value}
       onClick={onChange}
       size={size}
-      componentTheme={componentTheme}
+      theme={componentTheme}
     >
-      <Styled.Toggle
-        value={value}
-        size={size}
-        componentTheme={componentTheme}
-      />
+      <Styled.Toggle value={value} size={size} theme={componentTheme} />
     </Styled.ToggleWrapper>
   );
 };

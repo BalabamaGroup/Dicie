@@ -8,8 +8,6 @@ const games: Array<{
   { id: 3, name: 'Guess BOO!', icon: 'images/svgs/game-icons/guess-boo.svg' },
   { id: 4, name: 'Guess BOO!', icon: 'images/svgs/game-icons/guess-boo.svg' },
   { id: 5, name: 'Guess BOO!', icon: 'images/svgs/game-icons/guess-boo.svg' },
-  { id: 6, name: 'Guess BOO!', icon: 'images/svgs/game-icons/guess-boo.svg' },
-  { id: 7, name: 'Guess BOO!', icon: 'images/svgs/game-icons/guess-boo.svg' },
 ];
 
 export default games;

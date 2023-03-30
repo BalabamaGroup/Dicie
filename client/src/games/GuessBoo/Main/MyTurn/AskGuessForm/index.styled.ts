@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { thresholds } from '@/common/utils/device';
+
 export const AskGuessForm = styled.div<{}>`
   width: 100%;
   display: flex;
@@ -18,7 +20,8 @@ export const AskGuessHeader = styled.div<{}>`
   font-weight: 800;
   font-size: 32px;
   line-height: 44px;
-  color: #181621;
+  color: ${({ theme }) =>
+    theme.guessBooGame.main.game.myTurn.askGuessFormHeader};
   text-align: center;
 
   span {
@@ -54,15 +57,14 @@ export const ButtonWrapper = styled.div<{ isQuestion: boolean }>`
     font-weight: 700;
     font-size: 14px;
     line-height: 19px;
-    color: #645e80;
+    color: ${({ theme }) => theme.guessBooGame.main.game.myTurn.guessWarning};
     opacity: 1;
+    transition: margin-bottom 0.2s ease-in-out, opacity 0.2s ease-in-out;
   }
 
-  transition: 0.3s ease-in-out;
   ${({ isQuestion }) =>
     isQuestion &&
     css`
-      /* margin-top: -27px; */
       .guess-waring {
         opacity: 0;
         margin-bottom: -27px;

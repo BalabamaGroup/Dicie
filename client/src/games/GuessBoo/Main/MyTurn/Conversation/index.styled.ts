@@ -5,17 +5,19 @@ export const Conversation = styled.div<{
   finalAnswer: 'Yes' | 'No' | 'Wtf' | null;
 }>`
   width: 100%;
-  height: 320px;
+  max-width: 480px;
+  height: 312px;
   display: flex;
   flex-direction: row-reverse;
   align-items: start;
   justify-content: start;
   gap: 16px;
+  box-sizing: border-box;
 
   /* prettier-ignore */
   @keyframes bubble-slidein {
-    0% { margin-top: -100px; }
-    100% { margin-top: 0px; }
+    0%   { .conversation-player, .conversation-content {margin-top: -100px;}}
+    100% { .conversation-player, .conversation-content {margin-top: 0px;   }}
   }
 
   .conversation-player,
@@ -38,15 +40,17 @@ export const ConversationContent = styled.div<{}>`
   align-items: center;
   justify-content: center;
   gap: 12px;
+  box-sizing: border-box;
 `;
 
 export const MyQuestion = styled.div<{}>`
   align-items: center;
-  background: #8986f5;
+  background: ${({ theme }) =>
+    theme.guessBooGame.main.game.myTurn.convoMyQuestionBackground};
   border-radius: 64px 64px 8px 64px;
   box-sizing: border-box;
-  color: #181621;
-  color: #fff;
+  color: ${({ theme }) =>
+    theme.guessBooGame.main.game.myTurn.convoMyQuestionText};
   display: flex;
   font-size: 20px;
   font-weight: 700;
@@ -56,6 +60,7 @@ export const MyQuestion = styled.div<{}>`
   margin-left: auto;
   padding: 24px;
   width: 280px;
+  max-width: calc(100% - 16px);
 `;
 
 export const OthersAnswer = styled.div<{
@@ -66,16 +71,19 @@ export const OthersAnswer = styled.div<{
   display: flex;
   align-items: center;
   padding: 16px;
-  background: #f5f6ff;
+  background: ${({ theme }) =>
+    theme.guessBooGame.main.game.myTurn.convoOthersAnswerBackground};
   border-radius: 64px 64px 64px 16px;
   gap: 12px;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
   width: 240px;
+  max-width: calc(100% - 32px);
   justify-content: center;
   height: 72px;
-  color: #fff;
+  color: ${({ theme }) =>
+    theme.guessBooGame.main.game.myTurn.convoOthersAnswerText};
   box-sizing: border-box;
 
   /* prettier-ignore */
@@ -89,17 +97,18 @@ export const OthersAnswer = styled.div<{
     ` animation: others-answer-bubble-slidein 1s ease-out forwards; `}
 
   .bouncing-loader .dot {
-    background-color: ${({ finalAnswer }) => (!finalAnswer ? '#000' : ' #fff')};
+    background-color: ${({ theme }) =>
+      theme.guessBooGame.main.game.myTurn.convoOthersAnswerText};
   }
 
-  background: ${({ finalAnswer }) =>
+  background: ${({ finalAnswer, theme }) =>
     finalAnswer === 'Yes'
-      ? '#6de36b'
+      ? theme.guessBooGame.main.game.yes
       : finalAnswer === 'No'
-      ? '#fc3057'
+      ? theme.guessBooGame.main.game.no
       : finalAnswer === 'Wtf'
-      ? '#ffa84b'
-      : '#fff'};
+      ? theme.guessBooGame.main.game.wtf
+      : theme.guessBooGame.main.game.myTurn.convoOthersAnswerBackground};
 `;
 
 export const MyAnswer = styled.div<{
@@ -111,9 +120,8 @@ export const MyAnswer = styled.div<{
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background: #fff;
   border-radius: 64px 64px 16px 64px;
-  gap: 6px;
+  gap: 12px;
 
   font-weight: 700;
   font-size: 20px;
@@ -122,6 +130,9 @@ export const MyAnswer = styled.div<{
   height: 72px;
   color: #fff;
   box-sizing: border-box;
+
+  background-color: ${({ theme }) =>
+    theme.guessBooGame.main.game.myTurn.convoMyAnswerBackground};
 
   /* prettier-ignore */
   @keyframes my-answer-bubble-slidein {
@@ -134,22 +145,36 @@ export const MyAnswer = styled.div<{
     finalAnswer &&
     `animation: my-answer-bubble-slidein 0.5s ease-out forwards; `}
 
-  .ask-again,
-  .skip-turn {
+  .ask-again, .skip-turn, .continue {
+    border-radius: 16px;
+    height: 48px;
+    box-sizing: border-box;
     cursor: pointer;
-    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 32px;
     font-weight: 700;
     font-size: 20px;
     line-height: 20px;
-    color: #eceefe;
   }
 
   .ask-again {
-    border-radius: 16px 6px 6px 16px;
-    background-color: #6de36b;
+    background-color: ${({ theme }) =>
+      theme.guessBooGame.main.game.myTurn.convoMyAnswerAskAgainBg};
+    color: ${({ theme }) =>
+      theme.guessBooGame.main.game.myTurn.convoMyAnswerAskAgainText};
   }
   .skip-turn {
-    border-radius: 6px 16px 16px 6px;
-    background-color: #fc3057;
+    background-color: ${({ theme }) =>
+      theme.guessBooGame.main.game.myTurn.convoMyAnswerSkipTurnBg};
+    color: ${({ theme }) =>
+      theme.guessBooGame.main.game.myTurn.convoMyAnswerSkipTurnText};
+  }
+  .continue {
+    background-color: ${({ theme }) =>
+      theme.guessBooGame.main.game.myTurn.convoMyAnswerContinueBg};
+    color: ${({ theme }) =>
+      theme.guessBooGame.main.game.myTurn.convoMyAnswerContinueText};
   }
 `;

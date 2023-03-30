@@ -14,7 +14,7 @@ const useRoomConnectionSocket = () => {
 
     ws.current.onmessage = (e) => {
       const data = JSON.parse(e.data);
-      console.log(data);
+      // console.log(data);
       setData(data);
     };
   }, []);
