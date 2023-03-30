@@ -1,3 +1,4 @@
+import { ComponentColor } from '@/common/types/theme';
 import { UserInGame } from '@/common/types/user';
 import Carousel from '@/components/Carousel';
 import Player from '@/components/Player';
@@ -6,10 +7,11 @@ import useWindowWidth from '@/hooks/useWindowWidth';
 import * as Styled from './index.styled';
 
 interface PlayersCarouselProps {
+  color: ComponentColor;
   otherPlayers: UserInGame[];
 }
 
-const PlayersCarousel = ({ otherPlayers }: PlayersCarouselProps) => {
+const PlayersCarousel = ({ color, otherPlayers }: PlayersCarouselProps) => {
   const displayWidth = useWindowWidth();
 
   let maxWidth;
@@ -18,7 +20,7 @@ const PlayersCarousel = ({ otherPlayers }: PlayersCarouselProps) => {
 
   return (
     <Styled.PlayersCarouselWrapper className='players-carousel'>
-      <Carousel maxWidth={maxWidth} itemWidth={96} gap={16}>
+      <Carousel color={color} maxWidth={maxWidth} itemWidth={96} gap={16}>
         {[
           ...otherPlayers,
           ...otherPlayers,

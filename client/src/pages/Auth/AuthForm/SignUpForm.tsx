@@ -14,7 +14,6 @@ import Button from '@/components/Button';
 import Input from '@/components/Input';
 import MultiInput from '@/components/MultiInput';
 import useAuth from '@/hooks/useAuth';
-import useImagePreloader from '@/hooks/useImagePreloader';
 import { useThemeStore } from '@/stores/ThemeStore';
 
 import * as Styled from './index.styled';
@@ -93,8 +92,6 @@ const SignUpForm = ({
     setTakenUsernames(usernames);
     setTakenEmails(emails);
   });
-
-  useImagePreloader([eyeClosed, eyeOpened]);
 
   const eyeClosedSvg = eyeClosed;
   const eyeOpenedSvg = eyeOpened;

@@ -43,7 +43,7 @@ const Main = ({ gameData, mePlayer, otherPlayers }: MainStageProps) => {
     <Styled.Main isMyTurn={isMyTurn}>
       <Styled.Game isMyTurn={isMyTurn}>
         <div className='top-info'>
-          {<PlayersCarousel otherPlayers={otherPlayers} />}
+          {<PlayersCarousel color={color} otherPlayers={otherPlayers} />}
           {!isMyTurn && (
             <div className='turn-info'>
               {/* <span className='turn-info-username'>

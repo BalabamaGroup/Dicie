@@ -55,7 +55,7 @@ const light = {
         intructionTextGo: colors.lime[80],
 
         secondaryLabelText: colors.lime[60],
-        secondaryLabelSpanText: colors.lime.dark,
+        secondaryLabelSpanText: colors.lime[100],
         selectPlayerWarningText: colors.orange.dark,
       },
       otherPlayers: {
