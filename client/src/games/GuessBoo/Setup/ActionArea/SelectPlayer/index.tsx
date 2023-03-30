@@ -35,7 +35,7 @@ const SelectPlayer = ({ highlightedPlayer }: SelectPlayerProps) => {
           Confirm
         </Button>
         <div className='warning'>
-          Be careful, you can't change this choice later
+          Be careful, you can`&apos;t change this choice later
         </div>
       </Styled.SelectPlayerConfirm>
     </Styled.SelectPlayer>

@@ -41,23 +41,23 @@ const Player = ({
   onClick,
   isDisabled = false,
 }: PlayerProps) => {
-  const playerPalettes = [
-    {
-      main: '#88b6f2',
-      light: '#E1E4FF',
-      dark: '#1E2883',
-    },
-    {
-      main: '#E9DE7E',
-      light: '#FFFCE2',
-      dark: '#5F5715',
-    },
-    {
-      main: '#F687BC',
-      light: '#FBC3DE',
-      dark: '#AA195F',
-    },
-  ];
+  // const playerPalettes = [
+  //   {
+  //     main: '#88b6f2',
+  //     light: '#E1E4FF',
+  //     dark: '#1E2883',
+  //   },
+  //   {
+  //     main: '#E9DE7E',
+  //     light: '#FFFCE2',
+  //     dark: '#5F5715',
+  //   },
+  //   {
+  //     main: '#F687BC',
+  //     light: '#FBC3DE',
+  //     dark: '#AA195F',
+  //   },
+  // ];
 
   if (form === 'tile' && tileContent)
     return (

@@ -1,4 +1,3 @@
-interface RoomSettingsProps {}
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
@@ -11,7 +10,7 @@ import Toggle from '@/components/Toggle';
 
 import * as Styled from './index.styled';
 
-const RoomSettings = ({}: RoomSettingsProps) => {
+const RoomSettings = () => {
   const { roomId } = useParams();
 
   const [isPrivate, setIsPrivate] = useState<boolean>(false);
@@ -65,7 +64,9 @@ const RoomSettings = ({}: RoomSettingsProps) => {
                   color='indigo'
                   isPrimary
                   size={'medium'}
-                  onClick={() => {}}
+                  onClick={() => {
+                    return;
+                  }}
                   isDisabled={!roomPassword}
                 >
                   Set password

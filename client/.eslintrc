@@ -1,5 +1,14 @@
 {
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime"
+  ],
+  "plugins": ["@typescript-eslint"],
   "settings": {
     "import/resolver": {
       "alias": [

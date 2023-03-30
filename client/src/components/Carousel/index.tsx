@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
 import { ComponentColor } from '@/common/types/theme';
-import useWindowWidth from '@/hooks/useWindowWidth';
 
 import * as Styled from './index.styled';
 
@@ -25,7 +24,7 @@ const Carousel = ({
 
   let width = maxWidth;
 
-  let itemsNum = Math.floor((width - 128) / (itemWidth + gap));
+  const itemsNum = Math.floor((width - 128) / (itemWidth + gap));
   width = itemsNum * itemWidth + (itemsNum - 1) * gap;
 
   const shiftMinus = () => {
@@ -54,6 +53,7 @@ const Carousel = ({
       </Styled.CarouselItems>
 
       <Styled.Arrow
+        color={color}
         onClick={shiftPlus}
         isDisabled={shift >= children.length - itemsNum}
       >
