@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { mobileAndSmaller } from '@/common/utils/device';
 
-export const SetCharacter = styled.div<{}>`
+export const SetCharacter = styled.div`
   height: 100%;
   width: 100%;
   display: flex;

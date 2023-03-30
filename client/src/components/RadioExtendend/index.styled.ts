@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const RadioExtended = styled.div<{}>`
+export const RadioExtended = styled.div`
   display: flex;
   flex-direction: row;
   gap: 16px;

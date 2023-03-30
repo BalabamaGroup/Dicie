@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CircleLoader = styled.div<{}>`
+export const CircleLoader = styled.div`
   margin-top: 82px;
   transform: scale(0.9142857143);
 

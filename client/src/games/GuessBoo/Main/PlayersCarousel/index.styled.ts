@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PlayersCarouselWrapper = styled.div<{}>`
+export const PlayersCarouselWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

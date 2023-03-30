@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { thresholds } from '@/common/utils/device';
 
-export const AskGuessForm = styled.div<{}>`
+export const AskGuessForm = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@ export const AskGuessForm = styled.div<{}>`
   }
 `;
 
-export const AskGuessHeader = styled.div<{}>`
+export const AskGuessHeader = styled.div`
   font-weight: 800;
   font-size: 32px;
   line-height: 44px;
@@ -33,7 +33,7 @@ export const AskGuessHeader = styled.div<{}>`
   }
 `;
 
-export const SwitchInput = styled.div<{}>`
+export const SwitchInput = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

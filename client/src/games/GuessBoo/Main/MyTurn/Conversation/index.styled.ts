@@ -33,7 +33,7 @@ export const Conversation = styled.div<{
   }
 `;
 
-export const ConversationContent = styled.div<{}>`
+export const ConversationContent = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -43,7 +43,7 @@ export const ConversationContent = styled.div<{}>`
   box-sizing: border-box;
 `;
 
-export const MyQuestion = styled.div<{}>`
+export const MyQuestion = styled.div`
   align-items: center;
   background: ${({ theme }) =>
     theme.guessBooGame.main.game.myTurn.convoMyQuestionBackground};

@@ -32,7 +32,9 @@ const PlayersCarousel = ({ color, otherPlayers }: PlayersCarouselProps) => {
           <Player
             size='medium'
             key={i}
-            onClick={() => {}}
+            onClick={() => {
+              return;
+            }}
             form='tile'
             color='indigo'
             tileContent={{

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { mobileAndSmaller } from '@/common/utils/device';
 
-export const SelectPlayer = styled.div<{}>`
+export const SelectPlayer = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
@@ -11,7 +11,7 @@ export const SelectPlayer = styled.div<{}>`
   justify-content: center;
 `;
 
-export const SelectPlayerInstruction = styled.div<{}>`
+export const SelectPlayerInstruction = styled.div`
   height: 100%;
   display: flex;
   align-items: center;

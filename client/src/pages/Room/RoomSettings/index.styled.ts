@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const RoomSettings = styled.div<{}>`
+export const RoomSettings = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

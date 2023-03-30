@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const InlineDots = styled.div<{}>`
+export const InlineDots = styled.div`
   @keyframes dots-1 {
     from {
       opacity: 0;

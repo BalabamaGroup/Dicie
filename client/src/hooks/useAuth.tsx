@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import AuthAPI from '@/api/auth';
 
+import AuthAPI from '@/api/auth';
 import routes from '@/common/constants/routes';
 
 const useAuth = () => {
@@ -26,7 +26,9 @@ const useAuth = () => {
         res.token && sessionStorage.setItem('token', res.token);
         navigate(routes.HOME);
       })
-      .catch(() => {});
+      .catch(() => {
+        return;
+      });
   };
 
   const getTakenSignUpInfo = async () => {

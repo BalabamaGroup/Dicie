@@ -47,14 +47,14 @@ export const SidePanelWrapper = styled.div<{
     `}
 `;
 
-export const SidePanelOpened = styled.div<{}>`
+export const SidePanelOpened = styled.div`
   height: 100%;
   width: 100%;
   background: #eceefe;
   border-radius: 32px;
 `;
 
-export const SidePanelHeader = styled.div<{}>`
+export const SidePanelHeader = styled.div`
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -63,7 +63,7 @@ export const SidePanelHeader = styled.div<{}>`
   border-radius: 32px 32px 8px 8px;
 `;
 
-export const SidePanelCollapsed = styled.div<{}>`
+export const SidePanelCollapsed = styled.div`
   height: 100%;
   width: 100%;
   background: #eceefe;

@@ -5,7 +5,7 @@ import Switch from '@/components/Switch';
 import { useThemeStore } from '@/stores/ThemeStore';
 import sidePanelTheme from '@/styles/themes/componentThemes/sidePanelTheme';
 
-const StyledSidePanelMainWrapper = styled.div<{}>`
+const StyledSidePanelMainWrapper = styled.div`
   width: 100%;
   height: 100%;
   display: block;
@@ -44,13 +44,17 @@ const SidePanelMain = ({ color }: SidePanelMainProps) => {
             {
               id: 0,
               label: 'Answers',
-              onClick: () => {},
+              onClick: () => {
+                return;
+              },
               defaultChoice: false,
             },
             {
               id: 1,
               label: 'Chat',
-              onClick: () => {},
+              onClick: () => {
+                return;
+              },
               defaultChoice: true,
             },
           ]}

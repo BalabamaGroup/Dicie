@@ -39,7 +39,7 @@ const Input = ({
   const [isFocus, setIsFocus] = useState(false);
   const [currentNote, setCurrentNote] = useState('');
 
-  let theme = useThemeStore((state) => state.theme);
+  const theme = useThemeStore((state) => state.theme);
   const componentTheme = inputTheme[theme][color];
 
   const isMultiInputPart = !!multiInputData && !!onChangeMultiInputData;

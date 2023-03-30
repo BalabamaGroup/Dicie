@@ -38,7 +38,7 @@ const getWrapperHeightDataCss = (
     : ` height : 48px `;
 };
 
-export const LabelWrapper = styled.div<{}>`
+export const LabelWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;

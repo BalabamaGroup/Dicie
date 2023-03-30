@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { thresholds } from '@/common/utils/device';
 
-export const MyTurn = styled.div<{}>`
+export const MyTurn = styled.div`
   height: 480px;
 
   @media ${`(max-width: ${thresholds.guessBoo.setup.sidePanelHorizontal}px)`} {
@@ -20,7 +20,7 @@ export const MyTurn = styled.div<{}>`
   margin-top: auto;
 `;
 
-export const MyTurnContentWrapper = styled.div<{}>`
+export const MyTurnContentWrapper = styled.div`
   height: 100%;
   width: 100%;
   box-sizing: border-box;

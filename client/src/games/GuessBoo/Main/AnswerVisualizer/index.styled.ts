@@ -7,7 +7,7 @@ export const NoQuestion = styled.div`
   width: 100%;
 `;
 
-export const AnswerVisualizer = styled.div<{}>`
+export const AnswerVisualizer = styled.div`
   margin-top: auto;
   display: flex;
   flex-direction: row;

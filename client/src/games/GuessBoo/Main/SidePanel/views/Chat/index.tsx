@@ -1,7 +1,9 @@
-interface ChatProps {}
+interface ChatProps {
+  x: number;
+}
 
-const Chat = ({}: ChatProps) => {
-  return <>Chat</>;
+const Chat = ({ x }: ChatProps) => {
+  return <>{{ x }}</>;
 };
 
 export default Chat;

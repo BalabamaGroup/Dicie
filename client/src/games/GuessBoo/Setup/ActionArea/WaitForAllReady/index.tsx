@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import CharadesAPI from '@/api/game/charades';
 import Button from '@/components/Button';
 
-export const StyledWaitForAllReady = styled.div<{}>`
+export const StyledWaitForAllReady = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
@@ -36,9 +36,7 @@ export const StyledWaitForAllReady = styled.div<{}>`
   }
 `;
 
-interface WaitForAllReadyProps {}
-
-const WaitForAllReady = ({}: WaitForAllReadyProps) => {
+const WaitForAllReady = () => {
   const onReadyClick = () => CharadesAPI.setReady();
 
   return (
@@ -59,7 +57,7 @@ const WaitForAllReady = ({}: WaitForAllReadyProps) => {
         isPrimary
         isScale
       >
-        I'm not ready
+        I&apos;m not ready
       </Button>
     </StyledWaitForAllReady>
   );

@@ -23,7 +23,9 @@ const SidePanel = ({ collapseOn = null, bottomOn = null }: SidePanelProps) => {
             {
               id: 1,
               label: 'Chat',
-              onClick: () => {},
+              onClick: () => {
+                return;
+              },
               defaultChoice: true,
             },
           ]}

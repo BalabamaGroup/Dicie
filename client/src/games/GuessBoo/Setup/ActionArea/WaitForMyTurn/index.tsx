@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledWaitForMyTurn = styled.div<{}>`
+export const StyledWaitForMyTurn = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
@@ -14,9 +14,7 @@ export const StyledWaitForMyTurn = styled.div<{}>`
     theme.guessBooGame.setup.actionArea.intructionTextWait};
 `;
 
-interface WaitForMyTurnProps {}
-
-const WaitForMyTurn = ({}: WaitForMyTurnProps) => {
+const WaitForMyTurn = () => {
   return <StyledWaitForMyTurn>Wait for your turn</StyledWaitForMyTurn>;
 };
 

@@ -95,7 +95,7 @@ export const PlayerTileFormLabel = styled.div<{
   }
 `;
 
-export const PlayerTileFormOutsideLabel = styled.div<{}>`
+export const PlayerTileFormOutsideLabel = styled.div`
   margin-top: 12px;
   font-size: 16px;
   line-height: 16px;

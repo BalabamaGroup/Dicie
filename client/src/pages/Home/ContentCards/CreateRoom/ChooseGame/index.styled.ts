@@ -7,7 +7,7 @@ import {
   tabletAndBigger,
 } from '@/common/utils/device';
 
-export const ChooseGame = styled.div<{}>`
+export const ChooseGame = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +32,7 @@ export const ChooseGame = styled.div<{}>`
   }
 `;
 
-export const Header = styled.div<{}>`
+export const Header = styled.div`
   flex-shrink: 0;
   width: 100%;
   font-weight: 700;
@@ -66,7 +66,7 @@ export const Header = styled.div<{}>`
   }
 `;
 
-export const GameList = styled.div<{}>`
+export const GameList = styled.div`
   max-width: 480px;
   width: 100%;
   height: 100%;
@@ -83,7 +83,7 @@ export const GameList = styled.div<{}>`
   }
 `;
 
-export const ButtonWrapper = styled.div<{}>`
+export const ButtonWrapper = styled.div`
   margin-top: auto;
   width: 100%;
   max-width: 400px;

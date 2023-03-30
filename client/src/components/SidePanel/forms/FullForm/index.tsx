@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledFullFormWrapper = styled.div<{}>`
+const StyledFullFormWrapper = styled.div`
   max-width: 400px;
   min-width: 400px;
   width: 400px;

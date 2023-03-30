@@ -5,6 +5,10 @@
       "path": "../"
     },
     {
+      "name": "📢 @/client",
+      "path": "./"
+    },
+    {
       "name": "📢 @/public",
       "path": "./public"
     },
@@ -14,6 +18,11 @@
     }
   ],
   "settings": {
+    "eslint.lintTask.enable": true,
+    "eslint.lintTask.options": "-c D:/Work/Dicie/client/.eslintrc .",
+    "eslint.workingDirectories": ["./client"],
+    "eslint.options": { "configFile": "D:/Work/Dicie/client/.eslintrc" },
+
     "importSorter.generalConfiguration.sortOnBeforeSave": true,
     "files.exclude": {
       "**/.git": true,

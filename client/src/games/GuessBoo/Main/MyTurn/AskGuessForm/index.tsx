@@ -24,7 +24,7 @@ const AskGuessForm = () => {
   };
 
   const onCheckGuess = async () => {
-    let word = inputValue;
+    const word = inputValue;
     await CharadesAPI.checkWord({ word });
   };
 

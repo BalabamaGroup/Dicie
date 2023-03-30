@@ -52,7 +52,9 @@ const Conversation = ({
     window.dispatchEvent(event);
   };
 
-  const onSkipTurn = () => {};
+  const onSkipTurn = () => {
+    return;
+  };
 
   return (
     <Styled.Conversation
@@ -63,7 +65,9 @@ const Conversation = ({
       <Player
         color='indigo'
         className='conversation-player'
-        onClick={() => {}}
+        onClick={() => {
+          return;
+        }}
         size='medium'
       />
 
@@ -84,10 +88,10 @@ const Conversation = ({
         <Styled.MyAnswer finalAnswer={finalAnswer}>
           {canMakeAnotherTurn ? (
             [
-              <div className='ask-again' onClick={onAskAgain}>
+              <div key={'ask-again'} className='ask-again' onClick={onAskAgain}>
                 Ask again
               </div>,
-              <div className='skip-turn' onClick={onSkipTurn}>
+              <div key={'skip-turn'} className='skip-turn' onClick={onSkipTurn}>
                 Skip turn
               </div>,
             ]

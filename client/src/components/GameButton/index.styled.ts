@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { ComponentColor } from '@/common/types/theme';
 
-export const GameButtonWrapper = styled.div<{}>`
+export const GameButtonWrapper = styled.div`
   cursor: pointer;
   box-sizing: border-box;
 
@@ -53,7 +53,7 @@ export const GameButtonHighlight = styled.div<{
         `}
 `;
 
-export const GameButton = styled.div<{}>`
+export const GameButton = styled.div`
   font-size: 12px;
   font-weight: 600;
 

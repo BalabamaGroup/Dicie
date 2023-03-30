@@ -29,7 +29,9 @@ const OthersTurn = ({
           className='others-turn-player'
           color='indigo'
           form='tile'
-          onClick={() => {}}
+          onClick={() => {
+            return;
+          }}
           tileContent={{
             label: goingUser.state.word,
             outsideLabel: goingUser.username,
@@ -40,7 +42,9 @@ const OthersTurn = ({
           className='others-turn-player-mobile'
           color='indigo'
           form='tile'
-          onClick={() => {}}
+          onClick={() => {
+            return;
+          }}
           tileContent={{
             label: goingUser.state.word,
           }}
