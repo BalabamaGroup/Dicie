@@ -97,9 +97,12 @@ export const OthersAnswer = styled.div<{
     ` animation: others-answer-bubble-slidein 1s ease-out forwards; `}
 
   .bouncing-loader .dot {
-    background-color: ${({ theme }) =>
+    transition: background 0.3s ease-in-out;
+    background: ${({ theme }) =>
       theme.guessBooGame.main.game.myTurn.convoOthersAnswerText};
   }
+
+  transition: background 0.3s ease-in-out;
 
   background: ${({ finalAnswer, theme }) =>
     finalAnswer === 'Yes'

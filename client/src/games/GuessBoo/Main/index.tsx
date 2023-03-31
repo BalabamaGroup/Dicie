@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { Game } from '@/common/types/room';
 import { UserInGame } from '@/common/types/user';
 import { thresholds } from '@/common/utils/device';
-import Player from '@/components/Player';
 import SidePanel from '@/components/SidePanel';
 import useWindowWidth from '@/hooks/useWindowWidth';
 import { useColorStore } from '@/stores/ColorStore';
@@ -35,8 +34,8 @@ const Main = ({ gameData, mePlayer, otherPlayers }: MainStageProps) => {
   const setWait = useColorStore((s) => () => s.setWait('guessBoo'));
   const setGo = useColorStore((s) => () => s.setGo('guessBoo'));
   useEffect(() => {
-    if (isMyTurn && color !== 'indigo') setGo();
-    else if (!isMyTurn && color !== 'lime') setWait();
+    if (isMyTurn && color !== 'lime') setGo();
+    else if (!isMyTurn && color !== 'indigo') setWait();
   }, [isMyTurn]);
 
   return (
@@ -44,15 +43,6 @@ const Main = ({ gameData, mePlayer, otherPlayers }: MainStageProps) => {
       <Styled.Game isMyTurn={isMyTurn}>
         <div className='top-info'>
           {<PlayersCarousel color={color} otherPlayers={otherPlayers} />}
-          {!isMyTurn && (
-            <div className='turn-info'>
-              {/* <span className='turn-info-username'>
-                It is {goingUser.username}'s turn
-                <br />
-                Their character is {goingUser.state.word}
-              </span> */}
-            </div>
-          )}
         </div>
 
         {isMyTurn ? (
@@ -75,7 +65,7 @@ const Main = ({ gameData, mePlayer, otherPlayers }: MainStageProps) => {
         />
       </Styled.Game>
       <SidePanel
-        color={isMyTurn ? 'lime' : 'indigo'}
+        color={color}
         isCollapsed={displayWidth <= thresholds.guessBoo.main.sidePanelCollapse}
         isHorizontal={
           displayWidth <= thresholds.guessBoo.main.sidePanelHorizontal

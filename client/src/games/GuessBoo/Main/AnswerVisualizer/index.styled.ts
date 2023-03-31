@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { ComponentColor } from '@/common/types/theme';
+
 export const NoQuestion = styled.div`
   margin-top: auto;
   height: 32px;
@@ -24,7 +26,9 @@ export const Bar = styled.div<{
 }>`
   width: 100px;
   height: 32px;
-  background: #6de36b;
+
+  transition: width 0.3s ease-in-out, border-radius 0.3s ease-in-out,
+    background 0.3s ease-in-out;
 
   width: ${({ width }) => `${width}%`};
 
@@ -53,17 +57,20 @@ export const Bar = styled.div<{
 `;
 
 export const YesBar = styled(Bar)`
-  background: #6de36b;
+  background: ${({ theme }) => theme.guessBooGame.main.game.yes};
 `;
 
 export const NoBar = styled(Bar)`
-  background: #fc3057;
+  background: ${({ theme }) => theme.guessBooGame.main.game.no};
 `;
 
 export const WtfBar = styled(Bar)`
-  background: #ffa84b;
+  background: ${({ theme }) => theme.guessBooGame.main.game.no};
 `;
 
-export const EmptyBar = styled(Bar)`
-  background: #fff;
+export const EmptyBar = styled(Bar)<{ color: ComponentColor }>`
+  background: ${({ color, theme }) =>
+    color === 'indigo'
+      ? theme.guessBooGame.main.game.answerVisualizerDefaultWait
+      : theme.guessBooGame.main.game.answerVisualizerDefaultGo};
 `;

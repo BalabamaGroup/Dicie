@@ -67,6 +67,7 @@ const AskGuessForm = () => {
           ]}
         />
         <Input
+          focusOnLoad
           color='lime'
           className='question-form-input'
           value={inputValue}

@@ -1,5 +1,6 @@
 import CharadesAPI from '@/api/game/charades';
 import { UserInGame } from '@/common/types/user';
+import { useColorStore } from '@/stores/ColorStore';
 
 import * as Styled from './index.styled';
 
@@ -30,6 +31,8 @@ const AnswerVisualizer = ({
   const emptyPercent =
     (100 / otherPlayers.length) * (otherPlayers.length - answerData.count);
 
+  const color = useColorStore((s) => s.color.guessBoo);
+
   return (
     <Styled.AnswerVisualizer>
       <Styled.YesBar
@@ -48,6 +51,7 @@ const AnswerVisualizer = ({
         isLast={!emptyPercent}
       />
       <Styled.EmptyBar
+        color={color}
         width={emptyPercent}
         isFirst={!yesPercent && !noPercent && !wtfPercent}
         isLast
