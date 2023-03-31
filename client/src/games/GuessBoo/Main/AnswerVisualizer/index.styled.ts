@@ -65,7 +65,7 @@ export const NoBar = styled(Bar)`
 `;
 
 export const WtfBar = styled(Bar)`
-  background: ${({ theme }) => theme.guessBooGame.main.game.no};
+  background: ${({ theme }) => theme.guessBooGame.main.game.wtf};
 `;
 
 export const EmptyBar = styled(Bar)<{ color: ComponentColor }>`
