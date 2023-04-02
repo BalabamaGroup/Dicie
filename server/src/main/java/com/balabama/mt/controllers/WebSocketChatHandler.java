@@ -50,6 +50,7 @@ public class WebSocketChatHandler extends TextWebSocketHandler {
         chat.appendLog(jsonTextMessage.getPayload());
         chatService.save(chat);
         List<Long> usersId = chatService.getIdUsersInRoomByOneUserId(senderId);
+        System.out.println(usersId);
         for (WebSocketSession otherSessions : sessions) {
             try {
                 Long userId = Long.parseLong(Objects.requireNonNull(otherSessions.getUri()).getQuery());

@@ -8,9 +8,9 @@ interface SidePanelViewProps {
 }
 
 const SidePanelView = ({ view }: SidePanelViewProps) => {
-  if (view === 'chat' || view === 'guessBooAnswers') {
-    const { messages: chatData, actions } = useSocketChat();
+  const { messages: chatData, actions } = useSocketChat();
 
+  if (view === 'chat' || view === 'guessBooAnswers') {
     if (view === 'chat' && chatData)
       return <SidePanelChat chatData={chatData} chatActions={actions} />;
     if (view === 'guessBooAnswers')
