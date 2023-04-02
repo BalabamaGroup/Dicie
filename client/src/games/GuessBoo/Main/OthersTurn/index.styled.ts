@@ -122,7 +122,7 @@ export const AnswerBubble = styled.div<{
   height: 48px;
   padding: 6px;
 
-  transition: background 0.2s ease-in-out,
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out,
     width 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
   .given-answer {
     text-transform: lowercase;

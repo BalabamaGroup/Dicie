@@ -27,3 +27,8 @@ export const homeContentCards = Object.freeze({
   CREATE_ROOM: 'CREATE_ROOM',
   JOIN_ROOM: 'JOIN_ROOM',
 });
+
+export const sidePanelViews = Object.freeze({
+  Chat: 'chat',
+  GuessBooAnswers: 'guessBooAnswers',
+});

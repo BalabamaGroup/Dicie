@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Game } from '@/common/types/room';
 import { socketUrl } from '@/common/utils/url';
 
-const useRoomConnectionSocket = () => {
+const useSocketRoom = () => {
   const ws = useRef<WebSocket | null>(null);
 
   const [data, setData] = useState<Game | null>(null);
@@ -33,4 +33,4 @@ const useRoomConnectionSocket = () => {
   return { data, status };
 };
 
-export default useRoomConnectionSocket;
+export default useSocketRoom;
