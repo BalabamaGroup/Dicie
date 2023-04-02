@@ -9,3 +9,9 @@ export const socketUrl = () => {
     Protocols.SOCKET + window.location.hostname + Ports.DEFAULT + '/socket'
   );
 };
+
+export const chatSocketUrl = () => {
+  return (
+    Protocols.SOCKET + window.location.hostname + Ports.DEFAULT + '/chat-socket'
+  );
+};

@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
 
+import { ChatData } from '@/common/types/chat';
 import { Game } from '@/common/types/room';
 import { UserInGame } from '@/common/types/user';
 import { thresholds } from '@/common/utils/device';
 import SidePanel from '@/components/SidePanel';
+import { data } from '@/components/SidePanel/views/Chat/sampleData';
 import useWindowWidth from '@/hooks/useWindowWidth';
 import { useColorStore } from '@/stores/ColorStore';
 
+import { actions } from '../../../components/SidePanel/views/Chat/sampleData';
 import AnswerVisualizer from './AnswerVisualizer';
 import * as Styled from './index.styled';
 import MyTurn from './MyTurn';
@@ -65,6 +68,7 @@ const Main = ({ gameData, mePlayer, otherPlayers }: MainStageProps) => {
         />
       </Styled.Game>
       <SidePanel
+        views={[{ id: 'chat' }, { id: 'guessBooAnswers', data: [] }]}
         color={color}
         isCollapsed={displayWidth <= thresholds.guessBoo.main.sidePanelCollapse}
         isHorizontal={

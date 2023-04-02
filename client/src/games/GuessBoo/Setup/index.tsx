@@ -54,6 +54,7 @@ const Setup = ({ mePlayer, otherPlayers }: SetupProps) => {
       </Styled.SetupContent>
 
       <SidePanel
+        views={[{ id: 'chat' }]}
         color={isWait ? 'indigo' : 'lime'}
         isCollapsed={displayWidth < thresholds.guessBoo.setup.sidePanelCollapse}
         isHorizontal={

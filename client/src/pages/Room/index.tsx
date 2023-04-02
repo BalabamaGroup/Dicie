@@ -5,7 +5,7 @@ import RoomAPI from '@/api/room';
 import Loader from '@/components/Loader';
 import NavBar from '@/components/NavBar';
 import GuessBoo from '@/games/GuessBoo';
-import useRoomConnectionSocket from '@/hooks/useRoomConnectionSocket';
+import useSocketRoom from '@/hooks/useSocketRoom';
 
 import * as Styled from './index.styled';
 import RoomSettings from './RoomSettings';
@@ -14,7 +14,7 @@ import RoomUsers from './RoomUsers';
 const Room = () => {
   const navigate = useNavigate();
   const { roomId } = useParams();
-  const { data: roomData, status: socketStatus } = useRoomConnectionSocket();
+  const { data: roomData, status: socketStatus } = useSocketRoom();
 
   useEffect(() => {
     if (socketStatus && roomId)
