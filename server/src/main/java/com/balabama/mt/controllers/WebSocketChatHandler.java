@@ -22,7 +22,6 @@ import javax.transaction.Transactional;
 @Component
 @Slf4j
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
-@Transactional
 public class WebSocketChatHandler extends TextWebSocketHandler {
 
     private final ObjectMapper mapper = new ObjectMapper();
