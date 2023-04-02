@@ -1,7 +1,9 @@
 package com.balabama.mt.services;
 
 import com.balabama.mt.entities.user.User;
+
 import java.util.List;
+import java.util.UUID;
 
 public interface UserService {
 
@@ -15,4 +17,7 @@ public interface UserService {
     void delete(Long id);
 
     User save(User user);
+
+    List<Long> getAllUsersIdsInRoomByUserId(Long id);
+
 }
