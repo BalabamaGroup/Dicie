@@ -8,10 +8,23 @@ export const SidePanelChatWrapper = styled.div<{}>`
 `;
 
 export const ChatMessages = styled.div`
+  width: 100%;
+  height: 560px;
+
+  .chat-messages-scroll {
+    box-sizing: border-box;
+    width: 100%;
+    height: 544px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+`;
+
+export const MessagesList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: start;
+  justify-content: end;
   gap: 2px;
 `;
 

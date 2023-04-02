@@ -12,6 +12,7 @@ const useSocketChat = () => {
   const getMessages = useCallback(() => {
     if (!ws.current) return;
     ws.current.onmessage = (e) => {
+      console.log('message');
       const messages: string[] = JSON.parse(e.data);
       setMessages(messages.map((m) => JSON.parse(m)));
     };

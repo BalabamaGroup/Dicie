@@ -4,6 +4,7 @@ import { ReactSVG } from 'react-svg';
 
 import { ChatMessage } from '@/common/types/chat';
 import Input from '@/components/Input';
+import Scroll from '@/components/Scroll';
 import useSocketChat from '@/hooks/useSocketChat';
 
 import * as Styled from './index.styled';
@@ -19,8 +20,6 @@ const SidePanelChat = ({ chatData, chatActions }: SidePanelChatProps) => {
   const [formMessage, setFormMessage] = useState<string>('');
   const onChangeFormMessage = (e: any) => setFormMessage(e.target.value);
 
-  console.log(chatData);
-
   const onSendMessage = () => {
     chatActions.send({
       userId: sessionStorage.getItem('id'),
@@ -34,14 +33,18 @@ const SidePanelChat = ({ chatData, chatActions }: SidePanelChatProps) => {
         <div style={{ color: 'red' }}>No messages</div>
       ) : (
         <Styled.ChatMessages>
-          {chatData.map((message, i) => (
-            <Styled.Message
-              key={i}
-              // isSameUser={chatData[i].userId === message.userId}
-            >
-              {message.text}
-            </Styled.Message>
-          ))}
+          <Scroll className='chat-messages-scroll'>
+            <Styled.MessagesList>
+              {chatData.map((message, i) => (
+                <Styled.Message
+                  key={i}
+                  // isSameUser={chatData[i].userId === message.userId}
+                >
+                  {message.text}
+                </Styled.Message>
+              ))}
+            </Styled.MessagesList>
+          </Scroll>
         </Styled.ChatMessages>
       )}
 
