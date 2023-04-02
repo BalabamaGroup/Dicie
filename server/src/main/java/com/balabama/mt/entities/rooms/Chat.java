@@ -1,10 +1,8 @@
 package com.balabama.mt.entities.rooms;
 
 import com.balabama.mt.converters.Util;
-import com.google.gson.Gson;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import java.util.ArrayList;
@@ -38,11 +36,11 @@ public class Chat {
         this.log = Util.appendRollingLog(this.log, line, LOG_MAX_LENGTH);
     }
 
-    public String getJson() {
+    public List<String> getJson() {
         if (log.equals("")) {
-            return new Gson().toJson(new ArrayList<>());
+            return new ArrayList<>();
         }
-        return new Gson().toJson(Arrays.asList(log.split(LINE_SEPARATOR)));
+        return Arrays.asList(log.split(LINE_SEPARATOR));
     }
 
 }
