@@ -29,7 +29,7 @@ public class ChatServiceImpl implements ChatService {
 
     @Override
     public Chat getById(UUID id) {
-        return chatRepository.findById(id).orElseThrow(() -> MTException.notFoundById(UserState.class, id));
+        return chatRepository.findById(id).orElseThrow(() -> MTException.notFoundById(Chat.class, id));
     }
 
     @Override
