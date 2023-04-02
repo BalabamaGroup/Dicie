@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -27,7 +27,7 @@ public class Chat {
     private UUID id;
     public static final int LOG_MAX_LENGTH = 65535;
     public static final String LINE_SEPARATOR = "\n";
-    @Column(columnDefinition = "TEXT",length = LOG_MAX_LENGTH)
+    @Column(columnDefinition = "TEXT", length = LOG_MAX_LENGTH)
     private String log = "";
 
     public Chat(UUID id) {
@@ -38,7 +38,10 @@ public class Chat {
         this.log = Util.appendRollingLog(this.log, line, LOG_MAX_LENGTH);
     }
 
-    public String getJson(){
+    public String getJson() {
+        if (log.equals("")) {
+            return new Gson().toJson(new ArrayList<>());
+        }
         return new Gson().toJson(Arrays.asList(log.split(LINE_SEPARATOR)));
     }
 
