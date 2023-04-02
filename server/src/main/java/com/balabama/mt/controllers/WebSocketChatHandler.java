@@ -54,7 +54,7 @@ public class WebSocketChatHandler extends TextWebSocketHandler {
             try {
                 Long userId = Long.parseLong(Objects.requireNonNull(otherSessions.getUri()).getQuery());
                 if (usersId.contains(userId)) {
-                    otherSessions.sendMessage(new TextMessage(mapper.writeValueAsString(jsonTextMessage.getPayload())));
+                    otherSessions.sendMessage(new TextMessage(mapper.writeValueAsString(chat.getJson())));
                 }
             } catch (Exception e) {
                 log.error("Cannot send chat to websocket session.", e);
