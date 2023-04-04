@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { Game } from '@/common/types/room';
 import { socketUrl } from '@/common/utils/url';
-import { useUserStore } from '@/stores/UserStore';
+import useUserStore from '@/stores/UserStore';
 
 const useSocketRoom = () => {
   const ws = useRef<WebSocket | null>(null);

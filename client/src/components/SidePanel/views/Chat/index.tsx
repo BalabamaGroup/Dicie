@@ -6,9 +6,10 @@ import { ComponentColor } from '@/common/types/theme';
 import Input from '@/components/Input';
 import Scroll from '@/components/Scroll';
 import useKeyPressListener from '@/hooks/useKeyPressListener';
-import { useColorStore } from '@/stores/ColorStore';
-import { useThemeStore } from '@/stores/ThemeStore';
-import { useUserStore } from '@/stores/UserStore';
+import useChatStore from '@/stores/ChatStore';
+import useColorStore from '@/stores/ColorStore';
+import useThemeStore from '@/stores/ThemeStore';
+import useUserStore from '@/stores/UserStore';
 import sidePanelTheme from '@/styles/themes/componentThemes/sidePanelTheme';
 
 import * as Styled from './index.styled';
@@ -29,6 +30,7 @@ const SidePanelChat = ({
   chatActions,
 }: SidePanelChatProps) => {
   const user = useUserStore((s) => s.user);
+  useChatStore;
 
   const [formMessage, setFormMessage] = useState<string>('');
   const onChangeFormMessage = (e: any) => setFormMessage(e.target.value);

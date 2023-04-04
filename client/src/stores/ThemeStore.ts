@@ -46,3 +46,5 @@ export const useThemeStore = create<ThemeState>()((set, get) => ({
     else get().setAutoTheme();
   },
 }));
+
+export default useThemeStore;

@@ -4,7 +4,7 @@ import { UserInGame } from '@/common/types/user';
 import { thresholds } from '@/common/utils/device';
 import SidePanel from '@/components/SidePanel';
 import useWindowWidth from '@/hooks/useWindowWidth';
-import { useColorStore } from '@/stores/ColorStore';
+import useColorStore from '@/stores/ColorStore';
 
 import ActionArea from './ActionArea';
 import * as Styled from './index.styled';

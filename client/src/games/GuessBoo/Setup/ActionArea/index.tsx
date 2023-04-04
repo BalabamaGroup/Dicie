@@ -1,5 +1,5 @@
 import { UserInGame } from '@/common/types/user';
-import { useColorStore } from '@/stores/ColorStore';
+import useColorStore from '@/stores/ColorStore';
 
 import ActionAreaContent from './ActionAreaContent';
 import * as Styled from './index.styled';

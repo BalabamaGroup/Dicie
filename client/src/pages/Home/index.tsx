@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { homeContentCards } from '@/common/constants';
 import Loader from '@/components/Loader';
 import NavBar from '@/components/NavBar';
-import { useColorStore } from '@/stores/ColorStore';
+import useColorStore from '@/stores/ColorStore';
+import useUserStore from '@/stores/UserStore';
 
-import { useUserStore } from '../../stores/UserStore';
 import ContentCards from './ContentCards';
 import * as Styled from './index.styled';
 

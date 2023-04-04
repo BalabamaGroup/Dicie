@@ -4,7 +4,7 @@ import routes from '@/common/constants/routes';
 import { apiUrl } from '@/common/utils/url';
 import Toast from '@/components/Toast';
 
-import { useUserStore } from '../stores/UserStore';
+import useUserStore from '../stores/UserStore';
 
 axios.defaults.withCredentials = true;
 

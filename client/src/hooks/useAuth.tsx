@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import AuthAPI from '@/api/auth';
 import routes from '@/common/constants/routes';
-import { useUserStore } from '@/stores/UserStore';
+import useUserStore from '@/stores/UserStore';
 
 const useAuth = () => {
   const navigate = useNavigate();

@@ -3,9 +3,9 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import RoomAPI from '@/api/room';
 import routes from '@/common/constants/routes';
 import useAuth from '@/hooks/useAuth';
-import { useColorStore } from '@/stores/ColorStore';
+import useColorStore from '@/stores/ColorStore';
 import { useGameStore } from '@/stores/GameStore';
-import { useThemeStore } from '@/stores/ThemeStore';
+import useThemeStore from '@/stores/ThemeStore';
 
 import * as Styled from './index.styled';
 

@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import routes from '@/common/constants/routes';
 import Switch from '@/components/Switch';
-import { useThemeStore } from '@/stores/ThemeStore';
+import useThemeStore from '@/stores/ThemeStore';
 
 import AuthForm from './AuthForm';
 import * as Styled from './index.styled';

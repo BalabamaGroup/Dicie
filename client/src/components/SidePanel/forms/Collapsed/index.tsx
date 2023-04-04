@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
 import { ComponentColor } from '@/common/types/theme';
-import { useThemeStore } from '@/stores/ThemeStore';
+import useThemeStore from '@/stores/ThemeStore';
 import sidePanelTheme from '@/styles/themes/componentThemes/sidePanelTheme';
 
 import * as Styled from './index.styled';

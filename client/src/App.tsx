@@ -12,7 +12,7 @@ import Auth from './pages/Auth';
 import Home from './pages/Home';
 import Room from './pages/Room';
 import VoiceChatTest from './pages/VoiceChatTest';
-import { useUserStore } from './stores/UserStore';
+import useUserStore from './stores/UserStore';
 import GlobalStyle from './styles/GlobalStyle';
 import Theme from './styles/Theme';
 

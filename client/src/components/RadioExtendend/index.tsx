@@ -1,5 +1,5 @@
 import { ComponentColor } from '@/common/types/theme';
-import { useThemeStore } from '@/stores/ThemeStore';
+import useThemeStore from '@/stores/ThemeStore';
 import radioExtendedTheme from '@/styles/themes/componentThemes/radioExtendedTheme';
 
 import * as Styled from './index.styled';

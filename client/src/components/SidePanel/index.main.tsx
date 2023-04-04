@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { SidePanelViewId, SidePanelViewIdData } from '@/common/types/sidePanel';
 import { ComponentColor } from '@/common/types/theme';
 import Switch from '@/components/Switch';
-import { useThemeStore } from '@/stores/ThemeStore';
+import useThemeStore from '@/stores/ThemeStore';
 import sidePanelTheme from '@/styles/themes/componentThemes/sidePanelTheme';
 
 import SidePanelView from './views';

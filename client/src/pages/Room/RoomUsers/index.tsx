@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import RoomAPI from '@/api/room';
 import { Game } from '@/common/types/room';
 import { UserInGame } from '@/common/types/user';
-import { useUserStore } from '@/stores/UserStore';
+import useUserStore from '@/stores/UserStore';
 
 import * as Styled from './index.styled';
 

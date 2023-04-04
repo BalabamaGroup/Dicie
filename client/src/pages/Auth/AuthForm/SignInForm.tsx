@@ -4,7 +4,7 @@ import Button from '@/components/Button';
 import Input from '@/components/Input';
 import MultiInput from '@/components/MultiInput';
 import useAuth from '@/hooks/useAuth';
-import { useThemeStore } from '@/stores/ThemeStore';
+import useThemeStore from '@/stores/ThemeStore';
 
 import * as Styled from './index.styled';
 

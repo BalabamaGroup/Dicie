@@ -13,7 +13,7 @@ interface UserStoreState {
   queryFetchUser: Function;
 }
 
-export const useUserStore = create<UserStoreState>()((set, get) => ({
+const useUserStore = create<UserStoreState>()((set, get) => ({
   user: null,
   isLoading: false,
 
@@ -50,3 +50,5 @@ export const useUserStore = create<UserStoreState>()((set, get) => ({
     );
   },
 }));
+
+export default useUserStore;

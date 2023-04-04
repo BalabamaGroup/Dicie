@@ -1,6 +1,6 @@
 import CharadesAPI from '@/api/game/charades';
 import { UserInGame } from '@/common/types/user';
-import { useColorStore } from '@/stores/ColorStore';
+import useColorStore from '@/stores/ColorStore';
 
 import * as Styled from './index.styled';
 

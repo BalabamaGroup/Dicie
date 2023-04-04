@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { useThemeStore } from '@/stores/ThemeStore';
+import useThemeStore from '@/stores/ThemeStore';
 
 import dark from './themes/dark';
 import light from './themes/light';

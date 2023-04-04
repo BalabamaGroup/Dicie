@@ -1,5 +1,5 @@
 import { Game } from '@/common/types/room';
-import { useUserStore } from '@/stores/UserStore';
+import useUserStore from '@/stores/UserStore';
 
 import Main from './Main';
 import Setup from './Setup';

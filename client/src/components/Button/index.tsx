@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from 'react';
-import { useThemeStore } from 'stores/ThemeStore';
+import useThemeStore from 'stores/ThemeStore';
 
 import { ComponentColor } from '@/common/types/theme';
 import buttonTheme from '@/styles/themes/componentThemes/buttonTheme';

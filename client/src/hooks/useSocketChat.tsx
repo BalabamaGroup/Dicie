@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { ChatMessage } from '@/common/types/chat';
 import { chatSocketUrl } from '@/common/utils/url';
-import { useUserStore } from '@/stores/UserStore';
+import useUserStore from '@/stores/UserStore';
 
 const useSocketChat = () => {
   const ws = useRef<WebSocket | null>(null);

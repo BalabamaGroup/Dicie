@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import RoomAPI from '@/api/room';
 import { homeContentCards } from '@/common/constants';
 
-import { useUserStore } from '../../../../stores/UserStore';
+import useUserStore from '../../../../stores/UserStore';
 import * as Styled from './index.styled';
 
 interface JoinRoomCardProps {

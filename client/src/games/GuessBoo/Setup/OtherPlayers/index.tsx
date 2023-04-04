@@ -5,7 +5,7 @@ import { thresholds } from '@/common/utils/device';
 import Player from '@/components/Player';
 import Scroll from '@/components/Scroll';
 import useWindowWidth from '@/hooks/useWindowWidth';
-import { useColorStore } from '@/stores/ColorStore';
+import useColorStore from '@/stores/ColorStore';
 
 import * as Styled from './index.styled';
 import useForceSelect from './useForceSelect';
