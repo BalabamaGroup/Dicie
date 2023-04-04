@@ -72,7 +72,7 @@ const OtherPlayers = ({
 
   return (
     <Styled.OtherPlayersWrapper isWait={isWait}>
-      <Scroll className='other-players-scroll'>
+      <Scroll color={guessBooSetupColor} className='other-players-scroll'>
         <Styled.OtherPlayers isRow={isRow}>
           {[...otherPlayers, ...otherPlayers, ...otherPlayers].map((player) => (
             <Player

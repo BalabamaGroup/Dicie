@@ -4,6 +4,8 @@ import routes from '@/common/constants/routes';
 import { apiUrl } from '@/common/utils/url';
 import Toast from '@/components/Toast';
 
+import { useUserStore } from '../stores/UserStore';
+
 axios.defaults.withCredentials = true;
 
 class AxiosClient {
@@ -36,7 +38,6 @@ class AxiosClient {
           if (window.location.pathname !== routes.SIGN_IN)
             window.location.href = routes.SIGN_IN;
           else Toast.error('Could not authorize with provided data');
-          sessionStorage.removeItem('id');
           sessionStorage.removeItem('token');
         }
         return Promise.reject(err);

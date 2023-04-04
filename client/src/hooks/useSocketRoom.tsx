@@ -2,9 +2,13 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { Game } from '@/common/types/room';
 import { socketUrl } from '@/common/utils/url';
+import { useUserStore } from '@/stores/UserStore';
 
 const useSocketRoom = () => {
   const ws = useRef<WebSocket | null>(null);
+
+  const user = useUserStore((s) => s.user);
+  // if (!user) return { data: null, status: false };
 
   const [status, setStatus] = useState<boolean>(false);
   const [data, setData] = useState<Game | null>(null);
@@ -19,17 +23,11 @@ const useSocketRoom = () => {
   }, []);
 
   useEffect(() => {
-    const webSocketUrl = socketUrl() + `?${sessionStorage.getItem('id')}`;
+    const webSocketUrl = socketUrl() + `?${user?.id}`;
     ws.current = new WebSocket(webSocketUrl);
 
-    ws.current.onopen = () => {
-      console.log('opened');
-      setStatus(true);
-    };
-    ws.current.onclose = () => {
-      console.log('closed');
-      setStatus(false);
-    };
+    ws.current.onopen = () => setStatus(true);
+    ws.current.onclose = () => setStatus(false);
     gettingData();
 
     return () => ws.current?.close();

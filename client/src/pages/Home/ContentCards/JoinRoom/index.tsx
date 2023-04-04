@@ -1,11 +1,11 @@
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
 import RoomAPI from '@/api/room';
-import UserAPI from '@/api/user';
 import { homeContentCards } from '@/common/constants';
-import useCurrentUser from '@/hooks/useCurrentUser';
 
+import { useUserStore } from '../../../../stores/UserStore';
 import * as Styled from './index.styled';
 
 interface JoinRoomCardProps {
@@ -16,30 +16,35 @@ interface JoinRoomCardProps {
 const JoinRoomCard = ({ selectedCard, onSelect }: JoinRoomCardProps) => {
   const navigate = useNavigate();
 
-  const { data: currUser, refetch: currUserRefetch } = useCurrentUser();
+  const [user, fetchUser] = useUserStore((s) => [s.user, s.fetchUser]);
   const { data: rooms, isLoading: roomsIsLoading } = useQuery('rooms', () => {
     return RoomAPI.getRooms();
   });
 
   const onReturnToCurrRoom = () => {
-    if (currUser?.roomId) navigate(`/room/${currUser?.roomId}`);
+    if (user?.roomId) navigate(`/room/${user?.roomId}`);
   };
 
   const onDisconnectFromCurrRoom = async () => {
-    if (currUser?.roomId) {
-      await RoomAPI.disconnectFromRoom(currUser?.roomId);
-      currUserRefetch();
+    if (user?.roomId) {
+      await RoomAPI.disconnectFromRoom(user?.roomId);
+      fetchUser();
     }
   };
 
   const onGoToRoom = async (id: string) => {
     try {
       await RoomAPI.connectToRoom(id);
+      await fetchUser();
       navigate(`/room/${id}`);
     } catch (e) {
       console.log('Room is unavialable');
     }
   };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <Styled.JoinRoomCard
@@ -57,7 +62,7 @@ const JoinRoomCard = ({ selectedCard, onSelect }: JoinRoomCardProps) => {
       ) : (
         <div>
           <div>
-            {currUser?.roomId && (
+            {user?.roomId && (
               <h4>
                 <button onClick={onReturnToCurrRoom}>
                   Return to your room
@@ -75,7 +80,7 @@ const JoinRoomCard = ({ selectedCard, onSelect }: JoinRoomCardProps) => {
               rooms.map((room: any) => (
                 <div key={room.id}>
                   <button
-                    disabled={!!currUser?.roomId}
+                    disabled={!!user?.roomId}
                     onClick={() => onGoToRoom(room.id)}
                   >
                     {room.name}

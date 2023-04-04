@@ -5,7 +5,7 @@ type User = {
   role: string;
   token?: string;
   roomId?: string;
-  state?: UserCharadesState;
+  state?: UserGuessBooState;
 };
 
 export default User;
@@ -17,10 +17,10 @@ export type UserInGame = {
   email: string;
   role: string;
   roomId: string;
-  state: UserCharadesState;
+  state: UserGuessBooState;
 };
 
-export type UserCharadesState = {
+export type UserGuessBooState = {
   isGoing: boolean;
   ready: boolean;
   lastAnswer: 'YES' | 'NO' | 'WTF' | null;

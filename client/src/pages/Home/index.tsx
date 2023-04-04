@@ -3,14 +3,14 @@ import { useState } from 'react';
 import { homeContentCards } from '@/common/constants';
 import Loader from '@/components/Loader';
 import NavBar from '@/components/NavBar';
-import useCurrentUser from '@/hooks/useCurrentUser';
 import { useColorStore } from '@/stores/ColorStore';
 
+import { useUserStore } from '../../stores/UserStore';
 import ContentCards from './ContentCards';
 import * as Styled from './index.styled';
 
 const Home = () => {
-  const { isLoading: currentUserIsLoading } = useCurrentUser();
+  const isLoading = useUserStore((s) => s.isLoading);
 
   // const isWait = useColorStore((s) => s.color.home) === 'indigo';
   const setWait = useColorStore((s) => () => s.setWait('home'));
@@ -38,7 +38,7 @@ const Home = () => {
     <Styled.HomePage selectedCard={selectedCard}>
       <NavBar page='home' />
       <Styled.HomeContent>
-        {currentUserIsLoading ? (
+        {isLoading ? (
           <Loader.Circle />
         ) : (
           <ContentCards

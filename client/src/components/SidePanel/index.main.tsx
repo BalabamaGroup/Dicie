@@ -21,6 +21,7 @@ const StyledSidePanelMainWrapper = styled.div`
 `;
 
 const StyledSidePanelMainHeader = styled.div`
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,7 +56,7 @@ const SidePanelMain = ({ color, views, defaultView }: SidePanelMainProps) => {
       <StyledSidePanelMainHeader theme={componentTheme}>
         <Switch color={color} options={headerOptions} />
       </StyledSidePanelMainHeader>
-      <SidePanelView view={currentView} />
+      <SidePanelView view={currentView} color={color} theme={componentTheme} />
     </StyledSidePanelMainWrapper>
   );
 };

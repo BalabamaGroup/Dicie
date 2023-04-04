@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { ComponentColor } from '@/common/types/theme';
+
 export const Scroll = styled.div<{
   align: 'left' | 'center' | 'right';
 }>`
@@ -12,10 +14,10 @@ export const Scroll = styled.div<{
   }
   &::-webkit-scrollbar-track {
     border-radius: 8px;
-    background-color: white;
+    background-color: ${({ theme }) => theme.scrollBackground};
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 8px;
-    background-color: #9b89f0;
+    background-color: ${({ theme }) => theme.thumbBackground};
   }
 `;
