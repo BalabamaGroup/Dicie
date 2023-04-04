@@ -1,8 +1,19 @@
 import styled from 'styled-components';
 
+export const WholePage = styled.div`
+  width: 100vw;
+  height: 100vh;
+`;
+
 export const CircleLoader = styled.div`
-  margin-top: 82px;
-  transform: scale(0.9142857143);
+  width: 15rem;
+  height: 15rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -7.5rem;
+  margin-left: -7.5rem;
+  transform: scale(0.7);
 
   @keyframes spin {
     100% {
@@ -27,7 +38,6 @@ export const CircleLoader = styled.div`
     width: 15rem;
     height: 15rem;
     border-radius: 50%;
-    margin: 5em auto 0;
     filter: url('#goo');
   }
 
@@ -121,7 +131,7 @@ export const CircleLoader = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: #d0f485;
+    background: #8986f5;
   }
 
   .main-bubble-wrapper {
@@ -131,9 +141,9 @@ export const CircleLoader = styled.div`
   .main-bubble-wrapper .main-bubble {
     width: 2.25em;
     height: 2.25em;
-    background: #e7ffb4;
+    background: #9491f6;
     border-radius: 50%;
     margin-left: 7.375em;
-    box-shadow: 0px 0px 50px -4px white;
+    box-shadow: 0px 0px 50px -4px #eceefe;
   }
 `;

@@ -1,9 +1,14 @@
 import 'react-toastify/dist/ReactToastify.css';
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { Navigate, Route, Routes as RoutesRRD, useNavigate } from 'react-router-dom';
+import {
+  Navigate,
+  Route,
+  Routes as RoutesRRD,
+  useNavigate,
+} from 'react-router-dom';
 
 import Routes from './common/constants/routes';
 import ToastContainer from './components/Toast/ToastContainer';
@@ -25,6 +30,25 @@ const Private = ({ children }) => {
 };
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const fakeRequest = () =>
+    new Promise((resolve) => setTimeout((x: null) => resolve(x), 2500));
+  useEffect(() => {
+    fakeRequest().then(() => setIsLoading(false));
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 500);
+  }, []);
+
+  if (isLoading) {
+    return null;
+  } else {
+    const loaderElement = document.querySelector('#dom-loader');
+    loaderElement && loaderElement.remove();
+  }
+
   return (
     <Theme>
       <GlobalStyle />
