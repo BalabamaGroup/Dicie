@@ -4,6 +4,9 @@ body {
   height: 100%;
 }
 
+/* thanks to Maxime Nory
+https://codepen.io/Illusion/pen/LgyvpO */
+
 @keyframes spin {
   100% {
     -webkit-transform: rotate(360deg);
