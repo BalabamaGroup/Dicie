@@ -2,13 +2,13 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import { SidePanelViewId, SidePanelViewIdData } from '@/common/types/sidePanel';
-import { ComponentColor } from '@/common/types/theme';
 import Switch from '@/components/Switch';
+import useGameStore from '@/stores/GameStore';
 import useThemeStore from '@/stores/ThemeStore';
 import sidePanelTheme from '@/styles/themes/componentThemes/sidePanelTheme';
 
 import SidePanelView from './views';
-import { getLabelById, getViewById } from './views/views';
+import { getLabelById } from './views/views';
 
 const StyledSidePanelMainWrapper = styled.div`
   width: 100%;
@@ -34,11 +34,11 @@ const StyledSidePanelMainHeader = styled.div`
 interface SidePanelMainProps {
   views: SidePanelViewIdData[];
   defaultView?: SidePanelViewId;
-  color: ComponentColor;
 }
 
-const SidePanelMain = ({ color, views, defaultView }: SidePanelMainProps) => {
+const SidePanelMain = ({ views, defaultView }: SidePanelMainProps) => {
   const theme = useThemeStore((state) => state.theme);
+  const color = useGameStore((s) => s.getColor());
   const componentTheme = sidePanelTheme[theme][color];
 
   const [currentView, setCurrentView] = useState<SidePanelViewId>(
@@ -56,7 +56,7 @@ const SidePanelMain = ({ color, views, defaultView }: SidePanelMainProps) => {
       <StyledSidePanelMainHeader theme={componentTheme}>
         <Switch color={color} options={headerOptions} />
       </StyledSidePanelMainHeader>
-      <SidePanelView view={currentView} color={color} theme={componentTheme} />
+      <SidePanelView view={currentView} />
     </StyledSidePanelMainWrapper>
   );
 };

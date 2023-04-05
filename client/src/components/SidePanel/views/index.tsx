@@ -1,37 +1,17 @@
 import { SidePanelViewId } from '@/common/types/sidePanel';
-import { ComponentColor } from '@/common/types/theme';
-import useSocketChat from '@/hooks/useSocketChat';
+import useChatStore from '@/stores/ChatStore';
 
 import SidePanelChat from './Chat';
 
 interface SidePanelViewProps {
   view: SidePanelViewId;
-  theme: any;
-  color: ComponentColor;
 }
 
-const SidePanelView = ({ theme, color, view }: SidePanelViewProps) => {
-  const { messages: chatData, actions } = useSocketChat();
-
+const SidePanelView = ({ view }: SidePanelViewProps) => {
   if (view === 'chat' || view === 'guessBooAnswers') {
-    if (view === 'chat' && chatData)
-      return (
-        <SidePanelChat
-          color={color}
-          theme={theme}
-          chatData={chatData}
-          chatActions={actions}
-        />
-      );
-    if (view === 'guessBooAnswers')
-      return (
-        <SidePanelChat
-          theme={theme}
-          color={color}
-          chatData={chatData}
-          chatActions={actions}
-        />
-      );
+    useChatStore((s) => s.subscribe)();
+    if (view === 'chat') return <SidePanelChat />;
+    if (view === 'guessBooAnswers') return <SidePanelChat />;
   }
 
   return null;

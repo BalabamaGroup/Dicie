@@ -5,35 +5,33 @@ import RoomAPI from '@/api/room';
 import Loader from '@/components/Loader';
 import NavBar from '@/components/NavBar';
 import GuessBoo from '@/games/GuessBoo';
-import useSocketRoom from '@/hooks/useSocketRoom';
+import useGameStore from '@/stores/GameStore';
 
 import * as Styled from './index.styled';
 import RoomSettings from './RoomSettings';
-import RoomUsers from './RoomUsers';
 
 const Room = () => {
   const navigate = useNavigate();
   const { roomId } = useParams();
-  const { data: roomData, status: socketStatus } = useSocketRoom();
+
+  const roomData = useGameStore((s) => s.data);
+  const socketStatus = useGameStore((s) => s.socketStatus);
+  useGameStore((s) => s.subscribe)();
 
   useEffect(() => {
     if (socketStatus && roomId)
       RoomAPI.connectToRoom(roomId).catch(() => navigate('/'));
-  }, [socketStatus, roomId]);
+  }, [socketStatus]);
 
   if (!roomData || (roomData && roomData.start === undefined))
-    return (
-      <Styled.RoomPage>
-        <Loader.Circle />
-      </Styled.RoomPage>
-    );
+    return <Loader.Circle />;
 
   if (!roomData.start)
     return (
       <Styled.RoomPage>
         <NavBar page='room' />
         <Styled.RoomContent>
-          <RoomUsers roomData={roomData} />
+          {/* <RoomUsers roomData={roomData} /> */}
           <RoomSettings />
         </Styled.RoomContent>
       </Styled.RoomPage>
@@ -43,7 +41,7 @@ const Room = () => {
     <Styled.GamePage>
       <NavBar page='guessBoo' />
       <Styled.GameContent>
-        <GuessBoo gameData={roomData} />;
+        <GuessBoo />;
       </Styled.GameContent>
     </Styled.GamePage>
   );

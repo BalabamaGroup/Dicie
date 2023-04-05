@@ -5,17 +5,16 @@ import { thresholds } from '@/common/utils/device';
 import SidePanel from '@/components/SidePanel';
 import useWindowWidth from '@/hooks/useWindowWidth';
 import useColorStore from '@/stores/ColorStore';
+import useGameStore from '@/stores/GameStore';
 
 import ActionArea from './ActionArea';
 import * as Styled from './index.styled';
 import OtherPlayers from './OtherPlayers';
 
-interface SetupProps {
-  mePlayer: UserInGame;
-  otherPlayers: UserInGame[];
-}
+const Setup = () => {
+  const mePlayer = useGameStore((s) => s.getMePlayer());
+  const otherPlayers = useGameStore((s) => s.getOtherPlayers());
 
-const Setup = ({ mePlayer, otherPlayers }: SetupProps) => {
   const isMyTurn = mePlayer.state.isGoing || !!mePlayer.state.selectedUser;
   const isMeReady = mePlayer.state.ready;
   const [highlightedPlayer, setHighlightedPlayer] = useState<UserInGame | null>(
@@ -61,7 +60,6 @@ const Setup = ({ mePlayer, otherPlayers }: SetupProps) => {
           displayWidth < thresholds.guessBoo.setup.sidePanelHorizontal
         }
       />
-      {/* <SidePanel collapseOn={1440} bottomOn={1280} /> */}
     </Styled.Setup>
   );
 };

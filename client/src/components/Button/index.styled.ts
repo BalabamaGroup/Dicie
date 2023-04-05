@@ -18,7 +18,7 @@ export const Button = styled.button<{
   text-align: center;
 
   width: ${({ isScale }) => (isScale ? '100%' : 'auto')};
-  transition: box-shadow 0.05s ease-in, background 0.3s ease-in-out,
+  transition: box-shadow 0.175s ease-in, background 0.3s ease-in-out,
     opacity 0.3s ease-in-out;
 
   // DEFAULT
@@ -30,7 +30,7 @@ export const Button = styled.button<{
     }
     &:active {
       box-shadow: ${theme.shadowPrimary},
-        inset 0px 0px 0px 2px ${theme.borderOutline};
+        inset 0px 0px 0px 2px ${theme.activeBorderPrimary};
     }
   `}
 
@@ -45,7 +45,7 @@ export const Button = styled.button<{
       }
       &:active {
         box-shadow: ${theme.shadowPrimary},
-          inset 0px 0px 0px 2px ${theme.textPrimary};
+          inset 0px 0px 0px 2px ${theme.activeBorderPrimary};
       }
     `}
 

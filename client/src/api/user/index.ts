@@ -1,4 +1,4 @@
-import User from '@/common/types/user';
+import { User } from '@/common/types/user';
 
 import { request } from '../';
 import { getUserByIdRes, getUsersRes } from './interfaces';

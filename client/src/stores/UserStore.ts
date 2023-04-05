@@ -1,9 +1,8 @@
 import { useQuery } from 'react-query';
 import { create } from 'zustand';
 
-import User from '@/common/types/user';
-
-import UserAPI from '../api/user/index';
+import UserAPI from '@/api/user';
+import { User } from '@/common/types/user';
 
 interface UserStoreState {
   user: User | null;
@@ -19,10 +18,6 @@ const useUserStore = create<UserStoreState>()((set, get) => ({
 
   setUser: (user: User) => {
     set((s) => ({ ...s, user: user }));
-  },
-
-  removeUser: () => {
-    set((s) => ({ ...s, user: null }));
   },
 
   fetchUser: async () => {
