@@ -9,6 +9,7 @@ const light = {
     backgroundPrimary: colors.indigo.base,
     textPrimary: colors.indigo.text.light,
     shadowPrimary: shadows.indigo.medium,
+    activeBorderPrimary: colors.indigo[20],
   },
   lime: {
     background: colors.lime[20],
@@ -17,6 +18,7 @@ const light = {
     backgroundPrimary: '#E9F696',
     textPrimary: colors.lime.text.dark,
     shadowPrimary: shadows.lime.medium,
+    activeBorderPrimary: colors.lime[20],
   },
 };
 
@@ -28,6 +30,7 @@ const dark = {
     backgroundPrimary: colors.indigo.base,
     textPrimary: colors.indigo.text.light,
     shadowPrimary: colors.indigo.base,
+    activeBorderPrimary: colors.indigo[80],
   },
   lime: {
     background: colors.lime[80],
@@ -36,6 +39,7 @@ const dark = {
     backgroundPrimary: colors.lime.base,
     textPrimary: colors.lime.text.dark,
     shadowPrimary: colors.lime.base,
+    activeBorderPrimary: colors.lime[80],
   },
 };
 

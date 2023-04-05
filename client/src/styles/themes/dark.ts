@@ -8,6 +8,18 @@ const dark: any = {
     go: colors.lime[80],
   },
 
+  toast: {
+    background: '#222222',
+    color: '#F6F6F6',
+    success: colors.green.dark,
+    successCircle: '#055F03',
+    warning: colors.orange.dark,
+    warningCircle: '#74410B',
+    error: colors.red.dark,
+    errorCircle: '#5A0B1A',
+    shadow: 'rgba(0, 0, 0, 0.85)',
+  },
+
   page: {
     background: gradients.no_gradient_page_bg_dark,
     text: colors.indigo[20],

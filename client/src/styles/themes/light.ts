@@ -8,6 +8,18 @@ const light = {
     go: colors.lime[80],
   },
 
+  toast: {
+    background: '#F6F6F6',
+    color: '#4B4B4B',
+    success: colors.green.dark,
+    successCircle: '#E0FFDF',
+    warning: colors.orange.dark,
+    warningCircle: '#FFEEDE',
+    error: colors.red.dark,
+    errorCircle: '#FFD6DD',
+    shadow: 'rgba(0, 0, 0, 0.15)',
+  },
+
   page: {
     background: gradients.no_gradient_page_bg_light,
     text: colors.indigo[80],
