@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import {
   Navigate,
   Route,
-  Routes as RoutesRRD,
+  Routes as RoutesWrapper,
   useNavigate,
 } from 'react-router-dom';
 
@@ -18,7 +18,6 @@ import Home from './pages/Home';
 import Room from './pages/Room';
 import VoiceChatTest from './pages/VoiceChatTest';
 import useUserStore from './stores/UserStore';
-import GlobalStyle from './styles/GlobalStyle';
 import Theme from './styles/Theme';
 
 const queryClient = new QueryClient();
@@ -51,11 +50,10 @@ const App = () => {
 
   return (
     <Theme>
-      <GlobalStyle />
       <div className='App'>
         <QueryClientProvider client={queryClient}>
           <GlobalQueries />
-          <RoutesRRD>
+          <RoutesWrapper>
             <Route path={Routes.SIGN_IN} element={<Auth />} />
             <Route path={Routes.SIGN_UP} element={<Auth />} />
 
@@ -77,7 +75,7 @@ const App = () => {
             />
             <Route path={'/voicechat'} element={<VoiceChatTest />} />
             <Route path='*' element={<Navigate to={Routes.HOME} replace />} />
-          </RoutesRRD>
+          </RoutesWrapper>
           <ToastContainer />
           {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </QueryClientProvider>

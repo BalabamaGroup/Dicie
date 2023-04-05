@@ -20,7 +20,6 @@
     "react-svg": "^15.1.9",
     "react-toastify": "^9.0.8",
     "styled-components": "^5.3.6",
-    "typeface-nunito": "^1.1.13",
     "web-vitals": "^2.1.4",
     "zustand": "^4.3.6"
   },
