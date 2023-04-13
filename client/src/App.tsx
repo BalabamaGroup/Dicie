@@ -11,6 +11,7 @@ import {
 } from 'react-router-dom';
 
 import Routes from './common/constants/routes';
+import Loader from './components/Loader';
 import ToastContainer from './components/Toast/ToastContainer';
 import GlobalQueries from './GlobalQueries';
 import Auth from './pages/Auth';
@@ -23,16 +24,22 @@ import Theme from './styles/Theme';
 const queryClient = new QueryClient();
 
 const Private = ({ children }) => {
-  const user = useUserStore((s) => s.user);
-  const navigate = useNavigate();
-  return !!user?.id ? children : navigate(Routes.SIGN_IN);
+  console.log('smth 2 ');
+  let user = useUserStore((s) => s.user);
+  const isLoading = useUserStore((s) => s.isLoading);
+
+  if (isLoading) return <Loader.Circle />;
+  if (!user) return <Navigate to={Routes.SIGN_IN} replace />;
+  return children;
 };
 
 const App = () => {
+  console.log('smth');
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const fakeRequest = () =>
     new Promise((resolve) => setTimeout((x: null) => resolve(x), 2500));
+
   useEffect(() => {
     fakeRequest().then(() => setIsLoading(false));
   }, []);

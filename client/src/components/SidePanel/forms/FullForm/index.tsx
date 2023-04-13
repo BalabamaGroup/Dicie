@@ -14,7 +14,11 @@ interface FullFormProps {
 }
 
 const FullForm = ({ children }: FullFormProps) => {
-  return <StyledFullFormWrapper>{children}</StyledFullFormWrapper>;
+  return (
+    <StyledFullFormWrapper className='sidepanel-full'>
+      {children}
+    </StyledFullFormWrapper>
+  );
 };
 
 export default FullForm;

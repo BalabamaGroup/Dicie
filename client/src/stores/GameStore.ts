@@ -31,8 +31,11 @@ const useGameStore = create<GameStoreState>()((set, get) => ({
   myTurn: false,
 
   getColor: (): ComponentColor => {
-    if (!get().socketStatus) return 'indigo';
     return get().myTurn ? 'lime' : 'indigo';
+  },
+
+  setMyTurn: (bool: boolean): void => {
+    set((s) => ({ ...s, myTurn: bool }));
   },
 
   getMePlayer: (): UserInGame => {

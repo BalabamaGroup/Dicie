@@ -26,6 +26,7 @@ const CollapsedForm = ({ isHorizontal, children }: CollapsedFormProps) => {
   return (
     <>
       <Styled.CollapsedFormWrapper
+        className='sidepanel-collapsed'
         isOpened={isOpened}
         isHorizontal={isHorizontal}
         theme={componentTheme}

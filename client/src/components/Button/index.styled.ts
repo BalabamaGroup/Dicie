@@ -19,7 +19,7 @@ export const Button = styled.button<{
 
   width: ${({ isScale }) => (isScale ? '100%' : 'auto')};
   transition: box-shadow 0.175s ease-in, background 0.3s ease-in-out,
-    opacity 0.3s ease-in-out;
+    color 0.3s ease-in-out, opacity 0.3s ease-in-out;
 
   // DEFAULT
   ${({ theme }) => css`
