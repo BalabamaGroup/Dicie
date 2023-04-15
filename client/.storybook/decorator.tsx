@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import useGameStore from '../src/stores/GameStore';
 import useThemeStore from '../src/stores/ThemeStore';
@@ -9,23 +9,26 @@ const StyledDecorator = styled.div<{
   theme: 'light' | 'dark';
   myTurn: boolean;
 }>`
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
+
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: red;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 32px;
+  box-sizing: border-box;
 
   transition: background-color 0.3s ease-in-out;
   background-color: ${({ theme, myTurn }) =>
     theme === 'light'
       ? !myTurn
-        ? colors.indigo[20]
-        : colors.lime[20]
+        ? colors.indigo[10]
+        : colors.lime[10]
       : !myTurn
       ? colors.indigo[80]
       : colors.lime[80]};
@@ -42,23 +45,33 @@ const StyledDecorator = styled.div<{
     .option {
       padding: 0 24px;
       border-radius: 12px;
-      width: 96px;
+      width: 100px;
       height: 48px;
       background-color: red;
       display: flex;
       align-items: center;
       justify-content: space-around;
+      font-weight: 700;
 
       transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+      border: 2px solid
+        ${({ theme, myTurn }) =>
+          theme === 'light'
+            ? !myTurn
+              ? colors.indigo[60]
+              : colors.lime[60]
+            : !myTurn
+            ? colors.indigo[70]
+            : colors.lime[70]};
 
       color: ${({ theme, myTurn }) =>
         theme === 'light'
           ? !myTurn
-            ? colors.indigo.text.dark
-            : colors.lime.text.dark
+            ? colors.indigo[90]
+            : colors.lime[80]
           : !myTurn
-          ? colors.indigo.text.light
-          : colors.lime.text.light};
+          ? colors.indigo[0]
+          : colors.lime[0]};
 
       background-color: ${({ theme, myTurn }) =>
         theme === 'light'
@@ -66,8 +79,8 @@ const StyledDecorator = styled.div<{
             ? colors.indigo[0]
             : colors.lime[0]
           : !myTurn
-          ? colors.indigo[100]
-          : colors.lime[100]};
+          ? colors.indigo[90]
+          : colors.lime[90]};
     }
   }
 
@@ -77,6 +90,10 @@ const StyledDecorator = styled.div<{
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  * {
+    font-family: Nunito;
   }
 `;
 
@@ -94,10 +111,10 @@ const Decorator = ({ children }) => {
     <StyledDecorator theme={theme} myTurn={myTurn}>
       <div className='controls'>
         <div className='option' onClick={toggleTheme}>
-          Toggle Theme
+          Theme
         </div>
         <div className='option' onClick={toggleMyTurn}>
-          Toggle My Turn
+          Color
         </div>
       </div>
 

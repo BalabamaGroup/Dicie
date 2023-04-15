@@ -9,7 +9,6 @@ import { User } from '@/common/types/user';
 interface UserStoreState {
   user: User | null;
   isLoading: boolean;
-  setUser: Function;
   fetchUser: Function;
   queryFetchUser: Function;
 }
@@ -18,12 +17,7 @@ const useUserStore = create<UserStoreState>()((set, get) => ({
   user: null,
   isLoading: true,
 
-  setUser: (user: User) => {
-    set((s) => ({ ...s, user: user }));
-  },
-
   fetchUser: async () => {
-    console.log('Getting USER');
     if (!get().user) set((s) => ({ ...s, isLoading: true }));
     UserAPI.getCurrentUser()
       .then((data) => {
@@ -31,27 +25,24 @@ const useUserStore = create<UserStoreState>()((set, get) => ({
       })
       .catch((err) => {
         set((s) => ({ ...s, user: null, isLoading: false }));
-        if (
-          err.response.status === 401 &&
-          window.location.pathname !== routes.SIGN_IN
-        )
-          window.location.href = routes.SIGN_IN;
+        const isAuthErr = err.response.status === 401;
+        const path = window.location.pathname;
+        const isAuthPage = path === routes.SIGN_IN || path === routes.SIGN_UP;
+        if (isAuthErr && !isAuthPage) window.location.href = routes.SIGN_IN;
+        sessionStorage.removeItem('token');
+      })
+      .finally(() => {
+        set((s) => ({ ...s, isLoading: false }));
       });
   },
 
   queryFetchUser: () => {
-    useQuery(
-      'globalAutoFetchUser',
-      async () => {
-        get().fetchUser();
-      },
-      {
-        refetchInterval: 60000,
-        refetchIntervalInBackground: true,
-        refetchOnWindowFocus: true,
-        refetchOnReconnect: true,
-      }
-    );
+    useQuery('globalAutoFetchUser', async () => get().fetchUser(), {
+      refetchInterval: 180000,
+      refetchIntervalInBackground: true,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: true,
+    });
   },
 }));
 

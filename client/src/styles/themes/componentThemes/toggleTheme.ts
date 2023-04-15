@@ -2,13 +2,13 @@ import colors from '@/styles/colors/colors';
 
 const light = {
   indigo: {
-    backgroundOff: colors.indigo[20],
-    toggleOff: colors.lime[20],
+    backgroundOff: colors.indigo[10],
+    toggleOff: colors.lime[10],
     backgroundOn: colors.indigo[80],
     toggleOn: colors.lime.base,
   },
   lime: {
-    backgroundOff: colors.lime[20],
+    backgroundOff: colors.lime[10],
     toggleOff: colors.lime[80],
     backgroundOn: colors.lime[80],
     toggleOn: colors.lime.base,

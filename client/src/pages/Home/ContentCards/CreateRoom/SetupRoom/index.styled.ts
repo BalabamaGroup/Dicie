@@ -5,6 +5,8 @@ import { desktopAndSmaller, tabletAndSmaller } from '@/common/utils/device';
 export const SetupRoom = styled.div<{
   isMobileSetupCompleted: boolean;
 }>`
+  width: 100%;
+  height: 100%;
   gap: 32px;
 
   box-sizing: border-box;
@@ -13,10 +15,10 @@ export const SetupRoom = styled.div<{
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  height: calc(100vh - 128px);
+  /* height: calc(100vh - 128px);
   @media ${tabletAndSmaller} {
     height: calc(100vh - 96px);
-  }
+  } */
 
   padding: 32px 32px;
   @media ${tabletAndSmaller} {

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 import RoomAPI from '@/api/room';
 import { homeContentCards } from '@/common/constants';
@@ -48,50 +49,49 @@ const JoinRoomCard = ({ selectedCard, onSelect }: JoinRoomCardProps) => {
 
   return (
     <Styled.JoinRoomCard
-      cardKey={homeContentCards.JOIN_ROOM}
-      selectedCard={selectedCard}
+      isSelected={selectedCard === homeContentCards.JOIN_ROOM}
+      isDefault={selectedCard === homeContentCards.DEFAULT}
       onClick={onSelect}
     >
-      {selectedCard === homeContentCards.DEFAULT ? (
-        <div>
-          <div className='header main'>{`Join an \n existing one`}</div>
-          <div className='header sub'>
-            And bring terror to all the living inside
-          </div>
+      <div className='on-default'>
+        <div className='header main'>{`Join an \n existing one`}</div>
+        <div className='header sub'>
+          And bring terror to all the living inside
         </div>
-      ) : (
-        <div>
-          <div>
-            {user?.roomId && (
-              <h4>
-                <button onClick={onReturnToCurrRoom}>
-                  Return to your room
-                </button>
-                <button onClick={onDisconnectFromCurrRoom}>
-                  Disconnect from your room
-                </button>
-              </h4>
-            )}
-            <br />
-            {roomsIsLoading ? (
-              <p>Room data is loading</p>
-            ) : (
-              rooms &&
-              rooms.map((room: any) => (
-                <div key={room.id}>
-                  <button
-                    disabled={!!user?.roomId}
-                    onClick={() => onGoToRoom(room.id)}
-                  >
-                    {room.name}
-                  </button>
-                  <br />
-                </div>
-              ))
-            )}
-          </div>
-        </div>
-      )}
+      </div>
+
+      <ReactSVG
+        className='notselected-arrow'
+        src='/images/svgs/arrow.right.svg'
+      />
+
+      <div className='on-selected'>
+        {user?.roomId && (
+          <h4>
+            <button onClick={onReturnToCurrRoom}>Return to your room</button>
+            <button onClick={onDisconnectFromCurrRoom}>
+              Disconnect from your room
+            </button>
+          </h4>
+        )}
+        <br />
+        {roomsIsLoading ? (
+          <p>Room data is loading</p>
+        ) : (
+          rooms &&
+          rooms.map((room: any) => (
+            <div key={room.id}>
+              <button
+                disabled={!!user?.roomId}
+                onClick={() => onGoToRoom(room.id)}
+              >
+                {room.name}
+              </button>
+              <br />
+            </div>
+          ))
+        )}
+      </div>
     </Styled.JoinRoomCard>
   );
 };

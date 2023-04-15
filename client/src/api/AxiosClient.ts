@@ -29,16 +29,13 @@ class AxiosClient {
         return res.data;
       })
       .catch((err: any) => {
-        console.log(err);
+        // console.log(err);
         if (err.request?.responseText) {
           const errTextJSON = JSON.parse(err.request.responseText);
           Toast.error(errTextJSON.errorMessage);
         }
         if (err.response?.status === 401) {
-          if (window.location.pathname !== routes.SIGN_IN)
-            window.location.href = routes.SIGN_IN;
-          else Toast.error('Could not authorize with provided data');
-          sessionStorage.removeItem('token');
+          // sessionStorage.removeItem('token');
         }
         return Promise.reject(err);
       });

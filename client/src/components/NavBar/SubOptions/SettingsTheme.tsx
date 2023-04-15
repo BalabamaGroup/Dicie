@@ -24,7 +24,6 @@ export const StyledSettingsTheme = styled.div<{}>`
     align-items: center;
     justify-content: start;
     gap: 8px;
-    font-family: 'Nunito';
     font-style: normal;
     font-weight: 600;
     font-size: 12px;

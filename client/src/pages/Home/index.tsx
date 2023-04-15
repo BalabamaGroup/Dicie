@@ -35,20 +35,22 @@ const Home = () => {
   };
 
   return (
-    <Styled.HomePage selectedCard={selectedCard}>
-      <NavBar page='home' />
-      <Styled.HomeContent>
-        {isLoading ? (
-          <Loader.Circle />
-        ) : (
-          <ContentCards
-            selectedCard={selectedCard}
-            onSelectCreateRoom={onSelectCreateRoom}
-            onSelectJoinRoom={onSelectJoinRoom}
-          />
-        )}
-      </Styled.HomeContent>
-    </Styled.HomePage>
+    <Styled.HomePageDefaultBackground>
+      <Styled.HomePage selectedCard={selectedCard}>
+        <NavBar page='home' />
+        <Styled.HomeContent>
+          {isLoading ? (
+            <Loader.Circle />
+          ) : (
+            <ContentCards
+              selectedCard={selectedCard}
+              onSelectCreateRoom={onSelectCreateRoom}
+              onSelectJoinRoom={onSelectJoinRoom}
+            />
+          )}
+        </Styled.HomeContent>
+      </Styled.HomePage>
+    </Styled.HomePageDefaultBackground>
   );
 };
 

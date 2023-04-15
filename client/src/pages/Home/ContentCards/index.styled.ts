@@ -3,6 +3,14 @@ import styled, { css } from 'styled-components';
 import { homeContentCards } from '@/common/constants';
 import { tabletAndBigger, tabletAndSmaller } from '@/common/utils/device';
 
+const defaultGapValue = '64px';
+const defaultPaddingValue = '64px';
+
+const gapValue = '16px';
+const paddingValue = '16px';
+
+const otherCardValue = '128px';
+
 export const ContentCardsWrapper = styled.div<{
   selectedCard: string;
 }>`
@@ -20,11 +28,13 @@ export const ContentCards = styled.div<{
   flex-direction: row;
   background-size: 100% 100%;
 
-  will-change: transform;
-  transition: transform 0.6s cubic-bezier(0.51, 0.92, 0.1, 1.1);
+  will-change: transform, padding, gap;
+  transition: transform 0.6s cubic-bezier(0.51, 0.92, 0.1, 1.05),
+    padding 0.6s cubic-bezier(0.51, 0.92, 0.1, 1),
+    gap 0.6s cubic-bezier(0.51, 0.92, 0.1, 1);
 
   @media ${tabletAndBigger} {
-    width: calc(200% - 256px - 32px);
+    width: ${`calc(200% - ${otherCardValue} - ${otherCardValue})`};
     height: 100%;
     padding: 64px;
     flex-direction: row;
@@ -33,18 +43,20 @@ export const ContentCards = styled.div<{
     ${({ selectedCard }) =>
       selectedCard === homeContentCards.DEFAULT
         ? css`
-            width: 100%;
+            padding: ${defaultPaddingValue}
+              ${`calc((100% / 2) - ${defaultGapValue})`};
+            transform: translateX(-25%) ${`translateX(${defaultGapValue})`};
           `
         : selectedCard === homeContentCards.CREATE_ROOM
         ? css`
+            padding: ${paddingValue};
+            gap: ${gapValue};
             transform: translateX(0);
-            padding: 32px;
-            gap: 32px;
           `
         : css`
-            transform: translateX(-50%) translateX(128px) translateX(16px);
-            padding: 32px;
-            gap: 32px;
+            padding: ${paddingValue};
+            gap: ${gapValue};
+            transform: translateX(-50%) ${`translateX(${otherCardValue})`};
           `}
   }
 
@@ -75,15 +87,20 @@ export const ContentCards = styled.div<{
 `;
 
 export const HomeContentCard = styled.div<{
-  cardKey: string;
-  selectedCard: string;
+  isSelected: boolean;
+  isDefault: boolean;
 }>`
+  pointer-events: ${({ isSelected }) => (isSelected ? 'none' : 'all')};
+  cursor: ${({ isSelected }) => (isSelected ? 'auto' : 'pointer')};
+  & * {
+    pointer-events: ${({ isSelected }) => (isSelected ? 'all' : 'none')};
+  }
+
   box-sizing: border-box;
 
   width: 100%;
   height: 100%;
   user-select: none;
-  cursor: pointer;
 
   display: flex;
   flex-direction: column;
@@ -92,6 +109,8 @@ export const HomeContentCard = styled.div<{
 
   box-sizing: border-box;
   text-align: center;
+
+  /* transition: background 0.6s cubic-bezier(0.51, 0.92, 0.1, 1); */
 
   .main,
   .sub {
@@ -115,14 +134,45 @@ export const HomeContentCard = styled.div<{
     transition: opacity 0.3s ease-in-out;
   }
 
-  ${({ cardKey, selectedCard }) =>
-    selectedCard === homeContentCards.DEFAULT
+  .notselected-arrow {
+    position: absolute;
+    height: 48px;
+    width: 48px;
+    transition: opacity 0.3s ease-in-out;
+    opacity: ${({ isDefault, isSelected }) =>
+      !isDefault && !isSelected ? '1' : '0'};
+    svg {
+      height: 48px;
+      width: 48px;
+    }
+  }
+
+  .on-default {
+    opacity: ${({ isDefault, isSelected }) =>
+      isDefault && !isSelected ? '1' : '0'};
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .on-selected {
+    opacity: ${({ isDefault, isSelected }) =>
+      !isDefault && isSelected ? '1' : '0'};
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  ${({ isDefault, isSelected }) =>
+    isDefault
       ? css`
           width: 100%;
           border-radius: 32px;
           padding: 10px;
         `
-      : selectedCard === cardKey
+      : isSelected
       ? css`
           width: 100%;
           border-radius: 32px;

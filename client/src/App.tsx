@@ -24,7 +24,6 @@ import Theme from './styles/Theme';
 const queryClient = new QueryClient();
 
 const Private = ({ children }) => {
-  console.log('smth 2 ');
   let user = useUserStore((s) => s.user);
   const isLoading = useUserStore((s) => s.isLoading);
 
@@ -34,17 +33,12 @@ const Private = ({ children }) => {
 };
 
 const App = () => {
-  console.log('smth');
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const fakeRequest = () =>
-    new Promise((resolve) => setTimeout((x: null) => resolve(x), 2500));
-
   useEffect(() => {
+    const fakeRequest = () =>
+      new Promise((resolve) => setTimeout((x: null) => resolve(x), 2500));
     fakeRequest().then(() => setIsLoading(false));
-  }, []);
-
-  useEffect(() => {
     setTimeout(() => setIsLoading(false), 500);
   }, []);
 
@@ -63,7 +57,6 @@ const App = () => {
           <RoutesWrapper>
             <Route path={Routes.SIGN_IN} element={<Auth />} />
             <Route path={Routes.SIGN_UP} element={<Auth />} />
-
             <Route
               path={Routes.HOME}
               element={

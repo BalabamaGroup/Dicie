@@ -6,7 +6,7 @@ import useUserStore from '@/stores/UserStore';
 
 const useAuth = () => {
   const navigate = useNavigate();
-  const setUser = useUserStore((s) => s.setUser);
+  const setUserStoreState = useUserStore.setState;
 
   const signUp = async (data: {
     username: string;
@@ -24,7 +24,7 @@ const useAuth = () => {
   const signIn = async (data: { username: string; password: string }) => {
     AuthAPI.signIn(data)
       .then((res) => {
-        setUser(res);
+        setUserStoreState((s) => ({ ...s, user: res }));
         res.token && sessionStorage.setItem('token', res.token);
         navigate(routes.HOME);
       })
@@ -39,7 +39,7 @@ const useAuth = () => {
   };
 
   const signOut = () => {
-    setUser(null);
+    setUserStoreState((s) => ({ ...s, user: null }));
     sessionStorage.removeItem('token');
     navigate(routes.SIGN_IN);
   };

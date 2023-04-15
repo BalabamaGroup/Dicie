@@ -8,34 +8,26 @@ import {
 import { tabletAndSmaller } from '@/common/utils/device';
 import { commonPageStyles } from '@/styles/commonStyles';
 
+export const HomePageDefaultBackground = styled.section<{}>`
+  width: 100vw;
+  height: 100vh;
+  background: ${({ theme }) => theme.page.home.defaultBackground};
+`;
 export const HomePage = styled.section<{ selectedCard: string }>`
   ${commonPageStyles}
 
   width: 100vw;
+  height: 100vh;
   color: ${({ theme }) => theme.page.text};
 
-  ${({ theme }) =>
-    createGradientTransition({
-      gradient: theme.page.background,
-      id: '-homePageBackground',
-    })}
-
-  ${({ selectedCard, theme }) =>
+  transition: background 0.3s ease-in-out;
+  background: ${({ selectedCard, theme }) =>
     selectedCard === homeContentCards.DEFAULT
-      ? transitionGradient({
-          id: '-homePageBackground',
-          gradient: theme.page.background,
-        })
+      ? 'transparent'
       : selectedCard === homeContentCards.CREATE_ROOM
-      ? transitionGradient({
-          id: '-homePageBackground',
-          gradient: theme.page.home.createRoomCard.background,
-        })
+      ? theme.page.home.createRoomBackground
       : selectedCard === homeContentCards.JOIN_ROOM &&
-        transitionGradient({
-          id: '-homePageBackground',
-          gradient: theme.page.home.joinRoomCard.background,
-        })};
+        theme.page.home.joinRoomBackground};
 `;
 
 export const HomeContent = styled.div`

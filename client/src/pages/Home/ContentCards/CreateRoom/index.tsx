@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 import RoomAPI from '@/api/room';
 import { homeContentCards } from '@/common/constants';
@@ -61,43 +62,48 @@ const CreateRoomCard = ({ selectedCard, onSelect }: CreateRoomCardProps) => {
 
   return (
     <Styled.CreateRoomCard
-      cardKey={homeContentCards.CREATE_ROOM}
-      selectedCard={selectedCard}
+      isSelected={selectedCard === homeContentCards.CREATE_ROOM}
+      isDefault={selectedCard === homeContentCards.DEFAULT}
       onClick={onSelect}
     >
-      {selectedCard === homeContentCards.DEFAULT ? (
-        <div>
-          <div className='header main'>{`Create your \n own room`}</div>
-          <div className='header sub'>And make others obey your will</div>
-        </div>
-      ) : (
-        <Styled.CreateRoom isMobileSetupCompleted={isMobileSetupCompleted}>
-          <SetupRoom
-            onCreateRoom={onCreateRoom}
-            canCreateRoom={canCreateRoom}
-            canCompleteMobileSetup={canCompleteMobileSetup}
-            roomName={roomName}
-            onChangeRoomName={onChangeRoomName}
-            isPrivate={isPrivate}
-            onChangeIsPrivate={onChangeIsPrivate}
-            roomPassword={roomPassword}
-            onChangeRoomPassword={onChangeRoomPassword}
-            isWithCommuninactions={isWithCommuninactions}
-            onChangeIsWithCommuninactions={onChangeIsWithCommuninactions}
-            selectedCommunicationOption={selectedCommunicationOption}
-            setSelectedCommunicationOption={setSelectedCommunicationOption}
-            isMobileSetupCompleted={isMobileSetupCompleted}
-            onToggleIsMobileSetupCompleted={onToggleIsMobileSetupCompleted}
-          />
-          <ChooseGame
-            onCreateRoom={onCreateRoom}
-            canCreateRoom={canCreateRoom}
-            selectedGameId={selectedGameId}
-            onSelectGame={onSelectGame}
-            onToggleIsMobileSetupCompleted={onToggleIsMobileSetupCompleted}
-          />
-        </Styled.CreateRoom>
-      )}
+      <ReactSVG
+        className='notselected-arrow'
+        src='/images/svgs/arrow.left.svg'
+      />
+      <div className='on-default'>
+        <div className='header main'>{`Create your \n own room`}</div>
+        <div className='header sub'>And make others obey your will</div>
+      </div>
+
+      <Styled.CreateRoom
+        className='on-selected'
+        isMobileSetupCompleted={isMobileSetupCompleted}
+      >
+        <SetupRoom
+          onCreateRoom={onCreateRoom}
+          canCreateRoom={canCreateRoom}
+          canCompleteMobileSetup={canCompleteMobileSetup}
+          roomName={roomName}
+          onChangeRoomName={onChangeRoomName}
+          isPrivate={isPrivate}
+          onChangeIsPrivate={onChangeIsPrivate}
+          roomPassword={roomPassword}
+          onChangeRoomPassword={onChangeRoomPassword}
+          isWithCommuninactions={isWithCommuninactions}
+          onChangeIsWithCommuninactions={onChangeIsWithCommuninactions}
+          selectedCommunicationOption={selectedCommunicationOption}
+          setSelectedCommunicationOption={setSelectedCommunicationOption}
+          isMobileSetupCompleted={isMobileSetupCompleted}
+          onToggleIsMobileSetupCompleted={onToggleIsMobileSetupCompleted}
+        />
+        <ChooseGame
+          onCreateRoom={onCreateRoom}
+          canCreateRoom={canCreateRoom}
+          selectedGameId={selectedGameId}
+          onSelectGame={onSelectGame}
+          onToggleIsMobileSetupCompleted={onToggleIsMobileSetupCompleted}
+        />
+      </Styled.CreateRoom>
     </Styled.CreateRoomCard>
   );
 };
