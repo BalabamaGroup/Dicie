@@ -7,9 +7,9 @@ export interface InputProps {
   type?: string;
   label?: string;
   placeholder?: string;
-  autoComplete?: string;
+  autoComplete?: 'on' | 'off';
 
-  color: ComponentColor;
+  color?: 'auto' | ComponentColor;
   size?: 'large' | 'medium';
   isVibrant?: boolean;
 
@@ -31,6 +31,5 @@ export interface InputProps {
   customDependancies?: Array<any>;
 
   multiInputData?: multiInputDataType;
-  multiInputDataIndex?: number;
   onChangeMultiInputData?: Function;
 }

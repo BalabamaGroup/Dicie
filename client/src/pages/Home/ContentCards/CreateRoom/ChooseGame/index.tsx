@@ -26,7 +26,7 @@ const ChooseGame = ({
     <Styled.ChooseGame className='choose-game'>
       <Styled.Header>
         <div className='arrow-btn' onClick={onToggleIsMobileSetupCompleted}>
-          <ReactSVG src='images/svgs/arrow.left.svg' />
+          <ReactSVG src='/images/svgs/arrow.left.svg' />
         </div>
         Pick a game
       </Styled.Header>

@@ -22,12 +22,6 @@ export const games = Object.freeze({
   GUESS_BOO: 1,
 });
 
-export const homeContentCards = Object.freeze({
-  DEFAULT: 'DEFAULT',
-  CREATE_ROOM: 'CREATE_ROOM',
-  JOIN_ROOM: 'JOIN_ROOM',
-});
-
 export const sidePanelViews = Object.freeze({
   Chat: 'chat',
   GuessBooAnswers: 'guessBooAnswers',

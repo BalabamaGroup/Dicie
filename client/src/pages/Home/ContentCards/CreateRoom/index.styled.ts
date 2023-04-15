@@ -1,9 +1,8 @@
 import styled, { css } from 'styled-components';
 
-import { homeContentCards } from '@/common/constants';
 import { desktopAndSmaller } from '@/common/utils/device';
 
-import { HomeContentCard } from '../index.styled';
+import HomeContentCard from '../HomeContentCard.styled';
 
 export const CreateRoomCard = styled(HomeContentCard)<{
   isSelected: boolean;

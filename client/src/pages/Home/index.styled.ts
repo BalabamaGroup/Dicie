@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
-import { homeContentCards } from '@/common/constants';
-import {
-  createGradientTransition,
-  transitionGradient,
-} from '@/common/helpers/styleHelpers';
 import { tabletAndSmaller } from '@/common/utils/device';
+import { homeCardType } from '@/stores/HomeStore';
 import { commonPageStyles } from '@/styles/commonStyles';
 
 export const HomePageDefaultBackground = styled.section<{}>`
@@ -13,7 +9,9 @@ export const HomePageDefaultBackground = styled.section<{}>`
   height: 100vh;
   background: ${({ theme }) => theme.page.home.defaultBackground};
 `;
-export const HomePage = styled.section<{ selectedCard: string }>`
+export const HomePage = styled.section<{
+  selectedCard: string | undefined;
+}>`
   ${commonPageStyles}
 
   width: 100vw;
@@ -22,12 +20,11 @@ export const HomePage = styled.section<{ selectedCard: string }>`
 
   transition: background 0.3s ease-in-out;
   background: ${({ selectedCard, theme }) =>
-    selectedCard === homeContentCards.DEFAULT
-      ? 'transparent'
-      : selectedCard === homeContentCards.CREATE_ROOM
+    selectedCard === 'createRoom'
       ? theme.page.home.createRoomBackground
-      : selectedCard === homeContentCards.JOIN_ROOM &&
-        theme.page.home.joinRoomBackground};
+      : selectedCard === 'joinRoom'
+      ? theme.page.home.joinRoomBackground
+      : 'transparent'};
 `;
 
 export const HomeContent = styled.div`

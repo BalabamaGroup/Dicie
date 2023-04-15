@@ -1,10 +1,9 @@
-import eyeClosed from 'images/svgs/eye.closed.svg.png';
-import eyeOpened from 'images/svgs/eye.opened.svg.png';
 import { createRef, useEffect, useState } from 'react';
 import { ReactSVG } from 'react-svg';
 import useThemeStore from 'stores/ThemeStore';
 
 import { getTextHeight } from '@/common/helpers/domHelpers';
+import useGameStore from '@/stores/GameStore';
 import inputTheme from '@/styles/themes/componentThemes/inputTheme';
 
 import * as Styled from './index.styled';
@@ -15,23 +14,29 @@ const Input = ({
   id = 'input',
   className,
   type = 'text',
+  autoComplete = 'off',
+
   label,
   placeholder = '',
-  autoComplete = 'off',
-  color,
+  color = 'auto',
   size = 'medium',
   isVibrant = false,
+
   value,
   onChange,
+
   iconData,
+
   isValid = true,
   setIsValid,
   validationData,
   existanceData,
   customTest,
   customDependancies,
+
   multiInputData,
   onChangeMultiInputData,
+
   focusOnLoad = false,
 }: InputProps) => {
   const inputRef = createRef<HTMLInputElement>();
@@ -39,8 +44,10 @@ const Input = ({
   const [isFocus, setIsFocus] = useState(false);
   const [currentNote, setCurrentNote] = useState('');
 
-  const theme = useThemeStore((state) => state.theme);
-  const componentTheme = inputTheme[theme][color];
+  const globalTheme = useThemeStore((state) => state.theme);
+  const gameStateColor = useGameStore((s) => s.getColor());
+  const componentColor = !color || color === 'auto' ? gameStateColor : color;
+  const componentTheme = inputTheme[globalTheme][componentColor];
 
   const isMultiInputPart = !!multiInputData && !!onChangeMultiInputData;
 

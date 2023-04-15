@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { HomeContentCard } from '../index.styled';
+import HomeContentCard from '../HomeContentCard.styled';
 
 export const JoinRoomCard = styled(HomeContentCard)<{
   isSelected: boolean;

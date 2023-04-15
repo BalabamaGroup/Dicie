@@ -4,17 +4,21 @@ import { useNavigate } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import RoomAPI from '@/api/room';
-import { homeContentCards } from '@/common/constants';
 
 import useUserStore from '../../../../stores/UserStore';
 import * as Styled from './index.styled';
 
 interface JoinRoomCardProps {
-  selectedCard: string;
+  isSelected: boolean;
+  isDefault: boolean;
   onSelect: React.ReactEventHandler<HTMLDivElement>;
 }
 
-const JoinRoomCard = ({ selectedCard, onSelect }: JoinRoomCardProps) => {
+const JoinRoomCard = ({
+  isSelected,
+  isDefault,
+  onSelect,
+}: JoinRoomCardProps) => {
   const navigate = useNavigate();
 
   const [user, fetchUser] = useUserStore((s) => [s.user, s.fetchUser]);
@@ -49,8 +53,8 @@ const JoinRoomCard = ({ selectedCard, onSelect }: JoinRoomCardProps) => {
 
   return (
     <Styled.JoinRoomCard
-      isSelected={selectedCard === homeContentCards.JOIN_ROOM}
-      isDefault={selectedCard === homeContentCards.DEFAULT}
+      isSelected={isSelected}
+      isDefault={isDefault}
       onClick={onSelect}
     >
       <div className='on-default'>
