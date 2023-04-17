@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import routes from '@/common/constants/routes';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import MultiInput from '@/components/MultiInput';
@@ -36,12 +38,14 @@ const SignInForm = ({}: signInProps) => {
     setPasswordIsVisible(!passwordIsVisible);
 
   const signIn = useUserStore((s) => s.signIn);
+  const navigate = useNavigate();
   const onSignIn = async (e: any) => {
     e.preventDefault();
-    signIn({
+    await signIn({
       username: username,
       password: password,
     });
+    navigate(routes.HOME);
   };
 
   return (

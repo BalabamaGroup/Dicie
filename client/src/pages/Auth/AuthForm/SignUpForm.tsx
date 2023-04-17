@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { RoleTypes } from '@/common/constants';
+import routes from '@/common/constants/routes';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import MultiInput from '@/components/MultiInput';
@@ -53,14 +55,16 @@ const SignUpForm = () => {
     setMatchPasswordIsVisible(!matchPasswordIsVisible);
 
   const signUp = useUserStore((s) => s.signUp);
+  const navigate = useNavigate();
   const onSignUp = async (e: any) => {
     e.preventDefault();
-    signUp({
+    await signUp({
       username: username,
       password: password,
       email: email,
       role: RoleTypes.USER,
     });
+    navigate(routes.HOME);
   };
 
   const theme = useThemeStore((state) => state.theme);
