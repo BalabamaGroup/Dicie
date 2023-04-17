@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const CollapsedFormWrapper = styled.div<{
   isOpened: boolean;
-  isHorizontal: boolean;
+  horizontalThreshhold: number;
 }>`
   z-index: 90;
   width: 48px;
@@ -36,21 +36,22 @@ export const CollapsedFormWrapper = styled.div<{
     }
   }
 
-  ${({ isHorizontal }) =>
-    isHorizontal &&
-    css`
-      height: 48px;
-      min-height: 48px;
-      max-height: 48px;
-      width: 100%;
-      min-width: 100%;
-      max-width: 100%;
+  @media (max-width: ${({ horizontalThreshhold }) => horizontalThreshhold}px) {
+    height: 48px;
+    min-height: 48px;
+    max-height: 48px;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
 
-      .side-panel-collapsed {
-        height: 100%;
-        width: 240px;
+    .side-panel-collapsed {
+      height: 100%;
+      width: 240px;
+      svg {
+        transform: rotate(90deg);
       }
-    `}
+    }
+  }
 
   transition: opacity 0.3s ease-in-out;
   ${({ isOpened }) =>
@@ -95,7 +96,7 @@ export const SidePanelBakdrop = styled.div<{
 
 export const SidePanelMainWrapper = styled.div<{
   isOpened: boolean;
-  isHorizontal: boolean;
+  horizontalThreshhold: number;
 }>`
   position: fixed;
   top: 80px;
@@ -109,20 +110,22 @@ export const SidePanelMainWrapper = styled.div<{
   transition: right 0.5s cubic-bezier(0.51, 0.92, 0.1, 1.1),
     top 0.5s cubic-bezier(0.51, 0.92, 0.1, 1.1);
 
-  ${({ isHorizontal }) =>
-    isHorizontal &&
+  ${({ isOpened }) =>
+    !isOpened &&
     css`
-      left: 50%;
-      transform: translateX(-50%);
+      right: -480px;
+      top: auto;
     `}
 
-  ${({ isOpened, isHorizontal }) =>
-    !isOpened &&
-    (!isHorizontal
-      ? css`
-          right: -480px;
-        `
-      : css`
-          top: 100vh;
-        `)}
+  @media (max-width: ${({ horizontalThreshhold }) => horizontalThreshhold}px) {
+    left: 50%;
+    transform: translateX(-50%);
+
+    ${({ isOpened }) =>
+      !isOpened &&
+      css`
+        right: auto;
+        top: 100vh;
+      `}
+  }
 `;

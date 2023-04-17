@@ -1,4 +1,5 @@
 import { SidePanelViewId, SidePanelViewIdData } from '@/common/types/sidePanel';
+import { size } from '@/common/utils/device';
 
 import SidePanelForm from './forms';
 import SidePanelMain from './index.main';
@@ -7,18 +8,21 @@ interface SidePanelProps {
   views: SidePanelViewIdData[];
   defaultView?: SidePanelViewId;
 
-  isCollapsed?: boolean;
-  isHorizontal?: boolean;
+  collapseThreshhold?: number;
+  horizontalThreshhold?: number;
 }
 
 const SidePanel = ({
-  isCollapsed = false,
-  isHorizontal = false,
+  collapseThreshhold = size.desktop,
+  horizontalThreshhold = size.tablet,
   views,
   defaultView,
 }: SidePanelProps) => {
   return (
-    <SidePanelForm isCollapsed={isCollapsed} isHorizontal={isHorizontal}>
+    <SidePanelForm
+      collapseThreshhold={collapseThreshhold}
+      horizontalThreshhold={horizontalThreshhold}
+    >
       <SidePanelMain views={views} defaultView={defaultView} />
     </SidePanelForm>
   );

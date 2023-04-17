@@ -10,7 +10,6 @@ export const JoinRoomCard = styled(HomeContentCard)<{
   color: ${({ theme }) => theme.page.home.joinRoomCard.text};
   border: 2px solid ${({ theme }) => theme.page.home.joinRoomCard.border};
 
-  transition: background 0.3s ease-in-out;
   background: ${({ isDefault, isSelected, theme }) =>
     isDefault
       ? theme.page.home.joinRoomCard.notSelectedBackground

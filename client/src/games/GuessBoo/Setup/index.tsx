@@ -21,8 +21,6 @@ const Setup = () => {
     null
   );
 
-  const displayWidth = useWindowWidth(100);
-
   const isWait = useColorStore((s) => s.color.guessBoo) === 'indigo';
   const setWait = useColorStore((s) => () => s.setWait('guessBoo'));
   const setGo = useColorStore((s) => () => s.setGo('guessBoo'));
@@ -55,10 +53,8 @@ const Setup = () => {
       <SidePanel
         views={[{ id: 'chat' }]}
         color={isWait ? 'indigo' : 'lime'}
-        isCollapsed={displayWidth < thresholds.guessBoo.setup.sidePanelCollapse}
-        isHorizontal={
-          displayWidth < thresholds.guessBoo.setup.sidePanelHorizontal
-        }
+        isCollapsed={thresholds.guessBoo.setup.sidePanelCollapse}
+        isHorizontal={thresholds.guessBoo.setup.sidePanelHorizontal}
       />
     </Styled.Setup>
   );

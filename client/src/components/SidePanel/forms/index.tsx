@@ -3,37 +3,39 @@ import styled, { css } from 'styled-components';
 import CollapsedForm from './Collapsed';
 import FullForm from './FullForm';
 
+//prettier-ignore
 export const StyledSidePanelDeviceWidthWrapper = styled.div<{
   collapseThreshhold: number;
-  horizontalThreshhold: number;
 }>`
-  ${({ collapseThreshhold, horizontalThreshhold }) => css`
-    .sidepanel-collapsed {
-      @media (max-width: ${collapseThreshhold}) {
-        display: flex;
-      }
+  ${({ collapseThreshhold }) => css`
+    .sidepanel-collapsed { display: none }
+    .sidepanel-full { display: flex; }
+    @media (max-width: ${collapseThreshhold}px) {
+      .sidepanel-collapsed { display: flex; }
+      .sidepanel-full { display: none; }
     }
   `}
 `;
 
 interface SidePanelDeviceWidthWrapperProps {
-  isCollapsed: boolean;
-  isHorizontal: boolean;
+  collapseThreshhold: number;
+  horizontalThreshhold: number;
   children: React.ReactNode;
 }
 
 const SidePanelDeviceWidthWrapper = ({
-  isCollapsed,
-  isHorizontal,
+  collapseThreshhold,
+  horizontalThreshhold,
   children,
 }: SidePanelDeviceWidthWrapperProps) => {
-  <StyledSidePanelDeviceWidthWrapper
-    collapseThreshhold={collapseThreshhold}
-    horizontalThreshhold={horizontalThreshhold}
-  >
-    <CollapsedForm isHorizontal={isHorizontal}>{children}</CollapsedForm>
-    <FullForm>{children}</FullForm>
-  </StyledSidePanelDeviceWidthWrapper>;
+  return (
+    <StyledSidePanelDeviceWidthWrapper collapseThreshhold={collapseThreshhold}>
+      <CollapsedForm horizontalThreshhold={horizontalThreshhold}>
+        {children}
+      </CollapsedForm>
+      <FullForm>{children}</FullForm>
+    </StyledSidePanelDeviceWidthWrapper>
+  );
 };
 
 export default SidePanelDeviceWidthWrapper;

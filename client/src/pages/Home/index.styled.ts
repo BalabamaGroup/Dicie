@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { tabletAndSmaller } from '@/common/utils/device';
-import { homeCardType } from '@/stores/HomeStore';
 import { commonPageStyles } from '@/styles/commonStyles';
 
 export const HomePageDefaultBackground = styled.section<{}>`

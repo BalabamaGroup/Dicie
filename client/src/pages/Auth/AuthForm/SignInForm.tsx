@@ -48,7 +48,6 @@ const SignInForm = ({ username, password }: signInProps) => {
       <Styled.MultiInputWrapper inputCount={2}>
         <MultiInput className='auth_multiinput' isScale={true}>
           <Input
-            isVibrant
             id={'signUp-username'}
             key={'signUp-username'}
             color='indigo'
@@ -58,19 +57,18 @@ const SignInForm = ({ username, password }: signInProps) => {
             onChange={username.onChange}
           />
           <Input
-            isVibrant
             id={'signUp-username'}
             key={'signUp-passsword'}
             color='indigo'
             size='large'
             placeholder='Password'
             type={passwordIsVisible ? 'text' : 'password'}
-            iconData={{
-              iconSrc: passwordIsVisible
+            icon={
+              passwordIsVisible
                 ? '/images/svgs/eye.closed.svg'
-                : '/images/svgs/eye.opened.svg',
-              onClick: togglePasswordIsvisible,
-            }}
+                : '/images/svgs/eye.opened.svg'
+            }
+            onIconClick={togglePasswordIsvisible}
             value={password.value}
             onChange={password.onChange}
           />

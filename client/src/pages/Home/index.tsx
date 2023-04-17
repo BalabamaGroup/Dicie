@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 
 import NavBar from '@/components/NavBar';
-import useHomeStore from '@/stores/HomeStore';
 
 import ContentCards from './ContentCards';
 import * as Styled from './index.styled';

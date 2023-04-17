@@ -2,6 +2,7 @@ import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
 
+import AuthAPI from '@/api/auth';
 import UserAPI from '@/api/user';
 import routes from '@/common/constants/routes';
 import { User } from '@/common/types/user';
@@ -11,11 +12,39 @@ interface UserStoreState {
   isLoading: boolean;
   fetchUser: Function;
   queryFetchUser: Function;
+
+  signIn: Function;
+  signUp: Function;
 }
 
 const useUserStore = create<UserStoreState>()((set, get) => ({
   user: null,
   isLoading: true,
+
+  signIn: async (data: { username: string; password: string }) => {
+    AuthAPI.signIn(data).then((res) => {
+      set((s) => ({ ...s, user: res, isLoading: false }));
+      res.token && sessionStorage.setItem('token', res.token);
+    });
+  },
+
+  signUp: async (data: {
+    username: string;
+    email: string;
+    password: string;
+    role: string;
+  }) => {
+    await AuthAPI.signUp(data);
+    await get().signIn({
+      username: data.username,
+      password: data.password,
+    });
+  },
+
+  signOut: () => {
+    set((s) => ({ ...s, user: null }));
+    sessionStorage.removeItem('token');
+  },
 
   fetchUser: async () => {
     if (!get().user) set((s) => ({ ...s, isLoading: true }));

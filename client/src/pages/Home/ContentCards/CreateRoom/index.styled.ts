@@ -9,9 +9,6 @@ export const CreateRoomCard = styled(HomeContentCard)<{
   isDefault: boolean;
 }>`
   position: relative;
-
-  transition: background 0.3s ease-in-out, border 0.3s ease-in-out,
-    box-shadow 0.15s ease-in-out;
   border: 2px solid ${({ theme }) => theme.page.home.createRoomCard.border};
   background: ${({ isDefault, isSelected, theme }) =>
     isDefault

@@ -12,7 +12,7 @@ interface PlayersCarouselProps {
 }
 
 const PlayersCarousel = ({ otherPlayers }: PlayersCarouselProps) => {
-  const displayWidth = useWindowWidth();
+  const displayWidth = useWindowWidth(100);
   const color = useGameStore((s) => s.getColor());
 
   let maxWidth;

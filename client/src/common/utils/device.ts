@@ -11,8 +11,8 @@ export const thresholds = {
       sidePanelHorizontal: 1200,
     },
     main: {
-      sidePanelCollapse: size.desktop + 1,
-      sidePanelHorizontal: size.tablet + 1,
+      sidePanelCollapse: size.desktop,
+      sidePanelHorizontal: size.tablet,
     },
   },
 };

@@ -6,46 +6,25 @@ const HomeContentCard = styled.div<{
   isSelected: boolean;
   isDefault: boolean;
 }>`
-  pointer-events: ${({ isSelected }) => (isSelected ? 'none' : 'all')};
   cursor: ${({ isSelected }) => (isSelected ? 'auto' : 'pointer')};
-  & * {
+  pointer-events: ${({ isSelected }) => (isSelected ? 'none' : 'all')};
+  & > * {
     pointer-events: ${({ isSelected }) => (isSelected ? 'all' : 'none')};
   }
-
-  box-sizing: border-box;
+  user-select: none;
 
   width: 100%;
   height: 100%;
-  user-select: none;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  box-sizing: border-box;
   text-align: center;
-
-  .main,
-  .sub {
-    max-width: 380px;
-  }
-  .main {
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 58px;
-    white-space: pre-line;
-    margin-bottom: 16px;
-  }
-  .sub {
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 17px;
-  }
 
   & > * {
     will-change: opacity;
-    transition: opacity 0.3s ease-in-out;
   }
 
   .notselected-arrow {
@@ -62,22 +41,57 @@ const HomeContentCard = styled.div<{
   }
 
   .on-default {
+    height: 100%;
+    width: 100%;
     opacity: ${({ isDefault, isSelected }) =>
       isDefault && !isSelected ? '1' : '0'};
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .main,
+    .sub {
+      max-width: 380px;
+    }
+    .main {
+      font-weight: 700;
+      font-size: 48px;
+      line-height: 58px;
+      white-space: pre-line;
+      margin-bottom: 16px;
+    }
+    .sub {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 17px;
+    }
   }
 
   .on-selected {
+    height: 100%;
+    width: 100%;
+    min-width: calc(100vw - 16px - 16px - 128px);
     opacity: ${({ isDefault, isSelected }) =>
       !isDefault && isSelected ? '1' : '0'};
+
+    transition: opacity 0.15s ease-in-out, transform 0.2s ease-in-out;
+    transform: translate(-50%, -50%)
+      ${({ isDefault, isSelected }) =>
+        !isDefault && isSelected ? 'scale(1)' : 'scaleX(0.5)'};
+
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
   }
+
+  transition: background 0.3s ease-in-out, border 0.3s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 
   ${({ isDefault, isSelected }) =>
     isDefault
@@ -97,9 +111,6 @@ const HomeContentCard = styled.div<{
       : css`
           width: 100%;
           border-radius: 32px;
-          & > * {
-            opacity: 0;
-          }
           @media ${tabletAndSmaller} {
             height: 100%;
           }

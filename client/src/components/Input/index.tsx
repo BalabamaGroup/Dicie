@@ -8,7 +8,6 @@ import inputTheme from '@/styles/themes/componentThemes/inputTheme';
 
 import * as Styled from './index.styled';
 import { InputProps } from './interface';
-import useInputValidation from './useInputValidation';
 
 const Input = ({
   id = 'input',
@@ -20,19 +19,15 @@ const Input = ({
   placeholder = '',
   color = 'auto',
   size = 'medium',
-  isVibrant = false,
 
   value,
   onChange,
 
-  iconData,
+  icon,
+  onIconClick,
 
-  isValid = true,
-  setIsValid,
-  validationData,
-  existanceData,
-  customTest,
-  customDependancies,
+  isError = true,
+  errorNote,
 
   multiInputData,
   onChangeMultiInputData,
@@ -42,23 +37,20 @@ const Input = ({
   const inputRef = createRef<HTMLInputElement>();
 
   const [isFocus, setIsFocus] = useState(false);
-  const [currentNote, setCurrentNote] = useState('');
 
   const globalTheme = useThemeStore((state) => state.theme);
   const gameStateColor = useGameStore((s) => s.getColor());
   const componentColor = !color || color === 'auto' ? gameStateColor : color;
   const componentTheme = inputTheme[globalTheme][componentColor];
 
-  const isMultiInputPart = !!multiInputData && !!onChangeMultiInputData;
-
   const onFocus = () => {
     setIsFocus(true);
-    isMultiInputPart && onChangeMultiInputData(true);
+    multiInputData && onChangeMultiInputData && onChangeMultiInputData(true);
   };
 
   const onBlur = () => {
     setIsFocus(false);
-    isMultiInputPart && onChangeMultiInputData(false);
+    multiInputData && onChangeMultiInputData && onChangeMultiInputData(false);
   };
 
   const onInputClick = () => {
@@ -67,80 +59,76 @@ const Input = ({
     onFocus();
   };
 
-  const onInputMouseDown = (e: any) => {
-    e.preventDefault();
-  };
-
   useEffect(() => {
     if (focusOnLoad && inputRef?.current) inputRef.current.focus();
   }, []);
 
-  useInputValidation({
-    inputValue: value,
-    setCurrentNote,
-    isValid,
-    setIsValid,
-    validationData,
-    existanceData,
-    customTest,
-    customDependancies,
-  });
-
   return (
-    <Styled.LabelWrapper className={`${className} label_wrapper`}>
+    <Styled.LabelWrapper
+      className={`${className} label_wrapper`}
+      size={size}
+      theme={componentTheme}
+    >
       {label && <label htmlFor={id}>{label}</label>}
       <Styled.Wrapper
         size={size}
-        isNoteVisible={isFocus && !isValid}
-        noteTextHeight={getTextHeight(currentNote, 20)}
+        isNoteVisible={isFocus && !isError}
+        noteTextHeight={getTextHeight(errorNote || '', 20)}
         multiInputData={multiInputData}
         theme={componentTheme}
       >
         <Styled.InputWrapper
           size={size}
-          isVibrant={isVibrant}
           className='input_input-wrapper'
-          onMouseDown={onInputMouseDown}
+          onMouseDown={(e: any) => {
+            e.preventDefault();
+          }}
           isFocus={isFocus}
-          isValid={isValid}
-          withIcon={!!iconData}
+          isError={isError}
+          withIcon={!!icon}
           theme={componentTheme}
+          multiInputData={multiInputData}
         >
-          <div className='focus-border-wrapper'>
-            <div className='focus-border'>
-              <input
-                id={id}
-                type={type}
-                ref={inputRef}
-                onClick={onInputClick}
-                value={value}
-                onChange={onChange}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                className='input_input'
-                placeholder={placeholder}
-                autoComplete={autoComplete}
-              />
-            </div>
-          </div>
-          {iconData && (
+          <Styled.FocusRing
+            size={size}
+            isFocus={isFocus}
+            isError={isError}
+            withIcon={!!icon}
+            theme={componentTheme}
+          />
+          <input
+            id={id}
+            type={type}
+            ref={inputRef}
+            onClick={onInputClick}
+            value={value}
+            onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            className='input_input'
+            placeholder={placeholder}
+            autoComplete={autoComplete}
+          />
+          {icon && (
             <Styled.Icon
-              onClick={iconData.onClick}
+              onClick={onIconClick}
               size={size}
               theme={componentTheme}
             >
-              <ReactSVG src={iconData.iconSrc} />
+              <ReactSVG className='icon' src={icon} />
             </Styled.Icon>
           )}
         </Styled.InputWrapper>
 
         <Styled.Note
           className='input_note'
-          onMouseDown={onInputMouseDown}
-          isVisible={isFocus && !isValid}
+          onMouseDown={(e: any) => {
+            e.preventDefault();
+          }}
+          isVisible={isFocus && !isError && !!errorNote}
           theme={componentTheme}
         >
-          {currentNote}
+          {errorNote}
         </Styled.Note>
       </Styled.Wrapper>
     </Styled.LabelWrapper>

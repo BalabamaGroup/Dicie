@@ -1,8 +1,4 @@
-import { ReactEventHandler } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-
-import routes from '@/common/constants/routes';
-import useHomeStore from '@/stores/HomeStore';
 
 import CreateRoomCard from './CreateRoom';
 import * as Styled from './index.styled';

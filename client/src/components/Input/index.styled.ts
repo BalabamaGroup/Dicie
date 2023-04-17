@@ -2,19 +2,6 @@ import styled, { css } from 'styled-components';
 
 import { multiInputDataType } from '@/components/MultiInput';
 
-const getMultiInputDataBorderRadiusCss = (
-  multiInputData: multiInputDataType | undefined
-) => {
-  if (!multiInputData) return ` .input_input-wrapper { border-radius: 16px; } `;
-  return multiInputData.isSeparate
-    ? ` .input_input-wrapper { border-radius: 16px; }; z-index: 10;`
-    : multiInputData.isTopSeparate
-    ? ` .input_input-wrapper { border-radius: 16px 16px 0 0; } `
-    : multiInputData.isBottomSeparate
-    ? ` .input_input-wrapper { border-radius: 0 0 16px 16px; } `
-    : ` .input_input-wrapper { border-radius: 0px; }`;
-};
-
 const getMultiInputDataPaddingCss = (
   multiInputData: multiInputDataType | undefined,
   isNoteVisible: boolean | undefined
@@ -32,21 +19,26 @@ const getWrapperHeightDataCss = (
   size: 'large' | 'medium'
 ) => {
   return isNoteVisible
-    ? ` height: calc(96px + ${noteTextHeight}px); `
+    ? ` height: calc(72px + 16px + ${noteTextHeight}px); `
     : size === 'large'
     ? ` height: 72px; `
     : ` height : 48px `;
 };
 
-export const LabelWrapper = styled.div`
+export const LabelWrapper = styled.div<{
+  size: 'large' | 'medium';
+}>`
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 
   label {
+    /* margin-left: 8px; */
     cursor: pointer;
-    font-weight: 600;
-    font-size: 14px;
+    color: ${({ theme }) => theme.labelText};
+    font-size: ${({ size }) => (size === 'large' ? '14px' : '14px')};
+    line-height: ${({ size }) => (size === 'large' ? '14px' : '14px')};
+    font-weight: 700;
   }
 `;
 
@@ -56,29 +48,29 @@ export const Wrapper = styled.div<{
   noteTextHeight: number;
   size: 'large' | 'medium';
 }>`
+  z-index: ${({ multiInputData }) =>
+    multiInputData && multiInputData.isSeparate ? 10 : 0};
+
   max-width: 100%;
   flex-direction: column;
   height: auto;
 
   transition: padding 0.2s ease-in-out, height 0.2s ease-in-out;
-  .input_input-wrapper {
-    transition: border-radius 0.2s;
-  }
 
   ${({ isNoteVisible, noteTextHeight, size }) =>
     getWrapperHeightDataCss(isNoteVisible, noteTextHeight, size)};
-  ${({ multiInputData }) => getMultiInputDataBorderRadiusCss(multiInputData)}
   ${({ multiInputData, isNoteVisible }) =>
     getMultiInputDataPaddingCss(multiInputData, isNoteVisible)}
 `;
 
 export const InputWrapper = styled.div<{
   isFocus: boolean;
-  isValid: boolean;
-  isVibrant: boolean;
+  isError: boolean;
   size: 'large' | 'medium';
   withIcon: boolean;
+  multiInputData: multiInputDataType | undefined;
 }>`
+  position: relative;
   cursor: text;
   z-index: 2;
   position: relative;
@@ -90,37 +82,36 @@ export const InputWrapper = styled.div<{
   justify-content: space-between;
 
   transition: color 0.2s ease-in-out, background 0.3s ease-in-out,
-    box-shadow 0.2s ease-in-out;
+    box-shadow 0.2s ease-in-out border-radius 0.175s ease-in-out;
 
-  background: ${({ isVibrant, theme }) =>
-    !isVibrant ? theme.background : theme.backgroundVibrant};
-  color: ${({ isFocus, isValid, theme }) =>
-    !isValid && !isFocus ? theme.textInvalid : theme.text};
-  box-shadow: ${({ isFocus, isValid, theme }) =>
-    isFocus ? (isValid ? theme.shadow : theme.shadowInvalid) : `none`};
+  background: ${({ theme }) => theme.background};
+  color: ${({ isFocus, isError, theme }) =>
+    !isError && !isFocus ? theme.textInvalid : theme.text};
 
-  .focus-border-wrapper {
-    height: 100%;
-    width: 100%;
-    padding: 2px;
-    box-sizing: border-box;
-    .focus-border {
-      transition: box-shadow 0.2s ease-in-out;
-      border-radius: ${({ withIcon }) => (withIcon ? '14px' : '14px')};
-      box-shadow: ${({ isFocus, isValid, theme }) =>
-        isFocus &&
-        (isValid
-          ? `inset 0px 0px 0px 1.5px ${theme.focusBorder}`
-          : `inset 0px 0px 0px 1.5px ${theme.focusBorderInvalid}`)};
-    }
-  }
+  box-shadow: 0 4px 16px
+    ${({ isFocus, isError, theme }) =>
+      isFocus
+        ? isError
+          ? theme.shadowRGBA
+          : theme.shadowInvalidRGBA
+        : `none`};
+
+  border-radius: ${({ multiInputData }) =>
+    //prettier-ignore
+    !multiInputData? '16px'
+    : multiInputData.isSeparate ? '16px'
+    : multiInputData.isTopSeparate ? '16px 16px 0 0'
+    : multiInputData.isBottomSeparate ? '0 0 16px 16px'
+    : '0px'};
 
   .input_input {
+    z-index: 11;
     all: unset;
     box-sizing: border-box;
     height: 100%;
     width: 100%;
     transition: color 0.1s ease-in-out;
+
     height: ${({ size }) => (size === 'large' ? '68px' : '44px')};
     font-weight: ${({ size }) => (size === 'large' ? '600' : '600')};
     font-size: ${({ size }) => (size === 'large' ? '18px' : '16px')};
@@ -134,35 +125,61 @@ export const InputWrapper = styled.div<{
   }
 `;
 
+export const FocusRing = styled.div<{
+  isFocus: boolean;
+  isError: boolean;
+  withIcon: boolean;
+  size: 'large' | 'medium';
+}>`
+  pointer-events: none;
+  top: 2px;
+  right: ${({ withIcon, size }) =>
+    withIcon ? (size === 'large' ? '72px' : '48px') : '2px'};
+  bottom: 2px;
+  left: 2px;
+  position: absolute;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s ease-in-out;
+  border-radius: 14px;
+  box-shadow: ${({ isFocus, isError, size, theme }) =>
+    isFocus &&
+    (isError
+      ? `inset 0px 0px 0px ${size === 'large' ? '2px' : '1.5px'} ${
+          theme.focusBorder
+        }`
+      : `inset 0px 0px 0px ${size === 'large' ? '2px' : '1.5px'} ${
+          theme.focusBorderInvalid
+        }`)};
+`;
+
 export const Icon = styled.div<{
   size: 'large' | 'medium';
 }>`
   cursor: pointer;
-  min-height: 20px;
-  min-width: 20px;
-  height: 20px;
-  width: 20px;
-  padding: ${({ size }) => (size === 'large' ? '26px' : '14px')};
-  border-radius: 6px 14px 14px 6px;
-  transition: background 0.2s ease-in-out;
-  background-color: ${({ theme }) => theme.icon.background};
-  background: ${({ theme }) =>
-    `linear-gradient(to right, ${theme.icon.background} 50%, ${theme.icon.backgroundHover} 50%) left`};
-  background-size: 200%;
+  box-sizing: border-box;
+  min-height: ${({ size }) => (size === 'large' ? '72px' : '48px')};
+  min-width: ${({ size }) => (size === 'large' ? '72px' : '48px')};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  transition: background-position 0.2s ease-in-out;
   &:hover {
     background-position: right;
     svg * {
       fill: ${({ theme }) => theme.icon.fillHover};
     }
   }
-  svg {
-    height: 20px;
-    width: 20px;
-    * {
-      transition: fill 0.1s ease-in-out;
-      fill: ${({ theme }) => theme.icon.fill};
+
+  .icon {
+    height: ${({ size }) => (size === 'large' ? '20px' : '16px')};
+    width: ${({ size }) => (size === 'large' ? '20px' : '16px')};
+    svg {
+      height: ${({ size }) => (size === 'large' ? '20px' : '16px')};
+      width: ${({ size }) => (size === 'large' ? '20px' : '16px')};
+      * {
+        transition: fill 0.1s ease-in-out;
+        fill: ${({ theme }) => theme.icon.fill};
+      }
     }
   }
 `;
