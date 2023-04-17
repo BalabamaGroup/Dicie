@@ -1,6 +1,6 @@
-import User, { UserInGame } from './user';
+import { User, UserInGame } from './user';
 
-type Room = {
+export type Room = {
   id: string;
   name: string;
   start: boolean;
@@ -9,16 +9,14 @@ type Room = {
 };
 export default Room;
 
-export type Game = {
-  id: string;
-  name: string;
-  start: boolean;
-  roomDataDto: CharadesRoomDataDto;
-  admin: User;
+export type Game = Omit<Room, 'users'> & {
+  roomDataDto: GameSpecific;
   users: UserInGame[];
 };
 
-export type CharadesRoomDataDto = {
+export type GameSpecific = GuessBooSpecific;
+
+export type GuessBooSpecific = {
   currentQuestion: string | null;
   responseCounterYes: number;
   allUsersReady: boolean;

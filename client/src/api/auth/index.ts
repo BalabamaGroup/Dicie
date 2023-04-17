@@ -1,5 +1,6 @@
-import { request } from '..';
-import User from '@/common/types/user';
+import { User } from '@/common/types/user';
+
+import { request } from '../';
 
 export default class AuthAPI {
   static signUp = async (data: {

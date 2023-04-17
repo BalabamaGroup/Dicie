@@ -6,22 +6,71 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="preload" href="https://fonts.googleapis.com" />
-    <link rel="preload" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="stylesheet" href="./index.dom-loader.css" />
+    <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <style type="text/css">
-      body {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
     <div id="root"></div>
+
+    <div id="dom-loader">
+      <div class="wrapper">
+        <div class="bubbleWrap">
+          <div class="bubble"></div>
+        </div>
+        <div class="bubbleWrap">
+          <div class="bubble"></div>
+        </div>
+        <div class="bubbleWrap">
+          <div class="bubble"></div>
+        </div>
+        <div class="bubbleWrap">
+          <div class="bubble"></div>
+        </div>
+        <div class="bubbleWrap">
+          <div class="bubble"></div>
+        </div>
+        <div class="bubbleWrap">
+          <div class="bubble"></div>
+        </div>
+        <div class="bubbleWrap">
+          <div class="bubble"></div>
+        </div>
+        <div class="bubbleWrap">
+          <div class="bubble"></div>
+        </div>
+        <div class="satWrap">
+          <div class="sat"></div>
+        </div>
+      </div>
+      <svg>
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur
+              in="SourceGraphic"
+              stdDeviation="10"
+              result="blur"
+            ></feGaussianBlur>
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+              result="goo"
+            ></feColorMatrix>
+            <feBlend in="SourceGraphic" in2="goo"></feBlend>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+
     <script type="module" src="./src/index.tsx"></script>
+    <script type="text/javascript" src="./index.dom-loader.js"></script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
   </body>
 </html>

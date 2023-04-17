@@ -11,7 +11,7 @@ import {
 } from '@/common/utils/device';
 
 export const Main = styled.div<{
-  isMyTurn: boolean;
+  myTurn: boolean;
 }>`
   display: flex;
   width: 100vw;
@@ -44,8 +44,8 @@ export const Main = styled.div<{
       id: '-guessBooSetupBackground',
     })}
 
-  ${({ isMyTurn, theme }) =>
-    !isMyTurn
+  ${({ myTurn, theme }) =>
+    !myTurn
       ? transitionGradient({
           id: '-guessBooSetupBackground',
           gradient: theme.guessBooGame.setup.backgroundWait,
@@ -57,7 +57,7 @@ export const Main = styled.div<{
 `;
 
 export const Game = styled.div<{
-  isMyTurn: boolean;
+  myTurn: boolean;
 }>`
   width: 100%;
   height: 100%;
@@ -104,8 +104,8 @@ export const Game = styled.div<{
   }
 
   transition: background 0.3s ease-in-out;
-  background: ${({ isMyTurn, theme }) =>
-    !isMyTurn
+  background: ${({ myTurn, theme }) =>
+    !myTurn
       ? theme.guessBooGame.main.game.backgroundWait
       : theme.guessBooGame.main.game.backgroundGo};
 `;

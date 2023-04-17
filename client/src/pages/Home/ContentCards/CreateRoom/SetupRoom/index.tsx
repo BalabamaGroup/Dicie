@@ -54,7 +54,7 @@ const SetupRoom = ({
     >
       <Styled.SetupRoomHeader>Set up your room</Styled.SetupRoomHeader>
 
-      <Scroll className='setup-room-form-scroll'>
+      <Scroll color={'lime'} className='setup-room-form-scroll'>
         <Styled.SetupRoomForm>
           <Input
             id={'room-name'}

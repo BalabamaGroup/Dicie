@@ -80,6 +80,7 @@ export const InputWrapper = styled.div<{
   withIcon: boolean;
 }>`
   cursor: text;
+  z-index: 2;
   position: relative;
   height: ${({ size }) => (size === 'large' ? '72px' : '48px')};
   display: flex;
@@ -87,9 +88,9 @@ export const InputWrapper = styled.div<{
   gap: 2px;
   align-items: center;
   justify-content: space-between;
+
   transition: color 0.2s ease-in-out, background 0.3s ease-in-out,
     box-shadow 0.2s ease-in-out;
-  z-index: 2;
 
   background: ${({ isVibrant, theme }) =>
     !isVibrant ? theme.background : theme.backgroundVibrant};
@@ -127,6 +128,7 @@ export const InputWrapper = styled.div<{
     padding: ${({ size }) => (size === 'large' ? '22px 30px' : '14px 24px')};
 
     ::placeholder {
+      transition: color 0.2s ease-in-out;
       color: ${({ theme }) => theme.textPlaceholder};
     }
   }
@@ -142,6 +144,7 @@ export const Icon = styled.div<{
   width: 20px;
   padding: ${({ size }) => (size === 'large' ? '26px' : '14px')};
   border-radius: 6px 14px 14px 6px;
+  transition: background 0.2s ease-in-out;
   background-color: ${({ theme }) => theme.icon.background};
   background: ${({ theme }) =>
     `linear-gradient(to right, ${theme.icon.background} 50%, ${theme.icon.backgroundHover} 50%) left`};

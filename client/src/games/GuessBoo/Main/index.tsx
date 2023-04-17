@@ -1,30 +1,20 @@
 import { useEffect } from 'react';
 
-import { ChatData } from '@/common/types/chat';
-import { Game } from '@/common/types/room';
-import { UserInGame } from '@/common/types/user';
 import { thresholds } from '@/common/utils/device';
 import SidePanel from '@/components/SidePanel';
-import { data } from '@/components/SidePanel/views/Chat/sampleData';
 import useWindowWidth from '@/hooks/useWindowWidth';
-import { useColorStore } from '@/stores/ColorStore';
+import useGameStore from '@/stores/GameStore';
 
-import { actions } from '../../../components/SidePanel/views/Chat/sampleData';
 import AnswerVisualizer from './AnswerVisualizer';
 import * as Styled from './index.styled';
 import MyTurn from './MyTurn';
 import OthersTurn from './OthersTurn';
 import PlayersCarousel from './PlayersCarousel';
 
-interface MainStageProps {
-  gameData: Game;
-  mePlayer: UserInGame;
-  otherPlayers: UserInGame[];
-}
-
-const Main = ({ gameData, mePlayer, otherPlayers }: MainStageProps) => {
-  const isMyTurn = mePlayer.state.isGoing;
-  const [goingUser] = otherPlayers.filter((player) => player.state.isGoing);
+const Main = () => {
+  const gameData = useGameStore((s) => s.data!);
+  const mePlayer = useGameStore((s) => s.getMePlayer());
+  const otherPlayers = useGameStore((s) => s.getOtherPlayers());
 
   const questionIsAsked = !!gameData.roomDataDto.currentQuestion;
 
@@ -33,22 +23,23 @@ const Main = ({ gameData, mePlayer, otherPlayers }: MainStageProps) => {
 
   const displayWidth = useWindowWidth(100);
 
-  const color = useColorStore((s) => s.color.guessBoo);
-  const setWait = useColorStore((s) => () => s.setWait('guessBoo'));
-  const setGo = useColorStore((s) => () => s.setGo('guessBoo'));
+  const myTurnLocal = mePlayer.state.isGoing;
+  const myTurn = useGameStore((s) => s.myTurn);
   useEffect(() => {
-    if (isMyTurn && color !== 'lime') setGo();
-    else if (!isMyTurn && color !== 'indigo') setWait();
-  }, [isMyTurn]);
+    if (myTurnLocal && !myTurn)
+      useGameStore.setState((s) => ({ ...s, myTurn: true }));
+    else if (!myTurnLocal && myTurn)
+      useGameStore.setState((s) => ({ ...s, myTurn: false }));
+  }, [myTurnLocal]);
 
   return (
-    <Styled.Main isMyTurn={isMyTurn}>
-      <Styled.Game isMyTurn={isMyTurn}>
+    <Styled.Main myTurn={myTurn}>
+      <Styled.Game myTurn={myTurn}>
         <div className='top-info'>
-          {<PlayersCarousel color={color} otherPlayers={otherPlayers} />}
+          {<PlayersCarousel otherPlayers={otherPlayers} />}
         </div>
 
-        {isMyTurn ? (
+        {myTurnLocal ? (
           <MyTurn
             otherPlayers={otherPlayers}
             gameState={gameData.roomDataDto}
@@ -69,7 +60,6 @@ const Main = ({ gameData, mePlayer, otherPlayers }: MainStageProps) => {
       </Styled.Game>
       <SidePanel
         views={[{ id: 'chat' }, { id: 'guessBooAnswers', data: [] }]}
-        color={color}
         isCollapsed={displayWidth <= thresholds.guessBoo.main.sidePanelCollapse}
         isHorizontal={
           displayWidth <= thresholds.guessBoo.main.sidePanelHorizontal

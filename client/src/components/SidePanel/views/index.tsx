@@ -1,5 +1,5 @@
 import { SidePanelViewId } from '@/common/types/sidePanel';
-import useSocketChat from '@/hooks/useSocketChat';
+import useChatStore from '@/stores/ChatStore';
 
 import SidePanelChat from './Chat';
 
@@ -8,13 +8,10 @@ interface SidePanelViewProps {
 }
 
 const SidePanelView = ({ view }: SidePanelViewProps) => {
-  const { messages: chatData, actions } = useSocketChat();
-
   if (view === 'chat' || view === 'guessBooAnswers') {
-    if (view === 'chat' && chatData)
-      return <SidePanelChat chatData={chatData} chatActions={actions} />;
-    if (view === 'guessBooAnswers')
-      return <SidePanelChat chatData={chatData} chatActions={actions} />;
+    useChatStore((s) => s.subscribe)();
+    if (view === 'chat') return <SidePanelChat />;
+    if (view === 'guessBooAnswers') return <SidePanelChat />;
   }
 
   return null;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { ComponentColor } from '@/common/types/theme';
-import { useThemeStore } from '@/stores/ThemeStore';
+import useThemeStore from '@/stores/ThemeStore';
 import switchTheme from '@/styles/themes/componentThemes/switchTheme';
 
 import * as Styled from './index.styled';

@@ -1,4 +1,4 @@
-import { CharadesRoomDataDto } from '@/common/types/room';
+import { GuessBooSpecific } from '@/common/types/room';
 import { UserInGame } from '@/common/types/user';
 
 import AskGuessForm from './AskGuessForm';
@@ -6,7 +6,7 @@ import Conversation from './Conversation';
 import * as Styled from './index.styled';
 
 interface MyTurnProps {
-  gameState: CharadesRoomDataDto;
+  gameState: GuessBooSpecific;
   otherPlayers: UserInGame[];
 }
 

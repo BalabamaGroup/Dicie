@@ -2,7 +2,7 @@ import eyeClosed from 'images/svgs/eye.closed.svg.png';
 import eyeOpened from 'images/svgs/eye.opened.svg.png';
 import { createRef, useEffect, useState } from 'react';
 import { ReactSVG } from 'react-svg';
-import { useThemeStore } from 'stores/ThemeStore';
+import useThemeStore from 'stores/ThemeStore';
 
 import { getTextHeight } from '@/common/helpers/domHelpers';
 import inputTheme from '@/styles/themes/componentThemes/inputTheme';

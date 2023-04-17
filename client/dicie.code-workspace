@@ -5,7 +5,7 @@
       "path": "../"
     },
     {
-      "name": "📢 @/client",
+      "name": "💻 @/client",
       "path": "./"
     },
     {
@@ -22,7 +22,6 @@
     "eslint.lintTask.options": "-c D:/Work/Dicie/client/.eslintrc .",
     "eslint.workingDirectories": ["./client"],
     "eslint.options": { "configFile": "D:/Work/Dicie/client/.eslintrc" },
-
     "importSorter.generalConfiguration.sortOnBeforeSave": true,
     "files.exclude": {
       "**/.git": true,
@@ -50,21 +49,16 @@
         "problemMatcher": []
       },
       {
+        "label": "Storybook",
+        "type": "shell",
+        "command": "cd client \n npm run storybook",
+        "problemMatcher": []
+      },
+      {
         "label": "Production",
         "type": "shell",
-        "command": "cd server \n mvn clean spring-boot:run -Dclient"
-      }
-    ]
-  },
-  "launch": {
-    "version": "0.2.0",
-    "configurations": [
-      {
-        "type": "msedge",
-        "request": "launch",
-        "name": "Launch Edge against localhost",
-        "url": "http://localhost:3000",
-        "webRoot": "${workspaceFolder}"
+        "command": "cd server \n mvn clean spring-boot:run -Dclient",
+        "problemMatcher": []
       }
     ]
   }

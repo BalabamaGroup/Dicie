@@ -2,9 +2,11 @@ import { useNavigate } from 'react-router-dom';
 
 import AuthAPI from '@/api/auth';
 import routes from '@/common/constants/routes';
+import useUserStore from '@/stores/UserStore';
 
 const useAuth = () => {
   const navigate = useNavigate();
+  const setUserStoreState = useUserStore.setState;
 
   const signUp = async (data: {
     username: string;
@@ -22,7 +24,7 @@ const useAuth = () => {
   const signIn = async (data: { username: string; password: string }) => {
     AuthAPI.signIn(data)
       .then((res) => {
-        sessionStorage.setItem('id', `${res.id}`);
+        setUserStoreState((s) => ({ ...s, user: res }));
         res.token && sessionStorage.setItem('token', res.token);
         navigate(routes.HOME);
       })
@@ -37,6 +39,7 @@ const useAuth = () => {
   };
 
   const signOut = () => {
+    setUserStoreState((s) => ({ ...s, user: null }));
     sessionStorage.removeItem('token');
     navigate(routes.SIGN_IN);
   };

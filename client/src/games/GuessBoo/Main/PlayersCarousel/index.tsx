@@ -3,16 +3,17 @@ import { UserInGame } from '@/common/types/user';
 import Carousel from '@/components/Carousel';
 import Player from '@/components/Player';
 import useWindowWidth from '@/hooks/useWindowWidth';
+import useGameStore from '@/stores/GameStore';
 
 import * as Styled from './index.styled';
 
 interface PlayersCarouselProps {
-  color: ComponentColor;
   otherPlayers: UserInGame[];
 }
 
-const PlayersCarousel = ({ color, otherPlayers }: PlayersCarouselProps) => {
+const PlayersCarousel = ({ otherPlayers }: PlayersCarouselProps) => {
   const displayWidth = useWindowWidth();
+  const color = useGameStore((s) => s.getColor());
 
   let maxWidth;
   if (displayWidth >= 1024) maxWidth = displayWidth - 528;

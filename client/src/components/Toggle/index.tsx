@@ -1,5 +1,5 @@
 import { ComponentColor } from '@/common/types/theme';
-import { useThemeStore } from '@/stores/ThemeStore';
+import useThemeStore from '@/stores/ThemeStore';
 import toggleTheme from '@/styles/themes/componentThemes/toggleTheme';
 
 import * as Styled from './index.styled';

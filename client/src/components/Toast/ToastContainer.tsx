@@ -1,5 +1,6 @@
+import { Slide, ToastContainer as DefaultToastContainer } from 'react-toastify';
 import styled from 'styled-components';
-import { ToastContainer as DefaultToastContainer, Slide } from 'react-toastify';
+
 import { mobileAndSmaller } from '@/common/utils/device';
 
 const ToastContainer = styled(DefaultToastContainer).attrs({
@@ -12,33 +13,39 @@ const ToastContainer = styled(DefaultToastContainer).attrs({
   pauseOnFocusLoss: true,
   draggable: true,
 })`
-  width: 340px;
+  width: 240px;
+
   @media ${mobileAndSmaller} {
-    margin: 8px 32px;
+    margin: 16px 32px;
     width: calc(100vw - 64px);
   }
 
   .Toastify__toast {
     user-select: none;
-
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
-    padding: 16px 16px 18px;
-    gap: 16px;
-    margin-bottom: 8px;
-    border-radius: 16px;
+    padding: 16px 16px 22px 16px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    background: ${({ theme }) => theme.toast.background};
+    box-shadow: -8px 8px 16px ${({ theme }) => theme.toast.shadow};
 
     .Toastify__toast-body {
       padding: 0;
-      color: #666666;
-      font-weight: 500;
       font-size: 12px;
       line-height: 16px;
+      font-family: 'Nunito';
+      color: ${({ theme }) => theme.toast.color};
+      font-weight: 530;
 
       .Toastify__toast-icon {
         margin-right: 16px;
+        * {
+          max-height: 24px;
+          max-width: 24px;
+        }
         svg {
           width: 24px;
           height: 24px;
@@ -55,38 +62,41 @@ const ToastContainer = styled(DefaultToastContainer).attrs({
       bottom: 5px;
       left: 16px;
       width: calc(100% - 32px);
-      border-radius: 4px;
+      border-radius: 256px;
+      overflow: hidden;
     }
   }
 
   .Toastify__toast--success {
-    box-shadow: 0px 8px 16px rgba(109, 227, 107, 0.25);
-    .Toastify__toast-icon svg * {
-      fill: #6de36b;
+    .Toastify__toast-icon {
+      circle {
+        fill: ${({ theme }) => theme.toast.successCircle};
+      }
     }
     .Toastify__progress-bar {
-      background: #6de36b;
+      background: ${({ theme }) => theme.toast.success};
     }
   }
 
   .Toastify__toast--warning {
-    box-shadow: 0px 8px 16px rgba(227, 208, 107, 0.25);
-    .Toastify__toast-icon svg * {
-      fill: #e3d06b;
+    .Toastify__toast-icon {
+      circle {
+        fill: ${({ theme }) => theme.toast.warningCircle};
+      }
     }
     .Toastify__progress-bar {
-      background: #e3d06b;
+      background: ${({ theme }) => theme.toast.warning};
     }
   }
 
   .Toastify__toast--error {
-    box-shadow: 0px 8px 16px rgba(227, 107, 107, 0.25);
-
-    .Toastify__toast-icon svg * {
-      fill: #e36b6b;
+    .Toastify__toast-icon {
+      circle {
+        fill: ${({ theme }) => theme.toast.errorCircle};
+      }
     }
     .Toastify__progress-bar {
-      background: #e36b6b;
+      background: ${({ theme }) => theme.toast.error};
     }
   }
 `;

@@ -1,22 +1,33 @@
 import styled, { css } from 'styled-components';
 
-import { homeContentCards } from '@/common/constants';
-import {
-  createGradientTransition,
-  transitionGradient,
-} from '@/common/helpers/styleHelpers';
-
 import { HomeContentCard } from '../index.styled';
 
 export const JoinRoomCard = styled(HomeContentCard)<{
-  selectedCard: string;
-  cardKey: string;
+  isSelected: boolean;
+  isDefault: boolean;
 }>`
+  position: relative;
   color: ${({ theme }) => theme.page.home.joinRoomCard.text};
   border: 2px solid ${({ theme }) => theme.page.home.joinRoomCard.border};
 
-  ${({ selectedCard }) =>
-    selectedCard === homeContentCards.JOIN_ROOM
+  transition: background 0.3s ease-in-out;
+  background: ${({ isDefault, isSelected, theme }) =>
+    isDefault
+      ? theme.page.home.joinRoomCard.notSelectedBackground
+      : !isSelected
+      ? theme.page.home.joinRoomCard.background
+      : theme.page.home.joinRoomCard.background};
+
+  ${({ isDefault }) =>
+    isDefault &&
+    css`
+      &:hover {
+        box-shadow: 0px 0px 256px rgba(106, 101, 255, 0.75);
+      }
+    `}
+
+  ${({ isSelected }) =>
+    isSelected
       ? css`
           pointer-events: none;
           & * {
@@ -28,34 +39,16 @@ export const JoinRoomCard = styled(HomeContentCard)<{
           & * {
             pointer-events: none;
           }
-        `}
+        `};
 
-  ${({ theme }) =>
-    createGradientTransition({
-      gradient: theme.page.home.joinRoomCard.background,
-      id: '-joinRoom',
-    })}
-
-
-
-  ${({ selectedCard, cardKey, theme }) =>
-    selectedCard === homeContentCards.DEFAULT
-      ? css`
-          &:hover {
-            box-shadow: 0px 0px 256px rgba(106, 101, 255, 0.75);
-          }
-        `
-      : selectedCard === cardKey
-      ? css`
-          ${transitionGradient({
-            id: '-joinRoom',
-            color: theme.page.home.joinRoomCard.selectedBackground,
-          })}
-        `
-      : css`
-          /* ${transitionGradient({
-            id: '-joinRoom',
-            color: theme.page.home.joinRoomCard.background,
-          })} */
-        `}
+  .notselected-arrow {
+    margin-left: 48px;
+    position: absolute;
+    left: 0;
+    svg {
+      path {
+        fill: #8986f5;
+      }
+    }
+  }
 `;

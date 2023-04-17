@@ -1,3 +1,5 @@
+import colors from './colors';
+
 const gradients = {
   no_gradient_page_bg_light: {
     value: 'linear-gradient(120deg, #ECEEFE 10%, #ECEEFE 25%, #ECEEFE 80%);',
@@ -13,6 +15,22 @@ const gradients = {
     colorsNum: 3,
     colors: ['#141414', '#141414', '#141414'],
     points: ['10%', '25%', '80%'],
+  },
+
+  home_page_dark: {
+    value: `linear-gradient(90deg, ${colors.lime[80]} 0%,  ${colors.indigo[80]} 100%);`,
+    angle: '90deg',
+    colorsNum: 2,
+    colors: [colors.lime[80], colors.indigo[80]],
+    points: ['0%', '100%'],
+  },
+
+  home_page_light: {
+    value: `linear-gradient(90deg, ${colors.lime[10]} 0%,  ${colors.indigo[10]} 100%);`,
+    angle: '90deg',
+    colorsNum: 2,
+    colors: [colors.lime[10], colors.indigo[10]],
+    points: ['0%', '100%'],
   },
 
   lime_green_dark: {

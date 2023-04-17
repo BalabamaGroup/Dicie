@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface ThemeState {
+interface ColorStoreState {
   color: {
     home: 'neutral' | 'indigo' | 'lime';
     room: 'indigo' | 'lime';
@@ -14,22 +14,7 @@ interface ThemeState {
 
 type pageId = 'home' | 'room' | 'guessBoo' | 'guessBoo';
 
-// const defaultColor = {
-//   home: 'neutral',
-//   room: 'indigo',
-//   guessBoo: 'indigo',
-//   guessBoo: 'indigo',
-// };
-
-// const getInitialColor = () => {
-//   const initalColorLS = localStorage.getItem('color');
-//   const initialColor: any = initalColorLS
-//     ? JSON.parse(initalColorLS)
-//     : defaultColor;
-//   return initialColor;
-// };
-
-export const useColorStore = create<ThemeState>()((set, get) => ({
+const useColorStore = create<ColorStoreState>()((set, get) => ({
   color: {
     home: 'neutral',
     room: 'indigo',
@@ -51,3 +36,5 @@ export const useColorStore = create<ThemeState>()((set, get) => ({
     setTimeout(() => set((state) => ({ ...state, color: newColor })), 0);
   },
 }));
+
+export default useColorStore;

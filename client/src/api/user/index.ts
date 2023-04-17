@@ -1,7 +1,7 @@
-import { request } from '..';
-import User from '@/common/types/user';
+import { User } from '@/common/types/user';
 
-import { getUsersRes, getUserByIdRes } from './interfaces';
+import { request } from '../';
+import { getUserByIdRes, getUsersRes } from './interfaces';
 
 export default class UserAPI {
   static getUsers = (): getUsersRes => {
@@ -13,7 +13,7 @@ export default class UserAPI {
     return request(options).then((res: getUsersRes) => res);
   };
 
-  static getCurrentUser = (): User => {
+  static getCurrentUser = async (): Promise<User> => {
     const options = {
       method: 'get',
       url: `user/current`,

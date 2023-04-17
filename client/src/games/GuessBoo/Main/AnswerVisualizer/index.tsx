@@ -1,6 +1,7 @@
 import CharadesAPI from '@/api/game/charades';
 import { UserInGame } from '@/common/types/user';
-import { useColorStore } from '@/stores/ColorStore';
+import useColorStore from '@/stores/ColorStore';
+import useGameStore from '@/stores/GameStore';
 
 import * as Styled from './index.styled';
 
@@ -31,7 +32,7 @@ const AnswerVisualizer = ({
   const emptyPercent =
     (100 / otherPlayers.length) * (otherPlayers.length - answerData.count);
 
-  const color = useColorStore((s) => s.color.guessBoo);
+  const color = useGameStore((s) => s.getColor());
 
   return (
     <Styled.AnswerVisualizer>

@@ -18,67 +18,91 @@ export const Button = styled.button<{
   text-align: center;
 
   width: ${({ isScale }) => (isScale ? '100%' : 'auto')};
-  transition: box-shadow 0.05s ease-in, background 0.3s ease-in-out,
-    opacity 0.3s ease-in-out;
+
+  ${({ size }) =>
+    size === 'large'
+      ? css`
+          border: 2px solid transparent;
+          height: 72px;
+          padding: 22px 32px;
+          border-radius: 16px;
+          font-weight: 800;
+          font-size: 20px;
+          line-height: 20px;
+          border-radius: 16px;
+        `
+      : size === 'medium'
+      ? css`
+          border: 1.5px solid transparent;
+
+          height: 48px;
+          padding: 16px 24px;
+          border-radius: 16px;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 16px;
+          border-radius: 12px;
+        `
+      : css`
+          border: 1px solid transparent;
+          height: 32px;
+          padding: 8px 16px;
+          border-radius: 12px;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 12px;
+          border-radius: 8px;
+        `}
+
+  -webkit-font-smoothing: subpixel-antialiased;
+  backface-visibility: hidden;
+  transform: perspective(1px) translateZ(0);
+  -webkit-filter: blur(0);
+  filter: blur(0px);
+
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out, box-shadow 0.175s ease-in-out,
+    background 0.3s ease-in-out, border-color 0.175s ease-in-out,
+    color 0.3s ease-in-out, opacity 0.2s ease-in-out;
 
   // DEFAULT
-  ${({ theme }) => css`
-    background: ${theme.background};
-    color: ${theme.text};
-    &:hover {
-      box-shadow: ${theme.shadow};
-    }
-    &:active {
-      box-shadow: ${theme.shadowPrimary},
-        inset 0px 0px 0px 2px ${theme.borderOutline};
-    }
-  `}
+  ${({ isPrimary, theme }) =>
+    !isPrimary &&
+    css`
+      background: ${theme.default.background};
+      border-color: ${theme.default.border};
+      color: ${theme.default.text};
+      &:hover {
+        border-color: ${theme.default.borderHover};
+        box-shadow: 0px 4px 16px ${theme.default.shadowHoverRGBA};
+      }
+      &:active {
+        transform: scale(0.98);
+      }
+    `}
 
   // PRIMARY
   ${({ isPrimary, theme }) =>
     isPrimary &&
     css`
-      background: ${theme.backgroundPrimary};
-      color: ${theme.textPrimary};
+      background: ${theme.primary.background};
+      border-color: ${theme.primary.border};
+      color: ${theme.primary.text};
       &:hover {
-        box-shadow: ${theme.shadowPrimary};
+        box-shadow: 0px 4px 16px ${theme.primary.shadowHoverRGBA};
       }
       &:active {
-        box-shadow: ${theme.shadowPrimary},
-          inset 0px 0px 0px 2px ${theme.textPrimary};
+        transform: scale(0.98);
       }
     `}
 
-  ${({ size }) =>
-    size === 'large'
-      ? css`
-          padding: 24px 32px;
-          border-radius: 16px;
-          font-weight: 700;
-          font-size: 20px;
-          line-height: 20px;
-        `
-      : size === 'medium'
-      ? css`
-          padding: 16px 24px;
-          border-radius: 16px;
-          font-weight: 600;
-          font-size: 16px;
-          line-height: 16px;
-        `
-      : css`
-          padding: 8px 16px;
-          border-radius: 12px;
-          font-weight: 500;
-          font-size: 12px;
-          line-height: 12px;
-        `}
-
-  ${({ disabled }) =>
+    ${({ disabled }) =>
     disabled &&
     css`
-      cursor: default;
-      opacity: 0.25;
+      opacity: 0.5;
       pointer-events: none;
     `};
 `;

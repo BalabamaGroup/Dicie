@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import RoomAPI from '@/api/room';
 import { Game } from '@/common/types/room';
 import { UserInGame } from '@/common/types/user';
+import useUserStore from '@/stores/UserStore';
 
 import * as Styled from './index.styled';
 
@@ -17,7 +18,7 @@ const RoomUsers = ({ roomData }: RoomUsersProps) => {
   const { roomId } = useParams();
   const navigate = useNavigate();
 
-  const currUserId = sessionStorage.getItem('id');
+  const currUser = useUserStore((s) => s.user);
 
   const onDisconnect = async () => {
     roomId && (await RoomAPI.disconnectFromRoom(roomId));
@@ -31,7 +32,7 @@ const RoomUsers = ({ roomData }: RoomUsersProps) => {
           <div className='avatar'></div>
           <div className='username'>{user.username}</div>
 
-          {currUserId && +currUserId === user.id && (
+          {currUser?.id === user.id && (
             <button onClick={onDisconnect}>Disconnect</button>
           )}
         </Styled.User>

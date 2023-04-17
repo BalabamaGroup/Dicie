@@ -16,7 +16,7 @@ export default class RoomAPI {
     return request(options).then((res: Promise<Room>) => res);
   };
 
-  static getRooms = (): Promise<[Room]> => {
+  static getRooms = async (): Promise<[Room]> => {
     const options = {
       method: 'get',
       url: `room`,

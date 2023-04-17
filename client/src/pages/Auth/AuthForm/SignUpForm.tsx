@@ -5,16 +5,14 @@ import { useQuery } from 'react-query';
 
 import { RoleTypes } from '@/common/constants';
 import {
-  getEmailValidationData,
-  getMatchPasswordValidationData,
-  getPasswordValidationData,
-  getUsernameValidationData,
+    getEmailValidationData, getMatchPasswordValidationData, getPasswordValidationData,
+    getUsernameValidationData
 } from '@/common/utils/validation';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import MultiInput from '@/components/MultiInput';
 import useAuth from '@/hooks/useAuth';
-import { useThemeStore } from '@/stores/ThemeStore';
+import useThemeStore from '@/stores/ThemeStore';
 
 import * as Styled from './index.styled';
 
