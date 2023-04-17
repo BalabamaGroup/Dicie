@@ -1,40 +1,40 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import MultiInput from '@/components/MultiInput';
-import useAuth from '@/hooks/useAuth';
+import useAuthPageStore from '@/stores/AuthPageStore';
 import useThemeStore from '@/stores/ThemeStore';
+import useUserStore from '@/stores/UserStore';
 
 import * as Styled from './index.styled';
 
-interface signInProps {
-  username: {
-    value: string;
-    onChange: React.ChangeEventHandler<HTMLInputElement>;
-  };
-  password: {
-    value: string;
-    onChange: React.ChangeEventHandler<HTMLInputElement>;
-  };
-}
+interface signInProps {}
 
-const SignInForm = ({ username, password }: signInProps) => {
-  const { signIn } = useAuth();
-
-  const [passwordIsVisible, setPasswordIsVisible] = useState(false);
-
-  const togglePasswordIsvisible = () =>
-    setPasswordIsVisible(!passwordIsVisible);
-
+const SignInForm = ({}: signInProps) => {
   const theme = useThemeStore((state) => state.theme);
   const defaultColor = theme === 'light' ? 'indigo' : 'lime';
 
+  const username = useAuthPageStore((s) => s.username);
+  const onChangeUsername = (e: any) => {
+    useAuthPageStore.setState((s) => ({ ...s, username: e.target.value }));
+  };
+
+  const password = useAuthPageStore((s) => s.username);
+  const onChangePassword = (e: any) => {
+    useAuthPageStore.setState((s) => ({ ...s, password: e.target.value }));
+  };
+
+  const [passwordIsVisible, setPasswordIsVisible] = useState(false);
+  const togglePasswordIsvisible = () =>
+    setPasswordIsVisible(!passwordIsVisible);
+
+  const signIn = useUserStore((s) => s.signIn);
   const onSignIn = async (e: any) => {
     e.preventDefault();
     signIn({
-      username: username.value,
-      password: password.value,
+      username: username,
+      password: password,
     });
   };
 
@@ -53,8 +53,8 @@ const SignInForm = ({ username, password }: signInProps) => {
             color='indigo'
             size='large'
             placeholder='Username'
-            value={username.value}
-            onChange={username.onChange}
+            value={username}
+            onChange={onChangeUsername}
           />
           <Input
             id={'signUp-username'}
@@ -69,8 +69,8 @@ const SignInForm = ({ username, password }: signInProps) => {
                 : '/images/svgs/eye.opened.svg'
             }
             onIconClick={togglePasswordIsvisible}
-            value={password.value}
-            onChange={password.onChange}
+            value={password}
+            onChange={onChangePassword}
           />
         </MultiInput>
       </Styled.MultiInputWrapper>

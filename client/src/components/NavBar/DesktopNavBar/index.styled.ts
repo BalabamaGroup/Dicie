@@ -17,8 +17,6 @@ export const DesktopNavBar = styled.div<{}>`
   .navbar-logo,
   .navbar-link {
     transition: color 0.3s ease-in-out;
-    /* color: ${({ isWait, theme }) =>
-      isWait ? theme.navbar.wait : theme.navbar.go}; */
   }
 `;
 

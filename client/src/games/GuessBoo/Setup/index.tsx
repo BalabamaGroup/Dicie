@@ -52,9 +52,9 @@ const Setup = () => {
 
       <SidePanel
         views={[{ id: 'chat' }]}
-        color={isWait ? 'indigo' : 'lime'}
-        isCollapsed={thresholds.guessBoo.setup.sidePanelCollapse}
-        isHorizontal={thresholds.guessBoo.setup.sidePanelHorizontal}
+        // color={isWait ? 'indigo' : 'lime'}
+        collapseThreshhold={thresholds.guessBoo.setup.sidePanelCollapse}
+        horizontalThreshhold={thresholds.guessBoo.setup.sidePanelHorizontal}
       />
     </Styled.Setup>
   );
