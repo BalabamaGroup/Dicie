@@ -12,40 +12,36 @@ import * as Styled from './index.styled';
 
 const SignUpForm = () => {
   // prettier-ignore
-  const [username, usernameIsValid, validateUsername] = useAuthPageStore(
-    (s) => [s.username, s.usernameIsValid, s.validateUsername]);
-  const [usernameErrorNote, setUsernameErrorNote] = useState<string>('');
+  const [username, usernameIsValid, validateUsername, usernameErrorNote] = useAuthPageStore(
+    (s) => [s.username, s.usernameIsValid, s.validateUsername, s.usernameErrorNote]);
   const onChangeUsername = (e: any) => {
     useAuthPageStore.setState((s) => ({ ...s, username: e.target.value }));
-    setUsernameErrorNote(validateUsername());
+    validateUsername();
   };
 
   // prettier-ignore
-  const [email, emailIsValid, validateEmail] = useAuthPageStore(
-    (s) => [s.email, s.emailIsValid, s.validateEmail]);
-  const [emailErrorNote, setEmailErrorNote] = useState<string>('');
+  const [email, emailIsValid, validateEmail, emailErrorNote] = useAuthPageStore(
+    (s) => [s.email, s.emailIsValid, s.validateEmail, s.emailErrorNote]);
   const onChangeEmail = (e: any) => {
     useAuthPageStore.setState((s) => ({ ...s, email: e.target.value }));
-    setEmailErrorNote(validateEmail());
+    validateEmail();
   };
 
   // prettier-ignore
-  const [password, passwordIsValid, validatePassword] = useAuthPageStore(
-    (s) => [s.password, s.passwordIsValid, s.validatePassword]);
-  const [passwordErrorNote, setPasswordErrorNote] = useState<string>('');
+  const [password, passwordIsValid, validatePassword, passwordErrorNote] = useAuthPageStore(
+    (s) => [s.password, s.passwordIsValid, s.validatePassword, s.passwordErrorNote]);
   const onChangePassword = (e: any) => {
     useAuthPageStore.setState((s) => ({ ...s, password: e.target.value }));
-    setPasswordErrorNote(validatePassword());
+    validatePassword();
   };
 
   // prettier-ignore
-  const [matchPassword, matchPasswordIsValid, validateMatchPassword] = useAuthPageStore(
-    (s) => [s.matchPassword, s.matchPasswordIsValid, s.validateMatchPassword]);
-  const [matchPasswordErrorNote, setMatchPasswordErrorNote] =
-    useState<string>('');
+  const [matchPassword, matchPasswordIsValid, validateMatchPassword, matchPasswordErrorNote] = useAuthPageStore(
+    (s) => [s.matchPassword, s.matchPasswordIsValid, s.validateMatchPassword, s.matchPasswordErrorNote]);
+  useState<string>('');
   const onChangeMatchPassword = (e: any) => {
     useAuthPageStore.setState((s) => ({ ...s, matchPassword: e.target.value }));
-    setMatchPasswordErrorNote(validateMatchPassword());
+    validateMatchPassword();
   };
 
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);

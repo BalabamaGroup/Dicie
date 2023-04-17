@@ -21,6 +21,11 @@ interface AuthPageStoreState {
   validateEmail: Function;
   validatePassword: Function;
   validateMatchPassword: Function;
+
+  usernameErrorNote: string;
+  emailErrorNote: string;
+  passwordErrorNote: string;
+  matchPasswordErrorNote: string;
 }
 
 const usernameRegExp = /^[A-z][A-z0-9-_]{3,23}$/;
@@ -42,64 +47,80 @@ const useAuthPageStore = create<AuthPageStoreState>()((set, get) => ({
   passwordIsValid: true,
   matchPasswordIsValid: true,
 
+  usernameErrorNote: '',
+  emailErrorNote: '',
+  passwordErrorNote: '',
+  matchPasswordErrorNote: '',
+
   validateUsername: () => {
-    if (!get().username) {
-      set((s) => ({ ...s, usernameIsValid: true }));
-      return '';
-    }
-    if (!usernameRegExp.test(get().username)) {
-      set((s) => ({ ...s, usernameIsValid: false }));
-      return '4 to 24 characters\nMust begin with a letter\nAllowed special characters:  _ -';
-    }
-    if (get().takenUsernames.find((un) => get().username === un)) {
-      set((s) => ({ ...s, usernameIsValid: false }));
-      return 'Username is taken';
-    }
-    set((s) => ({ ...s, usernameIsValid: true }));
-    return '';
+    if (!get().username)
+      set((s) => ({ ...s, usernameIsValid: true, usernameErrorNote: '' }));
+    else if (!usernameRegExp.test(get().username))
+      set((s) => ({
+        ...s,
+        usernameIsValid: false,
+        usernameErrorNote:
+          '4 to 24 characters\nMust begin with a letter\nAllowed special characters:  _ -',
+      }));
+    else if (get().takenUsernames.find((un) => get().username === un))
+      set((s) => ({
+        ...s,
+        usernameIsValid: false,
+        usernameErrorNote: 'Username is taken',
+      }));
+    else set((s) => ({ ...s, usernameIsValid: true, usernameErrorNote: '' }));
   },
 
   validateEmail: () => {
-    if (!get().email) {
-      set((s) => ({ ...s, emailIsValid: true }));
-      return '';
-    }
-    if (!emailRegExp.test(get().email)) {
-      set((s) => ({ ...s, emailIsValid: false }));
-      return 'Email is not valid';
-    }
-    if (get().takenEmails.find((e) => get().email === e)) {
-      set((s) => ({ ...s, emailIsValid: false }));
-      return 'Email is taken';
-    }
-    set((s) => ({ ...s, emailIsValid: true }));
-    return '';
+    if (!get().email)
+      set((s) => ({ ...s, emailIsValid: true, emailErrorNote: '' }));
+    else if (!emailRegExp.test(get().email))
+      set((s) => ({
+        ...s,
+        emailIsValid: false,
+        emailErrorNote: 'Email is not valid',
+      }));
+    else if (get().takenEmails.find((e) => get().email === e))
+      set((s) => ({
+        ...s,
+        emailIsValid: false,
+        emailErrorNote: 'Email is taken',
+      }));
+    else set((s) => ({ ...s, emailIsValid: true, emailErrorNote: '' }));
   },
 
   validatePassword: () => {
-    if (!get().password) {
-      set((s) => ({ ...s, passwordIsValid: true }));
-      return '';
-    }
-    if (!passwordRegExp.test(get().password)) {
-      set((s) => ({ ...s, passwordIsValid: false }));
-      return 'Minimum eight characters\nAt least one uppercase letter\none lowercase letter and one number';
-    }
-    set((s) => ({ ...s, passwordIsValid: true }));
-    return '';
+    if (!get().password)
+      set((s) => ({ ...s, passwordIsValid: true, passwordErrorNote: '' }));
+    else if (!passwordRegExp.test(get().password))
+      set((s) => ({
+        ...s,
+        passwordIsValid: false,
+        passwordErrorNote:
+          'Minimum eight characters\nAt least one uppercase letter\none lowercase letter and one number',
+      }));
+    else set((s) => ({ ...s, passwordIsValid: true, passwordErrorNote: '' }));
   },
 
   validateMatchPassword: () => {
-    if (!get().matchPassword) {
-      set((s) => ({ ...s, matchPasswordIsValid: true }));
-      return '';
-    }
-    if (get().password !== get().matchPassword) {
-      set((s) => ({ ...s, matchPasswordIsValid: false }));
-      return 'Must match the first password input field';
-    }
-    set((s) => ({ ...s, matchPasswordIsValid: true }));
-    return '';
+    if (!get().matchPassword)
+      set((s) => ({
+        ...s,
+        matchPasswordIsValid: true,
+        matchPasswordErrorNote: '',
+      }));
+    else if (get().password !== get().matchPassword)
+      set((s) => ({
+        ...s,
+        matchPasswordIsValid: false,
+        matchPasswordErrorNote: 'Must match the first password input field',
+      }));
+    else
+      set((s) => ({
+        ...s,
+        matchPasswordIsValid: true,
+        matchPasswordErrorNote: '',
+      }));
   },
 
   startTakenSignUpInfoQuery: () => {

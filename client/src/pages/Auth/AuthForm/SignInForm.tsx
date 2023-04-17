@@ -15,14 +15,20 @@ const SignInForm = ({}: signInProps) => {
   const theme = useThemeStore((state) => state.theme);
   const defaultColor = theme === 'light' ? 'indigo' : 'lime';
 
-  const username = useAuthPageStore((s) => s.username);
+  // prettier-ignore
+  const [username,  validateUsername] = useAuthPageStore(
+    (s) => [s.username, s.validateUsername]);
   const onChangeUsername = (e: any) => {
     useAuthPageStore.setState((s) => ({ ...s, username: e.target.value }));
+    validateUsername();
   };
 
-  const password = useAuthPageStore((s) => s.password);
+  // prettier-ignore
+  const [password, validatePassword] = useAuthPageStore(
+    (s) => [s.password, s.validatePassword]);
   const onChangePassword = (e: any) => {
     useAuthPageStore.setState((s) => ({ ...s, password: e.target.value }));
+    validatePassword();
   };
 
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
