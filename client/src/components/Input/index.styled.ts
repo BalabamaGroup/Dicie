@@ -16,13 +16,19 @@ const getMultiInputDataPaddingCss = (
 const getWrapperHeightDataCss = (
   isNoteVisible: boolean | undefined,
   noteTextHeight: number,
-  size: 'large' | 'medium'
+  size: 'large' | 'medium',
+  multiInputData: multiInputDataType | undefined
 ) => {
+  const miPadding = !multiInputData
+    ? 0
+    : multiInputData.index === multiInputData.length - 1
+    ? 16
+    : 0;
   return isNoteVisible
-    ? ` height: calc(72px + 16px + ${noteTextHeight}px); `
+    ? ` height: calc(72px + ${miPadding}px + ${noteTextHeight}px); `
     : size === 'large'
-    ? ` height: 72px; `
-    : ` height : 48px `;
+    ? ` height: calc(72px + ${miPadding}px); `
+    : ` height : calc(72px + ${miPadding}px);`;
 };
 
 export const LabelWrapper = styled.div<{
@@ -57,8 +63,13 @@ export const Wrapper = styled.div<{
 
   transition: padding 0.2s ease-in-out, height 0.2s ease-in-out;
 
-  ${({ isNoteVisible, noteTextHeight, size }) =>
-    getWrapperHeightDataCss(isNoteVisible, noteTextHeight, size)};
+  ${({ isNoteVisible, noteTextHeight, size, multiInputData }) =>
+    getWrapperHeightDataCss(
+      isNoteVisible,
+      noteTextHeight,
+      size,
+      multiInputData
+    )};
   ${({ multiInputData, isNoteVisible }) =>
     getMultiInputDataPaddingCss(multiInputData, isNoteVisible)}
 `;
