@@ -13,8 +13,10 @@ import com.balabama.mt.services.GameCharadeService;
 import com.balabama.mt.services.RoomService;
 import com.balabama.mt.services.UserService;
 import com.balabama.mt.services.UserStateService;
+
 import java.util.List;
 import java.util.Objects;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,9 +37,10 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         User currentUser = userService.getCurrent();
         Room room = currentUser.getRoom();
         room.validateGame(Charade.class);
-        if (currentUser.getId().equals(userId) || ((UserCharadeState) currentUser.getUserState()).getSelectedUser() == null
-            || !Objects.equals(
-            ((UserCharadeState) currentUser.getUserState()).getSelectedUser(), userId)) {
+        if (currentUser.getId().equals(userId)
+                || ((UserCharadeState) currentUser.getUserState()).getSelectedUser() == null
+                || !Objects.equals(
+                ((UserCharadeState) currentUser.getUserState()).getSelectedUser(), userId)) {
             throw new MTException(HttpStatus.FORBIDDEN, "You can't set a word");
         }
         UserCharadeState userCharadeState = ((UserCharadeState) userStateService.getById(userId)).setWord(word);
@@ -47,16 +50,21 @@ public class GameCharadeServiceImpl implements GameCharadeService {
     @Override
     public Room ready() {
         User current = userService.getCurrent();
+        UserCharadeState userCharadeState = ((UserCharadeState) userStateService.getById(current.getId()));
+        if (userCharadeState.getReady()) {
+            userCharadeState.setReady(false);
+            Room room = getRoomByState(userCharadeState);
+            return roomService.save(room);
+        }
         if (((UserCharadeState) userService.getCurrent().getUserState()).getSelectedUser() == null) {
             throw new MTException(HttpStatus.BAD_REQUEST, "Choose to whom you will make a word");
         }
         String selectedWord = (((UserCharadeState) userService.getById(
-                ((UserCharadeState) current.getUserState()).getSelectedUser())
-            .getUserState()).getWord());
-        if (selectedWord == null || selectedWord.equals("")) {
+                        ((UserCharadeState) current.getUserState()).getSelectedUser())
+                .getUserState()).getWord());
+        if (selectedWord == null || selectedWord.trim().equals("")) {
             throw new MTException(HttpStatus.BAD_REQUEST, "You didn't set the word");
         }
-        UserCharadeState userCharadeState = ((UserCharadeState) userStateService.getById(current.getId()));
         userCharadeState.setReady(true);
         Room room = getRoomByState(userCharadeState);
         RoomCharadeData roomCharadeData = (RoomCharadeData) room.getRoomData();
@@ -130,16 +138,17 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         User current = getCurrentUserInReadyGame();
         UserCharadeState userState = (UserCharadeState) current.getUserState();
         RoomCharadeData roomCharadeData = (RoomCharadeData) current.getRoom().getRoomData();
-        List<UserCharadeState> userCharadeStates = current.getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState())
-            .toList();
+        List<UserCharadeState> userCharadeStates =
+                current.getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState())
+                        .toList();
         long countUserAnswer = userCharadeStates.stream()
-            .filter(x -> x.getLastAnswer() != null).count();
+                .filter(x -> x.getLastAnswer() != null).count();
         if (!userState.getIsGoing() || (long) current.getRoom().getUsers().size() - 1 != countUserAnswer) {
             throw new MTException(HttpStatus.BAD_REQUEST, "You can't confirm the answer now");
         }
         CharadeAnswer endAnswer = getEndAnswer(userCharadeStates);
         charadeLogRepository.save(
-            new CharadeLog(roomCharadeData.getCurrentQuestion(), endAnswer, userState));
+                new CharadeLog(roomCharadeData.getCurrentQuestion(), endAnswer, userState));
         if (endAnswer == CharadeAnswer.YES) {
             roomCharadeData.setResponseCounterYes(roomCharadeData.getResponseCounterYes() + 1);
         }

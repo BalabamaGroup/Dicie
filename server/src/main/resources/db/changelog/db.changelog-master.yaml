@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/changeset/InitDatabase.sql
   - include:
       file: db/changelog/changeset/DICIE-2.sql
+  - include:
+      file: db/changelog/changeset/DICIE-3.sql
