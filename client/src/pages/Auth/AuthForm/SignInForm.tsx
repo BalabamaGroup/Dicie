@@ -20,7 +20,7 @@ const SignInForm = ({}: signInProps) => {
     useAuthPageStore.setState((s) => ({ ...s, username: e.target.value }));
   };
 
-  const password = useAuthPageStore((s) => s.username);
+  const password = useAuthPageStore((s) => s.password);
   const onChangePassword = (e: any) => {
     useAuthPageStore.setState((s) => ({ ...s, password: e.target.value }));
   };
