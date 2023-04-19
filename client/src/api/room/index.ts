@@ -1,4 +1,4 @@
-import Room from '@/common/types/room';
+import Room, { RoomOutside } from '@/common/types/room';
 
 import { request } from '../';
 
@@ -16,16 +16,16 @@ export default class RoomAPI {
     return request(options).then((res: Promise<Room>) => res);
   };
 
-  static getRooms = async (): Promise<[Room]> => {
+  static getRooms = async (): Promise<[RoomOutside]> => {
     const options = {
       method: 'get',
       url: `room`,
     };
 
-    return request(options).then((res: Promise<[Room]>) => res);
+    return request(options).then((res: Promise<[RoomOutside]>) => res);
   };
 
-  static getRoom = (id: string): Promise<Room> => {
+  static getRoom = async (id: string): Promise<Room> => {
     const options = {
       method: 'get',
       url: `room/${id}`,

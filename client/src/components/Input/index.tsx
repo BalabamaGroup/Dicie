@@ -26,7 +26,7 @@ const Input = ({
   icon,
   onIconClick,
 
-  isError = true,
+  isError = false,
   errorNote,
 
   multiInputData,
@@ -44,13 +44,13 @@ const Input = ({
   const componentTheme = inputTheme[globalTheme][componentColor];
 
   const onFocus = () => {
-    setIsFocus(true);
     multiInputData && onChangeMultiInputData && onChangeMultiInputData(true);
+    setIsFocus(true);
   };
 
   const onBlur = () => {
-    setIsFocus(false);
     multiInputData && onChangeMultiInputData && onChangeMultiInputData(false);
+    setIsFocus(false);
   };
 
   const onInputClick = () => {
@@ -63,6 +63,7 @@ const Input = ({
     if (focusOnLoad && inputRef?.current) inputRef.current.focus();
   }, []);
 
+  // console.log(isFocus, isError, !!errorNote);
   return (
     <Styled.LabelWrapper
       className={`${className} label_wrapper`}
@@ -72,7 +73,7 @@ const Input = ({
       {label && <label htmlFor={id}>{label}</label>}
       <Styled.Wrapper
         size={size}
-        isNoteVisible={isFocus && !isError}
+        isNoteVisible={isFocus && isError && !!errorNote}
         noteTextHeight={getTextHeight(errorNote || '', 20)}
         multiInputData={multiInputData}
         theme={componentTheme}
@@ -125,7 +126,7 @@ const Input = ({
           onMouseDown={(e: any) => {
             e.preventDefault();
           }}
-          isVisible={isFocus && !isError && !!errorNote}
+          isVisible={isFocus && isError && !!errorNote}
           theme={componentTheme}
         >
           {errorNote}

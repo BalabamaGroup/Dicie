@@ -19,16 +19,14 @@ const getWrapperHeightDataCss = (
   size: 'large' | 'medium',
   multiInputData: multiInputDataType | undefined
 ) => {
-  const miPadding = !multiInputData
-    ? 0
-    : multiInputData.index === multiInputData.length - 1
-    ? 16
-    : 0;
+  const height = size === 'large' ? '72px' : '48px';
+  const miPadding = multiInputData?.isSeparate && isNoteVisible ? 20 : 0;
+
   return isNoteVisible
-    ? ` height: calc(72px + ${miPadding}px + ${noteTextHeight}px); `
+    ? ` height: calc(${height} + ${miPadding}px + ${noteTextHeight}px); `
     : size === 'large'
-    ? ` height: calc(72px + ${miPadding}px); `
-    : ` height : calc(72px + ${miPadding}px);`;
+    ? ` height: calc(${height} + ${miPadding}px); `
+    : ` height : calc(${height} + ${miPadding}px);`;
 };
 
 export const LabelWrapper = styled.div<{
@@ -97,12 +95,12 @@ export const InputWrapper = styled.div<{
 
   background: ${({ theme }) => theme.background};
   color: ${({ isFocus, isError, theme }) =>
-    !isError && !isFocus ? theme.textInvalid : theme.text};
+    isError && !isFocus ? theme.textInvalid : theme.text};
 
   box-shadow: 0 4px 16px
     ${({ isFocus, isError, theme }) =>
       isFocus
-        ? isError
+        ? !isError
           ? theme.shadowRGBA
           : theme.shadowInvalidRGBA
         : `none`};
@@ -119,15 +117,14 @@ export const InputWrapper = styled.div<{
     z-index: 11;
     all: unset;
     box-sizing: border-box;
-    height: 100%;
     width: 100%;
     transition: color 0.1s ease-in-out;
 
-    height: ${({ size }) => (size === 'large' ? '68px' : '44px')};
+    height: ${({ size }) => (size === 'large' ? '72px' : '48px')};
     font-weight: ${({ size }) => (size === 'large' ? '600' : '600')};
-    font-size: ${({ size }) => (size === 'large' ? '18px' : '16px')};
-    line-height: ${({ size }) => (size === 'large' ? '20px' : '20px')};
-    padding: ${({ size }) => (size === 'large' ? '22px 30px' : '14px 24px')};
+    font-size: ${({ size }) => (size === 'large' ? '20px' : '16px')};
+    line-height: ${({ size }) => (size === 'large' ? '20px' : '16px')};
+    padding: ${({ size }) => (size === 'large' ? '26px' : '16px')};
 
     ::placeholder {
       transition: color 0.2s ease-in-out;
@@ -154,7 +151,7 @@ export const FocusRing = styled.div<{
   border-radius: 14px;
   box-shadow: ${({ isFocus, isError, size, theme }) =>
     isFocus &&
-    (isError
+    (!isError
       ? `inset 0px 0px 0px ${size === 'large' ? '2px' : '1.5px'} ${
           theme.focusBorder
         }`

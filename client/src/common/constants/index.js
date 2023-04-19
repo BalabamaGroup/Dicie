@@ -1,7 +1,16 @@
+// !DEV
+
 export const Protocols = Object.freeze({
-  DEFAULT: 'https://',
-  SOCKET: 'wss://',
+  DEFAULT: 'http://',
+  SOCKET: 'ws://',
 });
+
+// !BUILD
+
+// export const Protocols = Object.freeze({
+//   DEFAULT: 'https://',
+//   SOCKET: 'wss://',
+// });
 
 export const Ports = Object.freeze({
   DEFAULT: ':8080',
@@ -20,6 +29,14 @@ export const authFormViews = Object.freeze({
 
 export const games = Object.freeze({
   GUESS_BOO: 1,
+});
+
+export const gameData = Object.freeze({
+  1: {
+    icon: '/images/svgs/game-icons/guess-boo.svg',
+    minPlayers: 2,
+    maxPlayers: 10,
+  },
 });
 
 export const sidePanelViews = Object.freeze({

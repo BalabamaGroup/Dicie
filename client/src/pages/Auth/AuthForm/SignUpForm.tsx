@@ -90,7 +90,7 @@ const SignUpForm = () => {
             placeholder='Username'
             value={username}
             onChange={onChangeUsername}
-            isError={usernameIsValid}
+            isError={!usernameIsValid}
             errorNote={usernameErrorNote}
           />
 
@@ -103,7 +103,7 @@ const SignUpForm = () => {
             placeholder='Email'
             value={email}
             onChange={onChangeEmail}
-            isError={emailIsValid}
+            isError={!emailIsValid}
             errorNote={emailErrorNote}
           />
 
@@ -122,7 +122,7 @@ const SignUpForm = () => {
                 : '/images/svgs/eye.opened.svg'
             }
             onIconClick={togglePasswordIsvisible}
-            isError={passwordIsValid}
+            isError={!passwordIsValid}
             errorNote={passwordErrorNote}
           />
 
@@ -141,7 +141,7 @@ const SignUpForm = () => {
                 : '/images/svgs/eye.opened.svg'
             }
             onIconClick={toggleMatchPasswordIsvisible}
-            isError={matchPasswordIsValid}
+            isError={!matchPasswordIsValid}
             errorNote={matchPasswordErrorNote}
           />
         </MultiInput>

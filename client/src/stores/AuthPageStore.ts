@@ -111,6 +111,7 @@ const useAuthPageStore = create<AuthPageStoreState>()((set, get) => ({
       }));
     else if (get().password !== get().matchPassword)
       set((s) => ({
+      
         ...s,
         matchPasswordIsValid: false,
         matchPasswordErrorNote: 'Must match the first password input field',
