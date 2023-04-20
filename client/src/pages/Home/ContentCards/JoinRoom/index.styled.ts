@@ -10,6 +10,8 @@ export const JoinRoomCard = styled(HomeContentCard)<{
   color: ${({ theme }) => theme.page.home.joinRoomCard.text};
   border: 2px solid ${({ theme }) => theme.page.home.joinRoomCard.border};
 
+  box-sizing: border-box;
+
   background: ${({ isDefault, isSelected, theme }) =>
     isDefault
       ? theme.page.home.joinRoomCard.notSelectedBackground
@@ -25,21 +27,6 @@ export const JoinRoomCard = styled(HomeContentCard)<{
       }
     `}
 
-  ${({ isSelected }) =>
-    isSelected
-      ? css`
-          pointer-events: none;
-          & * {
-            pointer-events: all;
-          }
-        `
-      : css`
-          pointer-events: all;
-          & * {
-            pointer-events: none;
-          }
-        `};
-
   .notselected-arrow {
     margin-left: 48px;
     position: absolute;
@@ -48,6 +35,19 @@ export const JoinRoomCard = styled(HomeContentCard)<{
       path {
         fill: #8986f5;
       }
+    }
+  }
+
+  .on-selected {
+    padding: 32px 32px 0 32px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+    .search-wrapper {
+      max-width: 400px;
     }
   }
 `;

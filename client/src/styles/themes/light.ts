@@ -52,6 +52,8 @@ const light = {
         text: colors.indigo[80],
         border: colors.indigo[80],
         shadowHover: shadows.indigo.large,
+        roomsTableBackground: colors.indigo[0],
+        roomsTableUserIconFill: colors.indigo.base,
       },
     },
   },

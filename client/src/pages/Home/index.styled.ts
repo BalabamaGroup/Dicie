@@ -17,7 +17,7 @@ export const HomePage = styled.section<{
   height: 100vh;
   color: ${({ theme }) => theme.page.text};
 
-  transition: background 0.3s ease-in-out;
+  transition: background 0.4s ease-in-out;
   background: ${({ selectedCard, theme }) =>
     selectedCard === 'createRoom'
       ? theme.page.home.createRoomBackground

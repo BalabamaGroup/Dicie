@@ -69,15 +69,16 @@ export const Header = styled.div`
 export const GameList = styled.div`
   max-width: 480px;
   width: 100%;
+  max-width: 100%;
   height: 100%;
+  box-sizing: border-box;
 
   display: grid;
-  grid-template-columns: repeat(auto-fill, 72px);
+  grid-template-columns: repeat(auto-fill, 76px);
   grid-template-rows: repeat(auto-fill, 92px);
   justify-content: space-between;
   grid-gap: 32px;
 
-  gap: 32px;
   @media ${mobileAndSmaller} {
     grid-template-columns: 1fr 1fr;
   }

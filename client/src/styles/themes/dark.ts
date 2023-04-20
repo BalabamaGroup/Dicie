@@ -52,6 +52,8 @@ const dark: any = {
         text: colors.indigo[10],
         border: 'transparent',
         shadowHover: shadows.indigo.large,
+        roomsTableBackground: colors.indigo[90],
+        roomsTableUserIconFill: colors.indigo.light,
       },
     },
   },

@@ -1,12 +1,57 @@
 import styled from 'styled-components';
 
-export const RoomsTable = styled.div<{}>`
+export const RoomsTable = styled.div<{
+  isNoRooms?: boolean;
+}>`
+  background-color: #100f16;
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
+  min-height: 0px;
+  box-sizing: border-box;
+  background-color: ${({ theme }) =>
+    theme.page.home.joinRoomCard.roomsTableBackground};
+  /* border: 2px solid #000; */
+  border-bottom: none;
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  padding: 16px 16px 0 16px;
+
+  .no-room-image {
+    position: absolute;
+    pointer-events: none;
+    bottom: 0;
+    opacity: ${({ isNoRooms }) => (isNoRooms ? 1 : 0)};
+    transition: ${({ isNoRooms }) =>
+      isNoRooms ? 'opacity 2.7s ease-in-out' : 'opacity 0s ease-in'};
+    transition-delay: ${({ isNoRooms }) => (isNoRooms ? '.9s' : '0s')};
+
+    width: 480px;
+    height: 480px;
+    svg {
+      width: 480px;
+      height: 480px;
+    }
+
+    @media (max-width: 544px) {
+      width: calc(100vw - 64px);
+      height: calc(100vw - 64px);
+      svg {
+        max-width: calc(100vw - 64px);
+        height: calc(100vw - 64px);
+      }
+    }
+  }
+
+  .scroll {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    width: 100%;
+  }
 `;
 
 export const RoomRow = styled.div<{}>`
@@ -16,7 +61,7 @@ export const RoomRow = styled.div<{}>`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  gap: 24px;
   box-sizing: border-box;
 
   .game-icon {
@@ -35,6 +80,9 @@ export const RoomRow = styled.div<{}>`
     width: 200px;
     max-width: 200px;
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .players-num {
@@ -49,6 +97,10 @@ export const RoomRow = styled.div<{}>`
       svg {
         width: 16px;
         height: 16px;
+        path {
+          fill: ${({ theme }) =>
+            theme.page.home.joinRoomCard.roomsTableUserIconFill};
+        }
       }
     }
   }

@@ -27,9 +27,21 @@ export const authFormViews = Object.freeze({
   SIGN_IN: 'SIGN_IN',
 });
 
-export const games = Object.freeze({
-  GUESS_BOO: 1,
-});
+export const games: {
+  id: number;
+  name: string;
+  icon: string;
+  minPlayers: number;
+  maxPlayers: number;
+}[] = [
+  {
+    id: 1,
+    name: 'Guess BOO!',
+    icon: '/images/svgs/game-icons/guess-boo.svg',
+    minPlayers: 2,
+    maxPlayers: 10,
+  },
+];
 
 export const gameData = Object.freeze({
   1: {

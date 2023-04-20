@@ -35,6 +35,7 @@ export const SetupRoom = styled.div<{
 `;
 
 export const SetupRoomHeader = styled.div`
+  text-align: center;
   flex-shrink: 0;
   width: 100%;
   font-weight: 700;

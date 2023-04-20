@@ -8,8 +8,12 @@ export const CreateRoomCard = styled(HomeContentCard)<{
   isSelected: boolean;
   isDefault: boolean;
 }>`
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   position: relative;
   border: 2px solid ${({ theme }) => theme.page.home.createRoomCard.border};
+
   background: ${({ isDefault, isSelected, theme }) =>
     isDefault
       ? theme.page.home.createRoomCard.notSelectedBackground

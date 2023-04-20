@@ -21,17 +21,11 @@ const HomeContentCard = styled.div<{
   align-items: center;
   justify-content: center;
 
-  text-align: center;
-
-  & > * {
-    will-change: opacity;
-  }
-
   .notselected-arrow {
     position: absolute;
     height: 48px;
     width: 48px;
-    transition: opacity 0.3s ease-in-out;
+    /* transition: opacity 0.3s ease-in-out; */
     opacity: ${({ isDefault, isSelected }) =>
       !isDefault && !isSelected ? '1' : '0'};
     svg {
@@ -43,6 +37,8 @@ const HomeContentCard = styled.div<{
   .on-default {
     height: 100%;
     width: 100%;
+    text-align: center;
+    /* transition: opacity 0.2s ease-in-out; */
     opacity: ${({ isDefault, isSelected }) =>
       isDefault && !isSelected ? '1' : '0'};
     position: absolute;
@@ -76,11 +72,10 @@ const HomeContentCard = styled.div<{
   .on-selected {
     height: 100%;
     width: 100%;
-    min-width: calc(100vw - 16px - 16px - 128px);
     opacity: ${({ isDefault, isSelected }) =>
       !isDefault && isSelected ? '1' : '0'};
 
-    transition: opacity 0.15s ease-in-out, transform 0.2s ease-in-out;
+    /* transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out; */
     transform: translate(-50%, -50%);
     /* transform: translate(-50%, -50%)
       ${({ isDefault, isSelected }) =>
@@ -91,8 +86,8 @@ const HomeContentCard = styled.div<{
     left: 50%;
   }
 
-  transition: background 0.3s ease-in-out, border 0.3s ease-in-out,
-    box-shadow 0.15s ease-in-out;
+  /* transition: background 0.25s ease-in-out, border 0.3s ease-in-out,
+    box-shadow 0.15s ease-in-out; */
 
   ${({ isDefault, isSelected }) =>
     isDefault

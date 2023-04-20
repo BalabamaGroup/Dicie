@@ -6,15 +6,23 @@ import AuthAPI from '@/api/auth';
 import UserAPI from '@/api/user';
 import routes from '@/common/constants/routes';
 import { User } from '@/common/types/user';
+import Toast from '@/components/Toast';
 
 interface UserStoreState {
   user: User | null;
   isLoading: boolean;
   fetchUser: Function;
-  queryFetchUser: Function;
 
-  signIn: Function;
-  signUp: Function;
+  signIn: { (data: { username: string; password: string }): Promise<void> };
+  signUp: {
+    (data: {
+      username: string;
+      email: string;
+      password: string;
+      role: string;
+    }): Promise<void>;
+  };
+  signOut: { (): void };
 }
 
 const useUserStore = create<UserStoreState>()((set, get) => ({
@@ -50,28 +58,21 @@ const useUserStore = create<UserStoreState>()((set, get) => ({
     if (!get().user) set((s) => ({ ...s, isLoading: true }));
     UserAPI.getCurrentUser()
       .then((data) => {
-        set((s) => ({ ...s, user: data, isLoading: false }));
+        set((s) => ({ ...s, user: data }));
       })
       .catch((err) => {
-        set((s) => ({ ...s, user: null, isLoading: false }));
+        set((s) => ({ ...s, user: null }));
         const isAuthErr = err.response.status === 401;
         const path = window.location.pathname;
         const isAuthPage = path === routes.SIGN_IN || path === routes.SIGN_UP;
         if (isAuthErr && !isAuthPage) window.location.href = routes.SIGN_IN;
+        else if (isAuthErr && isAuthPage)
+          Toast.error('Could not authorize with provided data');
         sessionStorage.removeItem('token');
       })
       .finally(() => {
         set((s) => ({ ...s, isLoading: false }));
       });
-  },
-
-  queryFetchUser: () => {
-    useQuery('globalAutoFetchUser', async () => get().fetchUser(), {
-      refetchInterval: 180000,
-      refetchIntervalInBackground: true,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: true,
-    });
   },
 }));
 
