@@ -25,3 +25,5 @@ hs_err_pid*
 /.idea/
 /client.iml
 client/src/common/utils/url.ts
+client/src/common/constants/index.ts
+client/src/common/utils/url.ts
