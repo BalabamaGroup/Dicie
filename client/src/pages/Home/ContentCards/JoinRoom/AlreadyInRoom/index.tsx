@@ -37,6 +37,7 @@ export const StyledAlreadyInRoom = styled.div<{}>`
     align-items: center;
     justify-content: center;
     gap: 20px;
+
     .header {
       text-align: center;
       font-weight: 700;

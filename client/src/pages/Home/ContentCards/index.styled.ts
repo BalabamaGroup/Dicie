@@ -37,6 +37,8 @@ export const ContentCards = styled.div<{
     flex-direction: row;
     gap: 64px;
 
+    -webkit-filter: blur(0.000001px);
+    -webkit-font-smoothing: antialiased;
     ${({ selectedCard }) =>
       selectedCard === 'createRoom'
         ? css`
@@ -48,12 +50,12 @@ export const ContentCards = styled.div<{
         ? css`
             padding: ${paddingValue};
             gap: ${gapValue};
-            transform: translateX(-50%) ${`translateX(${otherCardValue})`};
+            transform: translateX(calc(-50% + 128px));
           `
         : css`
             padding: ${defaultPaddingValue}
               ${`calc((100% / 2) - ${defaultGapValue})`};
-            transform: translateX(-25%) ${`translateX(${defaultGapValue})`};
+            transform: translateX(calc(-25% + 64px));
           `}
   }
 

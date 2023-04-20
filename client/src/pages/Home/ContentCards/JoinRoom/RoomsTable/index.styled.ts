@@ -36,14 +36,14 @@ export const RoomsTable = styled.div<{
       isNoRooms ? 'opacity 2.7s ease-in-out' : 'opacity 0s ease-in'};
     transition-delay: ${({ isNoRooms }) => (isNoRooms ? '.9s' : '0s')};
 
-    width: 480px;
-    height: 480px;
+    width: 360px;
+    height: 360px;
     svg {
-      width: 480px;
-      height: 480px;
+      width: 360px;
+      height: 360px;
     }
 
-    @media (max-width: 544px) {
+    @media (max-width: 424px) {
       width: calc(100vw - 64px);
       height: calc(100vw - 64px);
       svg {

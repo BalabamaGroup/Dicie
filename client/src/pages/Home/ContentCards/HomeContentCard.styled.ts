@@ -76,7 +76,7 @@ const HomeContentCard = styled.div<{
       !isDefault && isSelected ? '1' : '0'};
 
     /* transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out; */
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%) translateY(calc(-50% - 0.5px));
     /* transform: translate(-50%, -50%)
       ${({ isDefault, isSelected }) =>
       !isDefault && isSelected ? 'scale(1)' : 'scaleX(0.5)'}; */
