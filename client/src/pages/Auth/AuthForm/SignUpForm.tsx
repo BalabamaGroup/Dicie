@@ -63,8 +63,7 @@ const SignUpForm = () => {
       password: password,
       email: email,
       role: RoleTypes.USER,
-    });
-    navigate(routes.HOME);
+    }).then(() => navigate(routes.HOME));
   };
 
   const theme = useThemeStore((state) => state.theme);

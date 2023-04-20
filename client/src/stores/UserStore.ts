@@ -10,6 +10,7 @@ import Toast from '@/components/Toast';
 
 interface UserStoreState {
   user: User | null;
+  isInitialLoaded: boolean;
   isLoading: boolean;
   fetchUser: Function;
 
@@ -27,10 +28,11 @@ interface UserStoreState {
 
 const useUserStore = create<UserStoreState>()((set, get) => ({
   user: null,
-  isLoading: true,
+  isInitialLoaded: false,
+  isLoading: false,
 
   signIn: async (data: { username: string; password: string }) => {
-    AuthAPI.signIn(data).then((res) => {
+    await AuthAPI.signIn(data).then((res) => {
       set((s) => ({ ...s, user: res, isLoading: false }));
       res.token && sessionStorage.setItem('token', res.token);
     });
@@ -72,6 +74,8 @@ const useUserStore = create<UserStoreState>()((set, get) => ({
       })
       .finally(() => {
         set((s) => ({ ...s, isLoading: false }));
+        if (!get().isInitialLoaded)
+          set((s) => ({ ...s, isInitialLoaded: true }));
       });
   },
 }));

@@ -44,8 +44,7 @@ const SignInForm = ({}: signInProps) => {
     await signIn({
       username: username,
       password: password,
-    });
-    navigate(routes.HOME);
+    }).then(() => navigate(routes.HOME));
   };
 
   return (

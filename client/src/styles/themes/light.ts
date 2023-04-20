@@ -54,7 +54,7 @@ const light = {
         shadowHover: shadows.indigo.large,
         roomsTableBackground: colors.indigo[0],
         roomsTableUserIconFill: colors.indigo.base,
-        alreadyInRoomBackdropRGBA: hexToRgba(colors.indigo.base, 0.4),
+        alreadyInRoomBackdropRGBA: hexToRgba(colors.indigo[50], 0.4),
         alreadyInRoomBackground: colors.indigo[10],
         alreadyInRoomText: colors.indigo[80],
       },

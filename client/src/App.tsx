@@ -1,6 +1,6 @@
 import 'react-toastify/dist/ReactToastify.css';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import {
@@ -14,20 +14,21 @@ import Routes from './common/constants/routes';
 import Loader from './components/Loader';
 import ToastContainer from './components/Toast/ToastContainer';
 import GlobalQueries from './GlobalQueries';
-import Auth from './pages/Auth';
-import Home from './pages/Home';
-import Room from './pages/Room';
 import VoiceChatTest from './pages/VoiceChatTest';
 import useUserStore from './stores/UserStore';
 import Theme from './styles/Theme';
 
 const queryClient = new QueryClient();
 
+const Auth = lazy(() => import('./pages/Auth'));
+const Home = lazy(() => import('./pages/Home'));
+const Room = lazy(() => import('./pages/Room'));
+
 const Private = ({ children }: { children: any }) => {
   let user = useUserStore((s) => s.user);
-  const isLoading = useUserStore((s) => s.isLoading);
+  const isInitialLoaded = useUserStore((s) => s.isInitialLoaded);
 
-  if (isLoading) return <Loader.Circle />;
+  if (!isInitialLoaded) return <Loader.Circle />;
   if (!user) return <Navigate to={Routes.SIGN_IN} replace />;
   return children;
 };
@@ -55,37 +56,41 @@ const App = () => {
   );
 
   return (
-    <Theme>
-      <div className='App'>
+    <div className='App'>
+      <Theme>
         <QueryClientProvider client={queryClient}>
           <GlobalQueries />
-          <RoutesWrapper>
-            <Route path={Routes.SIGN_IN} element={<Auth />} />
-            <Route path={Routes.SIGN_UP} element={<Auth />} />
-            <Route
-              path={Routes.HOME}
-              element={
-                <Private>
-                  <Home />
-                </Private>
-              }
-            />
-            <Route
-              path={Routes.ROOM}
-              element={
-                <Private>
-                  <Room />
-                </Private>
-              }
-            />
-            <Route path={'/voicechat'} element={<VoiceChatTest />} />
-            <Route path='*' element={<Navigate to={Routes.HOME} replace />} />
-          </RoutesWrapper>
+
+          <Suspense fallback={<Loader.Circle />}>
+            <RoutesWrapper>
+              <Route path={Routes.SIGN_IN} element={<Auth />} />
+              <Route path={Routes.SIGN_UP} element={<Auth />} />
+              <Route
+                path={Routes.HOME}
+                element={
+                  <Private>
+                    <Home />
+                  </Private>
+                }
+              />
+              <Route
+                path={Routes.ROOM}
+                element={
+                  <Private>
+                    <Room />
+                  </Private>
+                }
+              />
+              <Route path={'/voicechat'} element={<VoiceChatTest />} />
+              <Route path='*' element={<Navigate to={Routes.HOME} replace />} />
+            </RoutesWrapper>
+          </Suspense>
+
           <ToastContainer />
           {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </QueryClientProvider>
-      </div>
-    </Theme>
+      </Theme>
+    </div>
   );
 };
 

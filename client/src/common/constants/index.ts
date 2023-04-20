@@ -1,16 +1,16 @@
 // !DEV
 
-// export const Protocols = Object.freeze({
-//   DEFAULT: 'http://',
-//   SOCKET: 'ws://',
-// });
+export const Protocols = Object.freeze({
+  DEFAULT: 'http://',
+  SOCKET: 'ws://',
+});
 
 // !BUILD
 
-export const Protocols = Object.freeze({
-  DEFAULT: 'https://',
-  SOCKET: 'wss://',
-});
+// export const Protocols = Object.freeze({
+//   DEFAULT: 'https://',
+//   SOCKET: 'wss://',
+// });
 
 export const Ports = Object.freeze({
   DEFAULT: ':8080',
