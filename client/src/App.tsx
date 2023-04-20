@@ -23,7 +23,7 @@ import Theme from './styles/Theme';
 
 const queryClient = new QueryClient();
 
-const Private = ({ children }: { children: React.ReactNode }) => {
+const Private = ({ children }: { children: any }) => {
   let user = useUserStore((s) => s.user);
   const isLoading = useUserStore((s) => s.isLoading);
 
