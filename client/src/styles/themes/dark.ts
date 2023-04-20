@@ -1,4 +1,4 @@
-import colors from '../colors/colors';
+import colors, { hexToRgba } from '../colors/colors';
 import gradients from '../colors/gradients';
 import shadows from '../colors/shadows';
 
@@ -54,6 +54,9 @@ const dark: any = {
         shadowHover: shadows.indigo.large,
         roomsTableBackground: colors.indigo[90],
         roomsTableUserIconFill: colors.indigo.light,
+        alreadyInRoomBackdropRGBA: hexToRgba(colors.indigo.base, 0.4),
+        alreadyInRoomBackground: colors.indigo[80],
+        alreadyInRoomText: colors.indigo[0],
       },
     },
   },

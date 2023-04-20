@@ -29,10 +29,8 @@ const JoinRoomCard = ({
 
   const [selectedGames, setSelectedGames] = useState<number[]>([]);
   const onToggleGameSelection = (id: number) => {
-    const index = selectedGames.indexOf(id);
-    console.log(index);
-    if (index === -1) setSelectedGames([...selectedGames, id]);
-    else setSelectedGames(selectedGames.filter((gid) => gid !== id));
+    if (!selectedGames.includes(id)) setSelectedGames([...selectedGames, id]);
+    else setSelectedGames(selectedGames.filter((gameId) => gameId !== id));
   };
 
   return (
@@ -54,7 +52,7 @@ const JoinRoomCard = ({
       />
 
       <div className='on-selected'>
-        {user?.roomId && <AlreadyInRoom />}
+        {user?.roomId && <AlreadyInRoom roomName={user.roomId} />}
 
         <div className='search-wrapper'>
           <Input

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { tabletAndSmaller } from '@/common/utils/device';
+
 export const RoomsTable = styled.div<{
   isNoRooms?: boolean;
 }>`
@@ -19,7 +21,11 @@ export const RoomsTable = styled.div<{
   border-bottom: none;
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
-  padding: 16px 16px 0 16px;
+  padding: 16px;
+
+  @media ${tabletAndSmaller} {
+    border-radius: 32px;
+  }
 
   .no-room-image {
     position: absolute;

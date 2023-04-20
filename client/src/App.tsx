@@ -49,6 +49,13 @@ const App = () => {
     loaderElement && loaderElement.remove();
   }
 
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  document.documentElement.style.setProperty(
+    '--vh100',
+    `${window.innerHeight}px`
+  );
+
   return (
     <Theme>
       <div className='App'>

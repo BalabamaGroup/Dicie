@@ -14,12 +14,12 @@ export const SidePanelChatWrapper = styled.div<{}>`
 
 export const ChatMessages = styled.div`
   width: 100%;
-  height: calc(100vh - 252px);
+  height: calc(var(--vh100) - 252px);
 
   .chat-messages-scroll {
     box-sizing: border-box;
     width: 100%;
-    height: calc(100vh - 252px);
+    height: calc(var(--vh100) - 252px);
     display: flex;
     flex-direction: column-reverse;
   }

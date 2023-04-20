@@ -54,7 +54,9 @@ const Input = ({
   };
 
   const onInputClick = () => {
+    console.log(1);
     if (!inputRef?.current) return;
+    console.log(2);
     inputRef.current.focus();
     onFocus();
   };
@@ -81,9 +83,6 @@ const Input = ({
         <Styled.InputWrapper
           size={size}
           className='input_input-wrapper'
-          onMouseDown={(e: any) => {
-            e.preventDefault();
-          }}
           isFocus={isFocus}
           isError={isError}
           withIcon={!!icon}

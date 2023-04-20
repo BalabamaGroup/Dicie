@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { tabletAndSmaller } from '@/common/utils/device';
+
 import HomeContentCard from '../HomeContentCard.styled';
 
 export const JoinRoomCard = styled(HomeContentCard)<{
@@ -40,6 +42,9 @@ export const JoinRoomCard = styled(HomeContentCard)<{
 
   .on-selected {
     padding: 32px 32px 0 32px;
+    @media ${tabletAndSmaller} {
+      padding: 32px 0 0 0;
+    }
     box-sizing: border-box;
     display: flex;
     flex-direction: column;

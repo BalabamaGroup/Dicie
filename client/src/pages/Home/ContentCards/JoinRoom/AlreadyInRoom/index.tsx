@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import RoomAPI from '@/api/room';
 import Button from '@/components/Button';
+import { useRoomsQuery } from '@/GlobalQueries';
 import useUserStore from '@/stores/UserStore';
 
 export const StyledAlreadyInRoom = styled.div<{}>`
@@ -15,7 +16,8 @@ export const StyledAlreadyInRoom = styled.div<{}>`
   right: 0px;
   border-radius: 32px;
 
-  background: rgba(137, 134, 245, 0.4);
+  background: ${({ theme }) =>
+    theme.page.home.joinRoomCard.alreadyInRoomBackdropRGBA};
   backdrop-filter: blur(12px);
 
   display: flex;
@@ -25,8 +27,10 @@ export const StyledAlreadyInRoom = styled.div<{}>`
   height: 100%;
 
   .modal {
+    max-width: 540px;
     padding: 20px;
-    background: #f5f6ff;
+    background: ${({ theme }) =>
+      theme.page.home.joinRoomCard.alreadyInRoomBackground};
     border-radius: 32px;
     display: flex;
     flex-direction: column;
@@ -39,11 +43,17 @@ export const StyledAlreadyInRoom = styled.div<{}>`
       font-size: 28px;
       line-height: 28px;
       margin-bottom: 16px;
+      color: ${({ theme }) => theme.page.home.joinRoomCard.alreadyInRoomText};
     }
     .body {
-      font-weight: 500;
+      font-weight: 400;
       font-size: 16px;
       line-height: 16px;
+      color: ${({ theme }) => theme.page.home.joinRoomCard.alreadyInRoomText};
+      span {
+        font-weight: 700;
+        color: #8986f5;
+      }
     }
     .footer {
       width: 100%;
@@ -59,11 +69,14 @@ interface AlreadyInRoomProps {}
 const AlreadyInRoom = ({}: AlreadyInRoomProps) => {
   const navigate = useNavigate();
 
+  const { data: rooms } = useRoomsQuery();
   const [user, isLoading, fetchUser] = useUserStore((s) => [
     s.user,
     s.isLoading,
     s.fetchUser,
   ]);
+
+  const [myRoom] = rooms!.filter((r) => r.id === user?.roomId);
 
   const onReturnToCurrRoom = () => {
     if (user?.roomId) navigate(`/room/${user?.roomId}`);
@@ -85,8 +98,9 @@ const AlreadyInRoom = ({}: AlreadyInRoomProps) => {
       <div className='modal'>
         <div className='header'>You are already in the room</div>
         <div className='body'>
-          You are already connected to Room «Kukukaka» <br />
-          and cannot connect to two rooms at the same time. <br />
+          You are already connected to Room <span>«{myRoom.name}»</span> and
+          cannot connect to two rooms at the same time.
+          <br />
           <br />
           To join another room, you must first disconnect from your current one.
         </div>

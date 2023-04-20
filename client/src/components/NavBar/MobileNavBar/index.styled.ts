@@ -5,7 +5,7 @@ export const MobileNavBarBackdrop = styled.div<{
 }>`
   z-index: 1000;
   position: fixed;
-  height: 100vh;
+  height: var(--vh100);
   width: 100vw;
   top: 0;
   bottom: 0;

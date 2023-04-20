@@ -5,7 +5,7 @@ export const BouncingDots = styled.div<{ size: number }>`
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    height: var(--vh100);
   }
 
   .bouncing-loader {

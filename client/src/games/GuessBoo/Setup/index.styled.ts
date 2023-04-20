@@ -18,7 +18,7 @@ export const Setup = styled.div<{
   flex-direction: row;
   gap: 16px;
   width: 100vw;
-  height: 100vh;
+  height: var(--vh100);
   padding: 80px 16px 16px 16px;
   box-sizing: border-box;
 
@@ -61,19 +61,19 @@ export const SetupContent = styled.div`
   gap: 16px;
 
   @media ${`(max-width: ${thresholds.guessBoo.setup.sidePanelHorizontal}px)`} {
-    max-height: calc(100vh - 160px);
-    min-height: calc(100vh - 160px);
+    max-height: calc(var(--vh100) - 160px);
+    min-height: calc(var(--vh100) - 160px);
   }
 
   @media ${tabletAndSmaller} {
     flex-direction: column-reverse;
-    max-height: calc(100vh - 96px);
-    min-height: calc(100vh - 96px);
+    max-height: calc(var(--vh100) - 96px);
+    min-height: calc(var(--vh100) - 96px);
   }
 
   @media ${mobileAndSmaller} {
     flex-direction: column-reverse;
-    max-height: calc(100vh - 72px);
-    min-height: calc(100vh - 72px);
+    max-height: calc(var(--vh100) - 72px);
+    min-height: calc(var(--vh100) - 72px);
   }
 `;

@@ -125,7 +125,7 @@ export const SidePanelMainWrapper = styled.div<{
       !isOpened &&
       css`
         right: auto;
-        top: 100vh;
+        top: var(--vh100);
       `}
   }
 `;

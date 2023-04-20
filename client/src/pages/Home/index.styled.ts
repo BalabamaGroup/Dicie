@@ -5,7 +5,7 @@ import { commonPageStyles } from '@/styles/commonStyles';
 
 export const HomePageDefaultBackground = styled.section<{}>`
   width: 100vw;
-  height: 100vh;
+  height: var(--vh100);
   background: ${({ theme }) => theme.page.home.defaultBackground};
 `;
 export const HomePage = styled.section<{
@@ -14,7 +14,7 @@ export const HomePage = styled.section<{
   ${commonPageStyles}
 
   width: 100vw;
-  height: 100vh;
+  height: var(--vh100);
   color: ${({ theme }) => theme.page.text};
 
   transition: background 0.4s ease-in-out;
@@ -27,7 +27,7 @@ export const HomePage = styled.section<{
 `;
 
 export const HomeContent = styled.div`
-  height: 100vh;
+  height: var(--vh100);
   padding-top: 64px;
   @media ${tabletAndSmaller} {
     padding-top: 0;
