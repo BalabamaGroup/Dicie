@@ -25,6 +25,8 @@ export const StyledAlreadyInRoom = styled.div<{}>`
   justify-content: center;
   width: 100%;
   height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 
   .modal {
     max-width: 540px;
@@ -60,7 +62,7 @@ export const StyledAlreadyInRoom = styled.div<{}>`
       width: 100%;
       display: flex;
       flex-direction: row;
-      gap: 32px;
+      gap: 12px;
     }
   }
 `;
