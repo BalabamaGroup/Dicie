@@ -25,7 +25,7 @@ const HomeContentCard = styled.div<{
     position: absolute;
     height: 48px;
     width: 48px;
-    /* transition: opacity 0.3s ease-in-out; */
+    transition: opacity 0.3s ease-in-out;
     opacity: ${({ isDefault, isSelected }) =>
       !isDefault && !isSelected ? '1' : '0'};
     svg {
@@ -38,7 +38,7 @@ const HomeContentCard = styled.div<{
     height: 100%;
     width: 100%;
     text-align: center;
-    /* transition: opacity 0.2s ease-in-out; */
+    transition: opacity 0.2s ease-in-out;
     opacity: ${({ isDefault, isSelected }) =>
       isDefault && !isSelected ? '1' : '0'};
     position: absolute;
@@ -75,7 +75,7 @@ const HomeContentCard = styled.div<{
     opacity: ${({ isDefault, isSelected }) =>
       !isDefault && isSelected ? '1' : '0'};
 
-    /* transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out; */
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
     transform: translateX(-50%) translateY(calc(-50% - 0.5px));
     /* transform: translate(-50%, -50%)
       ${({ isDefault, isSelected }) =>
@@ -86,8 +86,9 @@ const HomeContentCard = styled.div<{
     left: 50%;
   }
 
-  /* transition: background 0.25s ease-in-out, border 0.3s ease-in-out,
-    box-shadow 0.15s ease-in-out; */
+  // !TODO Figure out how to optimize animations
+  transition: background 0.25s ease-in-out, border 0.3s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 
   ${({ isDefault, isSelected }) =>
     isDefault

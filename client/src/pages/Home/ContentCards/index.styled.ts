@@ -25,10 +25,11 @@ export const ContentCards = styled.div<{
   flex-direction: row;
   background-size: 100% 100%;
 
-  transition: transform 0.6s cubic-bezier(0.51, 0.92, 0.1, 1.05);
-  /* transition: transform 0.6s cubic-bezier(0.51, 0.92, 0.1, 1.05),
+  // !TODO Figure out how to optimize animations
+  /* transition: transform 0.6s cubic-bezier(0.51, 0.92, 0.1, 1.05); */
+  transition: transform 0.6s cubic-bezier(0.51, 0.92, 0.1, 1.05),
     padding 0.6s cubic-bezier(0.51, 0.92, 0.1, 1),
-    gap 0.6s cubic-bezier(0.51, 0.92, 0.1, 1); */
+    gap 0.6s cubic-bezier(0.51, 0.92, 0.1, 1);
 
   @media ${tabletAndBigger} {
     width: ${`calc(200% - ${otherCardValue} - ${otherCardValue})`};
