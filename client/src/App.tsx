@@ -1,5 +1,6 @@
 import 'react-toastify/dist/ReactToastify.css';
 
+import debounce from 'lodash.debounce';
 import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -43,17 +44,27 @@ const App = () => {
     setTimeout(() => setIsLoading(false), 500);
   }, []);
 
+  useEffect(() => {
+    const setVh = () =>
+      document.documentElement.style.setProperty(
+        '--vh100',
+        `${window.innerHeight}px`
+      );
+    setVh();
+    const handleResize = () => setVh();
+    const debouncedHandleResize = debounce(handleResize, 500);
+    window.addEventListener('resize', debouncedHandleResize);
+    return () => {
+      window.removeEventListener('resize', debouncedHandleResize);
+    };
+  }, []);
+
   if (isLoading) {
     return null;
   } else {
     const loaderElement = document.querySelector('#dom-loader');
     loaderElement && loaderElement.remove();
   }
-
-  document.documentElement.style.setProperty(
-    '--vh100',
-    `${window.innerHeight}px`
-  );
 
   return (
     <div className='App'>

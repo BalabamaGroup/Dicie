@@ -73,9 +73,7 @@ const useUserStore = create<UserStoreState>()((set, get) => ({
         sessionStorage.removeItem('token');
       })
       .finally(() => {
-        set((s) => ({ ...s, isLoading: false }));
-        if (!get().isInitialLoaded)
-          set((s) => ({ ...s, isInitialLoaded: true }));
+        set((s) => ({ ...s, isLoading: false, isInitialLoaded: true }));
       });
   },
 }));

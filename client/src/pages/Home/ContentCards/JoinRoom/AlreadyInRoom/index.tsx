@@ -43,15 +43,15 @@ export const StyledAlreadyInRoom = styled.div<{}>`
     .header {
       text-align: center;
       font-weight: 700;
-      font-size: 28px;
-      line-height: 28px;
+      font-size: 32px;
+      line-height: 32px;
       margin-bottom: 16px;
       color: ${({ theme }) => theme.page.home.joinRoomCard.alreadyInRoomText};
     }
     .body {
       font-weight: 400;
-      font-size: 16px;
-      line-height: 16px;
+      font-size: 14px;
+      line-height: 14px;
       color: ${({ theme }) => theme.page.home.joinRoomCard.alreadyInRoomText};
       span {
         font-weight: 700;
@@ -78,7 +78,6 @@ const AlreadyInRoom = ({}: AlreadyInRoomProps) => {
     s.isLoading,
     s.fetchUser,
   ]);
-  const [myRoom] = rooms!.filter((r) => r.id === user?.roomId);
 
   const onReturnToCurrRoom = () => {
     if (user?.roomId) navigate(`/room/${user?.roomId}`);
@@ -94,6 +93,10 @@ const AlreadyInRoom = ({}: AlreadyInRoomProps) => {
   useEffect(() => {
     fetchUser();
   }, []);
+
+  if (!rooms || !user?.roomId) return null;
+
+  const [myRoom] = rooms.filter((r) => r.id === user?.roomId);
 
   return (
     <StyledAlreadyInRoom>
