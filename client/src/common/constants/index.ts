@@ -1,22 +1,3 @@
-// !DEV
-
-export const Protocols = Object.freeze({
-  DEFAULT: 'http://',
-  SOCKET: 'ws://',
-});
-
-// !BUILD
-
-// export const Protocols = Object.freeze({
-//   DEFAULT: 'https://',
-//   SOCKET: 'wss://',
-// });
-
-export const Ports = Object.freeze({
-  DEFAULT: ':8080',
-  CLIENT_DEV: ':3000',
-});
-
 export const RoleTypes = Object.freeze({
   USER: 'ROLE_USER',
   ADMIN: 'ROLE_ADMIN',
