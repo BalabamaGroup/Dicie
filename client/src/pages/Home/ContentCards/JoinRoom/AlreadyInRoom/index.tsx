@@ -75,7 +75,6 @@ const AlreadyInRoom = ({}: AlreadyInRoomProps) => {
     s.isLoading,
     s.fetchUser,
   ]);
-
   const [myRoom] = rooms!.filter((r) => r.id === user?.roomId);
 
   const onReturnToCurrRoom = () => {

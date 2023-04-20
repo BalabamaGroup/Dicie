@@ -23,7 +23,7 @@ import Theme from './styles/Theme';
 
 const queryClient = new QueryClient();
 
-const Private = ({ children }) => {
+const Private = ({ children }: { children: React.ReactNode }) => {
   let user = useUserStore((s) => s.user);
   const isLoading = useUserStore((s) => s.isLoading);
 
@@ -49,8 +49,6 @@ const App = () => {
     loaderElement && loaderElement.remove();
   }
 
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
   document.documentElement.style.setProperty(
     '--vh100',
     `${window.innerHeight}px`

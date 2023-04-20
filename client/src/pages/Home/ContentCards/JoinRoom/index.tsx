@@ -52,7 +52,7 @@ const JoinRoomCard = ({
       />
 
       <div className='on-selected'>
-        {user?.roomId && <AlreadyInRoom roomName={user.roomId} />}
+        {user?.roomId && <AlreadyInRoom />}
 
         <div className='search-wrapper'>
           <Input
