@@ -98,6 +98,8 @@ const AlreadyInRoom = ({}: AlreadyInRoomProps) => {
 
   const [myRoom] = rooms.filter((r) => r.id === user?.roomId);
 
+  if (!myRoom) return null;
+
   return (
     <StyledAlreadyInRoom>
       <div className='modal'>

@@ -60,15 +60,7 @@ const RoomsTable = ({ selectedGames, searchValue }: RoomsTableProps) => {
     <Styled.RoomsTable isNoRooms={!filteredRooms.length}>
       <ReactSVG className='no-room-image' src='/images/svgs/no-rooms.svg' />
       <Scroll className='scroll' color='indigo'>
-        {[
-          ...filteredRooms,
-          ...filteredRooms,
-          ...filteredRooms,
-          ...filteredRooms,
-          ...filteredRooms,
-          ...filteredRooms,
-          ...filteredRooms,
-        ].map((room, i) => (
+        {filteredRooms.map((room, i) => (
           <Styled.RoomRow key={i}>
             <ReactSVG className='game-icon' src={gameData[1].icon} />
             <div className='room-name' title={room.name}>

@@ -69,22 +69,19 @@ const HomeContentCard = styled.div<{
   }
 
   .on-selected {
-    height: 100%;
-    width: 100%;
+    height: calc(100% - 4px);
+    width: calc(100% - 4px);
+    border: 2px solid transparent;
 
     will-change: opacity;
     transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
     opacity: ${({ isDefault, isSelected }) =>
       !isDefault && isSelected ? '1' : '0'};
 
-    transform: translateX(-50%) translateY(calc(-50% - 0.5px));
-    /* transform: translate(-50%, -50%)
-      ${({ isDefault, isSelected }) =>
-      !isDefault && isSelected ? 'scale(1)' : 'scaleX(0.5)'}; */
-
     position: absolute;
     top: 50%;
     left: 50%;
+    transform: translateX(-50%) translateY(calc(-50% - 0.5px));
   }
 
   // !TODO Figure out how to optimize animations

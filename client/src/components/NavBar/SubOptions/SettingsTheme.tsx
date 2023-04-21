@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import RadioOption from '@/components/RadioOption';
 import Toggle from '@/components/Toggle';
 import useThemeStore from '@/stores/ThemeStore';
+import navbarTheme from '@/styles/themes/componentThemes/navbarTheme';
+
+import { useNavbarColor } from '../useNavbarColor';
 
 export const StyledSettingsTheme = styled.div<{}>`
   border-radius: 10px;
@@ -28,7 +31,7 @@ export const StyledSettingsTheme = styled.div<{}>`
     font-weight: 600;
     font-size: 12px;
     line-height: 12px;
-    color: #eceefe;
+    color: ${({ theme }) => theme.options.settings.text};
 
     &-auto {
       margin-bottom: 4px;
@@ -40,6 +43,9 @@ interface SettingsThemeProps {}
 
 const SettingsTheme = ({}: SettingsThemeProps) => {
   const theme = useThemeStore((s) => s.theme);
+  const color = useNavbarColor();
+  const componentTheme = navbarTheme[theme][color];
+
   const themeLS = useThemeStore((s) => s.themeLS);
   const setAutoTheme = useThemeStore((s) => s.setAutoTheme);
   const setLightTheme: any = useThemeStore((s) => s.setLightTheme);
@@ -55,14 +61,14 @@ const SettingsTheme = ({}: SettingsThemeProps) => {
   };
 
   return (
-    <StyledSettingsTheme>
+    <StyledSettingsTheme theme={componentTheme}>
       <div
         className='settings-theme-option settings-theme-option-auto'
         onClick={toggleAutoTheme}
       >
         <Toggle
           size='small'
-          color='indigo'
+          color={color}
           value={themeLS === 'auto'}
           onChange={() => {}}
         />
@@ -74,7 +80,7 @@ const SettingsTheme = ({}: SettingsThemeProps) => {
           className='settings-theme-option'
           onClick={setLightTheme}
         >
-          <RadioOption isSelected={theme === 'light'} />
+          {/* <RadioOption isSelected={theme === 'light'} /> */}
           Light
         </div>,
         <div
@@ -82,7 +88,7 @@ const SettingsTheme = ({}: SettingsThemeProps) => {
           className='settings-theme-option'
           onClick={setDarkTheme}
         >
-          <RadioOption isSelected={theme === 'dark'} />
+          {/* <RadioOption isSelected={theme === 'dark'} /> */}
           Dark
         </div>,
       ]}

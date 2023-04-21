@@ -27,8 +27,13 @@ const Setup = () => {
 
   useEffect(() => {
     const localIsGo = isMyTurn && !isMeReady;
-    if (localIsGo && isWait) setGo();
-    else if (!localIsGo && !isWait) setWait();
+    if (localIsGo && isWait) {
+      setGo();
+      useGameStore.setState((s) => ({ ...s, myTurn: true }));
+    } else if (!localIsGo && !isWait) {
+      setWait();
+      useGameStore.setState((s) => ({ ...s, myTurn: false }));
+    }
   }, [isMyTurn, isMeReady]);
 
   return (

@@ -74,7 +74,7 @@ const OtherPlayers = ({
     <Styled.OtherPlayersWrapper isWait={isWait}>
       <Scroll color={guessBooSetupColor} className='other-players-scroll'>
         <Styled.OtherPlayers isRow={isRow}>
-          {[...otherPlayers, ...otherPlayers, ...otherPlayers].map((player) => (
+          {otherPlayers.map((player) => (
             <Player
               id={player.id}
               color={guessBooSetupColor}

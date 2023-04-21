@@ -1,9 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 
 import routes from '@/common/constants/routes';
+import useThemeStore from '@/stores/ThemeStore';
+import navbarTheme from '@/styles/themes/componentThemes/navbarTheme';
 
 import MyRoomNavigation from '../SubOptions/MyRoomNavigation';
 import SettingsTheme from '../SubOptions/SettingsTheme';
+import { useNavbarColor } from '../useNavbarColor';
 import * as Styled from './index.styled';
 
 interface DesktopNavBarProps {
@@ -15,15 +18,23 @@ const DesktopNavBar = ({ withHome, withMyRoom }: DesktopNavBarProps) => {
   const navigate = useNavigate();
   const goHome = () => navigate(routes.HOME);
 
+  const theme = useThemeStore((s) => s.theme);
+  const color = useNavbarColor();
+  const componentTheme = navbarTheme[theme][color];
+
   return (
     <Styled.DesktopNavBar className='navbar-desktop'>
-      <Styled.Logo onClick={goHome}>Dicie</Styled.Logo>
+      <Styled.Logo theme={componentTheme} onClick={goHome}>
+        Dicie
+      </Styled.Logo>
 
-      <Styled.DesktopNavBarContent>
-        <Styled.DesktopNavBarOption>Profile</Styled.DesktopNavBarOption>
+      <Styled.DesktopNavBarContent theme={componentTheme}>
+        <Styled.DesktopNavBarOption theme={componentTheme}>
+          Profile
+        </Styled.DesktopNavBarOption>
 
         {withMyRoom && (
-          <Styled.DesktopNavBarOption>
+          <Styled.DesktopNavBarOption theme={componentTheme}>
             <div className='option-title'>My Room</div>
             <div className='option-content'>
               <div className='option-content-title'>My Room</div>
@@ -32,7 +43,7 @@ const DesktopNavBar = ({ withHome, withMyRoom }: DesktopNavBarProps) => {
           </Styled.DesktopNavBarOption>
         )}
 
-        <Styled.DesktopNavBarOption>
+        <Styled.DesktopNavBarOption theme={componentTheme}>
           <div className='option-title'>Settings</div>
           <div className='option-content'>
             <div className='option-content-title'>Settings</div>
