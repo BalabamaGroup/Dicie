@@ -29,9 +29,9 @@ const DesktopNavBar = ({ withHome, withMyRoom }: DesktopNavBarProps) => {
       </Styled.Logo>
 
       <Styled.DesktopNavBarContent theme={componentTheme}>
-        <Styled.DesktopNavBarOption theme={componentTheme}>
+        {/* <Styled.DesktopNavBarOption theme={componentTheme}>
           Profile
-        </Styled.DesktopNavBarOption>
+        </Styled.DesktopNavBarOption> */}
 
         {withMyRoom && (
           <Styled.DesktopNavBarOption theme={componentTheme}>

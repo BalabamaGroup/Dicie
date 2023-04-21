@@ -77,14 +77,14 @@ const MobileNavBar = ({ withHome, withMyRoom }: MobileNavBarProps) => {
               </Styled.MobileNavBarOption>
             ),
 
-            <Styled.MobileNavBarOption
-              key='profile'
-              onClick={() => {}}
-              theme={componentTheme}
-            >
-              <ReactSVG className='option-icon' src='/images/svgs/person.svg' />
-              Profile
-            </Styled.MobileNavBarOption>,
+            // <Styled.MobileNavBarOption
+            //   key='profile'
+            //   onClick={() => {}}
+            //   theme={componentTheme}
+            // >
+            //   <ReactSVG className='option-icon' src='/images/svgs/person.svg' />
+            //   Profile
+            // </Styled.MobileNavBarOption>,
 
             withMyRoom && (
               <Styled.MobileNavBarOption
