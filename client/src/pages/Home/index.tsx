@@ -11,7 +11,6 @@ const Home = () => {
   return (
     <Styled.HomePageDefaultBackground>
       <Styled.HomePage selectedCard={selectedCard}>
-        <NavBar page='home' />
         <Styled.HomeContent>
           <ContentCards />
         </Styled.HomeContent>

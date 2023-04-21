@@ -29,7 +29,6 @@ const Room = () => {
   if (!roomData.start)
     return (
       <Styled.RoomPage>
-        <NavBar page='room' />
         <Styled.RoomContent>
           {/* <RoomUsers roomData={roomData} /> */}
           <RoomSettings />
@@ -39,7 +38,6 @@ const Room = () => {
 
   return (
     <Styled.GamePage>
-      <NavBar page='guessBoo' />
       <Styled.GameContent>
         <GuessBoo />;
       </Styled.GameContent>
