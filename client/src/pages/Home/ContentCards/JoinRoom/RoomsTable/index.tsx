@@ -73,7 +73,12 @@ const RoomsTable = ({ selectedGames, searchValue }: RoomsTableProps) => {
               />
               {room.numberOfUsers || 0}/{gameData[1].maxPlayers}
             </div>
-            <Button size='small' onClick={onJoinRoom(room.id)} isPrimary>
+            <Button
+              color='indigo'
+              size='small'
+              onClick={onJoinRoom(room.id)}
+              isPrimary
+            >
               Join
             </Button>
           </Styled.RoomRow>
