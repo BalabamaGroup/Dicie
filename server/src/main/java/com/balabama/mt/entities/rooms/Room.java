@@ -4,6 +4,7 @@ import com.balabama.mt.entities.games.Game;
 import com.balabama.mt.entities.user.User;
 import com.balabama.mt.exceptions.MTException;
 import com.balabama.mt.exceptions.RoomStartException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -19,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -59,6 +61,7 @@ public class Room {
     @JoinColumn(name = "admin_id", referencedColumnName = "id")
     private User admin;
     private Boolean isPrivate = false;
+    private Boolean isFriendMod = false;
     private String password;
 
     private void addUser(User user) {
@@ -108,7 +111,9 @@ public class Room {
     }
 
     public void finish() {
-        this.roomData.earnPoints();
+        if (!isFriendMod) {
+            this.roomData.earnPoints();
+        }
         this.roomData = null;
         for (User user : users) {
             user.finish();
@@ -168,5 +173,9 @@ public class Room {
 
     public void setPassword(String password) {
         this.password = new BCryptPasswordEncoder().encode(password);
+    }
+
+    public Integer getNumberOfUsers() {
+        return users.size();
     }
 }

@@ -21,6 +21,8 @@ public interface GameCharadeService {
 
     Room acceptAnswer();
 
+    Room changeTurn();
+
     List<CharadeLog> getLogs(Long id);
 
 }

@@ -107,6 +107,9 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         User current = getCurrentUserInReadyGame();
         UserCharadeState currentUserCharadeState = ((UserCharadeState) current.getUserState());
         currentUserCharadeState.checkTurn();
+        if (current.getRoom().getIsFriendMod()){
+            throw MTException.onlyForNonFriendMod();
+        }
         RoomCharadeData roomCharadeData = (RoomCharadeData) current.getRoom().getRoomData();
         if (roomCharadeData.getCurrentQuestion() != null) {
             throw new MTException(HttpStatus.BAD_REQUEST, "You have already asked a question, wait for an answer");
@@ -123,6 +126,9 @@ public class GameCharadeServiceImpl implements GameCharadeService {
     public Room answer(CharadeAnswer charadeAnswer) {
         User current = getCurrentUserInReadyGame();
         RoomCharadeData roomCharadeData = (RoomCharadeData) current.getRoom().getRoomData();
+        if (current.getRoom().getIsFriendMod()){
+            throw MTException.onlyForNonFriendMod();
+        }
         UserCharadeState userState = (UserCharadeState) current.getUserState();
         userState.canAnswer();
         if (roomCharadeData.getCurrentQuestion() == null) {
@@ -138,6 +144,9 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         User current = getCurrentUserInReadyGame();
         UserCharadeState userState = (UserCharadeState) current.getUserState();
         RoomCharadeData roomCharadeData = (RoomCharadeData) current.getRoom().getRoomData();
+        if (current.getRoom().getIsFriendMod()){
+            throw MTException.onlyForNonFriendMod();
+        }
         List<UserCharadeState> userCharadeStates =
                 current.getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState())
                         .toList();
@@ -159,6 +168,18 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         userCharadeStates.forEach(x -> x.setLastAnswer(null));
         roomCharadeData.setCurrentQuestion(null);
         return roomService.save(current.getRoom());
+    }
+
+    @Override
+    public Room changeTurn() {
+        User current = getCurrentUserInReadyGame();
+        UserCharadeState currentUserCharadeState = ((UserCharadeState) current.getUserState());
+        currentUserCharadeState.checkTurn();
+        if (current.getRoom().getIsFriendMod()){
+            throw MTException.onlyForFriendMod();
+        }
+        RoomCharadeData roomData = (RoomCharadeData) roomService.save(current.getRoom()).getRoomData();
+        return roomService.save(roomData.changeTurn());
     }
 
     @Override
