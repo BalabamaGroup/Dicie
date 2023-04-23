@@ -13,7 +13,7 @@ interface GameStoreState {
   data: Game | null;
   specfic: GameSpecific | null;
   users: UserInGame[];
-  isFriendModee: boolean;
+  isFriendMode: boolean;
 
   myTurn: boolean;
   getColor: { (): ComponentColor };
@@ -32,7 +32,7 @@ const useGameStore = create<GameStoreState>()((set, get) => ({
   data: null,
   specfic: null,
   users: [],
-  isFriendModee: false,
+  isFriendMode: false,
 
   myTurn: false,
 
@@ -77,7 +77,7 @@ const subscribeToSocket = () => {
         ...s,
         data,
         users: data.users,
-        isFriendModee: data.isFriendMode,
+        isFriendMode: data.isFriendMode,
       }));
       if (data.roomDataDto)
         useGameStore.setState((s) => ({ ...s, specfic: data.roomDataDto }));

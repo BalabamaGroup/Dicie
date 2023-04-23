@@ -8,11 +8,11 @@ import * as Styled from './index.styled';
 interface MyTurnProps {}
 
 const MyTurn = ({}: MyTurnProps) => {
-  const isFriendModee = useGameStore((s) => s.isFriendModee!);
+  const isFriendMode = useGameStore((s) => s.isFriendMode!);
   const gameSpecific = useGameStore((s) => s.specfic!);
   const otherPlayers = useGameStore((s) => s.getOtherPlayers());
 
-  if (isFriendModee)
+  if (isFriendMode)
     return (
       <Styled.MyTurn>
         <Styled.MyTurnContentWrapper>

@@ -2,6 +2,7 @@ import CharadesAPI from '@/api/game/charades';
 import { UserInGame } from '@/common/types/user';
 import Loader from '@/components/Loader';
 import Player from '@/components/Player';
+import useGameStore from '@/stores/GameStore';
 
 import * as Styled from './index.styled';
 
@@ -16,7 +17,8 @@ const OthersTurn = ({
   otherPlayers,
   currentQuestion,
 }: OthersTurnProps) => {
-  const [goingUser] = otherPlayers.filter((player) => player.state.isGoing);
+  const goingPlayer = useGameStore((s) => s.getGoingPlayer());
+  const isFriendMode = useGameStore((s) => s.isFriendMode);
 
   const onYes = () => CharadesAPI.answerQuestion({ charadeAnswer: 'YES' });
   const onNo = () => CharadesAPI.answerQuestion({ charadeAnswer: 'NO' });
@@ -33,8 +35,8 @@ const OthersTurn = ({
             return;
           }}
           tileContent={{
-            label: goingUser.state.word,
-            outsideLabel: goingUser.username,
+            label: goingPlayer.state.word,
+            outsideLabel: goingPlayer.username,
           }}
           size='large'
         />
@@ -46,16 +48,22 @@ const OthersTurn = ({
             return;
           }}
           tileContent={{
-            label: goingUser.state.word,
+            label: goingPlayer.state.word,
           }}
           size='large'
         />
         <Styled.MessageBubble currentQuestion={currentQuestion}>
           {currentQuestion || (
             <div className='writing-loader'>
-              {goingUser.username} is writing
-              <br />
-              a question <Loader.InlineDots key='loader' />
+              {isFriendMode ? (
+                <>It is {goingPlayer.username}'s turn</>
+              ) : (
+                <>
+                  {goingPlayer.username} is writing
+                  <br />
+                  a question <Loader.InlineDots key='loader' />
+                </>
+              )}
             </div>
           )}
         </Styled.MessageBubble>
