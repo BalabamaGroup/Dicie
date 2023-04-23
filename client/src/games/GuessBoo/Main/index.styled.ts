@@ -38,22 +38,11 @@ export const Main = styled.div<{
     flex-direction: column;
   }
 
-  ${({ theme }) =>
-    createGradientTransition({
-      gradient: theme.guessBooGame.setup.backgroundWait,
-      id: '-guessBooSetupBackground',
-    })}
-
-  ${({ myTurn, theme }) =>
+  transition: background-color 0.3s ease-in-out;
+  background-color: ${({ myTurn, theme }) =>
     !myTurn
-      ? transitionGradient({
-          id: '-guessBooSetupBackground',
-          gradient: theme.guessBooGame.setup.backgroundWait,
-        })
-      : transitionGradient({
-          id: '-guessBooSetupBackground',
-          gradient: theme.guessBooGame.setup.backgroundGo,
-        })}
+      ? theme.guessBooGame.main.backgroundWait
+      : theme.guessBooGame.main.backgroundGo};
 `;
 
 export const Game = styled.div<{

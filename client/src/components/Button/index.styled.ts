@@ -5,17 +5,20 @@ export const Button = styled.button<{
   isScale: boolean;
   size: 'large' | 'medium' | 'small';
   isPrimary: boolean;
+  singleChild: boolean;
 }>`
   all: unset;
   user-select: none;
   cursor: pointer;
   box-sizing: border-box;
 
+  text-align: center;
+
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
-  text-align: center;
+  justify-content: ${({ singleChild }) =>
+    singleChild ? 'center' : 'space-between'};
 
   width: ${({ isScale }) => (isScale ? '100%' : 'auto')};
 
@@ -24,12 +27,16 @@ export const Button = styled.button<{
       ? css`
           border: 2px solid transparent;
           height: 72px;
-          padding: 22px 32px;
+          padding: 22px 33px;
           border-radius: 16px;
           font-weight: 800;
           font-size: 20px;
           line-height: 20px;
           border-radius: 16px;
+          svg {
+            width: 24px;
+            height: 24px;
+          }
         `
       : size === 'medium'
       ? css`
@@ -42,16 +49,24 @@ export const Button = styled.button<{
           font-size: 16px;
           line-height: 16px;
           border-radius: 12px;
+          svg {
+            width: 20px;
+            height: 20px;
+          }
         `
       : css`
           border: 1px solid transparent;
           height: 32px;
-          padding: 8px 16px;
+          padding: 8px 12px;
           border-radius: 12px;
           font-weight: 600;
           font-size: 12px;
           line-height: 12px;
           border-radius: 8px;
+          svg {
+            width: 16px;
+            height: 16px;
+          }
         `}
 
   -webkit-font-smoothing: subpixel-antialiased;
@@ -75,6 +90,13 @@ export const Button = styled.button<{
       background: ${theme.default.background};
       border-color: ${theme.default.border};
       color: ${theme.default.text};
+
+      svg {
+        path {
+          fill: ${theme.default.text};
+        }
+      }
+
       &:hover {
         border-color: ${theme.default.borderHover};
         box-shadow: 0px 4px 16px ${theme.default.shadowHoverRGBA};
@@ -91,6 +113,12 @@ export const Button = styled.button<{
       background: ${theme.primary.background};
       border-color: ${theme.primary.border};
       color: ${theme.primary.text};
+      svg {
+        path {
+          fill: ${theme.primary.text};
+        }
+      }
+
       &:hover {
         box-shadow: 0px 4px 16px ${theme.primary.shadowHoverRGBA};
       }

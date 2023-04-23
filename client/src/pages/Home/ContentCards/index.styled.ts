@@ -38,8 +38,8 @@ export const ContentCards = styled.div<{
     flex-direction: row;
     gap: 64px;
 
-    -webkit-filter: blur(0.000001px);
-    -webkit-font-smoothing: antialiased;
+    /* -webkit-filter: blur(0.000001px); */
+    /* -webkit-font-smoothing: antialiased; */
     ${({ selectedCard }) =>
       selectedCard === 'createRoom'
         ? css`

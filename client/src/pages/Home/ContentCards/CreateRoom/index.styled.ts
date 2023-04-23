@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components';
 
-import { desktopAndSmaller } from '@/common/utils/device';
+import {
+  desktopAndSmaller,
+  tabletAndBigger,
+  tabletAndSmaller,
+} from '@/common/utils/device';
 
 import HomeContentCard from '../HomeContentCard.styled';
 
@@ -21,6 +25,10 @@ export const CreateRoomCard = styled(HomeContentCard)<{
       ? theme.page.home.createRoomCard.background
       : theme.page.home.createRoomCard.background};
 
+  box-shadow: ${({ isSelected }) =>
+    isSelected ? '-4px 4px 12px 1px' : '4px 4px 12px 1px'};
+  color: ${({ theme }) => theme.page.home.createRoomCard.shadowRGBA};
+
   &:hover {
     box-shadow: ${({ isDefault }) =>
       isDefault && '0px 0px 256px rgba(242, 245, 134, 0.75)'};
@@ -32,13 +40,24 @@ export const CreateRoomCard = styled(HomeContentCard)<{
 
   .notselected-arrow {
     position: absolute;
-    right: 0;
-    margin-right: 48px;
+    @media ${tabletAndBigger} {
+      right: 0;
+      margin-right: 48px;
+    }
+    @media ${tabletAndSmaller} {
+      bottom: 0;
+      margin-bottom: 12px;
+      transform: rotate(90deg);
+    }
     svg {
       path {
         fill: #f1f586;
       }
     }
+  }
+
+  .on-selected {
+    color: ${({ theme }) => theme.page.home.createRoomCard.text};
   }
 `;
 

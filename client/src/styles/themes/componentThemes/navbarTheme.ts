@@ -1,15 +1,16 @@
-import colors from '@/styles/colors/colors';
+import colors, { hexToRgba } from '@/styles/colors/colors';
 
 const light = {
   indigo: {
     desktop: {
-      logoText: colors.indigo[80],
-      optionText: colors.indigo[80],
+      logoText: colors.indigo[0],
+      optionText: colors.indigo[0],
       optionExpandedHeader: colors.indigo[80],
       optionExpandedBackground: colors.indigo[10],
       optionExpandedBorder: colors.indigo[0],
     },
     mobile: {
+      burgerShadowRGBA: hexToRgba(colors.indigo[80], 0.25),
       burgerBackground: colors.indigo.base,
       burgerIconFill: colors.indigo[10],
       openedBackground: colors.indigo[10],
@@ -41,6 +42,7 @@ const light = {
       optionExpandedBorder: colors.lime[0],
     },
     mobile: {
+      burgerShadowRGBA: hexToRgba(colors.lime[80], 0.25),
       burgerBackground: colors.lime.base,
       burgerIconFill: colors.lime[80],
       openedBackground: colors.lime[10],
@@ -74,6 +76,7 @@ const dark = {
       optionExpandedBorder: colors.indigo[90],
     },
     mobile: {
+      burgerShadowRGBA: hexToRgba(colors.indigo[90], 0.75),
       burgerBackground: colors.indigo.base,
       burgerIconFill: colors.indigo[10],
       openedBackground: colors.indigo[80],
@@ -105,6 +108,7 @@ const dark = {
       optionExpandedBorder: colors.lime[90],
     },
     mobile: {
+      burgerShadowRGBA: hexToRgba(colors.lime[90], 0.75),
       burgerBackground: colors.lime.base,
       burgerIconFill: colors.lime[80],
       openedBackground: colors.lime[80],

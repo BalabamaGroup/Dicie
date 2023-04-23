@@ -90,6 +90,8 @@ const Input = ({
           multiInputData={multiInputData}
         >
           <Styled.FocusRing
+            className='focus-ring'
+            multiInputData={multiInputData}
             size={size}
             isFocus={isFocus}
             isError={isError}
@@ -114,6 +116,9 @@ const Input = ({
               onClick={onIconClick}
               size={size}
               theme={componentTheme}
+              onMouseDown={(e: any) => {
+                e.preventDefault();
+              }}
             >
               <ReactSVG className='icon' src={icon} />
             </Styled.Icon>

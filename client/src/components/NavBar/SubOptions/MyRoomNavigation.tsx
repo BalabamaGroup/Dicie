@@ -3,6 +3,7 @@ import { ReactSVG } from 'react-svg';
 import styled from 'styled-components';
 
 import RoomAPI from '@/api/room';
+import Button from '@/components/Button';
 import useThemeStore from '@/stores/ThemeStore';
 import useUserStore from '@/stores/UserStore';
 import navbarTheme from '@/styles/themes/componentThemes/navbarTheme';
@@ -19,7 +20,11 @@ export const StyledMyRoomNavigation = styled.div<{}>`
   gap: 4px;
   margin-top: 10px;
 
-  .myroom-navigation-option {
+  .option-icon-return{
+    transform: rotate(90deg);
+  }
+
+  /* .myroom-navigation-option {
     cursor: pointer;
     padding: 0 8px;
     box-sizing: border-box;
@@ -69,7 +74,7 @@ export const StyledMyRoomNavigation = styled.div<{}>`
           }
         }
       }
-    }
+    } */
   }
 `;
 
@@ -81,13 +86,15 @@ const MyRoomNavigation = ({}: MyRoomNavigationProps) => {
   const navigate = useNavigate();
 
   const onReturn = async () => {
-    roomId && navigate(`/room/${roomId}`);
+    if (!roomId) return;
+    navigate(`/room/${roomId}`);
   };
 
   const onDisconnect = async () => {
-    roomId && (await RoomAPI.disconnectFromRoom(roomId));
+    if (!roomId) return;
+    await RoomAPI.disconnectFromRoom(roomId);
     await fetchUser();
-    navigate('/');
+    navigate('/home/joinRoom');
   };
 
   const theme = useThemeStore((s) => s.theme);
@@ -96,24 +103,21 @@ const MyRoomNavigation = ({}: MyRoomNavigationProps) => {
 
   return (
     <StyledMyRoomNavigation theme={componentTheme}>
-      <div className='myroom-navigation-option' onClick={onReturn}>
+      <Button size='small' color={color} onClick={onReturn} isScale>
         Return
         <ReactSVG
           className='option-icon option-icon-return'
           src='/images/svgs/arrow.full.up.svg'
         />
-      </div>
+      </Button>
       {roomId && (
-        <div
-          className='myroom-navigation-option myroom-navigation-option-disconnect'
-          onClick={onDisconnect}
-        >
+        <Button size='small' color={color} onClick={onDisconnect} isScale>
           Disconnect
           <ReactSVG
             className='option-icon option-icon-disconnect'
             src='/images/svgs/leave.svg'
           />
-        </div>
+        </Button>
       )}
     </StyledMyRoomNavigation>
   );

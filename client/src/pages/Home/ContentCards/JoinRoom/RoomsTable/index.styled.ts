@@ -17,7 +17,7 @@ export const RoomsTable = styled.div<{
   box-sizing: border-box;
   background-color: ${({ theme }) =>
     theme.page.home.joinRoomCard.roomsTableBackground};
-  /* border: 2px solid #000; */
+  border: 2px solid ${({ theme }) => theme.page.home.joinRoomCard.border};
   border-bottom: none;
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;

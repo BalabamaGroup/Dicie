@@ -35,7 +35,7 @@ export const ActionArea = styled.div<{
     max-width: 400px;
   }
 
-  ${({ isMyTurn }) => !isMyTurn && `opacity: 0.3`};
+  ${({ isMyTurn }) => !isMyTurn && `opacity: 0.5`};
   background: ${({ isWait, theme }) =>
     isWait
       ? theme.guessBooGame.setup.actionArea.backgroundWait

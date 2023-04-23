@@ -64,6 +64,7 @@ const SetupRoom = ({
             placeholder='Name'
             onChange={onChangeRoomName}
             size={'medium'}
+            // icon='/images/svgs/eye.closed.svg'
           />
 
           <Styled.MakePrivateParam className='isprivate'>
@@ -75,7 +76,9 @@ const SetupRoom = ({
                 size={'medium'}
                 color={'lime'}
               />
-              <div className='isprivate-main-text'>Make room private</div>
+              <div className='isprivate-main-text' onClick={onChangeIsPrivate}>
+                Make room private
+              </div>
             </div>
 
             {isPrivate && (
@@ -106,7 +109,10 @@ const SetupRoom = ({
                 size={'medium'}
                 color={'lime'}
               />
-              <div className='communications-main-text'>
+              <div
+                className='communications-main-text'
+                onClick={onChangeIsWithCommuninactions}
+              >
                 Enable in-game player communication
               </div>
             </div>

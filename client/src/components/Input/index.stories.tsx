@@ -37,3 +37,7 @@ export const Default: Story = {
     color: 'indigo',
   },
 };
+
+// const [localValue, setLocalValue] = useState<string>('');
+// const onChangeInput = (inputValue: string) =>
+//   setLocalValue(inputValue);
