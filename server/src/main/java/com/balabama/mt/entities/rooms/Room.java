@@ -178,11 +178,4 @@ public class Room {
     public Integer getNumberOfUsers() {
         return users.size();
     }
-
-    public String getGameName() {
-        if (game != null) {
-            return game.getName();
-        }
-        return "NONE";
-    }
 }
