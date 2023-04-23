@@ -67,5 +67,10 @@ public class GameCharadeController {
         webSocketHandler.sendRoomMessage(converter.convertRoom(service.acceptAnswer()));
     }
 
+    @PostMapping("/change_turn")
+    public void changeTurn() {
+        webSocketHandler.sendRoomMessage(converter.convertRoom(service.changeTurn()));
+    }
+
 
 }

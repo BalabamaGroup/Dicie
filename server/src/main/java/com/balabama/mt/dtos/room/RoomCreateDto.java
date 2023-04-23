@@ -13,4 +13,5 @@ public class RoomCreateDto {
     private Long gameId;
     private String name;
     private String password;
+    private Boolean isFriendMod;
 }

@@ -29,6 +29,7 @@ public class RoomDto {
     private UUID id;
     private UserDto admin;
     private Boolean isPrivate;
+    private Boolean isFriendMod;
 
     @JsonIgnore
     public List<Long> getIds() {
