@@ -175,7 +175,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         User current = getCurrentUserInReadyGame();
         UserCharadeState currentUserCharadeState = ((UserCharadeState) current.getUserState());
         currentUserCharadeState.checkTurn();
-        if (current.getRoom().getIsFriendMode()){
+        if (!current.getRoom().getIsFriendMode()){
             throw MTException.onlyForFriendMode();
         }
         RoomCharadeData roomData = (RoomCharadeData) roomService.save(current.getRoom()).getRoomData();
