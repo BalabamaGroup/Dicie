@@ -3,14 +3,19 @@ package com.balabama.mt.controllers;
 
 import com.balabama.mt.converters.UserDtoConverter;
 import com.balabama.mt.dtos.user.UserDto;
+import com.balabama.mt.entities.user.User;
 import com.balabama.mt.services.UserService;
+
 import java.security.Principal;
 import java.util.List;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,6 +41,11 @@ public class UserController {
     @GetMapping("/current")
     public UserDto getCurrentUser() {
         return converter.simpleConvert(service.getCurrent(), UserDto.class);
+    }
+
+    @PutMapping("/change_theme")
+    public UserDto changeTheme(@RequestBody User.Theme theme) {
+        return converter.simpleConvert(service.changeTheme(theme), UserDto.class);
     }
 
     @DeleteMapping("/{id}")

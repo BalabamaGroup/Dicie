@@ -107,7 +107,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         User current = getCurrentUserInReadyGame();
         UserCharadeState currentUserCharadeState = ((UserCharadeState) current.getUserState());
         currentUserCharadeState.checkTurn();
-        if (current.getRoom().getIsFriendMod()){
+        if (current.getRoom().getIsFriendMode()){
             throw MTException.onlyForNonFriendMod();
         }
         RoomCharadeData roomCharadeData = (RoomCharadeData) current.getRoom().getRoomData();
@@ -126,7 +126,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
     public Room answer(CharadeAnswer charadeAnswer) {
         User current = getCurrentUserInReadyGame();
         RoomCharadeData roomCharadeData = (RoomCharadeData) current.getRoom().getRoomData();
-        if (current.getRoom().getIsFriendMod()){
+        if (current.getRoom().getIsFriendMode()){
             throw MTException.onlyForNonFriendMod();
         }
         UserCharadeState userState = (UserCharadeState) current.getUserState();
@@ -144,7 +144,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         User current = getCurrentUserInReadyGame();
         UserCharadeState userState = (UserCharadeState) current.getUserState();
         RoomCharadeData roomCharadeData = (RoomCharadeData) current.getRoom().getRoomData();
-        if (current.getRoom().getIsFriendMod()){
+        if (current.getRoom().getIsFriendMode()){
             throw MTException.onlyForNonFriendMod();
         }
         List<UserCharadeState> userCharadeStates =
@@ -175,7 +175,7 @@ public class GameCharadeServiceImpl implements GameCharadeService {
         User current = getCurrentUserInReadyGame();
         UserCharadeState currentUserCharadeState = ((UserCharadeState) current.getUserState());
         currentUserCharadeState.checkTurn();
-        if (current.getRoom().getIsFriendMod()){
+        if (current.getRoom().getIsFriendMode()){
             throw MTException.onlyForFriendMod();
         }
         RoomCharadeData roomData = (RoomCharadeData) roomService.save(current.getRoom()).getRoomData();

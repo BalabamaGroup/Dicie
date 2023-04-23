@@ -3,7 +3,6 @@ package com.balabama.mt.services;
 import com.balabama.mt.entities.user.User;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface UserService {
 
@@ -12,6 +11,8 @@ public interface UserService {
     User getById(Long id);
 
     User getCurrent();
+
+    User changeTheme(User.Theme theme);
 
 
     void delete(Long id);

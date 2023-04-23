@@ -7,3 +7,7 @@ databaseChangeLog:
       file: db/changelog/changeset/DICIE-3.sql
   - include:
       file: db/changelog/changeset/DICIE-4.sql
+  - include:
+      file: db/changelog/changeset/DICIE-5.sql
+  - include:
+      file: db/changelog/changeset/DICIE-6.sql

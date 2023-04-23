@@ -3,6 +3,7 @@ package com.balabama.mt.entities.user;
 import com.balabama.mt.dtos.SignupRequest;
 import com.balabama.mt.entities.rooms.Room;
 import com.balabama.mt.exceptions.MTException;
+
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -46,6 +48,13 @@ public class User {
     private Long points = 0L;
     @OneToOne(mappedBy = "admin")
     private Room controlledRoom;
+    private Theme theme = Theme.AUTO;
+
+    public enum Theme {
+        AUTO,
+        LIGHT,
+        DARK
+    }
 
     public User(SignupRequest signupRequest, String password) {
         this.username = signupRequest.getUsername();

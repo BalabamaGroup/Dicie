@@ -2,7 +2,9 @@ package com.balabama.mt.dtos.room;
 
 import com.balabama.mt.dtos.user.UserDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.UUID;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,4 +18,7 @@ public class RoomDashboardDto {
     private String name;
     private UUID id;
     private UserDto admin;
+    private Boolean isPrivate = false;
+    private Boolean isFriendMode = false;
+    private String gameName;
 }

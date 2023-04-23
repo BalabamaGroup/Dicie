@@ -61,7 +61,7 @@ public class Room {
     @JoinColumn(name = "admin_id", referencedColumnName = "id")
     private User admin;
     private Boolean isPrivate = false;
-    private Boolean isFriendMod = false;
+    private Boolean isFriendMode = false;
     private String password;
 
     private void addUser(User user) {
@@ -111,7 +111,7 @@ public class Room {
     }
 
     public void finish() {
-        if (!isFriendMod) {
+        if (!isFriendMode) {
             this.roomData.earnPoints();
         }
         this.roomData = null;
@@ -177,5 +177,12 @@ public class Room {
 
     public Integer getNumberOfUsers() {
         return users.size();
+    }
+
+    public String getGameName() {
+        if (game != null) {
+            return game.getName();
+        }
+        return "NONE";
     }
 }

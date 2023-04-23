@@ -49,7 +49,7 @@ public class RoomDtoConverter extends BaseDtoConverter {
             room.setPassword(dtoIn.getPassword());
             room.setIsPrivate(true);
         }
-        room.setIsFriendMod(dtoIn.getIsFriendMod());
+        room.setIsFriendMode(dtoIn.getIsFriendMode());
         return room;
     }
 
@@ -69,7 +69,7 @@ public class RoomDtoConverter extends BaseDtoConverter {
         roomDto.setName(room.getName());
         roomDto.setId(room.getId());
         roomDto.setIsPrivate(room.getIsPrivate());
-        roomDto.setIsFriendMod(room.getIsFriendMod());
+        roomDto.setIsFriendMode(room.getIsFriendMode());
         return roomDto;
     }
 }

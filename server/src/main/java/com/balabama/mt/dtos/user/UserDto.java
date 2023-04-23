@@ -1,9 +1,12 @@
 package com.balabama.mt.dtos.user;
 
+import com.balabama.mt.entities.user.User;
 import com.balabama.mt.entities.user.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.UUID;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +22,7 @@ public class UserDto {
     private UserRole role;
     private UUID roomId;
     private Long points;
+    private User.Theme theme = User.Theme.AUTO;
 
     @Data
     @AllArgsConstructor

@@ -2,16 +2,12 @@ package com.balabama.mt.dtos.room;
 
 import com.balabama.mt.dtos.user.UserDto;
 import com.balabama.mt.dtos.user.UserDto.UserWithState;
-import com.balabama.mt.dtos.user.UserStateDto;
-import com.balabama.mt.entities.rooms.RoomData;
-import com.balabama.mt.entities.user.User;
 import com.balabama.mt.exceptions.MTException;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.Data;
@@ -29,7 +25,7 @@ public class RoomDto {
     private UUID id;
     private UserDto admin;
     private Boolean isPrivate;
-    private Boolean isFriendMod;
+    private Boolean isFriendMode;
 
     @JsonIgnore
     public List<Long> getIds() {

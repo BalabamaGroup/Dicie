@@ -5,9 +5,11 @@ import com.balabama.mt.entities.user.User;
 import com.balabama.mt.exceptions.MTException;
 import com.balabama.mt.repositories.UserRepository;
 import com.balabama.mt.services.UserService;
+
 import java.util.List;
 import java.util.UUID;
 import javax.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringExclude;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,8 +54,16 @@ public class UserServiceImpl implements UserService {
         return getByUsername(getCurrentUserName());
     }
 
+    @Override
+    public User changeTheme(User.Theme theme) {
+        var user = getCurrent();
+        user.setTheme(theme);
+        return save(user);
+    }
+
     private User getByUsername(String username) {
-        return userRepository.findByUsername(username).orElseThrow(() -> MTException.notFound(User.class, username, "Username"));
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> MTException.notFound(User.class, username, "Username"));
     }
 
     private String getCurrentUserName() {

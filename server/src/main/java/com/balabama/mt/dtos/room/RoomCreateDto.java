@@ -1,7 +1,6 @@
 package com.balabama.mt.dtos.room;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,5 +12,5 @@ public class RoomCreateDto {
     private Long gameId;
     private String name;
     private String password;
-    private Boolean isFriendMod;
+    private Boolean isFriendMode;
 }
