@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import { SidePanelViewId, SidePanelViewIdData } from '@/common/types/sidePanel';
+import { tabletAndSmaller } from '@/common/utils/device';
 import Switch from '@/components/Switch';
 import useGameStore from '@/stores/GameStore';
 import useThemeStore from '@/stores/ThemeStore';
@@ -18,17 +19,23 @@ const StyledSidePanelMainWrapper = styled.div`
   border-radius: 32px;
   transition: background 0.3s ease-in-out;
   background: ${({ theme }) => theme.bodyBackground};
+  border: 1px solid ${({ theme }) => theme.border};
+  box-shadow: 4px 4px 12px 1px ${({ theme }) => theme.shadowRGBA};
+  @media ${tabletAndSmaller} {
+    box-shadow: 0px 4px 12px 1px ${({ theme }) => theme.shadowRGBA};
+  }
 `;
 
 const StyledSidePanelMainHeader = styled.div`
-  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
-  border-radius: 32px 32px 8px 8px;
+  padding: 12px 12px 12px 12px;
+  box-sizing: border-box;
+  border-radius: 32px 32px 0 0;
   transition: background 0.3s ease-in-out;
   background: ${({ theme }) => theme.headerBackground};
+  border-bottom: 1px solid ${({ theme }) => theme.border};
 `;
 
 interface SidePanelMainProps {

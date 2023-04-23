@@ -54,9 +54,7 @@ const Input = ({
   };
 
   const onInputClick = () => {
-    console.log(1);
     if (!inputRef?.current) return;
-    console.log(2);
     inputRef.current.focus();
     onFocus();
   };
@@ -65,7 +63,6 @@ const Input = ({
     if (focusOnLoad && inputRef?.current) inputRef.current.focus();
   }, []);
 
-  // console.log(isFocus, isError, !!errorNote);
   return (
     <Styled.LabelWrapper
       className={`${className} label_wrapper`}

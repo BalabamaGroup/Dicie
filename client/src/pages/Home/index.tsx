@@ -9,14 +9,12 @@ const Home = () => {
   let { card: selectedCard } = useParams();
 
   return (
-    <Styled.HomePageDefaultBackground>
-      <Styled.HomePage selectedCard={selectedCard}>
-        <NavBar />
-        <Styled.HomeContent>
-          <ContentCards />
-        </Styled.HomeContent>
-      </Styled.HomePage>
-    </Styled.HomePageDefaultBackground>
+    <Styled.HomePage selectedCard={selectedCard}>
+      <NavBar />
+      <Styled.HomeContent>
+        <ContentCards />
+      </Styled.HomeContent>
+    </Styled.HomePage>
   );
 };
 

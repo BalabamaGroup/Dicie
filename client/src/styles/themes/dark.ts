@@ -11,11 +11,11 @@ const dark: any = {
   toast: {
     background: '#222222',
     color: '#F6F6F6',
-    success: colors.green.dark,
+    success: colors.indigo.success.base,
     successCircle: '#055F03',
-    warning: colors.orange.dark,
+    warning: colors.indigo.warning.base,
     warningCircle: '#74410B',
-    error: colors.red.dark,
+    error: colors.indigo.danger.base,
     errorCircle: '#5A0B1A',
     shadow: 'rgba(0, 0, 0, 0.85)',
   },
@@ -26,18 +26,16 @@ const dark: any = {
 
     auth: {
       background: colors.indigo[80],
-      pictureBackground: gradients.indigo_purple_dark.value,
+      pictureBackground: colors.indigo[80],
       headerMain: colors.indigo[10],
       headerSub: colors.indigo[60],
       headerAccent: colors.indigo.base,
     },
 
     home: {
-      defaultBackground: gradients.home_page_dark.value,
-      createRoomBackground:
-        'linear-gradient(117.19deg, #CBF586 0%, #F5D686 100%);',
-      joinRoomBackground:
-        'linear-gradient(117.19deg, #86C6F5 0%, #B786F5 100%);',
+      defaultBackground: gradients.home_page_dark,
+      createRoomBackground: gradients.go_dark,
+      joinRoomBackground: gradients.wait_dark,
       createRoomCard: {
         shadowRGBA: hexToRgba(colors.lime[90], 0.75),
         notSelectedBackground: colors.lime.base,
@@ -67,8 +65,8 @@ const dark: any = {
 
   guessBooGame: {
     setup: {
-      backgroundWait: colors.indigo.base,
-      backgroundGo: colors.lime.base,
+      backgroundWait: gradients.wait_dark,
+      backgroundGo: gradients.go_dark,
       actionArea: {
         backgroundWait: colors.indigo[80],
         backgroundGo: colors.lime[80],
@@ -77,7 +75,7 @@ const dark: any = {
         intructionTextGo: colors.lime[0],
         secondaryLabelText: colors.lime[60],
         secondaryLabelSpanText: colors.lime.base,
-        selectPlayerWarningText: colors.orange.dark,
+        selectPlayerWarningText: colors.indigo.warning.base,
       },
       otherPlayers: {
         backgroundWait: colors.indigo[90],
@@ -85,38 +83,39 @@ const dark: any = {
       },
     },
     main: {
-      backgroundWait: colors.indigo.base,
-      backgroundGo: colors.lime.base,
+      backgroundWait: gradients.wait_dark,
+      backgroundGo: gradients.go_dark,
       game: {
         backgroundWait: colors.indigo[80],
         backgroundGo: colors.lime[80],
+        borderWait: 'transparent',
+        borderGo: 'transparent',
+        shadowGoRGBA: hexToRgba(colors.lime[90], 0.75),
+        shadowWaitRGBA: hexToRgba(colors.indigo[90], 0.75),
         answerVisualizerDefaultWait: colors.indigo[80],
         answerVisualizerDefaultGo: colors.lime[80],
-        yes: colors.green.dark,
-        no: colors.red.dark,
-        wtf: colors.orange.dark,
+        yesWait: colors.indigo.success.base,
+        noWait: colors.indigo.danger.base,
+        wtfWait: colors.indigo.warning.base,
+        yesGo: colors.lime.success.base,
+        noGo: colors.lime.danger.base,
+        wtfGo: colors.lime.warning.base,
         myTurn: {
           askGuessFormHeader: colors.lime[0],
           askGuessFormHeaderSpan: colors.lime.base,
-          guessWarning: colors.orange.dark,
+          guessWarning: colors.indigo.warning.base,
           convoMyQuestionBackground: colors.lime.base,
           convoMyQuestionText: colors.lime[90],
           convoOthersAnswerBackground: colors.lime[90],
           convoOthersAnswerText: colors.lime[0],
           convoMyAnswerBackground: colors.lime[90],
-          convoMyAnswerAskAgainBg: colors.lime.base,
-          convoMyAnswerAskAgainText: colors.lime[90],
-          convoMyAnswerSkipTurnBg: colors.red.dark,
-          convoMyAnswerSkipTurnText: colors.lime[0],
-          convoMyAnswerContinueBg: colors.lime.base,
-          convoMyAnswerContinueText: colors.lime[90],
         },
         othersTurn: {
           myQuestionBackgroundWriting: colors.indigo[90],
           myQuestionTextWriting: colors.indigo[10],
           myQuestionBackgroundAsked: colors.indigo.base,
           myQuestionTextAsked: colors.indigo[10],
-          othersAnswerBackground: colors.indigo[90],
+          othersAnswerBackground: colors.indigo[80],
           othersAnswerText: colors.indigo[0],
         },
       },

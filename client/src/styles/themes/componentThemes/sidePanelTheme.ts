@@ -1,8 +1,10 @@
-import colors from '@/styles/colors/colors';
+import colors, { hexToRgba } from '@/styles/colors/colors';
 
 const light = {
   indigo: {
     bodyBackground: colors.indigo[10],
+    border: colors.indigo[50],
+    shadowRGBA: hexToRgba(colors.indigo[90], 0.25),
     headerBackground: colors.indigo[0],
     collapsedArrowIcon: colors.indigo[80],
     backdrop: 'rgba(24, 22, 33, 0.5);',
@@ -14,14 +16,16 @@ const light = {
     },
   },
   lime: {
-    bodyBackground: colors.lime[0],
-    headerBackground: colors.lime[10],
+    bodyBackground: colors.lime[10],
+    border: colors.indigo[50],
+    shadowRGBA: hexToRgba(colors.lime[90], 0.25),
+    headerBackground: colors.lime[0],
     collapsedArrowIcon: colors.lime[80],
     backdrop: 'rgba(33, 22, 22, 0.5)',
     chat: {
       messageBackground: colors.lime[10],
       messageText: colors.lime[80],
-      sendButtonBackground: colors.lime[10],
+      sendButtonBackground: colors.lime[0],
       sendButtonIcon: colors.lime.dark,
     },
   },
@@ -30,6 +34,8 @@ const light = {
 const dark = {
   indigo: {
     bodyBackground: colors.indigo[80],
+    border: 'transparent',
+    shadowRGBA: hexToRgba(colors.indigo[90], 0.75),
     headerBackground: colors.indigo[90],
     collapsedArrowIcon: colors.indigo[10],
     backdrop: 'rgba(24, 22, 33, 0.5);',
@@ -42,6 +48,8 @@ const dark = {
   },
   lime: {
     bodyBackground: colors.lime[80],
+    border: 'transparent',
+    shadowRGBA: hexToRgba(colors.lime[90], 0.75),
     headerBackground: colors.lime[90],
     collapsedArrowIcon: colors.lime[10],
     backdrop: 'rgba(33, 22, 22, 0.5)',

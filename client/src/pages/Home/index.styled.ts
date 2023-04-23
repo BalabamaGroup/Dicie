@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
+import {
+  createGradientTransition,
+  transitionGradient,
+} from '@/common/helpers/styleHelpers';
 import { tabletAndSmaller } from '@/common/utils/device';
 import { commonPageStyles } from '@/styles/commonStyles';
 
-export const HomePageDefaultBackground = styled.section<{}>`
-  width: 100vw;
-  height: var(--vh100);
-  background: ${({ theme }) => theme.page.home.defaultBackground};
-`;
 export const HomePage = styled.section<{
   selectedCard: string | undefined;
 }>`
@@ -18,12 +17,33 @@ export const HomePage = styled.section<{
   color: ${({ theme }) => theme.page.text};
 
   transition: background 0.4s ease-in-out;
-  background: ${({ selectedCard, theme }) =>
-    selectedCard === 'createRoom'
-      ? theme.page.home.createRoomBackground
-      : selectedCard === 'joinRoom'
-      ? theme.page.home.joinRoomBackground
-      : 'transparent'};
+
+  ${({ theme }) =>
+    createGradientTransition({
+      gradient: theme.page.home.defaultBackground,
+      id: '-homePageBg',
+    })};
+
+  ${({ selectedCard, theme }) =>
+    selectedCard === ':card' &&
+    transitionGradient({
+      id: '-homePageBg',
+      gradient: theme.page.home.defaultBackground,
+    })};
+
+  ${({ selectedCard, theme }) =>
+    selectedCard === 'createRoom' &&
+    transitionGradient({
+      id: '-homePageBg',
+      gradient: theme.page.home.createRoomBackground,
+    })};
+
+  ${({ selectedCard, theme }) =>
+    selectedCard === 'joinRoom' &&
+    transitionGradient({
+      id: '-homePageBg',
+      gradient: theme.page.home.joinRoomBackground,
+    })};
 `;
 
 export const HomeContent = styled.div`

@@ -14,6 +14,7 @@ interface ButtonProps {
 
   size?: 'small' | 'medium' | 'large';
   color?: 'auto' | 'indigo' | 'lime';
+  type?: 'success' | 'warning' | 'danger';
   isPrimary?: boolean;
   isDisabled?: boolean;
   isScale?: boolean;
@@ -25,14 +26,15 @@ const Button = ({
   onClick,
   size = 'medium',
   color,
+  type,
   isPrimary = false,
   isDisabled = false,
   isScale = false,
 }: ButtonProps) => {
   const globalTheme = useThemeStore((state) => state.theme);
   const gameStateColor = useGameStore((s) => s.getColor());
-  const componentColor = !color || color === 'auto' ? gameStateColor : color;
-  const componentTheme = buttonTheme[globalTheme][componentColor];
+  let componentColor = !color || color === 'auto' ? gameStateColor : color;
+  let componentTheme = buttonTheme[globalTheme](componentColor, type);
 
   const childrenCount = React.Children.count(children);
 
@@ -42,7 +44,6 @@ const Button = ({
       onClick={onClick}
       size={size}
       theme={componentTheme}
-      color={color}
       isPrimary={isPrimary}
       disabled={isDisabled}
       isScale={isScale}

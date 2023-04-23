@@ -12,11 +12,7 @@ export default class RoomAPI {
     const options = {
       method: 'post',
       url: `room`,
-      data: {
-        ...data,
-        password: data.password || null,
-        isFriendMode: true,
-      },
+      data,
     };
 
     return request(options).then((res: Promise<Room>) => res);

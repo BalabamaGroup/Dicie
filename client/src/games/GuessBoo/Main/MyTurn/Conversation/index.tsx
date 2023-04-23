@@ -1,7 +1,9 @@
 import CharadesAPI from '@/api/game/charades';
 import { UserInGame } from '@/common/types/user';
+import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import Player from '@/components/Player';
+import useGameStore from '@/stores/GameStore';
 
 import * as Styled from './index.styled';
 
@@ -88,17 +90,29 @@ const Conversation = ({
         <Styled.MyAnswer finalAnswer={finalAnswer}>
           {canMakeAnotherTurn ? (
             [
-              <div key={'ask-again'} className='ask-again' onClick={onAskAgain}>
+              <Button
+                type='success'
+                key={'ask-again'}
+                color='lime'
+                isPrimary
+                onClick={onAskAgain}
+              >
                 Ask again
-              </div>,
-              <div key={'skip-turn'} className='skip-turn' onClick={onSkipTurn}>
+              </Button>,
+              <Button
+                type='danger'
+                key={'ask-again'}
+                color='lime'
+                isPrimary
+                onClick={onAskAgain}
+              >
                 Skip turn
-              </div>,
+              </Button>,
             ]
           ) : (
-            <div className='continue' onClick={onAskAgain}>
+            <Button color='lime' isPrimary onClick={onAskAgain}>
               Continue
-            </div>
+            </Button>
           )}
         </Styled.MyAnswer>
       </Styled.ConversationContent>

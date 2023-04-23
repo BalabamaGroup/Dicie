@@ -57,15 +57,15 @@ export const Bar = styled.div<{
 `;
 
 export const YesBar = styled(Bar)`
-  background: ${({ theme }) => theme.guessBooGame.main.game.yes};
+  background: ${({ theme }) => theme.guessBooGame.main.game.yesWait};
 `;
 
 export const NoBar = styled(Bar)`
-  background: ${({ theme }) => theme.guessBooGame.main.game.no};
+  background: ${({ theme }) => theme.guessBooGame.main.game.yesWait};
 `;
 
 export const WtfBar = styled(Bar)`
-  background: ${({ theme }) => theme.guessBooGame.main.game.wtf};
+  background: ${({ theme }) => theme.guessBooGame.main.game.yesWait};
 `;
 
 export const EmptyBar = styled(Bar)<{ color: ComponentColor }>`

@@ -48,17 +48,17 @@ export const SetupRoomForm = styled.div`
   overflow-y: auto;
 `;
 
-export const MakePrivateParam = styled.div`
+export const Option = styled.div`
   display: flex;
   flex-direction: column;
 
-  .isprivate-main {
+  .main {
     padding: 8px 0;
     display: flex;
     flex-direction: row;
     gap: 16px;
 
-    .isprivate-main-text {
+    .main-text {
       cursor: pointer;
       font-weight: 600;
       font-size: 14px;
@@ -66,21 +66,16 @@ export const MakePrivateParam = styled.div`
     }
   }
 
-  .isprivate-settings {
+  .settings {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    .isprivate-settings-text {
+    .settings-text {
       font-size: 12px;
       font-weight: 400;
       margin: 4px 0;
     }
   }
-`;
-
-export const CommunicationsParam = styled.div`
-  display: flex;
-  flex-direction: column;
 
   .communications-main {
     cursor: pointer;
@@ -100,6 +95,11 @@ export const CommunicationsParam = styled.div`
       }
     }
   }
+`;
+
+export const CommunicationsParam = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const ButtonWrapper = styled.div<{

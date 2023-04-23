@@ -9,6 +9,7 @@ export default {
     children: 'Button',
     size: 'medium',
     color: undefined,
+    type: undefined,
     isPrimary: false,
     isDisabled: false,
     isScale: false,

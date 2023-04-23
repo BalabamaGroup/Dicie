@@ -1,5 +1,6 @@
 import CharadesAPI from '@/api/game/charades';
 import { UserInGame } from '@/common/types/user';
+import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import Player from '@/components/Player';
 import useGameStore from '@/stores/GameStore';
@@ -75,15 +76,15 @@ const OthersTurn = ({
       >
         {!mePlayer.state.lastAnswer ? (
           [
-            <Styled.Yes key='yes' onClick={onYes}>
+            <Button isPrimary key='yes' onClick={onYes} type='success'>
               Yes
-            </Styled.Yes>,
-            <Styled.No key='no' onClick={onNo}>
+            </Button>,
+            <Button isPrimary key='mo' onClick={onNo} type='danger'>
               No
-            </Styled.No>,
-            <Styled.Wtf key='wtf' onClick={onWtf}>
+            </Button>,
+            <Button isPrimary key='wtf' onClick={onWtf} type='warning'>
               Wtf
-            </Styled.Wtf>,
+            </Button>,
           ]
         ) : (
           <div className='given-answer'>{mePlayer.state.lastAnswer}</div>
