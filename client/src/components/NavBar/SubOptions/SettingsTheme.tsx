@@ -26,11 +26,12 @@ export const StyledSettingsTheme = styled.div<{}>`
     display: flex;
     align-items: center;
     justify-content: start;
-    gap: 8px;
+    gap: 14px;
     font-style: normal;
     font-weight: 600;
-    font-size: 12px;
-    line-height: 12px;
+    font-size: 14px;
+    line-height: 14px;
+    height: 20px;
     color: ${({ theme }) => theme.options.settings.text};
 
     &-auto {
@@ -72,7 +73,7 @@ const SettingsTheme = ({}: SettingsThemeProps) => {
           value={themeLS === 'auto'}
           onChange={() => {}}
         />
-        System default
+        Device
       </div>
       {themeLS !== 'auto' && [
         <div

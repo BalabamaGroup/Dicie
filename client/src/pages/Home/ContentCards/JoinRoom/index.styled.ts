@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { tabletAndSmaller } from '@/common/utils/device';
+import { tabletAndBigger, tabletAndSmaller } from '@/common/utils/device';
 
 import HomeContentCard from '../HomeContentCard.styled';
 
@@ -21,6 +21,10 @@ export const JoinRoomCard = styled(HomeContentCard)<{
       ? theme.page.home.joinRoomCard.background
       : theme.page.home.joinRoomCard.background};
 
+  box-shadow: ${({ isSelected }) =>
+    isSelected ? '4px 4px 12px 1px' : '-4px 4px 12px 1px'};
+  color: ${({ theme }) => theme.page.home.joinRoomCard.shadowRGBA};
+
   ${({ isDefault }) =>
     isDefault &&
     css`
@@ -29,10 +33,21 @@ export const JoinRoomCard = styled(HomeContentCard)<{
       }
     `}
 
+  .on-default {
+    color: ${({ theme }) => theme.page.home.joinRoomCard.notSelectedText};
+  }
+
   .notselected-arrow {
-    margin-left: 48px;
     position: absolute;
-    left: 0;
+    @media ${tabletAndBigger} {
+      left: 0;
+      margin-left: 48px;
+    }
+    @media ${tabletAndSmaller} {
+      top: 0;
+      margin-top: 12px;
+      transform: rotate(90deg);
+    }
     svg {
       path {
         fill: #8986f5;
@@ -41,6 +56,8 @@ export const JoinRoomCard = styled(HomeContentCard)<{
   }
 
   .on-selected {
+    color: ${({ theme }) => theme.page.home.joinRoomCard.text};
+
     padding: 32px 32px 0 32px;
     @media ${tabletAndSmaller} {
       padding: 32px 0 0 0;

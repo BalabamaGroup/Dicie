@@ -59,6 +59,7 @@ export const MakePrivateParam = styled.div`
     gap: 16px;
 
     .isprivate-main-text {
+      cursor: pointer;
       font-weight: 600;
       font-size: 14px;
       line-height: 20px;
@@ -82,6 +83,7 @@ export const CommunicationsParam = styled.div`
   flex-direction: column;
 
   .communications-main {
+    cursor: pointer;
     font-weight: 600;
     padding: 8px 0;
     display: flex;

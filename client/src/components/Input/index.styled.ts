@@ -90,7 +90,8 @@ export const InputWrapper = styled.div<{
   align-items: center;
   justify-content: space-between;
 
-  transition: color 0.2s ease-in-out, background 0.3s ease-in-out,
+  transition: transform 0.1s ease-in-out, color 0.2s ease-in-out,
+    background 0.3s ease-in-out,
     box-shadow 0.2s ease-in-out border-radius 0.175s ease-in-out;
 
   background: ${({ theme }) => theme.background};
@@ -112,6 +113,17 @@ export const InputWrapper = styled.div<{
     : multiInputData.isTopSeparate ? '16px 16px 0 0'
     : multiInputData.isBottomSeparate ? '0 0 16px 16px'
     : '0px'};
+
+  ${({ isFocus, multiInputData }) =>
+    !isFocus &&
+    !multiInputData &&
+    css`
+      &:hover {
+        .focus-ring {
+          color: ${({ theme }) => theme.borderHover};
+        }
+      }
+    `}
 
   .input_input {
     z-index: 11;
@@ -138,26 +150,40 @@ export const FocusRing = styled.div<{
   isError: boolean;
   withIcon: boolean;
   size: 'large' | 'medium';
+  multiInputData: multiInputDataType | undefined;
 }>`
   pointer-events: none;
-  top: 2px;
-  right: ${({ withIcon, size }) =>
-    withIcon ? (size === 'large' ? '72px' : '48px') : '2px'};
-  bottom: 2px;
-  left: 2px;
+
+  top: ${({ isFocus }) => (isFocus ? '2.5px' : '0px')};
+  left: ${({ isFocus }) => (isFocus ? '2.5px' : '0px')};
+  bottom: ${({ isFocus }) => (isFocus ? '2px' : '0px')};
+  right: ${({ isFocus, withIcon, size }) =>
+    isFocus
+      ? withIcon
+        ? size === 'large'
+          ? '72px'
+          : '48px'
+        : '2px'
+      : '0px'};
+
   position: absolute;
   box-sizing: border-box;
-  transition: box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.2s ease-in-out, color 0.2s ease-in-out,
+    top 0.15s ease-in-out, right 0.15s ease-in-out, bottom 0.15s ease-in-out,
+    left 0.15s ease-in-out;
   border-radius: 14px;
-  box-shadow: ${({ isFocus, isError, size, theme }) =>
-    isFocus &&
-    (!isError
-      ? `inset 0px 0px 0px ${size === 'large' ? '2px' : '1.5px'} ${
-          theme.focusBorder
-        }`
-      : `inset 0px 0px 0px ${size === 'large' ? '2px' : '1.5px'} ${
-          theme.focusBorderInvalid
-        }`)};
+
+  box-shadow: inset 0px 0px 0px
+    ${({ size }) => (size === 'large' ? '2px' : '1.5px')};
+
+  color: ${({ isFocus, isError, multiInputData, theme }) =>
+    !isFocus
+      ? !multiInputData
+        ? theme.border
+        : 'transparent'
+      : !isError
+      ? theme.focusBorder
+      : theme.focusBorderInvalid};
 `;
 
 export const Icon = styled.div<{
@@ -171,13 +197,6 @@ export const Icon = styled.div<{
   align-items: center;
   justify-content: center;
 
-  &:hover {
-    background-position: right;
-    svg * {
-      fill: ${({ theme }) => theme.icon.fillHover};
-    }
-  }
-
   .icon {
     height: ${({ size }) => (size === 'large' ? '20px' : '16px')};
     width: ${({ size }) => (size === 'large' ? '20px' : '16px')};
@@ -188,6 +207,12 @@ export const Icon = styled.div<{
         transition: fill 0.1s ease-in-out;
         fill: ${({ theme }) => theme.icon.fill};
       }
+    }
+  }
+
+  &:hover {
+    svg * {
+      fill: ${({ theme }) => theme.icon.fillHover};
     }
   }
 `;

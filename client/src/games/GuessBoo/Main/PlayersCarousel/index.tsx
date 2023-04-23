@@ -22,14 +22,7 @@ const PlayersCarousel = ({ otherPlayers }: PlayersCarouselProps) => {
   return (
     <Styled.PlayersCarouselWrapper className='players-carousel'>
       <Carousel color={color} maxWidth={maxWidth} itemWidth={96} gap={16}>
-        {[
-          ...otherPlayers,
-          ...otherPlayers,
-          ...otherPlayers,
-          ...otherPlayers,
-          ...otherPlayers,
-          ...otherPlayers,
-        ].map((player, i) => (
+        {otherPlayers.map((player, i) => (
           <Player
             size='medium'
             key={i}

@@ -33,7 +33,7 @@ export const MobileNavBar = styled.div<{
   border-radius: 24px;
   transition: background 0.3s ease-in-out;
   background: ${({ theme }) => theme.mobile.burgerBackground};
-  box-shadow: -8px 8px 32px rgba(0, 0, 0, 0.75);
+  box-shadow: -4px 4px 24px ${({ theme }) => theme.mobile.burgerShadowRGBA};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,6 +68,7 @@ export const MobileNavBar = styled.div<{
       max-height: 480px;
       width: 160px;
       background: ${({ theme }) => theme.mobile.openedBackground};
+      box-shadow: -4px 4px 24px ${({ theme }) => theme.mobile.burgerShadowRGBA};
       .burger-icon {
         opacity: 0;
       }

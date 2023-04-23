@@ -34,6 +34,8 @@ const Button = ({
   const componentColor = !color || color === 'auto' ? gameStateColor : color;
   const componentTheme = buttonTheme[globalTheme][componentColor];
 
+  const childrenCount = React.Children.count(children);
+
   return (
     <Styled.Button
       className={className}
@@ -44,6 +46,7 @@ const Button = ({
       isPrimary={isPrimary}
       disabled={isDisabled}
       isScale={isScale}
+      singleChild={childrenCount === 1}
     >
       {children}
     </Styled.Button>

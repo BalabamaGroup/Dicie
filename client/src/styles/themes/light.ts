@@ -37,20 +37,22 @@ const light = {
       createRoomBackground: colors.lime.base,
       joinRoomBackground: colors.indigo.base,
       createRoomCard: {
+        shadowRGBA: hexToRgba(colors.lime[90], 0.25),
         notSelectedBackground: colors.lime.base,
         notSelectedText: colors.lime[80],
         background: colors.lime[10],
         chooseGameBackground: colors.lime[0],
         text: colors.lime[80],
-        border: colors.lime[80],
+        border: colors.lime[50],
         shadowHover: shadows.lime.large,
       },
       joinRoomCard: {
+        shadowRGBA: hexToRgba(colors.indigo[90], 0.25),
         notSelectedBackground: colors.indigo.base,
-        notSelectedText: colors.indigo[80],
+        notSelectedText: colors.indigo[0],
         background: colors.indigo[10],
         text: colors.indigo[80],
-        border: colors.indigo[80],
+        border: colors.indigo[50],
         shadowHover: shadows.indigo.large,
         roomsTableBackground: colors.indigo[0],
         roomsTableUserIconFill: colors.indigo.base,
@@ -63,19 +65,16 @@ const light = {
 
   guessBooGame: {
     setup: {
-      backgroundWait: gradients.indigo_purple_light,
-      backgroundGo: gradients.lime_green_light,
+      backgroundWait: colors.indigo.base,
+      backgroundGo: colors.lime.base,
       actionArea: {
         backgroundWait: colors.indigo[10],
-        backgroundGo: colors.lime[0],
-        intructionText: colors.lime[90],
-
+        backgroundGo: colors.lime[10],
         intructionTextWait: colors.indigo[80],
         intructionSpanTextWait: colors.indigo.base,
         intructionTextGo: colors.lime[80],
-
-        secondaryLabelText: colors.lime[70],
-        secondaryLabelSpanText: colors.lime[90],
+        secondaryLabelText: colors.lime[60],
+        secondaryLabelSpanText: colors.lime.dark,
         selectPlayerWarningText: colors.orange.dark,
       },
       otherPlayers: {

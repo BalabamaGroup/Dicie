@@ -34,22 +34,26 @@ const dark: any = {
 
     home: {
       defaultBackground: gradients.home_page_dark.value,
-      createRoomBackground: colors.lime.base,
-      joinRoomBackground: colors.indigo.base,
+      createRoomBackground:
+        'linear-gradient(117.19deg, #CBF586 0%, #F5D686 100%);',
+      joinRoomBackground:
+        'linear-gradient(117.19deg, #86C6F5 0%, #B786F5 100%);',
       createRoomCard: {
+        shadowRGBA: hexToRgba(colors.lime[90], 0.75),
         notSelectedBackground: colors.lime.base,
         notSelectedText: colors.lime[80],
         background: colors.lime[80],
-        text: colors.lime[10],
+        text: colors.lime[0],
         chooseGameBackground: colors.lime[90],
         border: 'transparent',
         shadowHover: shadows.lime.large,
       },
       joinRoomCard: {
+        shadowRGBA: hexToRgba(colors.indigo[90], 0.75),
         notSelectedBackground: colors.indigo.base,
         notSelectedText: colors.indigo[10],
         background: colors.indigo[80],
-        text: colors.indigo[10],
+        text: colors.indigo[0],
         border: 'transparent',
         shadowHover: shadows.indigo.large,
         roomsTableBackground: colors.indigo[90],
@@ -63,14 +67,14 @@ const dark: any = {
 
   guessBooGame: {
     setup: {
-      backgroundWait: gradients.indigo_purple_dark,
-      backgroundGo: gradients.lime_green_dark,
+      backgroundWait: colors.indigo.base,
+      backgroundGo: colors.lime.base,
       actionArea: {
-        backgroundWait: colors.indigo[90],
-        backgroundGo: colors.lime[90],
-        intructionTextWait: colors.indigo[10],
+        backgroundWait: colors.indigo[80],
+        backgroundGo: colors.lime[80],
+        intructionTextWait: colors.indigo[0],
         intructionSpanTextWait: colors.indigo.base,
-        intructionTextGo: colors.lime[10],
+        intructionTextGo: colors.lime[0],
         secondaryLabelText: colors.lime[60],
         secondaryLabelSpanText: colors.lime.base,
         selectPlayerWarningText: colors.orange.dark,
@@ -81,8 +85,8 @@ const dark: any = {
       },
     },
     main: {
-      backgroundWait: gradients.indigo_purple_dark,
-      backgroundGo: gradients.lime_green_dark,
+      backgroundWait: colors.indigo.base,
+      backgroundGo: colors.lime.base,
       game: {
         backgroundWait: colors.indigo[90],
         backgroundGo: colors.lime[90],

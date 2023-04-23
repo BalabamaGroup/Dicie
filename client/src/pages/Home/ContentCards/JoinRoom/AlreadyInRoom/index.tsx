@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import RoomAPI from '@/api/room';
+import { mobileAndSmaller } from '@/common/utils/device';
 import Button from '@/components/Button';
 import { useRoomsQuery } from '@/GlobalQueries';
 import useUserStore from '@/stores/UserStore';
@@ -28,6 +29,10 @@ export const StyledAlreadyInRoom = styled.div<{}>`
   padding: 20px;
   box-sizing: border-box;
 
+  @media ${mobileAndSmaller} {
+    padding: 0;
+  }
+
   .modal {
     max-width: 540px;
     padding: 20px;
@@ -39,6 +44,7 @@ export const StyledAlreadyInRoom = styled.div<{}>`
     align-items: center;
     justify-content: center;
     gap: 20px;
+    box-sizing: border-box;
 
     .header {
       text-align: center;
@@ -63,6 +69,16 @@ export const StyledAlreadyInRoom = styled.div<{}>`
       display: flex;
       flex-direction: row;
       gap: 12px;
+    }
+
+    @media ${mobileAndSmaller} {
+      width: 100%;
+      height: 100%;
+      padding: 32px 16px 16px 16px;
+      .footer {
+        margin-top: auto;
+        gap: 8px;
+      }
     }
   }
 `;
@@ -105,8 +121,7 @@ const AlreadyInRoom = ({}: AlreadyInRoomProps) => {
       <div className='modal'>
         <div className='header'>You are already in the room</div>
         <div className='body'>
-          You are already connected to Room <span>«{myRoom.name}»</span> and
-          cannot connect to two rooms at the same time.
+          You are already connected to Room <span>«{myRoom.name}»</span>
           <br />
           <br />
           To join another room, you must first disconnect from your current one.
@@ -119,7 +134,7 @@ const AlreadyInRoom = ({}: AlreadyInRoomProps) => {
             isPrimary
             onClick={onReturnToCurrRoom}
           >
-            Return to room
+            Return
           </Button>
           <Button
             size='medium'
@@ -127,7 +142,7 @@ const AlreadyInRoom = ({}: AlreadyInRoomProps) => {
             color='indigo'
             onClick={onDisconnectFromCurrRoom}
           >
-            {isLoading ? 'Loading...' : 'Leave Room'}
+            {isLoading ? 'Loading...' : 'Leave'}
           </Button>
         </div>
       </div>
