@@ -16,6 +16,8 @@ const Main = () => {
   const mePlayer = useGameStore((s) => s.getMePlayer());
   const otherPlayers = useGameStore((s) => s.getOtherPlayers());
 
+  console.log(gameData);
+
   const questionIsAsked = !!gameData.roomDataDto.currentQuestion;
 
   const iHaveAnsweredQuestion = !!mePlayer.state.lastAnswer;
