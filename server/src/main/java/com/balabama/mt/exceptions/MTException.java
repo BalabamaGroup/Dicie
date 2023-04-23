@@ -45,12 +45,12 @@ public class MTException extends ResponseStatusException {
         return new MTException(HttpStatus.FORBIDDEN, "Only the administrator can do this");
     }
 
-    public static MTException onlyForNonFriendMod() {
-        return new MTException(HttpStatus.FORBIDDEN, "The action is not available when playing in friend mod");
+    public static MTException onlyForNonFriendMode() {
+        return new MTException(HttpStatus.FORBIDDEN, "The action is not available when playing in friend mode");
     }
 
-    public static MTException onlyForFriendMod() {
-        return new MTException(HttpStatus.FORBIDDEN, "The action is only available when playing friend mod");
+    public static MTException onlyForFriendMode() {
+        return new MTException(HttpStatus.FORBIDDEN, "The action is only available when playing friend mode");
     }
 
 }
