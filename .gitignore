@@ -24,3 +24,6 @@ hs_err_pid*
 /server/.mvn/
 /.idea/
 /client.iml
+client/src/common/utils/url.ts
+client/src/common/constants/index.ts
+client/src/common/utils/url.ts

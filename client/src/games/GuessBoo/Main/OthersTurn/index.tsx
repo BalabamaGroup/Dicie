@@ -51,10 +51,13 @@ const OthersTurn = ({
           size='large'
         />
         <Styled.MessageBubble currentQuestion={currentQuestion}>
-          {currentQuestion || [
-            `${goingUser.username} is writing a question `,
-            <Loader.InlineDots key='loader' />,
-          ]}
+          {currentQuestion || (
+            <div className='writing-loader'>
+              {goingUser.username} is writing
+              <br />
+              a question <Loader.InlineDots key='loader' />
+            </div>
+          )}
         </Styled.MessageBubble>
       </Styled.Qestion>
 

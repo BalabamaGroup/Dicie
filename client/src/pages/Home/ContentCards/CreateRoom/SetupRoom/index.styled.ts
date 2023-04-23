@@ -15,10 +15,6 @@ export const SetupRoom = styled.div<{
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  /* height: calc(100vh - 128px);
-  @media ${tabletAndSmaller} {
-    height: calc(100vh - 96px);
-  } */
 
   padding: 32px 32px;
   @media ${tabletAndSmaller} {
@@ -35,6 +31,7 @@ export const SetupRoom = styled.div<{
 `;
 
 export const SetupRoomHeader = styled.div`
+  text-align: center;
   flex-shrink: 0;
   width: 100%;
   font-weight: 700;

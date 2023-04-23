@@ -24,10 +24,10 @@ export const RoomContent = styled.div`
 
 export const GamePage = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: var(--vh100);
 `;
 
 export const GameContent = styled.div`
-  height: 100vh;
+  height: var(--vh100);
   box-sizing: border-box;
 `;

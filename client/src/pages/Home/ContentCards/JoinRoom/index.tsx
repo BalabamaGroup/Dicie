@@ -1,56 +1,42 @@
-import { useEffect } from 'react';
-import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
-import RoomAPI from '@/api/room';
-import { homeContentCards } from '@/common/constants';
+import Input from '@/components/Input';
 
 import useUserStore from '../../../../stores/UserStore';
+import AlreadyInRoom from './AlreadyInRoom';
+import GameSelector from './GameSelector';
 import * as Styled from './index.styled';
+import RoomsTable from './RoomsTable';
 
 interface JoinRoomCardProps {
-  selectedCard: string;
+  isSelected: boolean;
+  isDefault: boolean;
   onSelect: React.ReactEventHandler<HTMLDivElement>;
 }
 
-const JoinRoomCard = ({ selectedCard, onSelect }: JoinRoomCardProps) => {
-  const navigate = useNavigate();
+const JoinRoomCard = ({
+  isSelected,
+  isDefault,
+  onSelect,
+}: JoinRoomCardProps) => {
+  const user = useUserStore((s) => s.user);
 
-  const [user, fetchUser] = useUserStore((s) => [s.user, s.fetchUser]);
-  const { data: rooms, isLoading: roomsIsLoading } = useQuery('rooms', () => {
-    return RoomAPI.getRooms();
-  });
-
-  const onReturnToCurrRoom = () => {
-    if (user?.roomId) navigate(`/room/${user?.roomId}`);
+  const [searchValue, setSearchValue] = useState<string>('');
+  const onChangeSearchValue = (e: any) => {
+    setSearchValue(e.target.value);
   };
 
-  const onDisconnectFromCurrRoom = async () => {
-    if (user?.roomId) {
-      await RoomAPI.disconnectFromRoom(user?.roomId);
-      fetchUser();
-    }
+  const [selectedGames, setSelectedGames] = useState<number[]>([]);
+  const onToggleGameSelection = (id: number) => {
+    if (!selectedGames.includes(id)) setSelectedGames([...selectedGames, id]);
+    else setSelectedGames(selectedGames.filter((gameId) => gameId !== id));
   };
-
-  const onGoToRoom = async (id: string) => {
-    try {
-      await RoomAPI.connectToRoom(id);
-      await fetchUser();
-      navigate(`/room/${id}`);
-    } catch (e) {
-      console.log('Room is unavialable');
-    }
-  };
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
 
   return (
     <Styled.JoinRoomCard
-      isSelected={selectedCard === homeContentCards.JOIN_ROOM}
-      isDefault={selectedCard === homeContentCards.DEFAULT}
+      isSelected={isSelected}
+      isDefault={isDefault}
       onClick={onSelect}
     >
       <div className='on-default'>
@@ -66,31 +52,22 @@ const JoinRoomCard = ({ selectedCard, onSelect }: JoinRoomCardProps) => {
       />
 
       <div className='on-selected'>
-        {user?.roomId && (
-          <h4>
-            <button onClick={onReturnToCurrRoom}>Return to your room</button>
-            <button onClick={onDisconnectFromCurrRoom}>
-              Disconnect from your room
-            </button>
-          </h4>
-        )}
-        <br />
-        {roomsIsLoading ? (
-          <p>Room data is loading</p>
-        ) : (
-          rooms &&
-          rooms.map((room: any) => (
-            <div key={room.id}>
-              <button
-                disabled={!!user?.roomId}
-                onClick={() => onGoToRoom(room.id)}
-              >
-                {room.name}
-              </button>
-              <br />
-            </div>
-          ))
-        )}
+        {user?.roomId && <AlreadyInRoom />}
+
+        <div className='search-wrapper'>
+          <Input
+            value={searchValue}
+            onChange={onChangeSearchValue}
+            placeholder='Search rooms...'
+          />
+        </div>
+
+        <GameSelector
+          selectedGames={selectedGames}
+          onToggleGameSelection={onToggleGameSelection}
+        />
+
+        <RoomsTable searchValue={searchValue} selectedGames={selectedGames} />
       </div>
     </Styled.JoinRoomCard>
   );

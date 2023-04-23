@@ -21,8 +21,6 @@ const Main = () => {
   const iHaveAnsweredQuestion = !!mePlayer.state.lastAnswer;
   const iHaveWon = mePlayer.state.winRound;
 
-  const displayWidth = useWindowWidth(100);
-
   const myTurnLocal = mePlayer.state.isGoing;
   const myTurn = useGameStore((s) => s.myTurn);
   useEffect(() => {
@@ -60,10 +58,8 @@ const Main = () => {
       </Styled.Game>
       <SidePanel
         views={[{ id: 'chat' }, { id: 'guessBooAnswers', data: [] }]}
-        isCollapsed={displayWidth <= thresholds.guessBoo.main.sidePanelCollapse}
-        isHorizontal={
-          displayWidth <= thresholds.guessBoo.main.sidePanelHorizontal
-        }
+        collapseThreshhold={thresholds.guessBoo.main.sidePanelCollapse}
+        horizontalThreshhold={thresholds.guessBoo.main.sidePanelHorizontal}
       />
     </Styled.Main>
   );

@@ -1,4 +1,4 @@
-import colors from '../colors/colors';
+import colors, { hexToRgba } from '../colors/colors';
 import gradients from '../colors/gradients';
 import shadows from '../colors/shadows';
 
@@ -40,9 +40,9 @@ const light = {
         notSelectedBackground: colors.lime.base,
         notSelectedText: colors.lime[80],
         background: colors.lime[10],
-        chooseGameBackground: colors.lime[10],
+        chooseGameBackground: colors.lime[0],
         text: colors.lime[80],
-        border: colors.lime[50],
+        border: colors.lime[80],
         shadowHover: shadows.lime.large,
       },
       joinRoomCard: {
@@ -50,8 +50,13 @@ const light = {
         notSelectedText: colors.indigo[80],
         background: colors.indigo[10],
         text: colors.indigo[80],
-        border: colors.indigo[50],
+        border: colors.indigo[80],
         shadowHover: shadows.indigo.large,
+        roomsTableBackground: colors.indigo[0],
+        roomsTableUserIconFill: colors.indigo.base,
+        alreadyInRoomBackdropRGBA: hexToRgba(colors.indigo[50], 0.4),
+        alreadyInRoomBackground: colors.indigo[10],
+        alreadyInRoomText: colors.indigo[80],
       },
     },
   },

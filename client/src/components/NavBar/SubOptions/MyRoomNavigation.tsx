@@ -3,7 +3,11 @@ import { ReactSVG } from 'react-svg';
 import styled from 'styled-components';
 
 import RoomAPI from '@/api/room';
+import useThemeStore from '@/stores/ThemeStore';
 import useUserStore from '@/stores/UserStore';
+import navbarTheme from '@/styles/themes/componentThemes/navbarTheme';
+
+import { useNavbarColor } from '../useNavbarColor';
 
 export const StyledMyRoomNavigation = styled.div<{}>`
   width: 100%;
@@ -30,14 +34,15 @@ export const StyledMyRoomNavigation = styled.div<{}>`
     font-weight: 600;
     font-size: 12px;
     line-height: 12px;
-    color: #fff;
+    color: ${({ theme }) => theme.options.myRoomNavigation.buttonContent};
 
     &:hover {
-      background: #100f16;
+      background: ${({ theme }) => theme.options.myRoomNavigation.buttonHover};
     }
 
     &-disconnect {
-      color: #fc3057;
+      color: ${({ theme }) =>
+        theme.options.myRoomNavigation.buttonDesconnectContent};
     }
 
     .option-icon {
@@ -48,7 +53,7 @@ export const StyledMyRoomNavigation = styled.div<{}>`
         width: 16px;
         height: 16px;
         path {
-          fill: #fff;
+          fill: ${({ theme }) => theme.options.myRoomNavigation.buttonContent};
         }
       }
 
@@ -59,7 +64,8 @@ export const StyledMyRoomNavigation = styled.div<{}>`
       &-disconnect {
         svg {
           path {
-            fill: #fc3057;
+            fill: ${({ theme }) =>
+              theme.options.myRoomNavigation.buttonDesconnectContent};
           }
         }
       }
@@ -84,8 +90,12 @@ const MyRoomNavigation = ({}: MyRoomNavigationProps) => {
     navigate('/');
   };
 
+  const theme = useThemeStore((s) => s.theme);
+  const color = useNavbarColor();
+  const componentTheme = navbarTheme[theme][color];
+
   return (
-    <StyledMyRoomNavigation>
+    <StyledMyRoomNavigation theme={componentTheme}>
       <div className='myroom-navigation-option' onClick={onReturn}>
         Return
         <ReactSVG

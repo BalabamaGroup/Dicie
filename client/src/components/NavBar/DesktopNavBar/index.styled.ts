@@ -17,8 +17,6 @@ export const DesktopNavBar = styled.div<{}>`
   .navbar-logo,
   .navbar-link {
     transition: color 0.3s ease-in-out;
-    /* color: ${({ isWait, theme }) =>
-      isWait ? theme.navbar.wait : theme.navbar.go}; */
   }
 `;
 
@@ -29,6 +27,8 @@ export const Logo = styled.div.attrs({
   font-weight: 800;
   font-size: 32px;
   line-height: 44px;
+  color: ${({ theme }) => theme.desktop.logoText};
+  transition: color 0.3s ease-in-out;
 `;
 
 export const DesktopNavBarContent = styled.div`
@@ -50,10 +50,18 @@ export const DesktopNavBarOption = styled.div.attrs({
   position: relative;
   box-sizing: border-box;
 
+  .option-title {
+    color: ${({ theme }) => theme.desktop.optionText};
+  }
+
+  .option-content-title {
+    color: ${({ theme }) => theme.desktop.optionExpandedHeader};
+  }
+
   .option-title,
   .option-content-title {
     cursor: context-menu;
-    color: #fff;
+    transition: color 0.3s ease-in-out;
     font-weight: 800;
     font-size: 16px;
     line-height: 16px;
@@ -82,8 +90,8 @@ export const DesktopNavBarOption = styled.div.attrs({
     box-sizing: border-box;
     border-radius: 24px;
 
-    background: #181621;
-    border: 2.5px solid #8986f5;
+    background: ${({ theme }) => theme.desktop.optionExpandedBackground};
+    border: 2.5px solid ${({ theme }) => theme.desktop.optionExpandedBorder};
     box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.75);
 
     transition: opacity 0.15s ease-in-out;

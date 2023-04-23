@@ -30,7 +30,5 @@ export default {
 type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
-  args: {
-    isPrimary: true,
-  },
+  args: {},
 };

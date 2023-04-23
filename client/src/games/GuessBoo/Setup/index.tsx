@@ -21,16 +21,19 @@ const Setup = () => {
     null
   );
 
-  const displayWidth = useWindowWidth(100);
-
   const isWait = useColorStore((s) => s.color.guessBoo) === 'indigo';
   const setWait = useColorStore((s) => () => s.setWait('guessBoo'));
   const setGo = useColorStore((s) => () => s.setGo('guessBoo'));
 
   useEffect(() => {
     const localIsGo = isMyTurn && !isMeReady;
-    if (localIsGo && isWait) setGo();
-    else if (!localIsGo && !isWait) setWait();
+    if (localIsGo && isWait) {
+      setGo();
+      useGameStore.setState((s) => ({ ...s, myTurn: true }));
+    } else if (!localIsGo && !isWait) {
+      setWait();
+      useGameStore.setState((s) => ({ ...s, myTurn: false }));
+    }
   }, [isMyTurn, isMeReady]);
 
   return (
@@ -54,11 +57,9 @@ const Setup = () => {
 
       <SidePanel
         views={[{ id: 'chat' }]}
-        color={isWait ? 'indigo' : 'lime'}
-        isCollapsed={displayWidth < thresholds.guessBoo.setup.sidePanelCollapse}
-        isHorizontal={
-          displayWidth < thresholds.guessBoo.setup.sidePanelHorizontal
-        }
+        // color={isWait ? 'indigo' : 'lime'}
+        collapseThreshhold={thresholds.guessBoo.setup.sidePanelCollapse}
+        horizontalThreshhold={thresholds.guessBoo.setup.sidePanelHorizontal}
       />
     </Styled.Setup>
   );

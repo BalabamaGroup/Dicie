@@ -5,7 +5,7 @@ export const MobileNavBarBackdrop = styled.div<{
 }>`
   z-index: 1000;
   position: fixed;
-  height: 100vh;
+  height: var(--vh100);
   width: 100vw;
   top: 0;
   bottom: 0;
@@ -31,7 +31,8 @@ export const MobileNavBar = styled.div<{
   max-height: 48px;
   width: 48px;
   border-radius: 24px;
-  background: #8986f5;
+  transition: background 0.3s ease-in-out;
+  background: ${({ theme }) => theme.mobile.burgerBackground};
   box-shadow: -8px 8px 32px rgba(0, 0, 0, 0.75);
   display: flex;
   align-items: center;
@@ -50,21 +51,11 @@ export const MobileNavBar = styled.div<{
     transition: opacity 0.1s ease-in-out;
     svg {
       rect {
-        fill: #fff;
+        transition: fill 0.3s ease-in-out;
+        fill: ${({ theme }) => theme.mobile.burgerIconFill};
       }
     }
   }
-
-  /* prettier-ignore
-  @keyframes disable-hover {
-    0%   { .content .option:hover { background-color: #fff !important};}
-    99%  { .content .option:hover { background-color: #fff !important};}
-    100% { .content .option:hover {color: red} }
-  }
-
-  .content .option:hover {
-    color: red;
-  } */
 
   transition: width 0.3s ease-in-out, max-height 0.3s ease-in-out,
     background 0.3s ease-in;
@@ -76,19 +67,16 @@ export const MobileNavBar = styled.div<{
       height: auto;
       max-height: 480px;
       width: 160px;
-      background: #181621;
-      /* animation: disable-hover 10s infinite; */
+      background: ${({ theme }) => theme.mobile.openedBackground};
       .burger-icon {
         opacity: 0;
       }
-    `}
-
-  ${({ isSubOption }) =>
+    `}/* ${({ isSubOption }) =>
     isSubOption &&
     css`
       background: #100f16;
       transition: background 0s ease-in;
-    `}
+    `} */
 `;
 
 export const MobileNavBarContent = styled.div<{
@@ -140,11 +128,11 @@ export const MobileNavBarOption = styled.div`
   font-weight: 700;
   font-size: 14px;
   line-height: 19px;
-  color: #fff;
+  color: ${({ theme }) => theme.mobile.optionText};
 
   background: transparent;
   &:hover {
-    background: #100f16;
+    background: ${({ theme }) => theme.mobile.optionBackgroundHover};
   }
 
   .option-icon {
@@ -154,15 +142,15 @@ export const MobileNavBarOption = styled.div`
       width: 20px;
       height: 20px;
       path {
-        fill: #8986f5;
+        fill: ${({ theme }) => theme.mobile.optionIconFill};
       }
     }
   }
 `;
 
 export const MobileNavBarOptionHeader = styled(MobileNavBarOption)`
-  color: #8986f5;
-  background: #181621;
+  color: ${({ theme }) => theme.mobile.optionExpandedHeaderContent};
+  background: ${({ theme }) => theme.mobile.optionExpandedHeaderBackground};
   justify-content: start;
 
   .option-icon {
@@ -173,18 +161,18 @@ export const MobileNavBarOptionHeader = styled(MobileNavBarOption)`
       width: 12px;
       height: 12px;
       path {
-        fill: #8986f5;
+        fill: ${({ theme }) => theme.mobile.optionExpandedHeaderContent};
       }
     }
   }
 
   &:hover {
-    background: #181621;
-    color: #fff;
+    /* background: #181621; */
+    color: ${({ theme }) => theme.mobile.optionExpandedHeaderContentHover};
     .option-icon {
       svg {
         path {
-          fill: #fff;
+          fill: ${({ theme }) => theme.mobile.optionExpandedHeaderContentHover};
         }
       }
     }

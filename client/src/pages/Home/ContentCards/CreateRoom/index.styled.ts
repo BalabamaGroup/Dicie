@@ -1,19 +1,19 @@
 import styled, { css } from 'styled-components';
 
-import { homeContentCards } from '@/common/constants';
 import { desktopAndSmaller } from '@/common/utils/device';
 
-import { HomeContentCard } from '../index.styled';
+import HomeContentCard from '../HomeContentCard.styled';
 
 export const CreateRoomCard = styled(HomeContentCard)<{
   isSelected: boolean;
   isDefault: boolean;
 }>`
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   position: relative;
-
-  transition: background 0.3s ease-in-out, border 0.3s ease-in-out,
-    box-shadow 0.15s ease-in-out;
   border: 2px solid ${({ theme }) => theme.page.home.createRoomCard.border};
+
   background: ${({ isDefault, isSelected, theme }) =>
     isDefault
       ? theme.page.home.createRoomCard.notSelectedBackground

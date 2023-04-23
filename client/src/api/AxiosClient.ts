@@ -1,10 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
-import routes from '@/common/constants/routes';
 import { apiUrl } from '@/common/utils/url';
 import Toast from '@/components/Toast';
-
-import useUserStore from '../stores/UserStore';
 
 axios.defaults.withCredentials = true;
 
@@ -13,7 +10,7 @@ class AxiosClient {
 
   constructor() {
     this.host = axios.create({
-      baseURL: apiUrl(),
+      baseURL: apiUrl,
       responseType: 'json',
       timeout: 30000,
     });

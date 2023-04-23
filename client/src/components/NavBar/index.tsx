@@ -2,8 +2,6 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { tabletAndSmaller } from '@/common/utils/device';
-import useAuth from '@/hooks/useAuth';
-import useColorStore from '@/stores/ColorStore';
 import useUserStore from '@/stores/UserStore';
 
 import DesktopNavBar from './DesktopNavBar';
@@ -19,18 +17,13 @@ export const NavbarDeviceWidthWrapper = styled.div<{}>`
   }
 `;
 
-interface NavBarProps {
-  page?: 'home' | 'room' | 'guessBoo';
-}
+interface NavBarProps {}
 
-const NavBar = ({ page }: NavBarProps) => {
+const NavBar = ({}: NavBarProps) => {
   const location = useLocation();
 
   const withHome = location.pathname !== '/';
   const withMyRoom = !!useUserStore((s) => s.user!.roomId);
-
-  const { signOut } = useAuth();
-  const color = useColorStore((state) => state.color[page || 'home']);
 
   return (
     <NavbarDeviceWidthWrapper>

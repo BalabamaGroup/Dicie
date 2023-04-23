@@ -1,52 +1,50 @@
-import eyeClosed from '/images/svgs/eye.closed.svg';
-import eyeOpened from '/images/svgs/eye.opened.svg';
-import React, { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { RoleTypes } from '@/common/constants';
-import {
-    getEmailValidationData, getMatchPasswordValidationData, getPasswordValidationData,
-    getUsernameValidationData
-} from '@/common/utils/validation';
+import routes from '@/common/constants/routes';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import MultiInput from '@/components/MultiInput';
-import useAuth from '@/hooks/useAuth';
+import useAuthPageStore from '@/stores/AuthPageStore';
 import useThemeStore from '@/stores/ThemeStore';
+import useUserStore from '@/stores/UserStore';
 
 import * as Styled from './index.styled';
 
-interface signUpProps {
-  username: {
-    value: string;
-    onChange: React.ChangeEventHandler<HTMLInputElement>;
+const SignUpForm = () => {
+  // prettier-ignore
+  const [username, usernameIsValid, validateUsername, usernameErrorNote] = useAuthPageStore(
+    (s) => [s.username, s.usernameIsValid, s.validateUsername, s.usernameErrorNote]);
+  const onChangeUsername = (e: any) => {
+    useAuthPageStore.setState((s) => ({ ...s, username: e.target.value }));
+    validateUsername();
   };
-  email: {
-    value: string;
-    onChange: React.ChangeEventHandler<HTMLInputElement>;
-  };
-  password: {
-    value: string;
-    onChange: React.ChangeEventHandler<HTMLInputElement>;
-  };
-  matchPassword: {
-    value: string;
-    onChange: React.ChangeEventHandler<HTMLInputElement>;
-  };
-}
 
-const SignUpForm = ({
-  username,
-  email,
-  password,
-  matchPassword,
-}: signUpProps) => {
-  const { signUp, getTakenSignUpInfo } = useAuth();
+  // prettier-ignore
+  const [email, emailIsValid, validateEmail, emailErrorNote] = useAuthPageStore(
+    (s) => [s.email, s.emailIsValid, s.validateEmail, s.emailErrorNote]);
+  const onChangeEmail = (e: any) => {
+    useAuthPageStore.setState((s) => ({ ...s, email: e.target.value }));
+    validateEmail();
+  };
 
-  const [usernameIsValid, setUsernameIsValid] = useState(true);
-  const [emailIsValid, setEmailIsValid] = useState(true);
-  const [passwordIsValid, setPasswordIsValid] = useState(true);
-  const [matchPasswordIsValid, setMatchPasswordIsValid] = useState(true);
+  // prettier-ignore
+  const [password, passwordIsValid, validatePassword, passwordErrorNote] = useAuthPageStore(
+    (s) => [s.password, s.passwordIsValid, s.validatePassword, s.passwordErrorNote]);
+  const onChangePassword = (e: any) => {
+    useAuthPageStore.setState((s) => ({ ...s, password: e.target.value }));
+    validatePassword();
+  };
+
+  // prettier-ignore
+  const [matchPassword, matchPasswordIsValid, validateMatchPassword, matchPasswordErrorNote] = useAuthPageStore(
+    (s) => [s.matchPassword, s.matchPasswordIsValid, s.validateMatchPassword, s.matchPasswordErrorNote]);
+  useState<string>('');
+  const onChangeMatchPassword = (e: any) => {
+    useAuthPageStore.setState((s) => ({ ...s, matchPassword: e.target.value }));
+    validateMatchPassword();
+  };
 
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
   const togglePasswordIsvisible = () =>
@@ -56,43 +54,17 @@ const SignUpForm = ({
   const toggleMatchPasswordIsvisible = () =>
     setMatchPasswordIsVisible(!matchPasswordIsVisible);
 
-  const [takenUsernames, setTakenUsernames] = useState<string[]>([]);
-  const [takenEmails, setTakenEmails] = useState<string[]>([]);
-
-  const userameValidationData = getUsernameValidationData();
-  const emailValidationData = getEmailValidationData();
-  const passwordValidationData = getPasswordValidationData();
-  const matchPasswordValidationData = getMatchPasswordValidationData();
-
+  const signUp = useUserStore((s) => s.signUp);
+  const navigate = useNavigate();
   const onSignUp = async (e: any) => {
     e.preventDefault();
-    signUp({
-      username: username.value,
-      password: password.value,
-      email: email.value,
+    await signUp({
+      username: username,
+      password: password,
+      email: email,
       role: RoleTypes.USER,
-    });
+    }).then(() => navigate(routes.HOME));
   };
-
-  useQuery('takenSignUpInfo', async () => {
-    const takenSignUpInfo = await getTakenSignUpInfo();
-
-    const usernames: string[] = [];
-    const emails: string[] = [];
-
-    takenSignUpInfo.forEach(
-      (signUpInfo: { username: string; email: string }) => {
-        usernames.push(signUpInfo.username);
-        emails.push(signUpInfo.email);
-      }
-    );
-
-    setTakenUsernames(usernames);
-    setTakenEmails(emails);
-  });
-
-  const eyeClosedSvg = eyeClosed;
-  const eyeOpenedSvg = eyeOpened;
 
   const theme = useThemeStore((state) => state.theme);
   const defaultColor = theme === 'light' ? 'indigo' : 'lime';
@@ -110,90 +82,66 @@ const SignUpForm = ({
       <Styled.MultiInputWrapper inputCount={4}>
         <MultiInput className='auth_multiinput' isScale={true}>
           <Input
-            isVibrant
             id={'signUp-username'}
             key={'signUp-username'}
             size='large'
             color='indigo'
             placeholder='Username'
-            value={username.value}
-            onChange={username.onChange}
-            isValid={usernameIsValid}
-            setIsValid={setUsernameIsValid}
-            validationData={{
-              ...userameValidationData.validation,
-            }}
-            existanceData={{
-              values: takenUsernames,
-              ...userameValidationData.existance,
-            }}
+            value={username}
+            onChange={onChangeUsername}
+            isError={!usernameIsValid}
+            errorNote={usernameErrorNote}
           />
 
           <Input
-            isVibrant
             id={'signUp-email'}
             key={'signUp-email'}
             size='large'
             color='indigo'
             type={'email'}
             placeholder='Email'
-            value={email.value}
-            onChange={email.onChange}
-            isValid={emailIsValid}
-            setIsValid={setEmailIsValid}
-            validationData={{
-              ...emailValidationData.validation,
-            }}
-            existanceData={{
-              values: takenEmails,
-              ...emailValidationData.existance,
-            }}
+            value={email}
+            onChange={onChangeEmail}
+            isError={!emailIsValid}
+            errorNote={emailErrorNote}
           />
 
           <Input
-            isVibrant
             id={'signUp-password'}
             key={'signUp-passsword'}
             size='large'
             color='indigo'
             type={passwordIsVisible ? 'text' : 'password'}
             placeholder='Password'
-            value={password.value}
-            onChange={password.onChange}
-            iconData={{
-              iconSrc: passwordIsVisible ? eyeClosedSvg : eyeOpenedSvg,
-              onClick: togglePasswordIsvisible,
-            }}
-            isValid={passwordIsValid}
-            setIsValid={setPasswordIsValid}
-            validationData={{
-              ...passwordValidationData.validation,
-            }}
+            value={password}
+            onChange={onChangePassword}
+            icon={
+              passwordIsVisible
+                ? '/images/svgs/eye.closed.svg'
+                : '/images/svgs/eye.opened.svg'
+            }
+            onIconClick={togglePasswordIsvisible}
+            isError={!passwordIsValid}
+            errorNote={passwordErrorNote}
           />
 
           <Input
-            isVibrant
             id={'signUp-passsword-repeat'}
             key={'signUp-passsword-repeat'}
             size='large'
             color='indigo'
             type={matchPasswordIsVisible ? 'text' : 'password'}
             placeholder='Repeat password'
-            value={matchPassword.value}
-            onChange={matchPassword.onChange}
-            iconData={{
-              iconSrc: matchPasswordIsVisible
+            value={matchPassword}
+            onChange={onChangeMatchPassword}
+            icon={
+              matchPasswordIsVisible
                 ? '/images/svgs/eye.closed.svg'
-                : '/images/svgs/eye.opened.svg',
-              onClick: toggleMatchPasswordIsvisible,
-            }}
-            isValid={matchPasswordIsValid}
-            setIsValid={setMatchPasswordIsValid}
-            customTest={{
-              test: () => password.value === matchPassword.value,
-              ...matchPasswordValidationData.custom,
-            }}
-            customDependancies={[password.value]}
+                : '/images/svgs/eye.opened.svg'
+            }
+            onIconClick={toggleMatchPasswordIsvisible}
+            isError={!matchPasswordIsValid}
+            errorNote={matchPasswordErrorNote}
           />
         </MultiInput>
       </Styled.MultiInputWrapper>

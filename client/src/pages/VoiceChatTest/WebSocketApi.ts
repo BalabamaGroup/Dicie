@@ -1,14 +1,16 @@
 class WebSocketApi {
+  events: any = {};
+
   constructor() {
     this.events = {};
   }
 
-  send(data) {
+  send(data: any) {
     const { event, payload } = data;
-    this.events[event].forEach((cb) => cb(payload));
+    this.events[event].forEach((cb: any) => cb(payload));
   }
 
-  on(event, cb) {
+  on(event: any, cb: any) {
     if (!this.events[event]) this.events[event] = [];
     this.events[event].push(cb);
   }

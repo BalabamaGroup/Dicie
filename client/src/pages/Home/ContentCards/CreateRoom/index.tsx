@@ -3,18 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import RoomAPI from '@/api/room';
-import { homeContentCards } from '@/common/constants';
 
 import ChooseGame from './ChooseGame';
 import * as Styled from './index.styled';
 import SetupRoom from './SetupRoom';
 
 interface CreateRoomCardProps {
-  selectedCard: string;
+  isSelected: boolean;
+  isDefault: boolean;
   onSelect: React.ReactEventHandler<HTMLDivElement>;
 }
 
-const CreateRoomCard = ({ selectedCard, onSelect }: CreateRoomCardProps) => {
+const CreateRoomCard = ({
+  isSelected,
+  isDefault,
+  onSelect,
+}: CreateRoomCardProps) => {
   const navigate = useNavigate();
 
   const [roomName, setRoomName] = useState('');
@@ -62,8 +66,8 @@ const CreateRoomCard = ({ selectedCard, onSelect }: CreateRoomCardProps) => {
 
   return (
     <Styled.CreateRoomCard
-      isSelected={selectedCard === homeContentCards.CREATE_ROOM}
-      isDefault={selectedCard === homeContentCards.DEFAULT}
+      isSelected={isSelected}
+      isDefault={isDefault}
       onClick={onSelect}
     >
       <ReactSVG

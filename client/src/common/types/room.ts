@@ -9,6 +9,14 @@ export type Room = {
 };
 export default Room;
 
+export type RoomOutside = {
+  id: string;
+  name: string;
+  numberOfUsers: number | null;
+  start: boolean;
+  admin: User;
+};
+
 export type Game = Omit<Room, 'users'> & {
   roomDataDto: GameSpecific;
   users: UserInGame[];

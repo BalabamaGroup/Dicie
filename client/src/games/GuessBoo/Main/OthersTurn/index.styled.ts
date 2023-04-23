@@ -85,6 +85,13 @@ export const MessageBubble = styled.div<{
     height: 96px;
   }
 
+  .writing-loader {
+    display: block;
+    * {
+      display: inline-block;
+    }
+  }
+
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
   ${({ currentQuestion }) =>
     !currentQuestion

@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 
-import { HomeContentCard } from '../index.styled';
+import { tabletAndSmaller } from '@/common/utils/device';
+
+import HomeContentCard from '../HomeContentCard.styled';
 
 export const JoinRoomCard = styled(HomeContentCard)<{
   isSelected: boolean;
@@ -10,7 +12,8 @@ export const JoinRoomCard = styled(HomeContentCard)<{
   color: ${({ theme }) => theme.page.home.joinRoomCard.text};
   border: 2px solid ${({ theme }) => theme.page.home.joinRoomCard.border};
 
-  transition: background 0.3s ease-in-out;
+  box-sizing: border-box;
+
   background: ${({ isDefault, isSelected, theme }) =>
     isDefault
       ? theme.page.home.joinRoomCard.notSelectedBackground
@@ -26,21 +29,6 @@ export const JoinRoomCard = styled(HomeContentCard)<{
       }
     `}
 
-  ${({ isSelected }) =>
-    isSelected
-      ? css`
-          pointer-events: none;
-          & * {
-            pointer-events: all;
-          }
-        `
-      : css`
-          pointer-events: all;
-          & * {
-            pointer-events: none;
-          }
-        `};
-
   .notselected-arrow {
     margin-left: 48px;
     position: absolute;
@@ -49,6 +37,22 @@ export const JoinRoomCard = styled(HomeContentCard)<{
       path {
         fill: #8986f5;
       }
+    }
+  }
+
+  .on-selected {
+    padding: 32px 32px 0 32px;
+    @media ${tabletAndSmaller} {
+      padding: 32px 0 0 0;
+    }
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+    .search-wrapper {
+      max-width: 400px;
     }
   }
 `;

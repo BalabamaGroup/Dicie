@@ -12,6 +12,7 @@
   "settings": {
     "import/resolver": {
       "alias": [
+        ["@", "./src/"],
         ["@/api", "./src/api"],
         ["@/common", "./src/common"],
         ["@/components", "./src/components"],

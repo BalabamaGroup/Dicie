@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
 import { ComponentColor } from '@/common/types/theme';
@@ -22,10 +22,8 @@ const Carousel = ({
 }: CarouselProps) => {
   const [shift, setShift] = useState<number>(0);
 
-  let width = maxWidth;
-
-  const itemsNum = Math.floor((width - 128) / (itemWidth + gap));
-  width = itemsNum * itemWidth + (itemsNum - 1) * gap;
+  const itemsNum = Math.floor((maxWidth - 128) / (itemWidth + gap));
+  let width = itemsNum * itemWidth + (itemsNum - 1) * gap;
 
   const shiftMinus = () => {
     if (shift === 0) return;
@@ -36,6 +34,11 @@ const Carousel = ({
     if (shift === children.length - itemsNum) return;
     setShift(shift + 1);
   };
+
+  useEffect(() => {
+    if (shift > children.length - itemsNum)
+      setShift(children.length - itemsNum);
+  }, [itemsNum]);
 
   return (
     <Styled.Carousel maxWidth={maxWidth}>
