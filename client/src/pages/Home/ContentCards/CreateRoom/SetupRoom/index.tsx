@@ -21,6 +21,9 @@ interface RoomSetupFormProps {
   roomPassword: string;
   onChangeRoomPassword: React.ChangeEventHandler<HTMLInputElement>;
 
+  isFriendMode: boolean;
+  onChangeIsFriendMode: React.MouseEventHandler<HTMLDivElement>;
+
   isWithCommuninactions: boolean;
   onChangeIsWithCommuninactions: React.MouseEventHandler<HTMLDivElement>;
   selectedCommunicationOption: string;
@@ -40,6 +43,8 @@ const SetupRoom = ({
   onChangeIsPrivate,
   roomPassword,
   onChangeRoomPassword,
+  isFriendMode,
+  onChangeIsFriendMode,
   isWithCommuninactions,
   onChangeIsWithCommuninactions,
   selectedCommunicationOption,
@@ -96,6 +101,30 @@ const SetupRoom = ({
                   onChange={onChangeRoomPassword}
                   size={'medium'}
                 />
+              </div>
+            )}
+          </Styled.MakePrivateParam>
+
+          <Styled.MakePrivateParam className='isprivate'>
+            <div className='isprivate-main'>
+              <Toggle
+                className='isprivate-main-toggle'
+                value={isFriendMode}
+                onChange={onChangeIsFriendMode}
+                size={'medium'}
+                color={'lime'}
+              />
+              <div className='isprivate-main-text' onClick={onChangeIsPrivate}>
+                Friend Mode
+              </div>
+            </div>
+
+            {isFriendMode && (
+              <div className='isprivate-settings'>
+                <div className='isprivate-settings-text'>
+                  Friend mode implies that you will communicate with people in
+                  the room using some other communication service.
+                </div>
               </div>
             )}
           </Styled.MakePrivateParam>

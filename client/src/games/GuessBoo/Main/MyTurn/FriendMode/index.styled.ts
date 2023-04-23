@@ -51,9 +51,15 @@ export const SpacePassTurnInstruction = styled.div<{ isVisible: boolean }>`
   font-weight: 600;
   font-size: 24px;
   line-height: 24px;
+
+  color: ${({ theme }) =>
+    theme.guessBooGame.main.game.myTurn.askGuessFormHeader};
+
   span {
     color: #a3a90e;
     font-weight: 900;
+    color: ${({ theme }) =>
+      theme.guessBooGame.main.game.myTurn.askGuessFormHeaderSpan};
   }
 
   transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out,

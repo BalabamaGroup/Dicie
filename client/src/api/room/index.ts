@@ -6,7 +6,7 @@ export default class RoomAPI {
   static createRoom = (data: {
     gameId: number;
     name: string;
-    password: string;
+    password: string | null;
     isFriendMode: boolean;
   }): Promise<Room> => {
     const options = {

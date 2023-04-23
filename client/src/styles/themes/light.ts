@@ -95,13 +95,12 @@ const light = {
         wtf: colors.orange.light,
         myTurn: {
           askGuessFormHeader: colors.lime[80],
+          askGuessFormHeaderSpan: colors.lime.dark,
           guessWarning: colors.orange.dark,
           convoMyQuestionBackground: colors.lime.base,
           convoMyQuestionText: colors.lime[80],
-
           convoOthersAnswerBackground: colors.lime[10],
           convoOthersAnswerText: colors.lime[80],
-
           convoMyAnswerBackground: colors.lime[10],
           convoMyAnswerAskAgainBg: colors.lime.base,
           convoMyAnswerAskAgainText: colors.lime[80],
