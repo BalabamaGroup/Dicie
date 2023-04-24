@@ -5,7 +5,6 @@ import { ChatMessage } from '@/common/types/chat';
 import { ComponentColor } from '@/common/types/theme';
 import Input from '@/components/Input';
 import Scroll from '@/components/Scroll';
-import useKeyPressListener from '@/hooks/useKeyPressListener';
 import useChatStore from '@/stores/ChatStore';
 import useColorStore from '@/stores/ColorStore';
 import useGameStore from '@/stores/GameStore';

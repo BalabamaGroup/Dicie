@@ -21,6 +21,7 @@ const FriendMode = ({}: FriendModeProps) => {
   const onChangeInputValue = (e: any) => setInputValue(e.target.value);
 
   const onPassTurn = async () => {
+    if (isGuess) return;
     await CharadesAPI.passTurnFM();
   };
 
@@ -30,7 +31,7 @@ const FriendMode = ({}: FriendModeProps) => {
   };
 
   useKeyPressListener({
-    keyCode: 'Space',
+    keys: ['Space'],
     onPress: onPassTurn,
   });
 

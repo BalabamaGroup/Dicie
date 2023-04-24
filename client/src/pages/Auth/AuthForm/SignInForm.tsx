@@ -64,6 +64,7 @@ const SignInForm = ({}: signInProps) => {
             placeholder='Username'
             value={username}
             onChange={onChangeUsername}
+            onEnter={onSignIn}
           />
           <Input
             id={'signUp-username'}
@@ -80,6 +81,7 @@ const SignInForm = ({}: signInProps) => {
             onIconClick={togglePasswordIsvisible}
             value={password}
             onChange={onChangePassword}
+            onEnter={onSignIn}
           />
         </MultiInput>
       </Styled.MultiInputWrapper>

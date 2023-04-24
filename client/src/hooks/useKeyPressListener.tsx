@@ -1,22 +1,25 @@
 import { useEffect } from 'react';
 
-interface useKeyPressListenerProps {
-  keyCode: string;
-  onPress: Function;
-}
-
 const useKeyPressListener = ({
-  keyCode,
+  keys,
   onPress,
-}: useKeyPressListenerProps) => {
-  useEffect(() => {
-    const keyPressListener = (event: any) => {
-      if (event.code === keyCode) onPress();
-    };
+}: {
+  keys: string[];
+  onPress: Function;
+}) => {
+  const onKeyDown = (e: any) => {
+    if (keys.some((key) => e.key === key)) {
+      e.preventDefault();
+      onPress();
+    }
+  };
 
-    document.addEventListener('keydown', keyPressListener);
-    return () => document.removeEventListener('keydown', keyPressListener);
-  }, []);
+  useEffect(() => {
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [onKeyDown]);
 };
 
 export default useKeyPressListener;

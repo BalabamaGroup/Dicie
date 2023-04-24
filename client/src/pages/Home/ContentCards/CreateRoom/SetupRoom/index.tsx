@@ -69,6 +69,11 @@ const SetupRoom = ({
             placeholder='Name'
             onChange={onChangeRoomName}
             size={'medium'}
+            onEnter={
+              !isMobileSetupCompleted
+                ? onToggleIsMobileSetupCompleted
+                : onCreateRoom
+            }
             // icon='/images/svgs/eye.closed.svg'
           />
 
@@ -100,6 +105,11 @@ const SetupRoom = ({
                   placeholder='Room password'
                   onChange={onChangeRoomPassword}
                   size={'medium'}
+                  onEnter={
+                    !isMobileSetupCompleted
+                      ? onToggleIsMobileSetupCompleted
+                      : onCreateRoom
+                  }
                 />
               </div>
             )}

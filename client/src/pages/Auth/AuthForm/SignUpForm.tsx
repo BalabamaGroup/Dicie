@@ -91,6 +91,7 @@ const SignUpForm = () => {
             onChange={onChangeUsername}
             isError={!usernameIsValid}
             errorNote={usernameErrorNote}
+            onEnter={onSignUp}
           />
 
           <Input
@@ -104,6 +105,7 @@ const SignUpForm = () => {
             onChange={onChangeEmail}
             isError={!emailIsValid}
             errorNote={emailErrorNote}
+            onEnter={onSignUp}
           />
 
           <Input
@@ -123,6 +125,7 @@ const SignUpForm = () => {
             onIconClick={togglePasswordIsvisible}
             isError={!passwordIsValid}
             errorNote={passwordErrorNote}
+            onEnter={onSignUp}
           />
 
           <Input
@@ -142,6 +145,7 @@ const SignUpForm = () => {
             onIconClick={toggleMatchPasswordIsvisible}
             isError={!matchPasswordIsValid}
             errorNote={matchPasswordErrorNote}
+            onEnter={onSignUp}
           />
         </MultiInput>
       </Styled.MultiInputWrapper>

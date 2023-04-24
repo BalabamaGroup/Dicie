@@ -51,7 +51,7 @@ const Input = ({
     setIsFocus(true);
   };
 
-  const onBlur = () => {
+  const onBlur = (e: any) => {
     multiInputData && onChangeMultiInputData && onChangeMultiInputData(false);
     setIsFocus(false);
   };
@@ -63,14 +63,10 @@ const Input = ({
   };
 
   useKeyPressListener({
-    keyCode: 'Enter',
+    keys: ['Enter'],
     onPress: () => {
-      console.log('DDDD');
-      console.log(isFocus);
-      if (!isFocus) return;
-      console.log('ASDASDASD----');
-      !!onEnter && console.log('ASDASDASD');
-      !!onEnter && onEnter();
+      if (!isFocus || !onEnter) return;
+      onEnter();
     },
   });
 

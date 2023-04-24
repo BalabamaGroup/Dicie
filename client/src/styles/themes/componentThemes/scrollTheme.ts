@@ -13,12 +13,12 @@ const light = {
 
 const dark = {
   indigo: {
-    scrollBackground: colors.indigo[90],
-    thumbBackground: colors.indigo[80],
+    scrollBackground: colors.indigo[80],
+    thumbBackground: colors.indigo[90],
   },
   lime: {
-    scrollBackground: colors.lime[90],
-    thumbBackground: colors.lime[80],
+    scrollBackground: colors.lime[80],
+    thumbBackground: colors.lime[90],
   },
 };
 
