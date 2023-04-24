@@ -14,7 +14,7 @@ const RoomSettings = () => {
 
   return (
     <Styled.RoomSettings>
-      <div>
+      <div className='players'>
         {users.map((user) => (
           <Player
             onClick={() => {}}
@@ -22,7 +22,7 @@ const RoomSettings = () => {
             color='indigo'
             form='tile'
             tileContent={{
-              outsideLabel: user.username,
+              label: user.username,
             }}
           />
         ))}
