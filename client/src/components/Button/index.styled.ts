@@ -27,7 +27,7 @@ export const Button = styled.button<{
       ? css`
           border: 2px solid transparent;
           height: 72px;
-          padding: 22px 33px;
+          padding: 22px;
           border-radius: 16px;
           font-weight: 800;
           font-size: 20px;
@@ -43,7 +43,7 @@ export const Button = styled.button<{
           border: 1.5px solid transparent;
 
           height: 48px;
-          padding: 16px 24px;
+          padding: 16px;
           border-radius: 16px;
           font-weight: 700;
           font-size: 16px;
@@ -57,7 +57,7 @@ export const Button = styled.button<{
       : css`
           border: 1px solid transparent;
           height: 32px;
-          padding: 8px 12px;
+          padding: 8px;
           border-radius: 12px;
           font-weight: 600;
           font-size: 12px;

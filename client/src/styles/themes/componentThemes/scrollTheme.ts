@@ -2,12 +2,12 @@ import colors from '@/styles/colors/colors';
 
 const light = {
   indigo: {
-    scrollBackground: colors.indigo[0],
-    thumbBackground: colors.indigo[10],
+    scrollBackground: colors.indigo[10],
+    thumbBackground: colors.indigo[0],
   },
   lime: {
-    scrollBackground: colors.lime[0],
-    thumbBackground: colors.lime[10],
+    scrollBackground: colors.lime[10],
+    thumbBackground: colors.lime[0],
   },
 };
 

@@ -3,6 +3,7 @@ import { ReactSVG } from 'react-svg';
 
 import { ChatMessage } from '@/common/types/chat';
 import { ComponentColor } from '@/common/types/theme';
+import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Scroll from '@/components/Scroll';
 import useChatStore from '@/stores/ChatStore';
@@ -30,12 +31,16 @@ const SidePanelChat = ({}: SidePanelChatProps) => {
   const onSendMessage = () => {
     if (!formMessage) return;
     if (!user?.id || !user?.username) return;
+
     sendMessage({
       userId: user.id,
       username: user.username,
       text: formMessage,
     });
     setFormMessage('');
+
+    const scroll = document.getElementById('chat-messages-scroll');
+    scroll!.scrollTop = scroll!.scrollHeight;
   };
 
   const theme = useThemeStore((state) => state.theme);
@@ -51,18 +56,36 @@ const SidePanelChat = ({}: SidePanelChatProps) => {
             message!
           </Styled.NoMessages>
         ) : (
-          <Scroll color={color} className='chat-messages-scroll'>
+          <Scroll
+            color={color}
+            id='chat-messages-scroll'
+            className='chat-messages-scroll'
+          >
             <Styled.MessagesList>
-              {messages.map((message, i) => [
-                (!i || messages[i - 1].userId !== message.userId) && (
-                  <Styled.MessageUser key={`${i}-user`} theme={componentTheme}>
-                    {message.username}
-                  </Styled.MessageUser>
-                ),
-                <Styled.Message key={`${i}-message`} theme={componentTheme}>
-                  {message.text}
-                </Styled.Message>,
-              ])}
+              {messages.map((message, i) => {
+                const isNewBlock =
+                  !i || messages[i - 1].userId !== message.userId;
+                const isMyMessage = message.userId === user?.id;
+                return [
+                  isNewBlock && (
+                    <Styled.MessageUser
+                      isMyMessage={isMyMessage}
+                      key={`${i}-user`}
+                      theme={componentTheme}
+                    >
+                      {message.username}
+                    </Styled.MessageUser>
+                  ),
+                  <Styled.Message
+                    key={`${i}-message`}
+                    isMyMessage={isMyMessage}
+                    isNewBlock={isNewBlock}
+                    theme={componentTheme}
+                  >
+                    {message.text}
+                  </Styled.Message>,
+                ];
+              })}
             </Styled.MessagesList>
           </Scroll>
         )}
@@ -77,14 +100,13 @@ const SidePanelChat = ({}: SidePanelChatProps) => {
           onEnter={onSendMessage}
           placeholder={'Write a message....'}
         />
-        <Styled.SendButton
-          color={color}
-          theme={componentTheme}
-          onClick={onSendMessage}
-          disabled={!formMessage}
-        >
-          <ReactSVG className='send-icon' src='/images/svgs/send.svg' />
-        </Styled.SendButton>
+        <Button color={color}>
+          <ReactSVG
+            className='send-icon'
+            src='/images/svgs/send.svg'
+            isDisabled={!formMessage}
+          />
+        </Button>
       </Styled.ChatForm>
     </Styled.SidePanelChatWrapper>
   );

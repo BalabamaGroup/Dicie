@@ -13,6 +13,10 @@ const light = {
       messageText: colors.indigo[80],
       sendButtonBackground: colors.indigo[0],
       sendButtonIcon: colors.indigo.dark,
+      myMessage: {
+        messageBackground: colors.indigo.light,
+        messageText: colors.indigo[80],
+      },
     },
   },
   lime: {
@@ -23,10 +27,14 @@ const light = {
     collapsedArrowIcon: colors.lime[80],
     backdrop: 'rgba(33, 22, 22, 0.5)',
     chat: {
-      messageBackground: colors.lime[10],
+      messageBackground: colors.lime[0],
       messageText: colors.lime[80],
       sendButtonBackground: colors.lime[0],
       sendButtonIcon: colors.lime.dark,
+      myMessage: {
+        messageBackground: colors.lime.light,
+        messageText: colors.lime[80],
+      },
     },
   },
 };
@@ -44,6 +52,10 @@ const dark = {
       messageText: colors.indigo[0],
       sendButtonBackground: colors.indigo[90],
       sendButtonIcon: colors.indigo.base,
+      myMessage: {
+        messageBackground: colors.indigo.base,
+        messageText: colors.indigo[0],
+      },
     },
   },
   lime: {
@@ -58,6 +70,10 @@ const dark = {
       messageText: colors.lime[0],
       sendButtonBackground: colors.lime[90],
       sendButtonIcon: colors.lime.base,
+      myMessage: {
+        messageBackground: colors.lime.base,
+        messageText: colors.lime[80],
+      },
     },
   },
 };

@@ -5,6 +5,7 @@ import scrollTheme from '@/styles/themes/componentThemes/scrollTheme';
 import * as Styled from './index.styled';
 
 interface ScrollProps {
+  id: string;
   color: ComponentColor;
   className?: string;
   children: React.ReactNode;
@@ -12,6 +13,7 @@ interface ScrollProps {
 }
 
 const Scroll = ({
+  id,
   color,
   className,
   children,
@@ -21,7 +23,12 @@ const Scroll = ({
   const componentTheme = scrollTheme[theme][color];
 
   return (
-    <Styled.Scroll theme={componentTheme} className={className} align={align}>
+    <Styled.Scroll
+      id={id}
+      theme={componentTheme}
+      className={className}
+      align={align}
+    >
       {children}
     </Styled.Scroll>
   );
