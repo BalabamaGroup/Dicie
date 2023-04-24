@@ -65,14 +65,18 @@ export const MessageUser = styled.div<{ isMyMessage: boolean }>`
     `}
 `;
 
-export const Message = styled.div<{ isMyMessage: boolean }>`
+export const Message = styled.div<{
+  isMyMessage: boolean;
+  isNewBlock: boolean;
+}>`
   display: flex;
   align-items: flex-start;
   justify-content: start;
   padding: 8px 12px;
   box-sizing: border-box;
   max-width: 340px;
-  border-radius: 12px;
+  border-radius: ${({ isNewBlock }) =>
+    isNewBlock ? '12px 12px 12px 6px' : '6px 12px 12px 6px'};
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
@@ -81,13 +85,14 @@ export const Message = styled.div<{ isMyMessage: boolean }>`
   color: ${({ theme }) => theme.chat.messageText};
   background: ${({ theme }) => theme.chat.messageBackground};
 
-  ${({ isMyMessage }) =>
+  ${({ isMyMessage, isNewBlock }) =>
     isMyMessage &&
     css`
       background-color: black;
       margin-left: auto;
       color: ${({ theme }) => theme.chat.myMessage.messageText};
       background: ${({ theme }) => theme.chat.myMessage.messageBackground};
+      border-radius: ${isNewBlock ? '12px 12px 6px 12px' : '12px 6px 6px 12px'};
     `}
 `;
 

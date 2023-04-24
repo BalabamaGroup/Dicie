@@ -5,7 +5,7 @@ import scrollTheme from '@/styles/themes/componentThemes/scrollTheme';
 import * as Styled from './index.styled';
 
 interface ScrollProps {
-  id: string;
+  id?: string;
   color: ComponentColor;
   className?: string;
   children: React.ReactNode;
