@@ -35,6 +35,7 @@ const Conversation = ({
     else if (result.NO > result.YES && result.NO > result.WTF) return 'No';
     return 'Wtf';
   };
+
   const finalAnswer = calculateAnswer();
 
   let lastPlayer = true;
@@ -46,12 +47,14 @@ const Conversation = ({
 
   const canMakeAnotherTurn =
     lastPlayer ||
-    ((finalAnswer === 'Yes' || finalAnswer === 'Wtf') && responseConterYes < 2);
+    ((finalAnswer === 'Yes' || finalAnswer === 'Wtf') &&
+      responseConterYes < 2) ||
+    finalAnswer !== 'No';
 
   const onAskAgain = async () => {
     await CharadesAPI.acceptAnswer();
-    const event = new CustomEvent('answerAccept');
-    window.dispatchEvent(event);
+    // const event = new CustomEvent('answerAccept');
+    // window.dispatchEvent(event);
   };
 
   const onSkipTurn = () => {
