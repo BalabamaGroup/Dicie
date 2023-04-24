@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components';
 
-import { tabletAndBigger, tabletAndSmaller } from '@/common/utils/device';
+import {
+  desktopAndSmaller,
+  tabletAndBigger,
+  tabletAndSmaller,
+} from '@/common/utils/device';
 
 const defaultGapValue = '64px';
 const defaultPaddingValue = '64px';
@@ -34,12 +38,10 @@ export const ContentCards = styled.div<{
   @media ${tabletAndBigger} {
     width: ${`calc(200% - ${otherCardValue} - ${otherCardValue})`};
     height: 100%;
-    padding: 64px;
+    padding: 16px;
     flex-direction: row;
-    gap: 64px;
+    gap: 32px;
 
-    /* -webkit-filter: blur(0.000001px); */
-    /* -webkit-font-smoothing: antialiased; */
     ${({ selectedCard }) =>
       selectedCard === 'createRoom'
         ? css`
@@ -54,8 +56,7 @@ export const ContentCards = styled.div<{
             transform: translateX(calc(-50% + 128px));
           `
         : css`
-            padding: ${defaultPaddingValue}
-              ${`calc((100% / 2) - ${defaultGapValue})`};
+            padding: ${'72px'} ${`calc((100% / 2) - ${'96px'})`};
             transform: translateX(calc(-25% + 64px));
           `}
   }

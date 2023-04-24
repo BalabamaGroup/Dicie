@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import Button from '@/components/Button';
 import RadioOption from '@/components/RadioOption';
 import Toggle from '@/components/Toggle';
 import useThemeStore from '@/stores/ThemeStore';
@@ -75,24 +76,17 @@ const SettingsTheme = ({}: SettingsThemeProps) => {
         />
         Device
       </div>
-      {themeLS !== 'auto' && [
-        <div
-          key='theme-light'
-          className='settings-theme-option'
-          onClick={setLightTheme}
+
+      {themeLS !== 'auto' && (
+        <Button
+          isScale
+          color={color}
+          size='small'
+          onClick={theme === 'dark' ? setLightTheme : setDarkTheme}
         >
-          {/* <RadioOption isSelected={theme === 'light'} /> */}
-          Light
-        </div>,
-        <div
-          key='theme-dark'
-          className='settings-theme-option'
-          onClick={setDarkTheme}
-        >
-          {/* <RadioOption isSelected={theme === 'dark'} /> */}
-          Dark
-        </div>,
-      ]}
+          {theme === 'dark' ? 'Set Light Theme' : 'Set Dark Theme'}
+        </Button>
+      )}
     </StyledSettingsTheme>
   );
 };

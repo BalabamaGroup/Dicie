@@ -17,7 +17,7 @@ const dark: any = {
 
   authPage: {
     background: colors.indigo[80],
-    pictureBackground: colors.indigo[80],
+    pictureBackground: 'linear-gradient(180deg, #8986F5 0%, #BE86F5 100%)',
     headerMain: colors.indigo[10],
     headerSub: colors.indigo[60],
     headerAccent: colors.indigo.base,
