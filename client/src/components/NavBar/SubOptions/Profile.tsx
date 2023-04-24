@@ -22,7 +22,13 @@ const Profile = ({}: SettingsThemeProps) => {
 
   return (
     <StyledProfileOption theme={componentTheme}>
-      <Button isScale color={color} size='small' onClick={signOut}>
+      <Button
+        type='danger'
+        isScale
+        color={color}
+        size='small'
+        onClick={signOut}
+      >
         Log Out
       </Button>
     </StyledProfileOption>
