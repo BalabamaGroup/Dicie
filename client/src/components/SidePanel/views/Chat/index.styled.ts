@@ -114,5 +114,5 @@ export const SendButton = styled.div<{
 
   transition: background 0.3s ease-in-out, opacity 0.3 ease-in-out;
   background: ${({ theme }) => theme.chat.sendButtonBackground};
-  opacity: ${({ disabled }) => (disabled ? '0.5' : '1')};
+  opacity: ${({ disabled }) => (disabled ? '0.75' : '1')};
 `;

@@ -76,6 +76,7 @@ export const PlayerTileFormLabel = styled.div<{
   max-width: 100%;
   padding: 4px;
   box-sizing: border-box;
+  height: min-content;
 
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
   background: ${({ playerPalette, themeName }) =>
@@ -102,6 +103,10 @@ export const PlayerTileFormOutsideLabel = styled.div`
 
   transition: color 0.3s ease-in-out;
   color: ${({ theme }) => theme.outsideLabelText};
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   .username {
     white-space: nowrap;

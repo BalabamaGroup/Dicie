@@ -1,7 +1,9 @@
 import CharadesAPI from '@/api/game/charades';
 import { UserInGame } from '@/common/types/user';
+import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import Player from '@/components/Player';
+import useGameStore from '@/stores/GameStore';
 
 import * as Styled from './index.styled';
 
@@ -16,7 +18,8 @@ const OthersTurn = ({
   otherPlayers,
   currentQuestion,
 }: OthersTurnProps) => {
-  const [goingUser] = otherPlayers.filter((player) => player.state.isGoing);
+  const goingPlayer = useGameStore((s) => s.getGoingPlayer());
+  const isFriendMode = useGameStore((s) => s.isFriendMode);
 
   const onYes = () => CharadesAPI.answerQuestion({ charadeAnswer: 'YES' });
   const onNo = () => CharadesAPI.answerQuestion({ charadeAnswer: 'NO' });
@@ -33,8 +36,8 @@ const OthersTurn = ({
             return;
           }}
           tileContent={{
-            label: goingUser.state.word,
-            outsideLabel: goingUser.username,
+            label: goingPlayer.state.word,
+            outsideLabel: goingPlayer.username,
           }}
           size='large'
         />
@@ -46,16 +49,22 @@ const OthersTurn = ({
             return;
           }}
           tileContent={{
-            label: goingUser.state.word,
+            label: goingPlayer.state.word,
           }}
           size='large'
         />
         <Styled.MessageBubble currentQuestion={currentQuestion}>
           {currentQuestion || (
             <div className='writing-loader'>
-              {goingUser.username} is writing
-              <br />
-              a question <Loader.InlineDots key='loader' />
+              {isFriendMode ? (
+                <>It is {goingPlayer.username}'s turn</>
+              ) : (
+                <>
+                  {goingPlayer.username} is writing
+                  <br />
+                  a question <Loader.InlineDots key='loader' />
+                </>
+              )}
             </div>
           )}
         </Styled.MessageBubble>
@@ -67,15 +76,15 @@ const OthersTurn = ({
       >
         {!mePlayer.state.lastAnswer ? (
           [
-            <Styled.Yes key='yes' onClick={onYes}>
+            <Button isPrimary key='yes' onClick={onYes} type='success'>
               Yes
-            </Styled.Yes>,
-            <Styled.No key='no' onClick={onNo}>
+            </Button>,
+            <Button isPrimary key='mo' onClick={onNo} type='danger'>
               No
-            </Styled.No>,
-            <Styled.Wtf key='wtf' onClick={onWtf}>
+            </Button>,
+            <Button isPrimary key='wtf' onClick={onWtf} type='warning'>
               Wtf
-            </Styled.Wtf>,
+            </Button>,
           ]
         ) : (
           <div className='given-answer'>{mePlayer.state.lastAnswer}</div>

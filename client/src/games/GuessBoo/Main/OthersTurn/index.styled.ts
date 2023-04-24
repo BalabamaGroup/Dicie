@@ -151,45 +151,10 @@ export const AnswerBubble = styled.div<{
 
   background: ${({ givenAnswer, theme }) =>
     givenAnswer === 'YES'
-      ? theme.guessBooGame.main.game.yes
+      ? theme.guessBooGame.main.game.yesWait
       : givenAnswer === 'NO'
-      ? theme.guessBooGame.main.game.no
+      ? theme.guessBooGame.main.game.noWait
       : givenAnswer === 'WTF'
-      ? theme.guessBooGame.main.game.wtf
+      ? theme.guessBooGame.main.game.wtfWait
       : theme.guessBooGame.main.game.othersTurn.othersAnswerBackground};
-`;
-
-const AnswerButton = styled.button`
-  all: unset;
-  cursor: pointer;
-  width: 72px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 20px;
-  color: #eceefe;
-`;
-
-export const Yes = styled(AnswerButton)`
-  border-radius: 16px;
-  background: ${({ theme }) => theme.guessBooGame.main.game.yes};
-  color: ${({ theme }) =>
-    theme.guessBooGame.main.game.othersTurn.othersAnswerText};
-`;
-
-export const No = styled(AnswerButton)`
-  border-radius: 16px;
-  background: ${({ theme }) => theme.guessBooGame.main.game.no};
-  color: ${({ theme }) =>
-    theme.guessBooGame.main.game.othersTurn.othersAnswerText};
-`;
-
-export const Wtf = styled(AnswerButton)`
-  border-radius: 16px;
-  background: ${({ theme }) => theme.guessBooGame.main.game.wtf};
-  color: ${({ theme }) =>
-    theme.guessBooGame.main.game.othersTurn.othersAnswerText};
 `;

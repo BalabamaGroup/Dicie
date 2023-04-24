@@ -17,12 +17,14 @@ const small = css`
       border-radius: 12px;
       .player-label {
         display: none;
-        border-radius: 2px 2px 8px 8px;
       }
     }
   }
 
   .player-outside-label {
+    max-width: 64px;
+    font-size: 11px;
+    line-height: 11px;
   }
 `;
 
@@ -36,18 +38,20 @@ const medium = css`
       width: 96px;
       border-radius: 16px;
       .player-label {
-        height: 20px;
         border-radius: 4px;
         margin: 4px 8px 0 8px;
         .character {
           font-weight: 700;
           font-size: 12px;
-          line-height: 20px;
+          line-height: 16px;
         }
       }
     }
   }
   .player-outside-label {
+    max-width: 96px;
+    font-size: 12px;
+    line-height: 12px;
   }
 `;
 
@@ -62,19 +66,21 @@ const large = css`
       width: 144px;
       border-radius: 24px;
       .player-label {
-        height: 32px;
         border-radius: 6px;
         margin: 8px 12px 0 12px;
         .character {
           font-weight: 700;
           font-size: 14px;
-          line-height: 14px;
+          line-height: 18px;
         }
       }
     }
   }
 
   .player-outside-label {
+    max-width: 144px;
+    font-size: 14px;
+    line-height: 14px;
   }
 `;
 
@@ -89,6 +95,7 @@ const extraLarge = css`
       border-radius: 32px;
       .player-label {
         height: 48px;
+        height: min-content;
         border-radius: 6px;
         margin: 12px 16px 0 16px;
         .character {

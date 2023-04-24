@@ -3,8 +3,8 @@ import colors, { hexToRgba } from '@/styles/colors/colors';
 const light = {
   indigo: {
     desktop: {
-      logoText: colors.indigo[0],
-      optionText: colors.indigo[0],
+      logoText: colors.indigo[80],
+      optionText: colors.indigo[80],
       optionExpandedHeader: colors.indigo[80],
       optionExpandedBackground: colors.indigo[10],
       optionExpandedBorder: colors.indigo[0],
@@ -24,7 +24,7 @@ const light = {
     options: {
       myRoomNavigation: {
         buttonContent: colors.indigo[80],
-        buttonDesconnectContent: colors.red.dark,
+        buttonDesconnectContent: colors.indigo.danger.base,
         buttonHover: colors.indigo[0],
       },
       settings: {
@@ -56,7 +56,7 @@ const light = {
     options: {
       myRoomNavigation: {
         buttonContent: colors.lime[80],
-        buttonDesconnectContent: colors.red.dark,
+        buttonDesconnectContent: colors.indigo.danger.base,
         buttonHover: colors.lime[0],
       },
       settings: {
@@ -90,7 +90,7 @@ const dark = {
     options: {
       myRoomNavigation: {
         buttonContent: colors.indigo[0],
-        buttonDesconnectContent: colors.red.dark,
+        buttonDesconnectContent: colors.indigo.danger.base,
         buttonHover: colors.indigo[90],
       },
       settings: {
@@ -122,7 +122,7 @@ const dark = {
     options: {
       myRoomNavigation: {
         buttonContent: colors.lime[0],
-        buttonDesconnectContent: colors.red.dark,
+        buttonDesconnectContent: colors.indigo.danger.base,
         buttonHover: colors.lime[90],
       },
       settings: {

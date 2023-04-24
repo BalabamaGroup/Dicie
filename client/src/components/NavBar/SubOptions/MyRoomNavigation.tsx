@@ -111,7 +111,13 @@ const MyRoomNavigation = ({}: MyRoomNavigationProps) => {
         />
       </Button>
       {roomId && (
-        <Button size='small' color={color} onClick={onDisconnect} isScale>
+        <Button
+          type='danger'
+          size='small'
+          color={color}
+          onClick={onDisconnect}
+          isScale
+        >
           Disconnect
           <ReactSVG
             className='option-icon option-icon-disconnect'

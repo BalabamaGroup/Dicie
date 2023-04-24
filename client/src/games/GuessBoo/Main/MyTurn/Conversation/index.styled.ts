@@ -106,11 +106,11 @@ export const OthersAnswer = styled.div<{
 
   background: ${({ finalAnswer, theme }) =>
     finalAnswer === 'Yes'
-      ? theme.guessBooGame.main.game.yes
+      ? theme.guessBooGame.main.game.yesGo
       : finalAnswer === 'No'
-      ? theme.guessBooGame.main.game.no
+      ? theme.guessBooGame.main.game.noGo
       : finalAnswer === 'Wtf'
-      ? theme.guessBooGame.main.game.wtf
+      ? theme.guessBooGame.main.game.wtfGo
       : theme.guessBooGame.main.game.myTurn.convoOthersAnswerBackground};
 `;
 

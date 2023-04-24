@@ -6,6 +6,8 @@ export type Room = {
   start: boolean;
   admin: User;
   users: User[];
+  isPrivate: boolean;
+  isFriendMode: boolean;
 };
 export default Room;
 

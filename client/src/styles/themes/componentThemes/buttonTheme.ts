@@ -1,78 +1,94 @@
 import colors, { hexToRgba } from '@/styles/colors/colors';
-import shadows from '@/styles/colors/shadows';
 
-const light = {
-  indigo: {
+const light = (
+  mode: 'indigo' | 'lime',
+  type: 'danger' | 'success' | 'warning' | undefined
+) => {
+  let color;
+  if (type) color = colors[mode][type];
+  else color = colors[mode];
+
+  if (mode === 'indigo') {
+    return {
+      default: {
+        background: color[0],
+        text: !type ? color[80] : color.base,
+        border: color[50],
+        borderHover: color[60],
+        shadowHoverRGBA: hexToRgba(color[60], 0.5),
+      },
+      primary: {
+        background: color.light,
+        text: color[80],
+        border: color.dark,
+        shadowHoverRGBA: hexToRgba(color.dark, 0.5),
+      },
+    };
+  }
+
+  return {
     default: {
-      background: colors.indigo[0],
-      text: colors.indigo[80],
-      border: colors.indigo[50],
-      borderHover: colors.indigo[60],
-      shadowHoverRGBA: hexToRgba(colors.indigo[60], 0.5),
-      borderActive: colors.indigo.dark,
+      background: color[0],
+      text: !type ? color[80] : color.base,
+      border: color[50],
+      borderHover: color[60],
+      shadowHoverRGBA: hexToRgba(color[60], 0.5),
+      backgroundActive: color.light,
     },
     primary: {
-      background: colors.indigo.base,
-      text: colors.indigo[0],
-      border: colors.indigo.dark,
-      shadowHoverRGBA: hexToRgba(colors.indigo.dark, 0.5),
+      background: color.light,
+      text: color[80],
+      border: color.dark,
+      shadowHoverRGBA: hexToRgba(color.dark, 0.5),
     },
-  },
-  lime: {
-    default: {
-      background: colors.lime[0],
-      text: colors.lime[80],
-      border: colors.lime[50],
-      borderHover: colors.lime[60],
-      shadowHoverRGBA: hexToRgba(colors.lime[60], 0.5),
-      backgroundActive: colors.lime.light,
-    },
-    primary: {
-      background: colors.lime.base,
-      text: colors.lime[80],
-      border: colors.lime.dark,
-      shadowHoverRGBA: hexToRgba(colors.lime.dark, 0.5),
-    },
-  },
+  };
 };
 
-const dark = {
-  indigo: {
+const dark = (
+  mode: 'indigo' | 'lime',
+  type: 'danger' | 'success' | 'warning' | undefined
+) => {
+  let color;
+  if (type) color = colors[mode][type];
+  else color = colors[mode];
+
+  if (mode === 'indigo') {
+    return {
+      default: {
+        background: color[90],
+        text: !type ? color[0] : color.base,
+        border: 'transparent',
+        borderHover: 'transparent',
+        shadowHoverRGBA: hexToRgba(color[90], 0.5),
+        borderActive: 'transparent',
+      },
+      primary: {
+        background: color.base,
+        text: color[0],
+        border: 'transparent',
+        shadowHoverRGBA: hexToRgba(color.base, 0.5),
+        activeBorder: 'transparent',
+      },
+    };
+  }
+
+  return {
     default: {
-      background: colors.indigo[90],
-      text: colors.indigo[0],
+      background: color[90],
+      text: !type ? color[0] : color.base,
       border: 'transparent',
       borderHover: 'transparent',
-      shadowHoverRGBA: hexToRgba(colors.indigo[90], 0.5),
+      shadowHoverRGBA: hexToRgba(color[90], 0.5),
       borderActive: 'transparent',
     },
     primary: {
-      background: colors.indigo.base,
-      text: colors.indigo[0],
+      background: color.base,
+      text: color[80],
       border: 'transparent',
-      shadow: shadows.indigo.medium,
-      shadowHoverRGBA: hexToRgba(colors.indigo.base, 0.5),
+      shadowHoverRGBA: hexToRgba(color.base, 0.5),
       activeBorder: 'transparent',
     },
-  },
-  lime: {
-    default: {
-      background: colors.lime[90],
-      text: colors.lime[0],
-      border: 'transparent',
-      borderHover: 'transparent',
-      shadowHoverRGBA: hexToRgba(colors.lime[90], 0.5),
-      borderActive: 'transparent',
-    },
-    primary: {
-      background: colors.lime.base,
-      text: colors.lime[80],
-      border: 'transparent',
-      shadow: shadows.lime.medium,
-      shadowHoverRGBA: hexToRgba(colors.lime.base, 0.5),
-      activeBorder: 'transparent',
-    },
-  },
+  };
 };
 
 const buttonTheme = {
