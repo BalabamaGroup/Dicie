@@ -22,11 +22,7 @@ const light = {
       optionExpandedHeaderBackground: colors.indigo[10],
     },
     options: {
-      myRoomNavigation: {
-        buttonContent: colors.indigo[80],
-        buttonDesconnectContent: colors.indigo.danger.base,
-        buttonHover: colors.indigo[0],
-      },
+      myRoomNavigation: {},
       settings: {
         text: colors.indigo[80],
       },
@@ -54,11 +50,7 @@ const light = {
       optionExpandedHeaderBackground: colors.lime[10],
     },
     options: {
-      myRoomNavigation: {
-        buttonContent: colors.lime[80],
-        buttonDesconnectContent: colors.indigo.danger.base,
-        buttonHover: colors.lime[0],
-      },
+      myRoomNavigation: {},
       settings: {
         text: colors.indigo[80],
       },

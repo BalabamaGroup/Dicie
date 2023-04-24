@@ -7,9 +7,8 @@ import {
 } from '@/styles/commonStyles';
 
 export const RoomPage = styled.section`
-  ${commonPageWithNavbarStyles}
-
   width: 100vw;
+  height: var(--vh100);
 
   /* background: ${({ theme }) => theme.page.background.value}; */
 `;
