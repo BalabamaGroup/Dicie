@@ -48,9 +48,4 @@ public class MTException extends ResponseStatusException {
     public static MTException onlyForNonFriendMode() {
         return new MTException(HttpStatus.FORBIDDEN, "The action is not available when playing in friend mode");
     }
-
-    public static MTException onlyForFriendMode() {
-        return new MTException(HttpStatus.FORBIDDEN, "The action is only available when playing friend mode");
-    }
-
 }
