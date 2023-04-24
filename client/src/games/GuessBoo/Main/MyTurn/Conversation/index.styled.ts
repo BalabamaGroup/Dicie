@@ -46,11 +46,14 @@ export const ConversationContent = styled.div`
 export const MyQuestion = styled.div`
   align-items: center;
   background: ${({ theme }) =>
-    theme.guessBooGame.main.game.myTurn.convoMyQuestionBackground};
+    theme.guessBooGame.main.game.myTurn.convo.myQuestion.background};
+  border: 1px solid
+    ${({ theme }) =>
+      theme.guessBooGame.main.game.myTurn.convo.myQuestion.border};
   border-radius: 64px 64px 8px 64px;
   box-sizing: border-box;
   color: ${({ theme }) =>
-    theme.guessBooGame.main.game.myTurn.convoMyQuestionText};
+    theme.guessBooGame.main.game.myTurn.convo.myQuestion.text};
   display: flex;
   font-size: 20px;
   font-weight: 700;
@@ -71,8 +74,6 @@ export const OthersAnswer = styled.div<{
   display: flex;
   align-items: center;
   padding: 16px;
-  background: ${({ theme }) =>
-    theme.guessBooGame.main.game.myTurn.convoOthersAnswerBackground};
   border-radius: 64px 64px 64px 16px;
   gap: 12px;
   font-weight: 700;
@@ -83,7 +84,7 @@ export const OthersAnswer = styled.div<{
   justify-content: center;
   height: 72px;
   color: ${({ theme }) =>
-    theme.guessBooGame.main.game.myTurn.convoOthersAnswerText};
+    theme.guessBooGame.main.game.myTurn.convo.othersAnswer.text};
   box-sizing: border-box;
 
   /* prettier-ignore */
@@ -99,7 +100,7 @@ export const OthersAnswer = styled.div<{
   .bouncing-loader .dot {
     transition: background 0.3s ease-in-out;
     background: ${({ theme }) =>
-      theme.guessBooGame.main.game.myTurn.convoOthersAnswerText};
+      theme.guessBooGame.main.game.myTurn.convo.othersAnswer.textLoading};
   }
 
   transition: background 0.3s ease-in-out;
@@ -111,7 +112,17 @@ export const OthersAnswer = styled.div<{
       ? theme.guessBooGame.main.game.noGo
       : finalAnswer === 'Wtf'
       ? theme.guessBooGame.main.game.wtfGo
-      : theme.guessBooGame.main.game.myTurn.convoOthersAnswerBackground};
+      : theme.guessBooGame.main.game.myTurn.convo.othersAnswer.background};
+
+  border: 1px solid
+    ${({ finalAnswer, theme }) =>
+      finalAnswer === 'Yes'
+        ? theme.guessBooGame.main.game.yesGoBorder
+        : finalAnswer === 'No'
+        ? theme.guessBooGame.main.game.noGoBorder
+        : finalAnswer === 'Wtf'
+        ? theme.guessBooGame.main.game.wtfGoBorder
+        : theme.guessBooGame.main.game.myTurn.convo.othersAnswer.border};
 `;
 
 export const MyAnswer = styled.div<{
@@ -135,7 +146,7 @@ export const MyAnswer = styled.div<{
   box-sizing: border-box;
 
   background-color: ${({ theme }) =>
-    theme.guessBooGame.main.game.myTurn.convoMyAnswerBackground};
+    theme.guessBooGame.main.game.myTurn.convo.myNextMove.background};
 
   /* prettier-ignore */
   @keyframes my-answer-bubble-slidein {

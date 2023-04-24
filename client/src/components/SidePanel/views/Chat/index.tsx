@@ -75,6 +75,7 @@ const SidePanelChat = ({}: SidePanelChatProps) => {
           color={color}
           value={formMessage}
           onChange={onChangeFormMessage}
+          onEnter={onSendMessage}
           placeholder={'Write a message....'}
         />
         <Styled.SendButton

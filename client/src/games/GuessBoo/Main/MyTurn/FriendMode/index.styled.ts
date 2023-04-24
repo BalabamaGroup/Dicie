@@ -53,13 +53,13 @@ export const SpacePassTurnInstruction = styled.div<{ isVisible: boolean }>`
   line-height: 24px;
 
   color: ${({ theme }) =>
-    theme.guessBooGame.main.game.myTurn.askGuessFormHeader};
+    theme.guessBooGame.main.game.myTurn.askGuessForm.header};
 
   span {
     color: #a3a90e;
     font-weight: 900;
     color: ${({ theme }) =>
-      theme.guessBooGame.main.game.myTurn.askGuessFormHeaderSpan};
+      theme.guessBooGame.main.game.myTurn.askGuessForm.span};
   }
 
   transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out,
@@ -79,7 +79,8 @@ export const WrongGuessWarning = styled.div<{ isVisible: boolean }>`
   font-weight: 700;
   font-size: 14px;
   line-height: 19px;
-  color: ${({ theme }) => theme.guessBooGame.main.game.myTurn.guessWarning};
+  color: ${({ theme }) =>
+    theme.guessBooGame.main.game.myTurn.askGuessForm.guessWarning};
   margin-bottom: 8px;
 
   transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out,

@@ -9,21 +9,21 @@ export const JoinRoomCard = styled(HomeContentCard)<{
   isDefault: boolean;
 }>`
   position: relative;
-  color: ${({ theme }) => theme.page.home.joinRoomCard.text};
-  border: 2px solid ${({ theme }) => theme.page.home.joinRoomCard.border};
+  color: ${({ theme }) => theme.homePage.joinRoomCard.text};
+  border: 2px solid ${({ theme }) => theme.homePage.joinRoomCard.border};
 
   box-sizing: border-box;
 
   background: ${({ isDefault, isSelected, theme }) =>
     isDefault
-      ? theme.page.home.joinRoomCard.notSelectedBackground
+      ? theme.homePage.joinRoomCard.notSelectedBackground
       : !isSelected
-      ? theme.page.home.joinRoomCard.background
-      : theme.page.home.joinRoomCard.background};
+      ? theme.homePage.joinRoomCard.background
+      : theme.homePage.joinRoomCard.background};
 
   box-shadow: ${({ isSelected }) =>
     isSelected ? '4px 4px 12px 1px' : '-4px 4px 12px 1px'};
-  color: ${({ theme }) => theme.page.home.joinRoomCard.shadowRGBA};
+  color: ${({ theme }) => theme.homePage.joinRoomCard.shadowRGBA};
 
   ${({ isDefault }) =>
     isDefault &&
@@ -34,7 +34,7 @@ export const JoinRoomCard = styled(HomeContentCard)<{
     `}
 
   .on-default {
-    color: ${({ theme }) => theme.page.home.joinRoomCard.notSelectedText};
+    color: ${({ theme }) => theme.homePage.joinRoomCard.notSelectedText};
   }
 
   .notselected-arrow {
@@ -56,7 +56,7 @@ export const JoinRoomCard = styled(HomeContentCard)<{
   }
 
   .on-selected {
-    color: ${({ theme }) => theme.page.home.joinRoomCard.text};
+    color: ${({ theme }) => theme.homePage.joinRoomCard.text};
 
     padding: 32px 32px 0 32px;
     @media ${tabletAndSmaller} {

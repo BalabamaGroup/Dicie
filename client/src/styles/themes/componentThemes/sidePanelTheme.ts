@@ -17,7 +17,7 @@ const light = {
   },
   lime: {
     bodyBackground: colors.lime[10],
-    border: colors.indigo[50],
+    border: colors.lime[50],
     shadowRGBA: hexToRgba(colors.lime[90], 0.25),
     headerBackground: colors.lime[0],
     collapsedArrowIcon: colors.lime[80],

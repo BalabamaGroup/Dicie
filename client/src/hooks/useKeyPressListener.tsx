@@ -11,10 +11,7 @@ const useKeyPressListener = ({
 }: useKeyPressListenerProps) => {
   useEffect(() => {
     const keyPressListener = (event: any) => {
-      if (event.code === keyCode) {
-        // event.preventDefault();
-        onPress();
-      }
+      if (event.code === keyCode) onPress();
     };
 
     document.addEventListener('keydown', keyPressListener);

@@ -18,7 +18,7 @@ export const StyledAlreadyInRoom = styled.div<{}>`
   border-radius: 32px;
 
   background: ${({ theme }) =>
-    theme.page.home.joinRoomCard.alreadyInRoomBackdropRGBA};
+    theme.homePage.joinRoomCard.alreadyInRoomBackdropRGBA};
   backdrop-filter: blur(12px);
 
   display: flex;
@@ -37,7 +37,7 @@ export const StyledAlreadyInRoom = styled.div<{}>`
     max-width: 540px;
     padding: 20px;
     background: ${({ theme }) =>
-      theme.page.home.joinRoomCard.alreadyInRoomBackground};
+      theme.homePage.joinRoomCard.alreadyInRoomBackground};
     border-radius: 32px;
     display: flex;
     flex-direction: column;
@@ -52,13 +52,13 @@ export const StyledAlreadyInRoom = styled.div<{}>`
       font-size: 32px;
       line-height: 32px;
       margin-bottom: 16px;
-      color: ${({ theme }) => theme.page.home.joinRoomCard.alreadyInRoomText};
+      color: ${({ theme }) => theme.homePage.joinRoomCard.alreadyInRoomText};
     }
     .body {
       font-weight: 400;
       font-size: 14px;
       line-height: 14px;
-      color: ${({ theme }) => theme.page.home.joinRoomCard.alreadyInRoomText};
+      color: ${({ theme }) => theme.homePage.joinRoomCard.alreadyInRoomText};
       span {
         font-weight: 700;
         color: #8986f5;

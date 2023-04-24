@@ -16,18 +16,18 @@ export const CreateRoomCard = styled(HomeContentCard)<{
   max-width: 100%;
   box-sizing: border-box;
   position: relative;
-  border: 2px solid ${({ theme }) => theme.page.home.createRoomCard.border};
+  border: 2px solid ${({ theme }) => theme.homePage.createRoomCard.border};
 
   background: ${({ isDefault, isSelected, theme }) =>
     isDefault
-      ? theme.page.home.createRoomCard.notSelectedBackground
+      ? theme.homePage.createRoomCard.notSelectedBackground
       : !isSelected
-      ? theme.page.home.createRoomCard.background
-      : theme.page.home.createRoomCard.background};
+      ? theme.homePage.createRoomCard.background
+      : theme.homePage.createRoomCard.background};
 
   box-shadow: ${({ isSelected }) =>
     isSelected ? '-4px 4px 12px 1px' : '4px 4px 12px 1px'};
-  color: ${({ theme }) => theme.page.home.createRoomCard.shadowRGBA};
+  color: ${({ theme }) => theme.homePage.createRoomCard.shadowRGBA};
 
   &:hover {
     box-shadow: ${({ isDefault }) =>
@@ -35,7 +35,7 @@ export const CreateRoomCard = styled(HomeContentCard)<{
   }
 
   .header {
-    color: ${({ theme }) => theme.page.home.createRoomCard.notSelectedText};
+    color: ${({ theme }) => theme.homePage.createRoomCard.notSelectedText};
   }
 
   .notselected-arrow {
@@ -57,7 +57,7 @@ export const CreateRoomCard = styled(HomeContentCard)<{
   }
 
   .on-selected {
-    color: ${({ theme }) => theme.page.home.createRoomCard.text};
+    color: ${({ theme }) => theme.homePage.createRoomCard.text};
   }
 `;
 

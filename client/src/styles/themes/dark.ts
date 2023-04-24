@@ -3,11 +3,6 @@ import gradients from '../colors/gradients';
 import shadows from '../colors/shadows';
 
 const dark: any = {
-  navbar: {
-    wait: colors.indigo[10],
-    go: colors.lime[80],
-  },
-
   toast: {
     background: '#222222',
     color: '#F6F6F6',
@@ -20,46 +15,41 @@ const dark: any = {
     shadow: 'rgba(0, 0, 0, 0.85)',
   },
 
-  page: {
-    background: gradients.home_page_dark,
-    text: colors.indigo[10],
+  authPage: {
+    background: colors.indigo[80],
+    pictureBackground: colors.indigo[80],
+    headerMain: colors.indigo[10],
+    headerSub: colors.indigo[60],
+    headerAccent: colors.indigo.base,
+  },
 
-    auth: {
-      background: colors.indigo[80],
-      pictureBackground: colors.indigo[80],
-      headerMain: colors.indigo[10],
-      headerSub: colors.indigo[60],
-      headerAccent: colors.indigo.base,
+  homePage: {
+    defaultBackground: gradients.home_page_dark,
+    createRoomBackground: gradients.go_dark,
+    joinRoomBackground: gradients.wait_dark,
+    createRoomCard: {
+      shadowRGBA: hexToRgba(colors.lime[90], 0.75),
+      notSelectedBackground: colors.lime.base,
+      notSelectedText: colors.lime[80],
+      background: colors.lime[80],
+      text: colors.lime[0],
+      chooseGameBackground: colors.lime[90],
+      border: 'transparent',
+      shadowHover: shadows.lime.large,
     },
-
-    home: {
-      defaultBackground: gradients.home_page_dark,
-      createRoomBackground: gradients.go_dark,
-      joinRoomBackground: gradients.wait_dark,
-      createRoomCard: {
-        shadowRGBA: hexToRgba(colors.lime[90], 0.75),
-        notSelectedBackground: colors.lime.base,
-        notSelectedText: colors.lime[80],
-        background: colors.lime[80],
-        text: colors.lime[0],
-        chooseGameBackground: colors.lime[90],
-        border: 'transparent',
-        shadowHover: shadows.lime.large,
-      },
-      joinRoomCard: {
-        shadowRGBA: hexToRgba(colors.indigo[90], 0.75),
-        notSelectedBackground: colors.indigo.base,
-        notSelectedText: colors.indigo[10],
-        background: colors.indigo[80],
-        text: colors.indigo[0],
-        border: 'transparent',
-        shadowHover: shadows.indigo.large,
-        roomsTableBackground: colors.indigo[90],
-        roomsTableUserIconFill: colors.indigo.light,
-        alreadyInRoomBackdropRGBA: hexToRgba(colors.indigo[90], 0.4),
-        alreadyInRoomBackground: colors.indigo[80],
-        alreadyInRoomText: colors.indigo[0],
-      },
+    joinRoomCard: {
+      shadowRGBA: hexToRgba(colors.indigo[90], 0.75),
+      notSelectedBackground: colors.indigo.base,
+      notSelectedText: colors.indigo[10],
+      background: colors.indigo[80],
+      text: colors.indigo[0],
+      border: 'transparent',
+      shadowHover: shadows.indigo.large,
+      roomsTableBackground: colors.indigo[90],
+      roomsTableUserIconFill: colors.indigo.light,
+      alreadyInRoomBackdropRGBA: hexToRgba(colors.indigo[90], 0.4),
+      alreadyInRoomBackground: colors.indigo[80],
+      alreadyInRoomText: colors.indigo[0],
     },
   },
 
@@ -100,23 +90,52 @@ const dark: any = {
         yesGo: colors.lime.success.base,
         noGo: colors.lime.danger.base,
         wtfGo: colors.lime.warning.base,
+        yesWaitBorder: colors.indigo.success.base,
+        noWaitBorder: colors.indigo.danger.base,
+        wtfWaitBorder: colors.indigo.warning.base,
+        yesGoBorder: colors.lime.success.base,
+        noGoBorder: colors.lime.danger.base,
+        wtfGoBorder: colors.lime.warning.base,
         myTurn: {
-          askGuessFormHeader: colors.lime[0],
-          askGuessFormHeaderSpan: colors.lime.base,
-          guessWarning: colors.indigo.warning.base,
-          convoMyQuestionBackground: colors.lime.base,
-          convoMyQuestionText: colors.lime[90],
-          convoOthersAnswerBackground: colors.lime[90],
-          convoOthersAnswerText: colors.lime[0],
-          convoMyAnswerBackground: colors.lime[90],
+          askGuessForm: {
+            header: colors.lime[0],
+            span: colors.lime.base,
+            guessWarning: colors.indigo.warning.base,
+          },
+          convo: {
+            myQuestion: {
+              background: colors.lime.base,
+              border: colors.lime.base,
+              text: colors.lime[90],
+            },
+            othersAnswer: {
+              background: colors.lime[90],
+              border: colors.lime[90],
+              textLoading: colors.lime[0],
+              text: colors.lime[80],
+            },
+            myNextMove: {
+              background: colors.lime[80],
+            },
+          },
         },
         othersTurn: {
-          myQuestionBackgroundWriting: colors.indigo[90],
-          myQuestionTextWriting: colors.indigo[10],
-          myQuestionBackgroundAsked: colors.indigo.base,
-          myQuestionTextAsked: colors.indigo[10],
-          othersAnswerBackground: colors.indigo[80],
-          othersAnswerText: colors.indigo[0],
+          othersQuestion: {
+            loading: {
+              background: colors.indigo[90],
+              border: colors.indigo[90],
+              text: colors.indigo[10],
+            },
+            asked: {
+              background: colors.indigo.base,
+              border: colors.indigo.base,
+              text: colors.indigo[10],
+            },
+          },
+          myAnswer: {
+            background: colors.indigo[80],
+            text: colors.indigo[0],
+          },
         },
       },
     },
@@ -132,6 +151,8 @@ const dark: any = {
     background: 'none',
     textSelected: colors.indigo[80],
     backgroundSelected: colors.lime.base,
+    highlightBorderWait: colors.indigo[10],
+    highlightBorderGo: colors.lime[10],
   },
 };
 

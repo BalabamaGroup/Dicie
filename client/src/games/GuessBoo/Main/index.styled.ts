@@ -110,7 +110,7 @@ export const Game = styled.div<{
       ? theme.guessBooGame.main.game.backgroundWait
       : theme.guessBooGame.main.game.backgroundGo};
 
-  border: 1px solid
+  border: 2px solid
     ${({ myTurn, theme }) =>
       !myTurn
         ? theme.guessBooGame.main.game.borderWait

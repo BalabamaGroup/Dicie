@@ -20,19 +20,15 @@ const light = {
     shadow: 'rgba(0, 0, 0, 0.15)',
   },
 
-  page: {
-    background: gradients.home_page_light,
-    text: colors.indigo[80],
+  authPage: {
+    background: colors.indigo[10],
+    pictureBackground: colors.indigo[10],
+    headerMain: colors.indigo[80],
+    headerSub: colors.indigo[70],
+    headerAccent: colors.indigo.base,
+  },
 
-    auth: {
-      background: colors.indigo[10],
-      pictureBackground: colors.indigo[10],
-      headerMain: colors.indigo[80],
-      headerSub: colors.indigo[70],
-      headerAccent: colors.indigo.base,
-    },
-
-    home: {
+  homePage: {
       defaultBackground: gradients.home_page_light,
       createRoomBackground: gradients.go_light,
       joinRoomBackground: gradients.wait_light,
@@ -60,7 +56,6 @@ const light = {
         alreadyInRoomBackground: colors.indigo[10],
         alreadyInRoomText: colors.indigo[80],
       },
-    },
   },
 
   guessBooGame: {
@@ -96,29 +91,58 @@ const light = {
         shadowWaitRGBA: hexToRgba(colors.indigo[90], 0.25),
         answerVisualizerDefaultWait: colors.indigo[10],
         answerVisualizerDefaultGo: colors.lime[10],
-        yesWait: colors.indigo.success.base,
-        noWait: colors.indigo.danger.base,
-        wtfWait: colors.indigo.warning.base,
-        yesGo: colors.lime.success.base,
-        noGo: colors.lime.danger.base,
-        wtfGo: colors.lime.warning.base,
+        yesWait: colors.indigo.success.light,
+        noWait: colors.indigo.danger.light,
+        wtfWait: colors.indigo.warning.light,
+        yesGo: colors.lime.success.light,
+        noGo: colors.lime.danger.light,
+        wtfGo: colors.lime.warning.light,
+        yesWaitBorder: colors.indigo.success.dark,
+        noWaitBorder: colors.indigo.danger.dark,
+        wtfWaitBorder: colors.indigo.warning.dark,
+        yesGoBorder: colors.lime.success.dark,
+        noGoBorder: colors.lime.danger.dark,
+        wtfGoBorder: colors.lime.warning.dark,
         myTurn: {
-          askGuessFormHeader: colors.lime[80],
-          askGuessFormHeaderSpan: colors.lime.dark,
-          guessWarning: colors.indigo.warning.base,
-          convoMyQuestionBackground: colors.lime.base,
-          convoMyQuestionText: colors.lime[80],
-          convoOthersAnswerBackground: colors.lime[0],
-          convoOthersAnswerText: colors.lime[80],
-          convoMyAnswerBackground: colors.lime[10],
+          askGuessForm: {
+            header: colors.lime[80],
+            span: colors.lime.dark,
+            guessWarning: colors.indigo.warning.base,
+          },
+          convo: {
+            myQuestion: {
+              background: colors.lime.light,
+              border: colors.lime.dark,
+              text: colors.lime[80],
+            },
+            othersAnswer: {
+              background: colors.lime[0],
+              border: colors.lime[50],
+              textLoading: colors.lime[80],
+              text: colors.lime[80],
+            },
+            myNextMove: {
+              background: colors.lime[10],
+            },
+          },
         },
         othersTurn: {
-          myQuestionBackgroundWriting: colors.indigo[10],
-          myQuestionTextWriting: colors.indigo[80],
-          myQuestionBackgroundAsked: colors.indigo.base,
-          myQuestionTextAsked: colors.indigo[10],
-          othersAnswerBackground: colors.indigo[10],
-          othersAnswerText: colors.indigo[80],
+          othersQuestion: {
+            loading: {
+              background: colors.indigo[0],
+              border: colors.indigo[50],
+              text: colors.indigo[80],
+            },
+            asked: {
+              background: colors.indigo.light,
+              border: colors.indigo.dark,
+              text: colors.indigo[80],
+            },
+          },
+          myAnswer: {
+            background: colors.indigo[10],
+            text: colors.indigo[80],
+          },
         },
       },
     },

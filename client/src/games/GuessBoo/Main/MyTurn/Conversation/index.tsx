@@ -46,7 +46,7 @@ const Conversation = ({
 
   const canMakeAnotherTurn =
     lastPlayer ||
-    ((finalAnswer === 'Yes' || finalAnswer === 'Wtf') && responseConterYes < 3);
+    ((finalAnswer === 'Yes' || finalAnswer === 'Wtf') && responseConterYes < 2);
 
   const onAskAgain = async () => {
     await CharadesAPI.acceptAnswer();

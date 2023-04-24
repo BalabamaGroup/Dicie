@@ -7,7 +7,7 @@ export const SignUp = styled.section`
   ${commonPageStyles}
 
   box-sizing: border-box;
-  background: ${({ theme }) => theme.page.auth.background};
+  background: ${({ theme }) => theme.authPage.background};
 
   padding: 32px;
 
@@ -20,7 +20,7 @@ export const AuthPicture = styled.div`
   width: 50%;
   height: 100%;
   border-radius: 32px;
-  background: ${({ theme }) => theme.page.auth.pictureBackground};
+  background: ${({ theme }) => theme.authPage.pictureBackground};
 
   display: flex;
   align-items: center;

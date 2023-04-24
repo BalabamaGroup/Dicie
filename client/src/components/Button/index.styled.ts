@@ -97,36 +97,6 @@ export const Button = styled.button<{
         box-shadow: 0px 4px 16px ${theme.default.shadowHoverRGBA};
       }
       &:active { transform: scale(0.98); }
-
-      /* ${isSuccess &&
-      css`
-      border-color: ${theme.default.success.border};
-      color: ${theme.default.success.text};
-      &:hover {
-        border-color: ${theme.default.success.borderHover};
-        box-shadow: 0px 4px 16px ${theme.default.shadowHoverRGBA};
-      }
-      `}
-
-      ${isWarning &&
-      css`
-      border-color: ${theme.default.warning.border};
-      color: ${theme.default.warning.text};
-      &:hover {
-        border-color: ${theme.default.warning.borderHover};
-        box-shadow: 0px 4px 16px ${theme.default.shadowHoverRGBA};
-      }
-      `}
-
-      ${isDanger &&
-      css`
-      border-color: ${theme.default.danger.border};
-      color: ${theme.default.danger.text};
-      &:hover {
-        border-color: ${theme.default.danger.borderHover};
-        box-shadow: 0px 4px 16px ${theme.default.shadowHoverRGBA};
-      } */
-      /* `} */
     `}
 
   ${({ isPrimary, theme }) =>
@@ -139,33 +109,6 @@ export const Button = styled.button<{
       svg { path { fill: ${theme.primary.text}; } }
       &:hover { box-shadow: 0px 4px 16px ${theme.primary.shadowHoverRGBA}; }
       &:active { transform: scale(0.98); }
-
-      /* ${isSuccess &&
-      css`
-        background: ${theme.primary.success.background};
-        border-color: ${theme.primary.success.border};
-        color: ${theme.primary.success.text};
-        svg { path { fill: ${theme.primary.success.text}; } }
-        &:hover { box-shadow: 0px 4px 16px ${theme.primary.success.shadowHoverRGBA}; }
-      `}
-
-      ${isWarning &&
-      css`
-        background: ${theme.primary.warning.background};
-        border-color: ${theme.primary.warning.border};
-        color: ${theme.primary.warning.text};
-        svg { path { fill: ${theme.primary.warning.text}; } }
-        &:hover { box-shadow: 0px 4px 16px ${theme.primary.warning.shadowHoverRGBA}; }
-      `}
-
-      ${isDanger &&
-      css`
-        background: ${theme.primary.danger.background};
-        border-color: ${theme.primary.danger.border};
-        color: ${theme.primary.danger.text};
-        svg { path { fill: ${theme.primary.danger.text}; } }
-        &:hover { box-shadow: 0px 4px 16px ${theme.primary.danger.shadowHoverRGBA}; }
-      `} */
     `}
 
 

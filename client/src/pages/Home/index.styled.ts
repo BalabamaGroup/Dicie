@@ -14,13 +14,12 @@ export const HomePage = styled.section<{
 
   width: 100vw;
   height: var(--vh100);
-  color: ${({ theme }) => theme.page.text};
 
   transition: background 0.4s ease-in-out;
 
   ${({ theme }) =>
     createGradientTransition({
-      gradient: theme.page.home.defaultBackground,
+      gradient: theme.homePage.defaultBackground,
       id: '-homePageBg',
     })};
 
@@ -28,21 +27,21 @@ export const HomePage = styled.section<{
     selectedCard === ':card' &&
     transitionGradient({
       id: '-homePageBg',
-      gradient: theme.page.home.defaultBackground,
+      gradient: theme.homePage.defaultBackground,
     })};
 
   ${({ selectedCard, theme }) =>
     selectedCard === 'createRoom' &&
     transitionGradient({
       id: '-homePageBg',
-      gradient: theme.page.home.createRoomBackground,
+      gradient: theme.homePage.createRoomBackground,
     })};
 
   ${({ selectedCard, theme }) =>
     selectedCard === 'joinRoom' &&
     transitionGradient({
       id: '-homePageBg',
-      gradient: theme.page.home.joinRoomBackground,
+      gradient: theme.homePage.joinRoomBackground,
     })};
 `;
 

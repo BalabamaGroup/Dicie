@@ -3,6 +3,7 @@ import { ReactSVG } from 'react-svg';
 import useThemeStore from 'stores/ThemeStore';
 
 import { getTextHeight } from '@/common/helpers/domHelpers';
+import useKeyPressListener from '@/hooks/useKeyPressListener';
 import useGameStore from '@/stores/GameStore';
 import inputTheme from '@/styles/themes/componentThemes/inputTheme';
 
@@ -22,6 +23,8 @@ const Input = ({
 
   value,
   onChange,
+
+  onEnter,
 
   icon,
   onIconClick,
@@ -58,6 +61,18 @@ const Input = ({
     inputRef.current.focus();
     onFocus();
   };
+
+  useKeyPressListener({
+    keyCode: 'Enter',
+    onPress: () => {
+      console.log('DDDD');
+      console.log(isFocus);
+      if (!isFocus) return;
+      console.log('ASDASDASD----');
+      !!onEnter && console.log('ASDASDASD');
+      !!onEnter && onEnter();
+    },
+  });
 
   useEffect(() => {
     if (focusOnLoad && inputRef?.current) inputRef.current.focus();

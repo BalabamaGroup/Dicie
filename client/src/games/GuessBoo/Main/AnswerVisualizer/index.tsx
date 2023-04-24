@@ -16,6 +16,8 @@ const AnswerVisualizer = ({
   mePlayer,
   questionIsAsked,
 }: AnswerVisualizerProps) => {
+  const myTurn = useGameStore((s) => s.myTurn);
+
   if (!questionIsAsked) return <Styled.NoQuestion />;
 
   const answerData = { YES: 0, NO: 0, WTF: 0, count: 0 };
@@ -32,27 +34,28 @@ const AnswerVisualizer = ({
   const emptyPercent =
     (100 / otherPlayers.length) * (otherPlayers.length - answerData.count);
 
-  const color = useGameStore((s) => s.getColor());
-
   return (
     <Styled.AnswerVisualizer>
       <Styled.YesBar
+        myTurn={myTurn}
         width={yesPercent}
         isFirst
         isLast={!noPercent && !wtfPercent && !emptyPercent}
       />
       <Styled.NoBar
+        myTurn={myTurn}
         width={noPercent}
         isFirst={!yesPercent}
         isLast={!wtfPercent && !emptyPercent}
       />
       <Styled.WtfBar
+        myTurn={myTurn}
         width={wtfPercent}
         isFirst={!yesPercent && !noPercent}
         isLast={!emptyPercent}
       />
       <Styled.EmptyBar
-        color={color}
+        myTurn={myTurn}
         width={emptyPercent}
         isFirst={!yesPercent && !noPercent && !wtfPercent}
         isLast

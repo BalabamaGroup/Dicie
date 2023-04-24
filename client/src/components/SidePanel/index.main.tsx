@@ -19,7 +19,7 @@ const StyledSidePanelMainWrapper = styled.div`
   border-radius: 32px;
   transition: background 0.3s ease-in-out;
   background: ${({ theme }) => theme.bodyBackground};
-  border: 1px solid ${({ theme }) => theme.border};
+  border: 2px solid ${({ theme }) => theme.border};
   box-shadow: 4px 4px 12px 1px ${({ theme }) => theme.shadowRGBA};
   @media ${tabletAndSmaller} {
     box-shadow: 0px 4px 12px 1px ${({ theme }) => theme.shadowRGBA};

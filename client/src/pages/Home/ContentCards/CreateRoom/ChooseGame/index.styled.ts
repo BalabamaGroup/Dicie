@@ -20,7 +20,7 @@ export const ChooseGame = styled.div`
   box-sizing: border-box;
 
   background: ${({ theme }) =>
-    theme.page.home.createRoomCard.chooseGameBackground};
+    theme.homePage.createRoomCard.chooseGameBackground};
 
   border-radius: 0 32px 32px 0;
   @media ${desktopAndSmaller} {
@@ -28,7 +28,7 @@ export const ChooseGame = styled.div`
   }
   @media ${desktopAndBigger} {
     border-left: 2px solid
-      ${({ theme }) => theme.page.home.createRoomCard.border};
+      ${({ theme }) => theme.homePage.createRoomCard.border};
   }
 `;
 
@@ -52,7 +52,7 @@ export const Header = styled.div`
       height: 24px;
       path {
         cursor: pointer;
-        fill: ${({ theme }) => theme.page.home.createRoomCard.text};
+        fill: ${({ theme }) => theme.homePage.createRoomCard.text};
       }
     }
   }

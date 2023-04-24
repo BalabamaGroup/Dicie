@@ -20,11 +20,9 @@ const Main = () => {
 
   const questionIsAsked = !!gameData.roomDataDto.currentQuestion;
 
-  const iHaveAnsweredQuestion = !!mePlayer.state.lastAnswer;
-  const iHaveWon = mePlayer.state.winRound;
-
   const myTurnLocal = mePlayer.state.isGoing;
   const myTurn = useGameStore((s) => s.myTurn);
+
   useEffect(() => {
     if (myTurnLocal && !myTurn)
       useGameStore.setState((s) => ({ ...s, myTurn: true }));
@@ -40,10 +38,7 @@ const Main = () => {
         </div>
 
         {myTurnLocal ? (
-          <MyTurn
-            otherPlayers={otherPlayers}
-            gameState={gameData.roomDataDto}
-          />
+          <MyTurn />
         ) : (
           <OthersTurn
             mePlayer={mePlayer}

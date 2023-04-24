@@ -10,10 +10,8 @@ export const RoomPage = styled.section`
   ${commonPageWithNavbarStyles}
 
   width: 100vw;
-  color: ${({ theme }) => theme.page.text};
 
-  background: ${({ theme }) => theme.page.background.value};
-  color: ${({ theme }) => theme.page.text};
+  /* background: ${({ theme }) => theme.page.background.value}; */
 `;
 
 export const RoomContent = styled.div`
