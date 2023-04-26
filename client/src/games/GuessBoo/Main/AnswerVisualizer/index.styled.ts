@@ -8,7 +8,7 @@ export const NoQuestion = styled.div`
   height: 32px;
   min-height: 32px;
   width: 100%;
-  margin-top: 64px;
+  /* margin-top: 64px; */
   @media ${tabletAndSmaller} {
     margin-top: 0px;
   }
@@ -22,7 +22,7 @@ export const AnswerVisualizer = styled.div`
   justify-content: flex-start;
   box-sizing: border-box;
   width: 100%;
-  margin-top: 90px;
+  /* margin-top: 120px; */
   @media ${tabletAndSmaller} {
     margin-top: 0px;
   }

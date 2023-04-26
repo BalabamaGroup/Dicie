@@ -116,14 +116,14 @@ export const Game = styled.div<{
         ? theme.guessBooGame.main.game.borderWait
         : theme.guessBooGame.main.game.borderGo};
 
-  box-shadow: -4px 4px 12px 1px
+  box-shadow: -4px 4px 6px 1px
     ${({ myTurn, theme }) =>
       !myTurn
         ? theme.guessBooGame.main.game.shadowWaitRGBA
         : theme.guessBooGame.main.game.shadowGoRGBA};
 
   @media ${tabletAndSmaller} {
-    box-shadow: 0px 4px 12px 1px
+    box-shadow: 0px 4px 6px 1px
       ${({ myTurn, theme }) =>
         !myTurn
           ? theme.guessBooGame.main.game.shadowWaitRGBA

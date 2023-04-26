@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import styled from 'styled-components';
 
@@ -18,7 +18,6 @@ export const StyledMyRoomNavigation = styled.div<{}>`
   align-items: start;
   justify-content: center;
   gap: 4px;
-  margin-top: 10px;
 
   .option-icon-return {
     transform: rotate(90deg);
@@ -28,6 +27,9 @@ export const StyledMyRoomNavigation = styled.div<{}>`
 interface MyRoomNavigationProps {}
 
 const MyRoomNavigation = ({}: MyRoomNavigationProps) => {
+  const location = useLocation();
+  const isInRoom = location.pathname.includes('/room/');
+
   const roomId = useUserStore((s) => s.user!.roomId);
   const fetchUser = useUserStore((s) => s.fetchUser);
   const navigate = useNavigate();
@@ -50,13 +52,15 @@ const MyRoomNavigation = ({}: MyRoomNavigationProps) => {
 
   return (
     <StyledMyRoomNavigation theme={componentTheme}>
-      <Button size='small' color={color} onClick={onReturn} isScale>
-        Return
-        <ReactSVG
-          className='option-icon option-icon-return'
-          src='/images/svgs/arrow.full.up.svg'
-        />
-      </Button>
+      {!isInRoom && (
+        <Button size='small' color={color} onClick={onReturn} isScale>
+          Return
+          <ReactSVG
+            className='option-icon option-icon-return'
+            src='/images/svgs/arrow.full.up.svg'
+          />
+        </Button>
+      )}
       {roomId && (
         <Button
           type='danger'
@@ -65,7 +69,7 @@ const MyRoomNavigation = ({}: MyRoomNavigationProps) => {
           onClick={onDisconnect}
           isScale
         >
-          Disconnect
+          Leave
           <ReactSVG
             className='option-icon option-icon-disconnect'
             src='/images/svgs/leave.svg'

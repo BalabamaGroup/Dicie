@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const Conversation = styled.div<{
   currentQuestion: string | null;
-  finalAnswer: 'Yes' | 'No' | 'Wtf' | null;
+  finalAnswer: 'YES' | 'NO' | 'WTF' | null;
 }>`
   width: 100%;
   max-width: 480px;
@@ -68,7 +68,7 @@ export const MyQuestion = styled.div`
 
 export const OthersAnswer = styled.div<{
   currentQuestion: string | null;
-  finalAnswer: 'Yes' | 'No' | 'Wtf' | null;
+  finalAnswer: 'YES' | 'NO' | 'WTF' | null;
 }>`
   margin-right: auto;
   display: flex;
@@ -106,27 +106,27 @@ export const OthersAnswer = styled.div<{
   transition: background 0.3s ease-in-out;
 
   background: ${({ finalAnswer, theme }) =>
-    finalAnswer === 'Yes'
+    finalAnswer === 'YES'
       ? theme.guessBooGame.main.game.yesGo
-      : finalAnswer === 'No'
+      : finalAnswer === 'NO'
       ? theme.guessBooGame.main.game.noGo
-      : finalAnswer === 'Wtf'
+      : finalAnswer === 'WTF'
       ? theme.guessBooGame.main.game.wtfGo
       : theme.guessBooGame.main.game.myTurn.convo.othersAnswer.background};
 
   border: 1px solid
     ${({ finalAnswer, theme }) =>
-      finalAnswer === 'Yes'
+      finalAnswer === 'YES'
         ? theme.guessBooGame.main.game.yesGoBorder
-        : finalAnswer === 'No'
+        : finalAnswer === 'NO'
         ? theme.guessBooGame.main.game.noGoBorder
-        : finalAnswer === 'Wtf'
+        : finalAnswer === 'WTF'
         ? theme.guessBooGame.main.game.wtfGoBorder
         : theme.guessBooGame.main.game.myTurn.convo.othersAnswer.border};
 `;
 
 export const MyAnswer = styled.div<{
-  finalAnswer: 'Yes' | 'No' | 'Wtf' | null;
+  finalAnswer: 'YES' | 'NO' | 'WTF' | null;
 }>`
   margin-left: auto;
 

@@ -17,8 +17,6 @@ export const StyledSettingsTheme = styled.div<{}>`
   align-items: start;
   justify-content: center;
   gap: 8px;
-  margin-top: 8px;
-  padding: 8px 0;
 
   .settings-theme-option {
     user-select: none;

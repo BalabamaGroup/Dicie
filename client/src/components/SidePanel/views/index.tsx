@@ -9,7 +9,7 @@ interface SidePanelViewProps {
 
 const SidePanelView = ({ view }: SidePanelViewProps) => {
   if (view === 'chat' || view === 'guessBooAnswers') {
-    useChatStore((s) => s.subscribe)();
+    useChatStore((s) => s.subscribe());
     if (view === 'chat') return <SidePanelChat />;
     if (view === 'guessBooAnswers') return <SidePanelChat />;
   }

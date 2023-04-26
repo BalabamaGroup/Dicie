@@ -3,6 +3,7 @@ import { ReactSVG } from 'react-svg';
 
 import { ComponentColor } from '@/common/types/theme';
 
+import Button from '../Button';
 import * as Styled from './index.styled';
 
 interface CarouselProps {
@@ -41,27 +42,41 @@ const Carousel = ({
   }, [itemsNum]);
 
   return (
-    <Styled.Carousel maxWidth={maxWidth}>
-      <Styled.Arrow onClick={shiftMinus} isDisabled={shift <= 0} color={color}>
+    <Styled.Carousel
+      maxWidth={maxWidth}
+      cantUseArrows={children.length <= itemsNum}
+    >
+      <Button
+        className='arrow-btn'
+        size='small'
+        onClick={shiftMinus}
+        isDisabled={shift <= 0}
+        color={color}
+      >
         <ReactSVG className='arrow' src='/images/svgs/arrow.left.svg' />
-      </Styled.Arrow>
+      </Button>
 
       <Styled.CarouselItems
         width={width}
         gap={gap}
         itemWidth={itemWidth}
         shift={shift}
+        cantUseArrows={children.length <= itemsNum}
       >
         {children}
       </Styled.CarouselItems>
 
-      <Styled.Arrow
+      <Button
+        className='arrow-btn'
+        size='small'
         color={color}
         onClick={shiftPlus}
-        isDisabled={shift >= children.length - itemsNum}
+        isDisabled={
+          shift >= children.length - itemsNum || children.length <= itemsNum
+        }
       >
         <ReactSVG className='arrow' src='/images/svgs/arrow.right.svg' />
-      </Styled.Arrow>
+      </Button>
     </Styled.Carousel>
   );
 };

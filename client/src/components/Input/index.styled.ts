@@ -169,12 +169,13 @@ export const FocusRing = styled.div<{
   position: absolute;
   box-sizing: border-box;
   transition: box-shadow 0.2s ease-in-out, color 0.2s ease-in-out,
-    top 0.15s ease-in-out, right 0.15s ease-in-out, bottom 0.15s ease-in-out,
-    left 0.15s ease-in-out;
+    top 0.2s ease-in-out, right 0.2s ease-in-out, bottom 0.2s ease-in-out,
+    left 0.2s ease-in-out;
   border-radius: 14px;
 
   box-shadow: inset 0px 0px 0px
-    ${({ size }) => (size === 'large' ? '2px' : '1.5px')};
+    ${({ isFocus, size }) =>
+      !isFocus ? '1px' : size === 'large' ? '2px' : '1.5px'};
 
   color: ${({ isFocus, isError, multiInputData, theme }) =>
     !isFocus

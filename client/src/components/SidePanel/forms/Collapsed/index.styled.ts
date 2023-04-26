@@ -21,7 +21,7 @@ export const CollapsedFormWrapper = styled.div<{
     align-items: center;
     justify-content: center;
     background: ${({ theme }) => theme.bodyBackground};
-    box-shadow: 4px 4px 12px 1px ${({ theme }) => theme.shadowRGBA};
+    box-shadow: 4px 4px 6px 1px ${({ theme }) => theme.shadowRGBA};
 
     border-radius: 32px;
     transition: background 0.3s ease-in-out,
@@ -48,7 +48,7 @@ export const CollapsedFormWrapper = styled.div<{
     .side-panel-collapsed {
       height: 100%;
       width: 240px;
-      box-shadow: 0px 4px 12px 1px ${({ theme }) => theme.shadowRGBA};
+      box-shadow: 0px 4px 6px 1px ${({ theme }) => theme.shadowRGBA};
       svg {
         transform: rotate(90deg);
       }

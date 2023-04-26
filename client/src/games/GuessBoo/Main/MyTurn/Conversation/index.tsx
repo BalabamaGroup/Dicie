@@ -3,7 +3,9 @@ import { UserInGame } from '@/common/types/user';
 import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import Player from '@/components/Player';
+import useChatStore from '@/stores/ChatStore';
 import useGameStore from '@/stores/GameStore';
+import useUserStore from '@/stores/UserStore';
 
 import * as Styled from './index.styled';
 
@@ -18,6 +20,9 @@ const Conversation = ({
   currentQuestion,
   responseConterYes,
 }: ConversationProps) => {
+  const user = useUserStore((s) => s.user);
+  const sendMessage = useChatStore((s) => s.sendMessage);
+
   const answeredCount = otherPlayers.reduce(
     (result, player) => result + (player.state.lastAnswer ? 1 : 0),
     0
@@ -31,9 +36,9 @@ const Conversation = ({
       (p) => p.state.lastAnswer && result[p.state.lastAnswer]++
     );
 
-    if (result.YES > result.NO && result.YES > result.WTF) return 'Yes';
-    else if (result.NO > result.YES && result.NO > result.WTF) return 'No';
-    return 'Wtf';
+    if (result.YES > result.NO && result.YES > result.WTF) return 'YES';
+    else if (result.NO > result.YES && result.NO > result.WTF) return 'NO';
+    return 'WTF';
   };
 
   const finalAnswer = calculateAnswer();
@@ -43,18 +48,31 @@ const Conversation = ({
     if (!player.state.winRound) lastPlayer = false;
   });
 
-  console.log(responseConterYes);
-
   const canMakeAnotherTurn =
     lastPlayer ||
-    ((finalAnswer === 'Yes' || finalAnswer === 'Wtf') &&
+    ((finalAnswer === 'YES' || finalAnswer === 'WTF') &&
       responseConterYes < 2) ||
-    finalAnswer !== 'No';
+    finalAnswer !== 'NO';
 
   const onAskAgain = async () => {
-    await CharadesAPI.acceptAnswer();
-    // const event = new CustomEvent('answerAccept');
-    // window.dispatchEvent(event);
+    if (!currentQuestion || !finalAnswer) return;
+
+    sendMessage({
+      userId: user!.id,
+      username: user!.username,
+      text: currentQuestion,
+      special: {
+        game: 'guessBoo',
+        guessBoo: {
+          answer: finalAnswer,
+        },
+      },
+    });
+
+    const scroll = document.getElementById('chat-messages-scroll');
+    scroll!.scrollTop = scroll!.scrollHeight;
+
+    CharadesAPI.acceptAnswer();
   };
 
   const onSkipTurn = () => {
@@ -104,7 +122,7 @@ const Conversation = ({
               </Button>,
               <Button
                 type='danger'
-                key={'ask-again'}
+                key={'skip-turn'}
                 color='lime'
                 isPrimary
                 onClick={onAskAgain}

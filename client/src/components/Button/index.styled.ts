@@ -13,6 +13,7 @@ export const Button = styled.button<{
   box-sizing: border-box;
 
   text-align: center;
+  border-style: solid;
 
   display: flex;
   flex-direction: row;
@@ -25,7 +26,7 @@ export const Button = styled.button<{
   ${({ size }) =>
     size === 'large'
       ? css`
-          border: 2px solid transparent;
+          border-width: 1px;
           height: 72px;
           padding: 22px;
           border-radius: 16px;
@@ -33,6 +34,10 @@ export const Button = styled.button<{
           font-size: 20px;
           line-height: 20px;
           border-radius: 16px;
+          .icon {
+            width: 24px;
+            height: 24px;
+          }
           svg {
             width: 24px;
             height: 24px;
@@ -40,8 +45,7 @@ export const Button = styled.button<{
         `
       : size === 'medium'
       ? css`
-          border: 1.5px solid transparent;
-
+          border-width: 1px;
           height: 48px;
           padding: 16px;
           border-radius: 16px;
@@ -49,13 +53,17 @@ export const Button = styled.button<{
           font-size: 16px;
           line-height: 16px;
           border-radius: 12px;
+          .icon {
+            width: 20px;
+            height: 20px;
+          }
           svg {
             width: 20px;
             height: 20px;
           }
         `
       : css`
-          border: 1px solid transparent;
+          border-width: 1px;
           height: 32px;
           padding: 8px;
           border-radius: 12px;
@@ -63,6 +71,10 @@ export const Button = styled.button<{
           font-size: 12px;
           line-height: 12px;
           border-radius: 8px;
+          .icon {
+            width: 16px;
+            height: 16px;
+          }
           svg {
             width: 16px;
             height: 16px;

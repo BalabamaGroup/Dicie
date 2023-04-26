@@ -22,7 +22,7 @@ export const JoinRoomCard = styled(HomeContentCard)<{
       : theme.homePage.joinRoomCard.background};
 
   box-shadow: ${({ isSelected }) =>
-    isSelected ? '4px 4px 12px 1px' : '-4px 4px 12px 1px'};
+    isSelected ? '4px 4px 6px 1px' : '4px 4px 6px 1px'};
   color: ${({ theme }) => theme.homePage.joinRoomCard.shadowRGBA};
 
   ${({ isDefault }) =>

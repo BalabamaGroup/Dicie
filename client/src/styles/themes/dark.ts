@@ -34,7 +34,7 @@ const dark: any = {
       background: colors.lime[80],
       text: colors.lime[0],
       chooseGameBackground: colors.lime[90],
-      border: 'transparent',
+      border: colors.lime[100],
       shadowHover: shadows.lime.large,
     },
     joinRoomCard: {
@@ -43,7 +43,7 @@ const dark: any = {
       notSelectedText: colors.indigo[10],
       background: colors.indigo[80],
       text: colors.indigo[0],
-      border: 'transparent',
+      border: colors.indigo[100],
       shadowHover: shadows.indigo.large,
       roomsTableBackground: colors.indigo[90],
       roomsTableUserIconFill: colors.indigo.light,
@@ -58,8 +58,12 @@ const dark: any = {
       backgroundWait: gradients.wait_dark,
       backgroundGo: gradients.go_dark,
       actionArea: {
+        shadowGoRGBA: hexToRgba(colors.lime[90], 0.75),
+        shadowWaitRGBA: hexToRgba(colors.indigo[90], 0.75),
         backgroundWait: colors.indigo[80],
         backgroundGo: colors.lime[80],
+        borderWait: colors.indigo[100],
+        borderGo: colors.lime[100],
         intructionTextWait: colors.indigo[0],
         intructionSpanTextWait: colors.indigo.base,
         intructionTextGo: colors.lime[0],
@@ -68,8 +72,12 @@ const dark: any = {
         selectPlayerWarningText: colors.indigo.warning.base,
       },
       otherPlayers: {
+        shadowGoRGBA: hexToRgba(colors.lime[90], 0.75),
+        shadowWaitRGBA: hexToRgba(colors.indigo[90], 0.75),
         backgroundWait: colors.indigo[90],
         backgroundGo: colors.lime[90],
+        borderWait: colors.indigo[100],
+        borderGo: colors.lime[100],
       },
     },
     main: {
@@ -78,8 +86,8 @@ const dark: any = {
       game: {
         backgroundWait: colors.indigo[80],
         backgroundGo: colors.lime[80],
-        borderWait: 'transparent',
-        borderGo: 'transparent',
+        borderWait: colors.indigo[100],
+        borderGo: colors.lime[100],
         shadowGoRGBA: hexToRgba(colors.lime[90], 0.75),
         shadowWaitRGBA: hexToRgba(colors.indigo[90], 0.75),
         answerVisualizerDefaultWait: colors.indigo[80],
@@ -90,12 +98,12 @@ const dark: any = {
         yesGo: colors.lime.success.base,
         noGo: colors.lime.danger.base,
         wtfGo: colors.lime.warning.base,
-        yesWaitBorder: colors.indigo.success.base,
-        noWaitBorder: colors.indigo.danger.base,
-        wtfWaitBorder: colors.indigo.warning.base,
-        yesGoBorder: colors.lime.success.base,
-        noGoBorder: colors.lime.danger.base,
-        wtfGoBorder: colors.lime.warning.base,
+        yesWaitBorder: colors.indigo.success.dark,
+        noWaitBorder: colors.indigo.danger.dark,
+        wtfWaitBorder: colors.indigo.warning.dark,
+        yesGoBorder: colors.lime.success.dark,
+        noGoBorder: colors.lime.danger.dark,
+        wtfGoBorder: colors.lime.warning.dark,
         myTurn: {
           askGuessForm: {
             header: colors.lime[0],
@@ -105,12 +113,12 @@ const dark: any = {
           convo: {
             myQuestion: {
               background: colors.lime.base,
-              border: colors.lime.base,
+              border: colors.lime.dark,
               text: colors.lime[90],
             },
             othersAnswer: {
               background: colors.lime[90],
-              border: colors.lime[90],
+              border: colors.lime[100],
               textLoading: colors.lime[0],
               text: colors.lime[80],
             },
@@ -123,12 +131,12 @@ const dark: any = {
           othersQuestion: {
             loading: {
               background: colors.indigo[90],
-              border: colors.indigo[90],
+              border: colors.indigo[100],
               text: colors.indigo[10],
             },
             asked: {
               background: colors.indigo.base,
-              border: colors.indigo.base,
+              border: colors.indigo.dark,
               text: colors.indigo[10],
             },
           },

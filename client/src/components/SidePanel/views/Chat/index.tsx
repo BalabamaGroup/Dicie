@@ -1,19 +1,17 @@
 import { useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
-import { ChatMessage } from '@/common/types/chat';
-import { ComponentColor } from '@/common/types/theme';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Scroll from '@/components/Scroll';
 import useChatStore from '@/stores/ChatStore';
-import useColorStore from '@/stores/ColorStore';
 import useGameStore from '@/stores/GameStore';
 import useThemeStore from '@/stores/ThemeStore';
 import useUserStore from '@/stores/UserStore';
 import sidePanelTheme from '@/styles/themes/componentThemes/sidePanelTheme';
 
 import * as Styled from './index.styled';
+import Message from './Message';
 
 interface SidePanelChatProps {}
 
@@ -62,30 +60,16 @@ const SidePanelChat = ({}: SidePanelChatProps) => {
             className='chat-messages-scroll'
           >
             <Styled.MessagesList>
-              {messages.map((message, i) => {
-                const isNewBlock =
-                  !i || messages[i - 1].userId !== message.userId;
-                const isMyMessage = message.userId === user?.id;
-                return [
-                  isNewBlock && (
-                    <Styled.MessageUser
-                      isMyMessage={isMyMessage}
-                      key={`${i}-user`}
-                      theme={componentTheme}
-                    >
-                      {message.username}
-                    </Styled.MessageUser>
-                  ),
-                  <Styled.Message
-                    key={`${i}-message`}
-                    isMyMessage={isMyMessage}
-                    isNewBlock={isNewBlock}
-                    theme={componentTheme}
-                  >
-                    {message.text}
-                  </Styled.Message>,
-                ];
-              })}
+              {messages.map((message, i) => (
+                <Message
+                  index={i}
+                  isNewBlock={!i || messages[i - 1].userId !== message.userId}
+                  isMyMessage={message.userId === user?.id}
+                  username={message.username}
+                  text={message.text}
+                  special={message.special}
+                />
+              ))}
             </Styled.MessagesList>
           </Scroll>
         )}
@@ -100,7 +84,7 @@ const SidePanelChat = ({}: SidePanelChatProps) => {
           onEnter={onSendMessage}
           placeholder={'Write a message....'}
         />
-        <Button color={color}>
+        <Button color={color} onClick={onSendMessage}>
           <ReactSVG
             className='send-icon'
             src='/images/svgs/send.svg'

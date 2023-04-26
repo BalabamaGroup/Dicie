@@ -137,6 +137,8 @@ const AlreadyInRoom = ({}: AlreadyInRoomProps) => {
             Return
           </Button>
           <Button
+            isPrimary
+            type='danger'
             size='medium'
             isScale
             color='indigo'

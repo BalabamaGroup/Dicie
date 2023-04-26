@@ -10,7 +10,7 @@ interface PlayerProps {
   color: ComponentColor;
   size?: 'small' | 'medium' | 'large' | 'extraLarge';
   isClickable?: boolean;
-  onClick: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
   canBeHighlighted?: boolean;
   isHighlighted?: boolean;
   isDisabled?: boolean;

@@ -6,6 +6,7 @@ import useWindowWidth from '@/hooks/useWindowWidth';
 import useGameStore from '@/stores/GameStore';
 
 import * as Styled from './index.styled';
+import PlayerWithIndicator from './PlayerWithIndicator';
 
 interface PlayersCarouselProps {
   otherPlayers: UserInGame[];
@@ -22,15 +23,12 @@ const PlayersCarousel = ({ otherPlayers }: PlayersCarouselProps) => {
   return (
     <Styled.PlayersCarouselWrapper className='players-carousel'>
       <Carousel color={color} maxWidth={maxWidth} itemWidth={96} gap={16}>
-        {otherPlayers.map((player, i) => (
-          <Player
+        {[...otherPlayers].map((player, i) => (
+          <PlayerWithIndicator
+            lastAnswer={player.state.lastAnswer}
             size='medium'
             key={i}
-            onClick={() => {
-              return;
-            }}
             form='tile'
-            color='indigo'
             tileContent={{
               label: player.state.word,
               outsideLabel: player.username,

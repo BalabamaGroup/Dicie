@@ -57,17 +57,15 @@ const dark = (
       default: {
         background: color[90],
         text: !type ? color[0] : color.base,
-        border: 'transparent',
-        borderHover: 'transparent',
-        shadowHoverRGBA: hexToRgba(color[90], 0.5),
-        borderActive: 'transparent',
+        border: color[100],
+        borderHover: color[70],
+        shadowHoverRGBA: hexToRgba(color[100], 0.5),
       },
       primary: {
         background: color.base,
         text: color[0],
-        border: 'transparent',
+        border: color.dark,
         shadowHoverRGBA: hexToRgba(color.base, 0.5),
-        activeBorder: 'transparent',
       },
     };
   }
@@ -76,17 +74,15 @@ const dark = (
     default: {
       background: color[90],
       text: !type ? color[0] : color.base,
-      border: 'transparent',
-      borderHover: 'transparent',
-      shadowHoverRGBA: hexToRgba(color[90], 0.5),
-      borderActive: 'transparent',
+      border: color[100],
+      borderHover: color[70],
+      shadowHoverRGBA: hexToRgba(color[100], 0.5),
     },
     primary: {
       background: color.base,
       text: color[80],
-      border: 'transparent',
+      border: color.dark,
       shadowHoverRGBA: hexToRgba(color.base, 0.5),
-      activeBorder: 'transparent',
     },
   };
 };

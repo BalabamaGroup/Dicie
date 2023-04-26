@@ -57,7 +57,7 @@ const SetupRoom = ({
       className='setup-room'
       isMobileSetupCompleted={isMobileSetupCompleted}
     >
-      <Styled.SetupRoomHeader>Set up your room</Styled.SetupRoomHeader>
+      <Styled.SetupRoomHeader>Setup</Styled.SetupRoomHeader>
 
       <Scroll color={'lime'} className='setup-room-form-scroll'>
         <Styled.SetupRoomForm>

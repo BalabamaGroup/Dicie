@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 export const SidePanelChatWrapper = styled.div<{}>`
   width: 100%;
   height: 100%;
-  padding: 0 0 16px 16px;
+  padding: 0 0 16px 0px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -17,10 +17,10 @@ export const ChatMessages = styled.div`
   height: calc(var(--vh100) - 236px);
 
   .chat-messages-scroll {
-    padding-right: 16px;
+    padding-right: 8px;
     box-sizing: border-box;
     width: 100%;
-    height: calc(var(--vh100) - 252px);
+    height: calc(var(--vh100) - 236px);
     display: flex;
     flex-direction: column-reverse;
   }
@@ -46,58 +46,13 @@ export const MessagesList = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: end;
-  gap: 2px;
-`;
-
-export const MessageUser = styled.div<{ isMyMessage: boolean }>`
-  margin-top: 10px;
-  margin-bottom: 2px;
-  font-weight: 700;
-  font-size: 10px;
-  line-height: 20px;
-  transition: color 0.3s ease-in-out;
-  color: ${({ theme }) => theme.chat.messageText};
-
-  ${({ isMyMessage }) =>
-    isMyMessage &&
-    css`
-      margin-left: auto;
-    `}
-`;
-
-export const Message = styled.div<{
-  isMyMessage: boolean;
-  isNewBlock: boolean;
-}>`
-  display: flex;
-  align-items: flex-start;
-  justify-content: start;
-  padding: 8px 12px;
-  box-sizing: border-box;
-  max-width: 340px;
-  border-radius: ${({ isNewBlock }) =>
-    isNewBlock ? '12px 12px 12px 6px' : '6px 12px 12px 6px'};
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  word-break: break-all;
-  transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
-  color: ${({ theme }) => theme.chat.messageText};
-  background: ${({ theme }) => theme.chat.messageBackground};
-
-  ${({ isMyMessage, isNewBlock }) =>
-    isMyMessage &&
-    css`
-      background-color: black;
-      margin-left: auto;
-      color: ${({ theme }) => theme.chat.myMessage.messageText};
-      background: ${({ theme }) => theme.chat.myMessage.messageBackground};
-      border-radius: ${isNewBlock ? '12px 12px 6px 12px' : '12px 6px 6px 12px'};
-    `}
+  gap: 3px;
 `;
 
 export const ChatForm = styled.div`
+  box-sizing: border-box;
   padding-right: 16px;
+  padding-left: 16px;
   width: 100%;
   display: flex;
   flex-direction: row;

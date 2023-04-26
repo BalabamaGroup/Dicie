@@ -9,13 +9,18 @@ const light = {
     collapsedArrowIcon: colors.indigo[80],
     backdrop: 'rgba(24, 22, 33, 0.5);',
     chat: {
-      messageBackground: colors.indigo[0],
-      messageText: colors.indigo[80],
       sendButtonBackground: colors.indigo[0],
       sendButtonIcon: colors.indigo.dark,
-      myMessage: {
-        messageBackground: colors.indigo.light,
-        messageText: colors.indigo[80],
+      message: {
+        background: colors.indigo[0],
+        border: colors.indigo[50],
+        text: colors.indigo[80],
+      },
+      specialMessage: {
+        background: colors.indigo.light,
+        border: colors.indigo.dark,
+        text: colors.indigo[80],
+        guessBooAnswerIndicatorIcon: colors.indigo[80],
       },
     },
   },
@@ -27,13 +32,18 @@ const light = {
     collapsedArrowIcon: colors.lime[80],
     backdrop: 'rgba(33, 22, 22, 0.5)',
     chat: {
-      messageBackground: colors.lime[0],
-      messageText: colors.lime[80],
       sendButtonBackground: colors.lime[0],
       sendButtonIcon: colors.lime.dark,
-      myMessage: {
-        messageBackground: colors.lime.light,
-        messageText: colors.lime[80],
+      message: {
+        background: colors.lime[0],
+        border: colors.lime[50],
+        text: colors.lime[80],
+      },
+      specialMessage: {
+        background: colors.lime.light,
+        border: colors.lime.dark,
+        text: colors.lime[80],
+        guessBooAnswerIndicatorIcon: colors.lime[80],
       },
     },
   },
@@ -42,37 +52,47 @@ const light = {
 const dark = {
   indigo: {
     bodyBackground: colors.indigo[80],
-    border: 'transparent',
+    border: colors.indigo[100],
     shadowRGBA: hexToRgba(colors.indigo[90], 0.75),
     headerBackground: colors.indigo[90],
     collapsedArrowIcon: colors.indigo[10],
     backdrop: 'rgba(24, 22, 33, 0.5);',
     chat: {
-      messageBackground: colors.indigo[90],
-      messageText: colors.indigo[0],
       sendButtonBackground: colors.indigo[90],
       sendButtonIcon: colors.indigo.base,
-      myMessage: {
-        messageBackground: colors.indigo.base,
-        messageText: colors.indigo[0],
+      message: {
+        background: colors.indigo[90],
+        border: colors.indigo[100],
+        text: colors.indigo[0],
+      },
+      specialMessage: {
+        background: colors.indigo.base,
+        border: colors.indigo.dark,
+        text: colors.indigo[0],
+        guessBooAnswerIndicatorIcon: colors.indigo[80],
       },
     },
   },
   lime: {
     bodyBackground: colors.lime[80],
-    border: 'transparent',
+    border: colors.lime[100],
     shadowRGBA: hexToRgba(colors.lime[90], 0.75),
     headerBackground: colors.lime[90],
     collapsedArrowIcon: colors.lime[10],
     backdrop: 'rgba(33, 22, 22, 0.5)',
     chat: {
-      messageBackground: colors.lime[90],
-      messageText: colors.lime[0],
       sendButtonBackground: colors.lime[90],
       sendButtonIcon: colors.lime.base,
-      myMessage: {
-        messageBackground: colors.lime.base,
-        messageText: colors.lime[80],
+      message: {
+        background: colors.lime[90],
+        border: colors.lime[100],
+        text: colors.lime[0],
+      },
+      specialMessage: {
+        background: colors.lime.base,
+        border: colors.lime.dark,
+        text: colors.lime[80],
+        guessBooAnswerIndicatorIcon: colors.lime[80],
       },
     },
   },

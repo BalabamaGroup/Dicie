@@ -41,11 +41,17 @@ export const ActionArea = styled.div<{
       ? theme.guessBooGame.setup.actionArea.backgroundWait
       : theme.guessBooGame.setup.actionArea.backgroundGo};
 
-  border: 1px solid
+  border: 2px solid
     ${({ isWait, theme }) =>
       isWait
         ? theme.guessBooGame.setup.actionArea.borderWait
         : theme.guessBooGame.setup.actionArea.borderGo};
+
+  box-shadow: -4px 4px 6px 1.5px
+    ${({ isWait, theme }) =>
+      isWait
+        ? theme.guessBooGame.setup.actionArea.shadowWaitRGBA
+        : theme.guessBooGame.setup.actionArea.shadowGoRGBA};
 
   transition: background 0.3s ease-in-out, border 0.3s ease-in-out,
     opacity 0.3s ease-in-out;

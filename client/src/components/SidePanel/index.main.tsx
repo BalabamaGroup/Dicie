@@ -20,9 +20,9 @@ const StyledSidePanelMainWrapper = styled.div`
   transition: background 0.3s ease-in-out;
   background: ${({ theme }) => theme.bodyBackground};
   border: 2px solid ${({ theme }) => theme.border};
-  box-shadow: 4px 4px 12px 1px ${({ theme }) => theme.shadowRGBA};
+  box-shadow: 4px 4px 6px 1px ${({ theme }) => theme.shadowRGBA};
   @media ${tabletAndSmaller} {
-    box-shadow: 0px 4px 12px 1px ${({ theme }) => theme.shadowRGBA};
+    box-shadow: 0px 4px 6px 1px ${({ theme }) => theme.shadowRGBA};
   }
 `;
 

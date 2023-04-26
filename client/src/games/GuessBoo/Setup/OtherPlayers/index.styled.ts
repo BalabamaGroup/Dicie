@@ -10,12 +10,24 @@ export const OtherPlayersWrapper = styled.div<{
   border-radius: 32px;
   padding: 16px 16px;
   box-sizing: border-box;
-  transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
 
   background: ${({ isWait, theme }) =>
     isWait
       ? theme.guessBooGame.setup.otherPlayers.backgroundWait
       : theme.guessBooGame.setup.otherPlayers.backgroundGo};
+
+  border: 2px solid
+    ${({ isWait, theme }) =>
+      isWait
+        ? theme.guessBooGame.setup.otherPlayers.borderWait
+        : theme.guessBooGame.setup.otherPlayers.borderGo};
+
+  box-shadow: 0px 4px 6px 1px
+    ${({ isWait, theme }) =>
+      isWait
+        ? theme.guessBooGame.setup.otherPlayers.shadowWaitRGBA
+        : theme.guessBooGame.setup.otherPlayers.shadowGoRGBA};
 
   .other-players-scroll {
     display: flex;

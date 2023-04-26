@@ -26,7 +26,7 @@ export const CreateRoomCard = styled(HomeContentCard)<{
       : theme.homePage.createRoomCard.background};
 
   box-shadow: ${({ isSelected }) =>
-    isSelected ? '-4px 4px 12px 1px' : '4px 4px 12px 1px'};
+    isSelected ? '-4px 4px 6px 1px' : '-4px 4px 6px 1px'};
   color: ${({ theme }) => theme.homePage.createRoomCard.shadowRGBA};
 
   &:hover {
