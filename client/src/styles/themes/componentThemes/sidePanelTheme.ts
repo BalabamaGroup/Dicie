@@ -23,6 +23,11 @@ const light = {
         guessBooAnswerIndicatorIcon: colors.indigo[80],
       },
     },
+    guessBooAnswers: {
+      text: colors.indigo[80],
+      bottomBorder: colors.indigo[50],
+      iconFill: colors.indigo[80],
+    },
   },
   lime: {
     bodyBackground: colors.lime[10],
@@ -45,6 +50,11 @@ const light = {
         text: colors.lime[80],
         guessBooAnswerIndicatorIcon: colors.lime[80],
       },
+    },
+    guessBooAnswers: {
+      text: colors.lime[80],
+      bottomBorder: colors.lime[50],
+      iconFill: colors.lime[80],
     },
   },
 };
@@ -72,6 +82,11 @@ const dark = {
         guessBooAnswerIndicatorIcon: colors.indigo[80],
       },
     },
+    guessBooAnswers: {
+      text: colors.indigo[0],
+      bottomBorder: colors.indigo[100],
+      iconFill: colors.indigo[80],
+    },
   },
   lime: {
     bodyBackground: colors.lime[80],
@@ -94,6 +109,11 @@ const dark = {
         text: colors.lime[80],
         guessBooAnswerIndicatorIcon: colors.lime[80],
       },
+    },
+    guessBooAnswers: {
+      text: colors.lime[0],
+      bottomBorder: colors.lime[100],
+      iconFill: colors.lime[80],
     },
   },
 };

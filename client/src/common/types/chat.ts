@@ -15,6 +15,15 @@ export type ChatMessage = {
   };
 };
 
+export type ChatSpecialMessage = ChatMessage & {
+  special: {
+    game: 'guessBoo';
+    guessBoo?: {
+      answer: 'YES' | 'NO' | 'WTF';
+    };
+  };
+};
+
 export type ChatActions = {
   send: Function;
 };

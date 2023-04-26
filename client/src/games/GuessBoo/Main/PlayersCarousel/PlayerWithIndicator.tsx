@@ -15,8 +15,8 @@ export const StyledPlayerWithIndicator = styled.div<{
   gap: 8px;
 
   transition: margin 0.3s ease-in-out !important;
-  margin-top: ${({ lastAnswer }) => (!lastAnswer ? '32px' : '16px')};
-  margin-bottom: ${({ lastAnswer }) => (!lastAnswer ? '-16px' : '0')};
+  margin-top: ${({ lastAnswer }) => (!lastAnswer ? '24px' : '16px')};
+  margin-bottom: ${({ lastAnswer }) => (!lastAnswer ? '-8px' : '0')};
 `;
 
 export const StyledIndicator = styled.div<{

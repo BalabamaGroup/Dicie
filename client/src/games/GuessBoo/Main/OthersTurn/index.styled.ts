@@ -10,7 +10,7 @@ export const OthersTurn = styled.div<{
   align-items: end;
   justify-content: center;
   width: 100%;
-  max-width: 480px;
+  max-width: 460px;
   height: 100%;
 
   transition: gap 0.3s ease-in-out;
