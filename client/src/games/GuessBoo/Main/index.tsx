@@ -50,7 +50,7 @@ const Main = () => {
         />
       </Styled.Game>
       <SidePanel
-        views={[{ id: 'chat' }, { id: 'guessBooAnswers', data: [] }]}
+        views={['chat', 'guessBooAnswers', 'notes']}
         collapseThreshhold={thresholds.guessBoo.main.sidePanelCollapse}
         horizontalThreshhold={thresholds.guessBoo.main.sidePanelHorizontal}
       />

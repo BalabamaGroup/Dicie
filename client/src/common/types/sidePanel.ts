@@ -1,15 +1,6 @@
 import { ChatData } from './chat';
 
-export type SidePanelViewId = 'chat' | 'guessBooAnswers';
-
-export type SidePanelViewIdData =
-  | {
-      id: 'chat';
-    }
-  | {
-      id: 'guessBooAnswers';
-      data: GuessBooAnswersData;
-    };
+export type SidePanelViewId = 'chat' | 'guessBooAnswers' | 'notes';
 
 export type SidePanelView = {
   id: SidePanelViewId;

@@ -1,6 +1,6 @@
 import { SidePanelView, SidePanelViewId } from '@/common/types/sidePanel';
 
-import SidePanelChat from './Chat/index';
+import Chat from './Chat/index';
 
 export const views: SidePanelView[] = [
   {
@@ -10,6 +10,10 @@ export const views: SidePanelView[] = [
   {
     id: 'guessBooAnswers',
     label: 'Answers',
+  },
+  {
+    id: 'notes',
+    label: 'Notes',
   },
 ];
 

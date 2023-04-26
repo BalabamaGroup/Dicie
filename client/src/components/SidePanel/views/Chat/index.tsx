@@ -13,9 +13,9 @@ import sidePanelTheme from '@/styles/themes/componentThemes/sidePanelTheme';
 import * as Styled from './index.styled';
 import Message from './Message';
 
-interface SidePanelChatProps {}
+interface ChatProps {}
 
-const SidePanelChat = ({}: SidePanelChatProps) => {
+const Chat = ({}: ChatProps) => {
   const user = useUserStore((s) => s.user);
 
   const [messages, sendMessage] = useChatStore((s) => [
@@ -46,7 +46,7 @@ const SidePanelChat = ({}: SidePanelChatProps) => {
   const componentTheme = sidePanelTheme[theme][color];
 
   return (
-    <Styled.SidePanelChatWrapper>
+    <Styled.ChatWrapper>
       <Styled.ChatMessages>
         {!messages || !messages.length ? (
           <Styled.NoMessages theme={componentTheme}>
@@ -92,8 +92,8 @@ const SidePanelChat = ({}: SidePanelChatProps) => {
           />
         </Button>
       </Styled.ChatForm>
-    </Styled.SidePanelChatWrapper>
+    </Styled.ChatWrapper>
   );
 };
 
-export default SidePanelChat;
+export default Chat;

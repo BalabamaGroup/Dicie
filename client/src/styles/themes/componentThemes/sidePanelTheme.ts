@@ -28,6 +28,17 @@ const light = {
       bottomBorder: colors.indigo[50],
       iconFill: colors.indigo[80],
     },
+    notes: {
+      background: colors.indigo[10],
+      text: colors.indigo[80],
+      border: colors.indigo[50],
+      borderHover: colors.indigo[60],
+      borderActive: colors.indigo.dark,
+      scroll: {
+        background: colors.indigo[10],
+        thumb: colors.indigo[50],
+      },
+    },
   },
   lime: {
     bodyBackground: colors.lime[10],
@@ -55,6 +66,17 @@ const light = {
       text: colors.lime[80],
       bottomBorder: colors.lime[50],
       iconFill: colors.lime[80],
+    },
+    notes: {
+      background: colors.lime[10],
+      text: colors.lime[80],
+      border: colors.lime[50],
+      borderHover: colors.lime[60],
+      borderActive: colors.lime.dark,
+      scroll: {
+        background: colors.lime[10],
+        thumb: colors.lime[50],
+      },
     },
   },
 };
@@ -87,6 +109,17 @@ const dark = {
       bottomBorder: colors.indigo[100],
       iconFill: colors.indigo[80],
     },
+    notes: {
+      background: colors.indigo[80],
+      text: colors.indigo[0],
+      border: colors.indigo[100],
+      borderHover: colors.indigo[70],
+      borderActive: colors.indigo.base,
+      scroll: {
+        background: colors.indigo[80],
+        thumb: colors.indigo[70],
+      },
+    },
   },
   lime: {
     bodyBackground: colors.lime[80],
@@ -114,6 +147,17 @@ const dark = {
       text: colors.lime[0],
       bottomBorder: colors.lime[100],
       iconFill: colors.lime[80],
+    },
+    notes: {
+      background: colors.lime[80],
+      text: colors.lime[0],
+      border: colors.lime[100],
+      borderHover: colors.lime[70],
+      borderActive: colors.lime.base,
+      scroll: {
+        background: colors.lime[80],
+        thumb: colors.lime[70],
+      },
     },
   },
 };
