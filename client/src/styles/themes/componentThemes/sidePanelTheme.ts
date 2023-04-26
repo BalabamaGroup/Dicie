@@ -29,7 +29,7 @@ const light = {
       iconFill: colors.indigo[80],
     },
     notes: {
-      background: colors.indigo[10],
+      background: colors.indigo[0],
       text: colors.indigo[80],
       border: colors.indigo[50],
       borderHover: colors.indigo[60],
@@ -68,7 +68,7 @@ const light = {
       iconFill: colors.lime[80],
     },
     notes: {
-      background: colors.lime[10],
+      background: colors.lime[0],
       text: colors.lime[80],
       border: colors.lime[50],
       borderHover: colors.lime[60],
@@ -110,7 +110,7 @@ const dark = {
       iconFill: colors.indigo[80],
     },
     notes: {
-      background: colors.indigo[80],
+      background: colors.indigo[90],
       text: colors.indigo[0],
       border: colors.indigo[100],
       borderHover: colors.indigo[70],
@@ -149,7 +149,7 @@ const dark = {
       iconFill: colors.lime[80],
     },
     notes: {
-      background: colors.lime[80],
+      background: colors.lime[90],
       text: colors.lime[0],
       border: colors.lime[100],
       borderHover: colors.lime[70],

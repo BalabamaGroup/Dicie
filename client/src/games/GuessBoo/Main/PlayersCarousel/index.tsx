@@ -27,20 +27,7 @@ const PlayersCarousel = ({}: PlayersCarouselProps) => {
   return (
     <Styled.PlayersCarouselWrapper className='players-carousel' myTurn={myTurn}>
       <Carousel color={color} maxWidth={maxWidth} itemWidth={108} gap={16}>
-        {[
-          ...otherPlayers,
-          ...otherPlayers,
-          ...otherPlayers,
-          ...otherPlayers,
-          ...otherPlayers,
-          ...otherPlayers,
-          ...otherPlayers,
-          ...otherPlayers,
-          ...otherPlayers,
-          ...otherPlayers,
-          ...otherPlayers,
-          ...otherPlayers,
-        ].map((player, i) => (
+        {otherPlayers.map((player, i) => (
           <PlayerWithIndicator
             key={i}
             lastAnswer={player.state.lastAnswer}
