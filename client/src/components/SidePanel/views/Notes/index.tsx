@@ -12,7 +12,7 @@ const Notes = ({}: NotesProps) => {
 
   return (
     <Styled.NotesWrapper theme={componentTheme}>
-      <textarea id='notes' />
+      <textarea id='notes' placeholder='Write your notes here' />
     </Styled.NotesWrapper>
   );
 };

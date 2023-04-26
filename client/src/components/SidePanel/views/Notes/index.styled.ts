@@ -13,6 +13,9 @@ export const NotesWrapper = styled.div<{}>`
     border-radius: 16px;
     box-sizing: border-box;
     padding: 12px;
+    resize: none;
+    overflow-x: hidden;
+    word-break: break-all;
 
     color: ${({ theme }) => theme.text};
     background-color: ${({ theme }) => theme.background};

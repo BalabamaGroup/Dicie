@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 export const ChatWrapper = styled.div<{}>`
   width: 100%;
   height: 100%;
-  padding: 0 0 16px 0px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -14,13 +13,14 @@ export const ChatWrapper = styled.div<{}>`
 
 export const ChatMessages = styled.div`
   width: 100%;
-  height: calc(var(--vh100) - 236px);
+  height: calc(var(--vh100) - 240px);
 
   .chat-messages-scroll {
-    padding-right: 8px;
+    padding-right: 10px;
+    padding-left: 16px;
     box-sizing: border-box;
     width: 100%;
-    height: calc(var(--vh100) - 236px);
+    height: calc(var(--vh100) - 240px);
     display: flex;
     flex-direction: column-reverse;
   }

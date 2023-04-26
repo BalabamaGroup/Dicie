@@ -16,6 +16,8 @@ const Main = () => {
   const mePlayer = useGameStore((s) => s.getMePlayer());
   const otherPlayers = useGameStore((s) => s.getOtherPlayers());
 
+  const isFriendMode = gameData.isFriendMode;
+
   const questionIsAsked = !!gameData.roomDataDto.currentQuestion;
 
   const myTurnLocal = mePlayer.state.isGoing;
@@ -50,7 +52,11 @@ const Main = () => {
         />
       </Styled.Game>
       <SidePanel
-        views={['chat', 'guessBooAnswers', 'notes']}
+        views={
+          isFriendMode
+            ? ['chat', 'notes']
+            : ['chat', 'guessBooAnswers', 'notes']
+        }
         collapseThreshhold={thresholds.guessBoo.main.sidePanelCollapse}
         horizontalThreshhold={thresholds.guessBoo.main.sidePanelHorizontal}
       />
