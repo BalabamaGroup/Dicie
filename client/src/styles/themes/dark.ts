@@ -84,10 +84,16 @@ const dark: any = {
       backgroundWait: gradients.wait_dark,
       backgroundGo: gradients.go_dark,
       game: {
-        backgroundWait: colors.indigo[80],
-        backgroundGo: colors.lime[80],
+        backgroundWait: colors.indigo[90],
+        backgroundGo: colors.lime[90],
         borderWait: colors.indigo[100],
         borderGo: colors.lime[100],
+        playersCarousel: {
+          backgroundWait: colors.indigo[80],
+          backgroundGo: colors.lime[80],
+          borderWait: colors.indigo[100],
+          borderGo: colors.lime[100],
+        },
         shadowGoRGBA: hexToRgba(colors.lime[90], 0.75),
         shadowWaitRGBA: hexToRgba(colors.indigo[90], 0.75),
         answerVisualizerDefaultWait: colors.indigo[80],

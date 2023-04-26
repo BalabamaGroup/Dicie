@@ -30,7 +30,7 @@ const small = css`
 
 const medium = css`
   height: 128px;
-  width: 96px;
+  width: 108px;
   .highlight-wrapper {
     border-radius: 20px;
     .player {
@@ -49,6 +49,7 @@ const medium = css`
     }
   }
   .player-outside-label {
+    margin-top: 8px;
     max-width: 96px;
     font-size: 12px;
     line-height: 12px;

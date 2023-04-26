@@ -31,9 +31,7 @@ const Main = () => {
   return (
     <Styled.Main myTurn={myTurn}>
       <Styled.Game myTurn={myTurn}>
-        <div className='top-info'>
-          {<PlayersCarousel otherPlayers={otherPlayers} />}
-        </div>
+        <div className='top-info'>{<PlayersCarousel />}</div>
 
         {myTurnLocal ? (
           <MyTurn />

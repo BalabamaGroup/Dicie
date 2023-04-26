@@ -3,15 +3,20 @@ import styled, { css } from 'styled-components';
 import Player from '@/components/Player';
 import useGameStore from '@/stores/GameStore';
 
-export const StyledPlayerWithIndicator = styled.div<{}>`
+export const StyledPlayerWithIndicator = styled.div<{
+  lastAnswer: 'YES' | 'NO' | 'WTF' | null;
+}>`
   width: auto;
-  height: auto;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
   gap: 8px;
+
+  transition: margin 0.3s ease-in-out !important;
+  margin-top: ${({ lastAnswer }) => (!lastAnswer ? '32px' : '16px')};
+  margin-bottom: ${({ lastAnswer }) => (!lastAnswer ? '-16px' : '0')};
 `;
 
 export const StyledIndicator = styled.div<{
@@ -66,8 +71,7 @@ export const StyledIndicator = styled.div<{
 interface PlayerWithIndicatorProps {
   lastAnswer: 'YES' | 'NO' | 'WTF' | null;
 
-  size: 'medium';
-  form: 'tile';
+  isHighlighted: boolean;
   tileContent: {
     label: string | null;
     outsideLabel: string;
@@ -76,13 +80,20 @@ interface PlayerWithIndicatorProps {
 
 const PlayerWithIndicator = ({
   lastAnswer,
+
   ...rest
 }: PlayerWithIndicatorProps) => {
   const myTurn = useGameStore((s) => s.myTurn);
 
   return (
-    <StyledPlayerWithIndicator>
-      <Player color={myTurn ? 'lime' : 'indigo'} {...rest} />
+    <StyledPlayerWithIndicator lastAnswer={lastAnswer}>
+      <Player
+        color={myTurn ? 'lime' : 'indigo'}
+        size={'medium'}
+        form={'tile'}
+        canBeHighlighted
+        {...rest}
+      />
       <StyledIndicator myTurn={myTurn} lastAnswer={lastAnswer} />
     </StyledPlayerWithIndicator>
   );
