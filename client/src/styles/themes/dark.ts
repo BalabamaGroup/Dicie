@@ -112,6 +112,10 @@ const dark: any = {
         yesGoBorder: colors.lime.success.dark,
         noGoBorder: colors.lime.danger.dark,
         wtfGoBorder: colors.lime.warning.dark,
+        winGame: {
+          backdropRGBA: hexToRgba(colors.indigo[90], 0.4),
+          shadowRGBA: hexToRgba(colors.indigo[100], 0.75),
+        },
         myTurn: {
           askGuessForm: {
             header: colors.lime[0],
@@ -125,13 +129,14 @@ const dark: any = {
               text: colors.lime[90],
             },
             othersAnswer: {
-              background: colors.lime[90],
+              background: colors.lime[80],
               border: colors.lime[100],
               textLoading: colors.lime[0],
               text: colors.lime[80],
             },
             myNextMove: {
               background: colors.lime[80],
+              border: colors.lime[100],
             },
           },
         },

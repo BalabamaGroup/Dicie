@@ -3,14 +3,14 @@ import styled, { css } from 'styled-components';
 import { tabletAndSmaller } from '@/common/utils/device';
 
 export const OthersTurn = styled.div<{
-  currentQuestion: string | null;
+  currentQuestion: string | null | undefined;
 }>`
   display: flex;
   flex-direction: column;
   align-items: end;
   justify-content: center;
   width: 100%;
-  max-width: 460px;
+  max-width: 560px;
   height: 100%;
 
   transition: gap 0.3s ease-in-out;
@@ -25,7 +25,7 @@ export const OthersTurn = styled.div<{
 `;
 
 export const Qestion = styled.div<{
-  currentQuestion: string | null;
+  currentQuestion: string | null | undefined;
 }>`
   display: flex;
   flex-direction: row;
@@ -64,7 +64,7 @@ export const Qestion = styled.div<{
 `;
 
 export const MessageBubble = styled.div<{
-  currentQuestion: string | null;
+  currentQuestion: string | null | undefined;
 }>`
   display: flex;
   align-items: center;
@@ -75,9 +75,9 @@ export const MessageBubble = styled.div<{
   height: 144px;
   padding: 24px;
   box-sizing: border-box;
-  border-radius: 64px 64px 64px 16px;
+  border-radius: 48px 48px 48px 12px;
   width: 100%;
-  max-width: 320px;
+  max-width: 280px;
   margin-right: auto;
 
   @media ${tabletAndSmaller} {
@@ -122,23 +122,23 @@ export const MessageBubble = styled.div<{
 
 export const AnswerBubble = styled.div<{
   givenAnswer: 'YES' | 'NO' | 'WTF' | null;
-  currentQuestion: string | null;
+  currentQuestion: string | null | undefined;
 }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 32px 32px 8px 32px;
-  gap: 6px;
-  width: calc(100% - 16px);
+  border-radius: 24px 24px 12px 24px;
+  gap: 8px;
+  width: calc(100% - 32px);
   max-width: 240px;
   margin-left: 16px;
   font-weight: 700;
   font-size: 20px;
   line-height: 20px;
   box-sizing: border-box;
-  height: 72px;
+  height: 80px;
   width: 240px;
-  padding: 6px;
+  padding: 16px;
 
   transition: background 0.2s ease-in-out, color 0.2s ease-in-out,
     width 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -178,4 +178,8 @@ export const AnswerBubble = styled.div<{
         : givenAnswer === 'WTF'
         ? theme.guessBooGame.main.game.wtfWaitBorder
         : 'transparent'};
+
+  .my-answer-btn {
+    width: 64px;
+  }
 `;

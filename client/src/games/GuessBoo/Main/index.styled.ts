@@ -1,14 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import {
-  createGradientTransition,
-  transitionGradient,
-} from '@/common/helpers/styleHelpers';
-import {
-  mobileAndSmaller,
-  tabletAndSmaller,
-  thresholds,
-} from '@/common/utils/device';
+import { createGradientTransition, transitionGradient } from '@/common/helpers/styleHelpers';
+import { mobileAndSmaller, tabletAndSmaller, thresholds } from '@/common/utils/device';
 
 export const Main = styled.div<{
   myTurn: boolean;
@@ -62,6 +55,7 @@ export const Main = styled.div<{
 export const Game = styled.div<{
   myTurn: boolean;
 }>`
+  position: relative;
   width: 100%;
   height: 100%;
 

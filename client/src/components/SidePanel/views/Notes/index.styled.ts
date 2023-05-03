@@ -15,7 +15,8 @@ export const NotesWrapper = styled.div<{}>`
     padding: 12px;
     resize: none;
     overflow-x: hidden;
-    word-break: break-all;
+    /* word-break: break-all; */
+    white-space: pre-wrap;
 
     color: ${({ theme }) => theme.text};
     background-color: ${({ theme }) => theme.background};

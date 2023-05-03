@@ -9,7 +9,6 @@ const useKeyPressListener = ({
 }) => {
   const onKeyDown = (e: any) => {
     if (keys.some((key) => e.key === key)) {
-      e.preventDefault();
       onPress();
     }
   };

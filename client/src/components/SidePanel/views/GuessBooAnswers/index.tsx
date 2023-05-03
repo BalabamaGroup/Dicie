@@ -40,8 +40,9 @@ const GuessBooAnswers = ({}: GuessBooAnswersProps) => {
     <Styled.GuessBooAnswers theme={componentTheme}>
       <Scroll className='scroll' color={color}>
         <div className='scroll-wrapper'>
-          {myAnswers.map((message) => (
+          {myAnswers.map((message, i) => (
             <Styled.GuessBooAnswer
+              key={message.userId + '-' + i}
               answer={message.special!.guessBoo!.answer}
               myTurn={myTurn}
               theme={componentTheme}

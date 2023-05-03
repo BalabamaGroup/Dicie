@@ -112,4 +112,6 @@ export const EmptyBar = styled(Bar)<{ myTurn: boolean }>`
     !myTurn
       ? theme.guessBooGame.main.game.answerVisualizerDefaultWait
       : theme.guessBooGame.main.game.answerVisualizerDefaultGo};
+
+  border: 1px solid transparent;
 `;

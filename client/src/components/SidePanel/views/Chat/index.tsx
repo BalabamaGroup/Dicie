@@ -38,7 +38,7 @@ const Chat = ({}: ChatProps) => {
     setFormMessage('');
 
     const scroll = document.getElementById('chat-messages-scroll');
-    scroll!.scrollTop = scroll!.scrollHeight;
+    if (scroll) scroll.scrollTop = scroll!.scrollHeight;
   };
 
   const theme = useThemeStore((state) => state.theme);
@@ -84,12 +84,8 @@ const Chat = ({}: ChatProps) => {
           onEnter={onSendMessage}
           placeholder={'Write a message....'}
         />
-        <Button color={color} onClick={onSendMessage}>
-          <ReactSVG
-            className='send-icon'
-            src='/images/svgs/send.svg'
-            isDisabled={!formMessage}
-          />
+        <Button color={color} onClick={onSendMessage} isDisabled={!formMessage}>
+          <ReactSVG className='send-icon' src='/images/svgs/send.svg' />
         </Button>
       </Styled.ChatForm>
     </Styled.ChatWrapper>

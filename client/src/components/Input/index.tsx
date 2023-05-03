@@ -65,8 +65,7 @@ const Input = ({
   useKeyPressListener({
     keys: ['Enter'],
     onPress: () => {
-      if (!isFocus || !onEnter) return;
-      onEnter();
+      if (isFocus && onEnter) onEnter();
     },
   });
 

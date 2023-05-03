@@ -70,7 +70,7 @@ const Conversation = ({
     });
 
     const scroll = document.getElementById('chat-messages-scroll');
-    scroll!.scrollTop = scroll!.scrollHeight;
+    if (scroll) scroll.scrollTop = scroll!.scrollHeight;
 
     CharadesAPI.acceptAnswer();
   };

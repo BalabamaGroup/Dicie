@@ -5,7 +5,7 @@ export const Conversation = styled.div<{
   finalAnswer: 'YES' | 'NO' | 'WTF' | null;
 }>`
   width: 100%;
-  max-width: 480px;
+  max-width: 400px;
   height: 312px;
   display: flex;
   flex-direction: row-reverse;
@@ -50,7 +50,7 @@ export const MyQuestion = styled.div`
   border: 1px solid
     ${({ theme }) =>
       theme.guessBooGame.main.game.myTurn.convo.myQuestion.border};
-  border-radius: 64px 64px 8px 64px;
+  border-radius: 48px 48px 12px 48px;
   box-sizing: border-box;
   color: ${({ theme }) =>
     theme.guessBooGame.main.game.myTurn.convo.myQuestion.text};
@@ -74,7 +74,7 @@ export const OthersAnswer = styled.div<{
   display: flex;
   align-items: center;
   padding: 16px;
-  border-radius: 64px 64px 64px 16px;
+  border-radius: 24px 24px 24px 12px;
   gap: 12px;
   font-weight: 700;
   font-size: 20px;
@@ -82,7 +82,7 @@ export const OthersAnswer = styled.div<{
   width: 240px;
   max-width: calc(100% - 32px);
   justify-content: center;
-  height: 72px;
+  height: 80px;
   color: ${({ theme }) =>
     theme.guessBooGame.main.game.myTurn.convo.othersAnswer.text};
   box-sizing: border-box;
@@ -134,19 +134,23 @@ export const MyAnswer = styled.div<{
   align-items: center;
   justify-content: center;
   padding: 16px;
-  border-radius: 64px 64px 16px 64px;
-  gap: 12px;
+  border-radius: 24px 24px 12px 24px;
+  gap: 8px;
 
   font-weight: 700;
   font-size: 20px;
-  line-height: 24px;
+  line-height: 20px;
 
-  height: 72px;
+  height: 80px;
   color: #fff;
   box-sizing: border-box;
 
   background-color: ${({ theme }) =>
     theme.guessBooGame.main.game.myTurn.convo.myNextMove.background};
+
+  /* border: 1px solid
+    ${({ theme }) =>
+    theme.guessBooGame.main.game.myTurn.convo.myNextMove.border}; */
 
   /* prettier-ignore */
   @keyframes my-answer-bubble-slidein {

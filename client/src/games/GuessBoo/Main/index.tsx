@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 
 import { thresholds } from '@/common/utils/device';
 import SidePanel from '@/components/SidePanel';
-import useWindowWidth from '@/hooks/useWindowWidth';
 import useGameStore from '@/stores/GameStore';
 
 import AnswerVisualizer from './AnswerVisualizer';
@@ -10,15 +9,11 @@ import * as Styled from './index.styled';
 import MyTurn from './MyTurn';
 import OthersTurn from './OthersTurn';
 import PlayersCarousel from './PlayersCarousel';
+import WinGame from './WinGame';
 
 const Main = () => {
-  const gameData = useGameStore((s) => s.data!);
+  const isFriendMode = useGameStore((s) => s.data!.isFriendMode);
   const mePlayer = useGameStore((s) => s.getMePlayer());
-  const otherPlayers = useGameStore((s) => s.getOtherPlayers());
-
-  const isFriendMode = gameData.isFriendMode;
-
-  const questionIsAsked = !!gameData.roomDataDto.currentQuestion;
 
   const myTurnLocal = mePlayer.state.isGoing;
   const myTurn = useGameStore((s) => s.myTurn);
@@ -33,23 +28,10 @@ const Main = () => {
   return (
     <Styled.Main myTurn={myTurn}>
       <Styled.Game myTurn={myTurn}>
-        <div className='top-info'>{<PlayersCarousel />}</div>
-
-        {myTurnLocal ? (
-          <MyTurn />
-        ) : (
-          <OthersTurn
-            mePlayer={mePlayer}
-            otherPlayers={otherPlayers}
-            currentQuestion={gameData.roomDataDto.currentQuestion}
-          />
-        )}
-
-        <AnswerVisualizer
-          otherPlayers={otherPlayers}
-          mePlayer={mePlayer}
-          questionIsAsked={questionIsAsked}
-        />
+        <WinGame />
+        <PlayersCarousel />
+        {myTurn ? <MyTurn /> : <OthersTurn />}
+        <AnswerVisualizer />
       </Styled.Game>
       <SidePanel
         views={

@@ -41,7 +41,7 @@ export const Message = styled.div<{
       font-weight: 500;
       color: ${({ theme }) => theme.chat.message.text};
       background: ${({ theme }) => theme.chat.message.background};
-      border: 0.5px solid ${({ theme }) => theme.chat.message.border};
+      /* border: 0.5px solid ${({ theme }) => theme.chat.message.border}; */
     `}
 
   ${({ isSpecial }) =>
@@ -50,7 +50,8 @@ export const Message = styled.div<{
       font-weight: 700;
       color: ${({ theme }) => theme.chat.specialMessage.text};
       background: ${({ theme }) => theme.chat.specialMessage.background};
-      border: 0.5px solid ${({ theme }) => theme.chat.specialMessage.border};
+      /* border: 0.5px solid ${({ theme }) =>
+        theme.chat.specialMessage.border}; */
     `}
 
     border-radius: ${({ isMyMessage, isNewBlock }) =>

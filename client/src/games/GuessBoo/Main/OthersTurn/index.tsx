@@ -7,19 +7,17 @@ import useGameStore from '@/stores/GameStore';
 
 import * as Styled from './index.styled';
 
-interface OthersTurnProps {
-  mePlayer: UserInGame;
-  otherPlayers: UserInGame[];
-  currentQuestion: string | null;
-}
+interface OthersTurnProps {}
 
-const OthersTurn = ({
-  mePlayer,
-  otherPlayers,
-  currentQuestion,
-}: OthersTurnProps) => {
-  const goingPlayer = useGameStore((s) => s.getGoingPlayer());
+const OthersTurn = ({}: OthersTurnProps) => {
   const isFriendMode = useGameStore((s) => s.isFriendMode);
+
+  const mePlayer = useGameStore((s) => s.getMePlayer());
+  const goingPlayer = useGameStore((s) => s.getGoingPlayer());
+
+  const currentQuestion = useGameStore(
+    (s) => s.data?.roomDataDto.currentQuestion
+  );
 
   const onYes = () => CharadesAPI.answerQuestion({ charadeAnswer: 'YES' });
   const onNo = () => CharadesAPI.answerQuestion({ charadeAnswer: 'NO' });
@@ -76,13 +74,31 @@ const OthersTurn = ({
       >
         {!mePlayer.state.lastAnswer ? (
           [
-            <Button isPrimary key='yes' onClick={onYes} type='success'>
+            <Button
+              className='my-answer-btn'
+              isPrimary
+              key='yes'
+              onClick={onYes}
+              type='success'
+            >
               Yes
             </Button>,
-            <Button isPrimary key='mo' onClick={onNo} type='danger'>
+            <Button
+              className='my-answer-btn'
+              isPrimary
+              key='mo'
+              onClick={onNo}
+              type='danger'
+            >
               No
             </Button>,
-            <Button isPrimary key='wtf' onClick={onWtf} type='warning'>
+            <Button
+              className='my-answer-btn'
+              isPrimary
+              key='wtf'
+              onClick={onWtf}
+              type='warning'
+            >
               Wtf
             </Button>,
           ]

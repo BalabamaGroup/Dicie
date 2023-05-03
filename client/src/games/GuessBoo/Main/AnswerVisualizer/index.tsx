@@ -1,22 +1,17 @@
-import CharadesAPI from '@/api/game/charades';
-import { UserInGame } from '@/common/types/user';
-import useColorStore from '@/stores/ColorStore';
 import useGameStore from '@/stores/GameStore';
 
 import * as Styled from './index.styled';
 
-interface AnswerVisualizerProps {
-  otherPlayers: UserInGame[];
-  mePlayer: UserInGame;
-  questionIsAsked: boolean;
-}
+interface AnswerVisualizerProps {}
 
-const AnswerVisualizer = ({
-  otherPlayers,
-  mePlayer,
-  questionIsAsked,
-}: AnswerVisualizerProps) => {
+const AnswerVisualizer = ({}: AnswerVisualizerProps) => {
   const myTurn = useGameStore((s) => s.myTurn);
+
+  const mePlayer = useGameStore((s) => s.getMePlayer());
+  const otherPlayers = useGameStore((s) => s.getOtherPlayers());
+  const questionIsAsked = useGameStore(
+    (s) => !!s.data?.roomDataDto.currentQuestion
+  );
 
   if (!questionIsAsked) return <Styled.NoQuestion />;
 
