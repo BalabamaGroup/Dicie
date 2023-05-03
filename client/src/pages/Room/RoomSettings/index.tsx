@@ -17,6 +17,7 @@ const RoomSettings = () => {
       <div className='players'>
         {users.map((user) => (
           <Player
+            key={user.id}
             onClick={() => {}}
             size='large'
             color='indigo'

@@ -10,6 +10,11 @@ export const AuthForm = styled.div`
   align-items: center;
   gap: 32px;
 
+  .preload-input-icon {
+    position: fixed;
+    visibility: hidden;
+  }
+
   @media (max-width: 464px) {
     width: calc(100vw - 64px);
   }

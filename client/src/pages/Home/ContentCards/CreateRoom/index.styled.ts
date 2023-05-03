@@ -51,7 +51,7 @@ export const CreateRoomCard = styled(HomeContentCard)<{
     }
     svg {
       path {
-        fill: #f1f586;
+        fill: ${({ theme }) => theme.homePage.createRoomCard.notSelectedArrow};
       }
     }
   }

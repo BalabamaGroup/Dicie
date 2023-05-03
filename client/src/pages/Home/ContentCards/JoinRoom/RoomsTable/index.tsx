@@ -43,7 +43,6 @@ const RoomsTable = ({ selectedGames, searchValue }: RoomsTableProps) => {
 
   useEffect(() => {
     refetchRooms();
-    fetchUser();
   }, []);
 
   if (!rooms || roomsIsLoading)

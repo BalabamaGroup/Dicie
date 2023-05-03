@@ -42,10 +42,10 @@ const gradients = {
   },
 
   go_light: {
-    value: `linear-gradient(120deg, #E8FFCB 0%, #FFECBA 100%);`,
+    value: `linear-gradient(120deg, #E1FDBD 0%, #F5D686 100%);`,
     angle: '120deg',
     colorsNum: 2,
-    colors: ['#E8FFCB', '#FFECBA'],
+    colors: ['#E1FDBD', '#F5D686'],
     points: ['0%', '100%'],
   },
 

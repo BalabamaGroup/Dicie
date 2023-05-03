@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 import { RoleTypes } from '@/common/constants';
 import routes from '@/common/constants/routes';
@@ -71,6 +72,10 @@ const SignUpForm = () => {
 
   return (
     <Styled.AuthForm>
+      <ReactSVG
+        className='preload-input-icon'
+        src='/images/svgs/eye.closed.svg'
+      />
       <Styled.AuthHeader>
         <div className='main'>
           Welcome to <span className='colored'>Dicie</span>

@@ -50,7 +50,7 @@ export const JoinRoomCard = styled(HomeContentCard)<{
     }
     svg {
       path {
-        fill: #8986f5;
+        fill: ${({ theme }) => theme.homePage.joinRoomCard.notSelectedArrow};
       }
     }
   }

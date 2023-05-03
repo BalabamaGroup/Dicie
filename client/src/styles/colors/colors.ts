@@ -26,7 +26,7 @@ const colors = {
   },
 
   lime: {
-    0: '#FFFFF5', 10: '#FCFDD9',
+    0: '#FFFFF5', 10: '#FCFDE5',
     light: '#FDFFBA', base: '#F1F586', dark: '#A3A90E',
     50: '#D4D9C3', 60: '#7C7B75', 70: '#373733',
     80: '#181816', 90: '#121210', 100: "#050505",

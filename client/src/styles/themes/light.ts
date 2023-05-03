@@ -34,8 +34,9 @@ const light = {
     joinRoomBackground: gradients.wait_light,
     createRoomCard: {
       shadowRGBA: hexToRgba(colors.lime[90], 0.25),
-      notSelectedBackground: colors.lime.base,
+      notSelectedBackground: colors.lime.light,
       notSelectedText: colors.lime[80],
+      notSelectedArrow: colors.lime.dark,
       background: colors.lime[10],
       chooseGameBackground: colors.lime[0],
       text: colors.lime[80],
@@ -44,8 +45,9 @@ const light = {
     },
     joinRoomCard: {
       shadowRGBA: hexToRgba(colors.indigo[90], 0.25),
-      notSelectedBackground: colors.indigo.base,
+      notSelectedBackground: colors.indigo.light,
       notSelectedText: colors.indigo[0],
+      notSelectedArrow: colors.indigo.dark,
       background: colors.indigo[10],
       text: colors.indigo[80],
       border: colors.indigo[50],
