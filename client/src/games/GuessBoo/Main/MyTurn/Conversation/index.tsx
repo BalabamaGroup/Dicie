@@ -103,8 +103,12 @@ const Conversation = ({
         >
           {otherPlayers.length > answeredCount ? (
             <Loader.BouncingDots size={24} />
+          ) : finalAnswer === 'YES' ? (
+            'Yes'
+          ) : finalAnswer === 'NO' ? (
+            'No'
           ) : (
-            finalAnswer
+            'Wtf'
           )}
         </Styled.OthersAnswer>
 

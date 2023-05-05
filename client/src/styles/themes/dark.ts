@@ -157,7 +157,7 @@ const dark: any = {
         othersTurn: {
           othersQuestion: {
             loading: {
-              background: colors.indigo[90],
+              background: colors.indigo[80],
               border: colors.indigo[100],
               text: colors.indigo[10],
             },
