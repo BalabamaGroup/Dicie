@@ -1,2 +1,2 @@
-# MonsterTavern
+# Dicie
 Multiplayer online gaming service

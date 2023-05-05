@@ -1,7 +1,11 @@
 import CharadesAPI from '@/api/game/charades';
 import { UserInGame } from '@/common/types/user';
+import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import Player from '@/components/Player';
+import useChatStore from '@/stores/ChatStore';
+import useGameStore from '@/stores/GameStore';
+import useUserStore from '@/stores/UserStore';
 
 import * as Styled from './index.styled';
 
@@ -16,6 +20,9 @@ const Conversation = ({
   currentQuestion,
   responseConterYes,
 }: ConversationProps) => {
+  const user = useUserStore((s) => s.user);
+  const sendMessage = useChatStore((s) => s.sendMessage);
+
   const answeredCount = otherPlayers.reduce(
     (result, player) => result + (player.state.lastAnswer ? 1 : 0),
     0
@@ -29,10 +36,11 @@ const Conversation = ({
       (p) => p.state.lastAnswer && result[p.state.lastAnswer]++
     );
 
-    if (result.YES > result.NO && result.YES > result.WTF) return 'Yes';
-    else if (result.NO > result.YES && result.NO > result.WTF) return 'No';
-    return 'Wtf';
+    if (result.YES > result.NO && result.YES > result.WTF) return 'YES';
+    else if (result.NO > result.YES && result.NO > result.WTF) return 'NO';
+    return 'WTF';
   };
+
   const finalAnswer = calculateAnswer();
 
   let lastPlayer = true;
@@ -40,16 +48,31 @@ const Conversation = ({
     if (!player.state.winRound) lastPlayer = false;
   });
 
-  console.log(responseConterYes);
-
   const canMakeAnotherTurn =
     lastPlayer ||
-    ((finalAnswer === 'Yes' || finalAnswer === 'Wtf') && responseConterYes < 3);
+    ((finalAnswer === 'YES' || finalAnswer === 'WTF') &&
+      responseConterYes < 2) ||
+    finalAnswer !== 'NO';
 
   const onAskAgain = async () => {
-    await CharadesAPI.acceptAnswer();
-    const event = new CustomEvent('answerAccept');
-    window.dispatchEvent(event);
+    if (!currentQuestion || !finalAnswer) return;
+
+    sendMessage({
+      userId: user!.id,
+      username: user!.username,
+      text: currentQuestion,
+      special: {
+        game: 'guessBoo',
+        guessBoo: {
+          answer: finalAnswer,
+        },
+      },
+    });
+
+    const scroll = document.getElementById('chat-messages-scroll');
+    if (scroll) scroll.scrollTop = scroll!.scrollHeight;
+
+    CharadesAPI.acceptAnswer();
   };
 
   const onSkipTurn = () => {
@@ -80,25 +103,41 @@ const Conversation = ({
         >
           {otherPlayers.length > answeredCount ? (
             <Loader.BouncingDots size={24} />
+          ) : finalAnswer === 'YES' ? (
+            'Yes'
+          ) : finalAnswer === 'NO' ? (
+            'No'
           ) : (
-            finalAnswer
+            'Wtf'
           )}
         </Styled.OthersAnswer>
 
         <Styled.MyAnswer finalAnswer={finalAnswer}>
           {canMakeAnotherTurn ? (
             [
-              <div key={'ask-again'} className='ask-again' onClick={onAskAgain}>
+              <Button
+                type='success'
+                key={'ask-again'}
+                color='lime'
+                isPrimary
+                onClick={onAskAgain}
+              >
                 Ask again
-              </div>,
-              <div key={'skip-turn'} className='skip-turn' onClick={onSkipTurn}>
+              </Button>,
+              <Button
+                type='danger'
+                key={'skip-turn'}
+                color='lime'
+                isPrimary
+                onClick={onAskAgain}
+              >
                 Skip turn
-              </div>,
+              </Button>,
             ]
           ) : (
-            <div className='continue' onClick={onAskAgain}>
+            <Button color='lime' isPrimary onClick={onAskAgain}>
               Continue
-            </div>
+            </Button>
           )}
         </Styled.MyAnswer>
       </Styled.ConversationContent>

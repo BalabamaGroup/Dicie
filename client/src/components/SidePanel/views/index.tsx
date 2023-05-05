@@ -1,17 +1,21 @@
 import { SidePanelViewId } from '@/common/types/sidePanel';
 import useChatStore from '@/stores/ChatStore';
 
-import SidePanelChat from './Chat';
+import Chat from './Chat';
+import GuessBooAnswers from './GuessBooAnswers';
+import Notes from './Notes';
 
 interface SidePanelViewProps {
   view: SidePanelViewId;
 }
 
 const SidePanelView = ({ view }: SidePanelViewProps) => {
-  if (view === 'chat' || view === 'guessBooAnswers') {
-    useChatStore((s) => s.subscribe)();
-    if (view === 'chat') return <SidePanelChat />;
-    if (view === 'guessBooAnswers') return <SidePanelChat />;
+  useChatStore((s) => s.subscribe());
+
+  if (view === 'chat' || view === 'guessBooAnswers' || view === 'notes') {
+    if (view === 'chat') return <Chat />;
+    if (view === 'guessBooAnswers') return <GuessBooAnswers />;
+    if (view === 'notes') return <Notes />;
   }
 
   return null;

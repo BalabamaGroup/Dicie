@@ -24,6 +24,7 @@ const GameSelector = ({
     <StyledGameSelector>
       {games.map((g) => (
         <GameButton
+          key={g.id}
           color='indigo'
           gameId={g.id}
           isSelected={selectedGames.includes(g.id)}

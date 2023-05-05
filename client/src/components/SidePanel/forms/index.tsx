@@ -8,9 +8,13 @@ export const StyledSidePanelDeviceWidthWrapper = styled.div<{
   collapseThreshhold: number;
 }>`
   ${({ collapseThreshhold }) => css`
+    width: 400px;
+    height: 100%;
     .sidepanel-collapsed { display: none }
     .sidepanel-full { display: flex; }
     @media (max-width: ${collapseThreshhold}px) {
+      width: auto;
+      height: auto;
       .sidepanel-collapsed { display: flex; }
       .sidepanel-full { display: none; }
     }

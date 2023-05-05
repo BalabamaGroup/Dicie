@@ -1,33 +1,43 @@
-import { GuessBooSpecific } from '@/common/types/room';
-import { UserInGame } from '@/common/types/user';
+import useGameStore from '@/stores/GameStore';
 
 import AskGuessForm from './AskGuessForm';
 import Conversation from './Conversation';
+import FriendMode from './FriendMode';
 import * as Styled from './index.styled';
 
-interface MyTurnProps {
-  gameState: GuessBooSpecific;
-  otherPlayers: UserInGame[];
-}
+interface MyTurnProps {}
 
-const MyTurn = ({ gameState, otherPlayers }: MyTurnProps) => {
+const MyTurn = ({}: MyTurnProps) => {
+  const isFriendMode = useGameStore((s) => s.isFriendMode!);
+  const gameSpecific = useGameStore((s) => s.specfic!);
+  const otherPlayers = useGameStore((s) => s.getOtherPlayers());
+
+  if (isFriendMode)
+    return (
+      <Styled.MyTurn>
+        <Styled.MyTurnContentWrapper>
+          <FriendMode />
+        </Styled.MyTurnContentWrapper>
+      </Styled.MyTurn>
+    );
+
   return (
     <Styled.MyTurn>
       <Styled.MyTurnContentWrapper>
-        {!gameState.currentQuestion ? (
+        {!gameSpecific.currentQuestion ? (
           <Styled.AskGuessFormWrapper
-            formSubmitted={!!gameState.currentQuestion}
+            formSubmitted={!!gameSpecific.currentQuestion}
           >
             <AskGuessForm />
           </Styled.AskGuessFormWrapper>
         ) : (
           <Styled.ReceivedAnswerWrapper
-            formSubmitted={!!gameState.currentQuestion}
+            formSubmitted={!!gameSpecific.currentQuestion}
           >
             <Conversation
               otherPlayers={otherPlayers}
-              currentQuestion={gameState.currentQuestion}
-              responseConterYes={gameState.responseCounterYes}
+              currentQuestion={gameSpecific.currentQuestion}
+              responseConterYes={gameSpecific.responseCounterYes}
             />
           </Styled.ReceivedAnswerWrapper>
         )}

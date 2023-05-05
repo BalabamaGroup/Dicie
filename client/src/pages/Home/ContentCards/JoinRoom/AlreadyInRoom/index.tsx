@@ -18,7 +18,7 @@ export const StyledAlreadyInRoom = styled.div<{}>`
   border-radius: 32px;
 
   background: ${({ theme }) =>
-    theme.page.home.joinRoomCard.alreadyInRoomBackdropRGBA};
+    theme.homePage.joinRoomCard.selected.alreadyInRoom.backdropRGBA};
   backdrop-filter: blur(12px);
 
   display: flex;
@@ -37,7 +37,7 @@ export const StyledAlreadyInRoom = styled.div<{}>`
     max-width: 540px;
     padding: 20px;
     background: ${({ theme }) =>
-      theme.page.home.joinRoomCard.alreadyInRoomBackground};
+      theme.homePage.joinRoomCard.selected.alreadyInRoom.background};
     border-radius: 32px;
     display: flex;
     flex-direction: column;
@@ -45,6 +45,9 @@ export const StyledAlreadyInRoom = styled.div<{}>`
     justify-content: center;
     gap: 20px;
     box-sizing: border-box;
+    box-shadow: 0px 4px 8px 2px
+      ${({ theme }) =>
+        theme.homePage.joinRoomCard.selected.alreadyInRoom.shadowRGBA};
 
     .header {
       text-align: center;
@@ -52,13 +55,13 @@ export const StyledAlreadyInRoom = styled.div<{}>`
       font-size: 32px;
       line-height: 32px;
       margin-bottom: 16px;
-      color: ${({ theme }) => theme.page.home.joinRoomCard.alreadyInRoomText};
+      color: ${({ theme }) => theme.homePage.joinRoomCard.alreadyInRoomText};
     }
     .body {
       font-weight: 400;
       font-size: 14px;
       line-height: 14px;
-      color: ${({ theme }) => theme.page.home.joinRoomCard.alreadyInRoomText};
+      color: ${({ theme }) => theme.homePage.joinRoomCard.alreadyInRoomText};
       span {
         font-weight: 700;
         color: #8986f5;
@@ -137,6 +140,8 @@ const AlreadyInRoom = ({}: AlreadyInRoomProps) => {
             Return
           </Button>
           <Button
+            isPrimary
+            type='danger'
             size='medium'
             isScale
             color='indigo'

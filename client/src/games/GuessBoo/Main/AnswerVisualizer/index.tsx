@@ -1,21 +1,18 @@
-import CharadesAPI from '@/api/game/charades';
-import { UserInGame } from '@/common/types/user';
-import useColorStore from '@/stores/ColorStore';
 import useGameStore from '@/stores/GameStore';
 
 import * as Styled from './index.styled';
 
-interface AnswerVisualizerProps {
-  otherPlayers: UserInGame[];
-  mePlayer: UserInGame;
-  questionIsAsked: boolean;
-}
+interface AnswerVisualizerProps {}
 
-const AnswerVisualizer = ({
-  otherPlayers,
-  mePlayer,
-  questionIsAsked,
-}: AnswerVisualizerProps) => {
+const AnswerVisualizer = ({}: AnswerVisualizerProps) => {
+  const myTurn = useGameStore((s) => s.myTurn);
+
+  const mePlayer = useGameStore((s) => s.getMePlayer());
+  const otherPlayers = useGameStore((s) => s.getOtherPlayers());
+  const questionIsAsked = useGameStore(
+    (s) => !!s.data?.roomDataDto.currentQuestion
+  );
+
   if (!questionIsAsked) return <Styled.NoQuestion />;
 
   const answerData = { YES: 0, NO: 0, WTF: 0, count: 0 };
@@ -32,27 +29,28 @@ const AnswerVisualizer = ({
   const emptyPercent =
     (100 / otherPlayers.length) * (otherPlayers.length - answerData.count);
 
-  const color = useGameStore((s) => s.getColor());
-
   return (
     <Styled.AnswerVisualizer>
       <Styled.YesBar
+        myTurn={myTurn}
         width={yesPercent}
         isFirst
         isLast={!noPercent && !wtfPercent && !emptyPercent}
       />
       <Styled.NoBar
+        myTurn={myTurn}
         width={noPercent}
         isFirst={!yesPercent}
         isLast={!wtfPercent && !emptyPercent}
       />
       <Styled.WtfBar
+        myTurn={myTurn}
         width={wtfPercent}
         isFirst={!yesPercent && !noPercent}
         isLast={!emptyPercent}
       />
       <Styled.EmptyBar
-        color={color}
+        myTurn={myTurn}
         width={emptyPercent}
         isFirst={!yesPercent && !noPercent && !wtfPercent}
         isLast

@@ -21,6 +21,9 @@ interface RoomSetupFormProps {
   roomPassword: string;
   onChangeRoomPassword: React.ChangeEventHandler<HTMLInputElement>;
 
+  isFriendMode: boolean;
+  onChangeIsFriendMode: React.MouseEventHandler<HTMLDivElement>;
+
   isWithCommuninactions: boolean;
   onChangeIsWithCommuninactions: React.MouseEventHandler<HTMLDivElement>;
   selectedCommunicationOption: string;
@@ -40,6 +43,8 @@ const SetupRoom = ({
   onChangeIsPrivate,
   roomPassword,
   onChangeRoomPassword,
+  isFriendMode,
+  onChangeIsFriendMode,
   isWithCommuninactions,
   onChangeIsWithCommuninactions,
   selectedCommunicationOption,
@@ -52,7 +57,7 @@ const SetupRoom = ({
       className='setup-room'
       isMobileSetupCompleted={isMobileSetupCompleted}
     >
-      <Styled.SetupRoomHeader>Set up your room</Styled.SetupRoomHeader>
+      <Styled.SetupRoomHeader>Setup</Styled.SetupRoomHeader>
 
       <Scroll color={'lime'} className='setup-room-form-scroll'>
         <Styled.SetupRoomForm>
@@ -64,53 +69,88 @@ const SetupRoom = ({
             placeholder='Name'
             onChange={onChangeRoomName}
             size={'medium'}
+            onEnter={
+              !isMobileSetupCompleted
+                ? onToggleIsMobileSetupCompleted
+                : onCreateRoom
+            }
             // icon='/images/svgs/eye.closed.svg'
           />
 
-          <Styled.MakePrivateParam className='isprivate'>
-            <div className='isprivate-main'>
+          <Styled.Option>
+            <div className='main'>
               <Toggle
-                className='isprivate-main-toggle'
+                className='main-toggle'
                 value={isPrivate}
                 onChange={onChangeIsPrivate}
                 size={'medium'}
                 color={'lime'}
               />
-              <div className='isprivate-main-text' onClick={onChangeIsPrivate}>
+              <div className='main-text' onClick={onChangeIsPrivate}>
                 Make room private
               </div>
             </div>
 
             {isPrivate && (
-              <div className='isprivate-settings'>
-                <div className='isprivate-settings-text'>
+              <div className='settings'>
+                <div className='settings-text'>
                   In order for other players to join this room, they will need
                   to enter the password you created
                 </div>
                 <Input
                   id={'room-name'}
                   color={'lime'}
-                  className='isprivate-settings-password'
+                  className='settings-password'
                   value={roomPassword}
                   placeholder='Room password'
                   onChange={onChangeRoomPassword}
                   size={'medium'}
+                  onEnter={
+                    !isMobileSetupCompleted
+                      ? onToggleIsMobileSetupCompleted
+                      : onCreateRoom
+                  }
                 />
               </div>
             )}
-          </Styled.MakePrivateParam>
+          </Styled.Option>
 
-          <Styled.CommunicationsParam className='communications'>
-            <div className='communications-main'>
+          <Styled.Option>
+            <div className='main'>
               <Toggle
-                className='communications-main-toggle'
+                className='main-toggle'
+                value={isFriendMode}
+                onChange={onChangeIsFriendMode}
+                size={'medium'}
+                color={'lime'}
+              />
+              <div className='main-text' onClick={onChangeIsFriendMode}>
+                Friend Mode
+              </div>
+            </div>
+
+            {isFriendMode && (
+              <div className='settings'>
+                <div className='settings-text'>
+                  Friend mode implies that you will keep in contact with people
+                  in the room using some other communication service, like
+                  Discord or Zoom.
+                </div>
+              </div>
+            )}
+          </Styled.Option>
+
+          {/* <Styled.Option>
+            <div className='main'>
+              <Toggle
+                className='main-toggle'
                 value={isWithCommuninactions}
                 onChange={onChangeIsWithCommuninactions}
                 size={'medium'}
                 color={'lime'}
               />
               <div
-                className='communications-main-text'
+                className='main-text'
                 onClick={onChangeIsWithCommuninactions}
               >
                 Enable in-game player communication
@@ -118,7 +158,7 @@ const SetupRoom = ({
             </div>
 
             {isWithCommuninactions && (
-              <div className='communications-settings'>
+              <div className='settings'>
                 <RadioExtended
                   color={'lime'}
                   className={'communications-settings-radio'}
@@ -150,7 +190,7 @@ const SetupRoom = ({
                 />
               </div>
             )}
-          </Styled.CommunicationsParam>
+          </Styled.Option> */}
         </Styled.SetupRoomForm>
       </Scroll>
 

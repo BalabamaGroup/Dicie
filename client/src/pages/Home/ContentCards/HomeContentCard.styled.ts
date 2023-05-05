@@ -80,6 +80,9 @@ const HomeContentCard = styled.div<{
   .on-selected {
     height: 100%;
     width: calc(100vw - 128px - 16px - 16px + 4px);
+    @media ${tabletAndSmaller} {
+      width: 100%;
+    }
 
     position: absolute;
     top: 50%;

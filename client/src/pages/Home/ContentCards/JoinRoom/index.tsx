@@ -56,6 +56,7 @@ const JoinRoomCard = ({
 
         <div className='search-wrapper'>
           <Input
+            color='indigo'
             value={searchValue}
             onChange={onChangeSearchValue}
             placeholder='Search rooms...'

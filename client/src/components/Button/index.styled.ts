@@ -13,6 +13,7 @@ export const Button = styled.button<{
   box-sizing: border-box;
 
   text-align: center;
+  border-style: solid;
 
   display: flex;
   flex-direction: row;
@@ -25,14 +26,18 @@ export const Button = styled.button<{
   ${({ size }) =>
     size === 'large'
       ? css`
-          border: 2px solid transparent;
+          border-width: 1px;
           height: 72px;
-          padding: 22px 33px;
+          padding: 22px;
           border-radius: 16px;
           font-weight: 800;
           font-size: 20px;
           line-height: 20px;
           border-radius: 16px;
+          .icon {
+            width: 24px;
+            height: 24px;
+          }
           svg {
             width: 24px;
             height: 24px;
@@ -40,29 +45,36 @@ export const Button = styled.button<{
         `
       : size === 'medium'
       ? css`
-          border: 1.5px solid transparent;
-
+          border-width: 1px;
           height: 48px;
-          padding: 16px 24px;
+          padding: 16px;
           border-radius: 16px;
           font-weight: 700;
           font-size: 16px;
           line-height: 16px;
           border-radius: 12px;
+          .icon {
+            width: 20px;
+            height: 20px;
+          }
           svg {
             width: 20px;
             height: 20px;
           }
         `
       : css`
-          border: 1px solid transparent;
+          border-width: 1px;
           height: 32px;
-          padding: 8px 12px;
+          padding: 8px;
           border-radius: 12px;
           font-weight: 600;
           font-size: 12px;
           line-height: 12px;
           border-radius: 8px;
+          .icon {
+            width: 16px;
+            height: 16px;
+          }
           svg {
             width: 16px;
             height: 16px;
@@ -86,46 +98,31 @@ export const Button = styled.button<{
   // DEFAULT
   ${({ isPrimary, theme }) =>
     !isPrimary &&
+    //prettier-ignore
     css`
       background: ${theme.default.background};
       border-color: ${theme.default.border};
       color: ${theme.default.text};
-
-      svg {
-        path {
-          fill: ${theme.default.text};
-        }
-      }
-
+      svg { path { fill: ${theme.default.text}; } }
       &:hover {
         border-color: ${theme.default.borderHover};
         box-shadow: 0px 4px 16px ${theme.default.shadowHoverRGBA};
       }
-      &:active {
-        transform: scale(0.98);
-      }
+      &:active { transform: scale(0.98); }
     `}
 
-  // PRIMARY
   ${({ isPrimary, theme }) =>
     isPrimary &&
+    //prettier-ignore
     css`
       background: ${theme.primary.background};
       border-color: ${theme.primary.border};
       color: ${theme.primary.text};
-      svg {
-        path {
-          fill: ${theme.primary.text};
-        }
-      }
-
-      &:hover {
-        box-shadow: 0px 4px 16px ${theme.primary.shadowHoverRGBA};
-      }
-      &:active {
-        transform: scale(0.98);
-      }
+      svg { path { fill: ${theme.primary.text}; } }
+      &:hover { box-shadow: 0px 4px 16px ${theme.primary.shadowHoverRGBA}; }
+      &:active { transform: scale(0.98); }
     `}
+
 
     ${({ disabled }) =>
     disabled &&

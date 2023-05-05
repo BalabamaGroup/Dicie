@@ -50,6 +50,7 @@ export const FormWrapper = styled.div`
       theme.guessBooGame.setup.actionArea.secondaryLabelText};
     span {
       cursor: pointer;
+      text-decoration: underline;
       font-weight: 800;
       color: ${({ theme }) =>
         theme.guessBooGame.setup.actionArea.secondaryLabelSpanText};

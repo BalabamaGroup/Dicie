@@ -8,6 +8,7 @@ const getMultiInputDataPaddingCss = (
 ) => {
   if (!multiInputData) return ``;
   if (!multiInputData.isSeparate) return ` padding: 0;`;
+  if (multiInputData.index === 0) return ` padding: 0 0 16px 0 ;`;
   if (multiInputData.index === multiInputData.length - 1)
     return ` padding: 16px 0 0 0 ;`;
   return isNoteVisible ? `  padding: 16px 0 0;` : ` padding: 16px 0;`;
@@ -91,8 +92,8 @@ export const InputWrapper = styled.div<{
   justify-content: space-between;
 
   transition: transform 0.1s ease-in-out, color 0.2s ease-in-out,
-    background 0.3s ease-in-out,
-    box-shadow 0.2s ease-in-out border-radius 0.175s ease-in-out;
+    background 0.3s ease-in-out, box-shadow 0.2s ease-in-out,
+    border-radius 0.175s ease-in-out;
 
   background: ${({ theme }) => theme.background};
   color: ${({ isFocus, isError, theme }) =>
@@ -112,6 +113,8 @@ export const InputWrapper = styled.div<{
     : multiInputData.isSeparate ? '16px'
     : multiInputData.isTopSeparate ? '16px 16px 0 0'
     : multiInputData.isBottomSeparate ? '0 0 16px 16px'
+    : multiInputData.index === 0 ? '16px 16px 0 0 '
+    : multiInputData.index === multiInputData.length - 1 ? '0 0 16px 16px'
     : '0px'};
 
   ${({ isFocus, multiInputData }) =>
@@ -124,6 +127,44 @@ export const InputWrapper = styled.div<{
         }
       }
     `}
+
+  &, .focus-ring {
+    border-top-left-radius: ${({ multiInputData }) =>
+      !multiInputData
+        ? '16px'
+        : multiInputData.isSeparate ||
+          multiInputData.isTopSeparate ||
+          multiInputData.index === 0
+        ? '16px'
+        : '0'};
+
+    border-top-right-radius: ${({ multiInputData }) =>
+      !multiInputData
+        ? '16px'
+        : multiInputData.isSeparate ||
+          multiInputData.isTopSeparate ||
+          multiInputData.index === 0
+        ? '16px'
+        : '0'};
+
+    border-bottom-left-radius: ${({ multiInputData }) =>
+      !multiInputData
+        ? '16px'
+        : multiInputData.isSeparate ||
+          multiInputData.isBottomSeparate ||
+          multiInputData.index === multiInputData.length - 1
+        ? '16px'
+        : '0'};
+
+    border-bottom-right-radius: ${({ multiInputData }) =>
+      !multiInputData
+        ? '16px'
+        : multiInputData.isSeparate ||
+          multiInputData.isBottomSeparate ||
+          multiInputData.index === multiInputData.length - 1
+        ? '16px'
+        : '0'};
+  }
 
   .input_input {
     z-index: 11;
@@ -169,18 +210,18 @@ export const FocusRing = styled.div<{
   position: absolute;
   box-sizing: border-box;
   transition: box-shadow 0.2s ease-in-out, color 0.2s ease-in-out,
-    top 0.15s ease-in-out, right 0.15s ease-in-out, bottom 0.15s ease-in-out,
-    left 0.15s ease-in-out;
-  border-radius: 14px;
+    top 0.2s ease-in-out, right 0.2s ease-in-out, bottom 0.2s ease-in-out,
+    left 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+
+  ${({ isFocus }) => isFocus && 'border-radius:  14px !important'};
 
   box-shadow: inset 0px 0px 0px
-    ${({ size }) => (size === 'large' ? '2px' : '1.5px')};
+    ${({ isFocus, size }) =>
+      !isFocus ? '1px' : size === 'large' ? '2px' : '1.5px'};
 
   color: ${({ isFocus, isError, multiInputData, theme }) =>
     !isFocus
-      ? !multiInputData
-        ? theme.border
-        : 'transparent'
+      ? theme.border
       : !isError
       ? theme.focusBorder
       : theme.focusBorderInvalid};

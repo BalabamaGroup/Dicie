@@ -7,6 +7,7 @@ import useThemeStore from '@/stores/ThemeStore';
 import navbarTheme from '@/styles/themes/componentThemes/navbarTheme';
 
 import MyRoomNavigation from '../SubOptions/MyRoomNavigation';
+import Profile from '../SubOptions/Profile';
 import SettingsTheme from '../SubOptions/SettingsTheme';
 import { useNavbarColor } from '../useNavbarColor';
 import * as Styled from './index.styled';
@@ -40,7 +41,11 @@ const MobileNavBar = ({ withHome, withMyRoom }: MobileNavBarProps) => {
   const onOpenMyRoom = () => setIsMyRoom(true);
   const onCloseMyRoom = () => setIsMyRoom(false);
 
-  const isSubOption = isSettings || isMyRoom;
+  const [isProfile, setIsProfile] = useState<boolean>(false);
+  const onOpenProfile = () => setIsProfile(true);
+  const onCloseProfile = () => setIsProfile(false);
+
+  const isSubOption = isSettings || isMyRoom || isProfile;
 
   return (
     <>
@@ -77,14 +82,14 @@ const MobileNavBar = ({ withHome, withMyRoom }: MobileNavBarProps) => {
               </Styled.MobileNavBarOption>
             ),
 
-            // <Styled.MobileNavBarOption
-            //   key='profile'
-            //   onClick={() => {}}
-            //   theme={componentTheme}
-            // >
-            //   <ReactSVG className='option-icon' src='/images/svgs/person.svg' />
-            //   Profile
-            // </Styled.MobileNavBarOption>,
+            <Styled.MobileNavBarOption
+              key='profile'
+              onClick={onOpenProfile}
+              theme={componentTheme}
+            >
+              <ReactSVG className='option-icon' src='/images/svgs/person.svg' />
+              Profile
+            </Styled.MobileNavBarOption>,
 
             withMyRoom && (
               <Styled.MobileNavBarOption
@@ -140,6 +145,22 @@ const MobileNavBar = ({ withHome, withMyRoom }: MobileNavBarProps) => {
               <div className='option-title'>My Room</div>
             </Styled.MobileNavBarOptionHeader>,
             <MyRoomNavigation key='myroom-navigation' />,
+          ]}
+
+          {isProfile && [
+            <Styled.MobileNavBarOptionHeader
+              key='profile-header'
+              className='option'
+              onClick={onCloseProfile}
+              theme={componentTheme}
+            >
+              <ReactSVG
+                className='option-icon'
+                src='/images/svgs/arrow.left.svg'
+              />
+              <div className='option-title'>Profile</div>
+            </Styled.MobileNavBarOptionHeader>,
+            <Profile key='profile' />,
           ]}
         </Styled.MobileNavBarContent>
       </Styled.MobileNavBar>

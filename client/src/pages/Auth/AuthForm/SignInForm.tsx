@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 import routes from '@/common/constants/routes';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import MultiInput from '@/components/MultiInput';
+import Toast from '@/components/Toast';
 import useAuthPageStore from '@/stores/AuthPageStore';
 import useThemeStore from '@/stores/ThemeStore';
 import useUserStore from '@/stores/UserStore';
@@ -40,15 +42,23 @@ const SignInForm = ({}: signInProps) => {
   const signIn = useUserStore((s) => s.signIn);
   const navigate = useNavigate();
   const onSignIn = async (e: any) => {
-    e.preventDefault();
-    await signIn({
-      username: username,
-      password: password,
-    }).then(() => navigate(routes.HOME));
+    try {
+      await signIn({
+        username: username,
+        password: password,
+      });
+      navigate(routes.HOME);
+    } catch (e) {
+      Toast.error('Could not authorize with provided data');
+    }
   };
 
   return (
     <Styled.AuthForm>
+      <ReactSVG
+        className='preload-input-icon'
+        src='/images/svgs/eye.closed.svg'
+      />
       <Styled.AuthHeader>
         <div className='main'>Welcome back</div>
         <div className='subheader'>You’ve been missed!</div>
@@ -64,6 +74,7 @@ const SignInForm = ({}: signInProps) => {
             placeholder='Username'
             value={username}
             onChange={onChangeUsername}
+            onEnter={onSignIn}
           />
           <Input
             id={'signUp-username'}
@@ -80,6 +91,7 @@ const SignInForm = ({}: signInProps) => {
             onIconClick={togglePasswordIsvisible}
             value={password}
             onChange={onChangePassword}
+            onEnter={onSignIn}
           />
         </MultiInput>
       </Styled.MultiInputWrapper>

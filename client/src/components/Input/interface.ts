@@ -16,6 +16,8 @@ export interface InputProps {
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 
+  onEnter?: Function;
+
   icon?: string;
   onIconClick?: React.MouseEventHandler<HTMLDivElement>;
 

@@ -72,6 +72,15 @@ export default class CharadesAPI {
     );
   };
 
+  static passTurnFM = async () => {
+    const options = {
+      method: 'post',
+      url: `game_charade/change_turn`,
+    };
+
+    return request(options).then((res: Promise<void>) => res);
+  };
+
   static checkWord = async (data: { word: string }) => {
     const options = {
       method: 'post',

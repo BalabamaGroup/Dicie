@@ -4,6 +4,7 @@ import { thresholds } from '@/common/utils/device';
 
 export const MyTurn = styled.div`
   height: 480px;
+  height: 100%;
 
   @media ${`(max-width: ${thresholds.guessBoo.setup.sidePanelHorizontal}px)`} {
     height: 100%;
@@ -17,7 +18,6 @@ export const MyTurn = styled.div`
   gap: 32px;
   width: 100%;
   box-sizing: border-box;
-  margin-top: auto;
 `;
 
 export const MyTurnContentWrapper = styled.div`

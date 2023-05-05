@@ -21,7 +21,7 @@ export const AskGuessHeader = styled.div`
   font-size: 32px;
   line-height: 44px;
   color: ${({ theme }) =>
-    theme.guessBooGame.main.game.myTurn.askGuessFormHeader};
+    theme.guessBooGame.main.game.myTurn.askGuessForm.header};
   text-align: center;
 
   span {
@@ -57,7 +57,8 @@ export const ButtonWrapper = styled.div<{ isQuestion: boolean }>`
     font-weight: 700;
     font-size: 14px;
     line-height: 19px;
-    color: ${({ theme }) => theme.guessBooGame.main.game.myTurn.guessWarning};
+    color: ${({ theme }) =>
+      theme.guessBooGame.main.game.myTurn.askGuessForm.guessWarning};
     opacity: 1;
     transition: margin-bottom 0.2s ease-in-out, opacity 0.2s ease-in-out;
   }

@@ -32,10 +32,14 @@ const useUserStore = create<UserStoreState>()((set, get) => ({
   isLoading: false,
 
   signIn: async (data: { username: string; password: string }) => {
-    await AuthAPI.signIn(data).then((res) => {
-      set((s) => ({ ...s, user: res, isLoading: false }));
-      res.token && sessionStorage.setItem('token', res.token);
-    });
+    await AuthAPI.signIn(data)
+      .then((res) => {
+        set((s) => ({ ...s, user: res }));
+        res.token && sessionStorage.setItem('token', res.token);
+      })
+      .finally(() => {
+        set((s) => ({ ...s, isLoading: false, isInitialLoaded: true }));
+      });
   },
 
   signUp: async (data: {
@@ -68,8 +72,6 @@ const useUserStore = create<UserStoreState>()((set, get) => ({
         const path = window.location.pathname;
         const isAuthPage = path === routes.SIGN_IN || path === routes.SIGN_UP;
         if (isAuthErr && !isAuthPage) window.location.href = routes.SIGN_IN;
-        else if (isAuthErr && isAuthPage)
-          Toast.error('Could not authorize with provided data');
         sessionStorage.removeItem('token');
       })
       .finally(() => {

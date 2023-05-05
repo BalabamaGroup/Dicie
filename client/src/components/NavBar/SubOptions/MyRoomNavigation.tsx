@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import styled from 'styled-components';
 
@@ -18,69 +18,18 @@ export const StyledMyRoomNavigation = styled.div<{}>`
   align-items: start;
   justify-content: center;
   gap: 4px;
-  margin-top: 10px;
 
-  .option-icon-return{
+  .option-icon-return {
     transform: rotate(90deg);
-  }
-
-  /* .myroom-navigation-option {
-    cursor: pointer;
-    padding: 0 8px;
-    box-sizing: border-box;
-
-    width: 100%;
-    height: 32px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 12px;
-    color: ${({ theme }) => theme.options.myRoomNavigation.buttonContent};
-
-    &:hover {
-      background: ${({ theme }) => theme.options.myRoomNavigation.buttonHover};
-    }
-
-    &-disconnect {
-      color: ${({ theme }) =>
-        theme.options.myRoomNavigation.buttonDesconnectContent};
-    }
-
-    .option-icon {
-      margin-left: auto;
-      width: 16px;
-      height: 16px;
-      svg {
-        width: 16px;
-        height: 16px;
-        path {
-          fill: ${({ theme }) => theme.options.myRoomNavigation.buttonContent};
-        }
-      }
-
-      &-return {
-        transform: rotate(90deg);
-      }
-
-      &-disconnect {
-        svg {
-          path {
-            fill: ${({ theme }) =>
-              theme.options.myRoomNavigation.buttonDesconnectContent};
-          }
-        }
-      }
-    } */
   }
 `;
 
 interface MyRoomNavigationProps {}
 
 const MyRoomNavigation = ({}: MyRoomNavigationProps) => {
+  const location = useLocation();
+  const isInRoom = location.pathname.includes('/room/');
+
   const roomId = useUserStore((s) => s.user!.roomId);
   const fetchUser = useUserStore((s) => s.fetchUser);
   const navigate = useNavigate();
@@ -103,16 +52,24 @@ const MyRoomNavigation = ({}: MyRoomNavigationProps) => {
 
   return (
     <StyledMyRoomNavigation theme={componentTheme}>
-      <Button size='small' color={color} onClick={onReturn} isScale>
-        Return
-        <ReactSVG
-          className='option-icon option-icon-return'
-          src='/images/svgs/arrow.full.up.svg'
-        />
-      </Button>
+      {!isInRoom && (
+        <Button size='small' color={color} onClick={onReturn} isScale>
+          Return
+          <ReactSVG
+            className='option-icon option-icon-return'
+            src='/images/svgs/arrow.full.up.svg'
+          />
+        </Button>
+      )}
       {roomId && (
-        <Button size='small' color={color} onClick={onDisconnect} isScale>
-          Disconnect
+        <Button
+          type='danger'
+          size='small'
+          color={color}
+          onClick={onDisconnect}
+          isScale
+        >
+          Leave
           <ReactSVG
             className='option-icon option-icon-disconnect'
             src='/images/svgs/leave.svg'

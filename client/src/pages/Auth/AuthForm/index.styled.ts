@@ -10,6 +10,11 @@ export const AuthForm = styled.div`
   align-items: center;
   gap: 32px;
 
+  .preload-input-icon {
+    position: fixed;
+    visibility: hidden;
+  }
+
   @media (max-width: 464px) {
     width: calc(100vw - 64px);
   }
@@ -25,13 +30,13 @@ export const AuthHeader = styled.div`
     text-align: center;
     margin-bottom: 16px;
 
-    color: ${({ theme }) => theme.page.auth.headerMain};
+    color: ${({ theme }) => theme.authPage.headerMain};
     @media ${mobileAndSmaller} {
       margin-bottom: 0px;
     }
 
     .colored {
-      color: ${({ theme }) => theme.page.auth.headerAccent};
+      color: ${({ theme }) => theme.authPage.headerAccent};
     }
   }
 
@@ -40,7 +45,7 @@ export const AuthHeader = styled.div`
     font-size: 14px;
     line-height: 18px;
     text-align: center;
-    color: ${({ theme }) => theme.page.auth.headerSub};
+    color: ${({ theme }) => theme.authPage.headerSub};
 
     @media ${mobileAndSmaller} {
       display: none;

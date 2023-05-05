@@ -1,14 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import {
-  createGradientTransition,
-  transitionGradient,
-} from '@/common/helpers/styleHelpers';
-import {
-  mobileAndSmaller,
-  tabletAndSmaller,
-  thresholds,
-} from '@/common/utils/device';
+import { createGradientTransition, transitionGradient } from '@/common/helpers/styleHelpers';
+import { mobileAndSmaller, tabletAndSmaller, thresholds } from '@/common/utils/device';
 
 export const Main = styled.div<{
   myTurn: boolean;
@@ -38,20 +31,33 @@ export const Main = styled.div<{
     flex-direction: column;
   }
 
-  transition: background-color 0.3s ease-in-out;
-  background-color: ${({ myTurn, theme }) =>
-    !myTurn
-      ? theme.guessBooGame.main.backgroundWait
-      : theme.guessBooGame.main.backgroundGo};
+  ${({ theme }) =>
+    createGradientTransition({
+      gradient: theme.guessBooGame.main.backgroundWait,
+      id: '-guessBooMainBg',
+    })};
+
+  ${({ myTurn, theme }) =>
+    !myTurn &&
+    transitionGradient({
+      id: '-guessBooMainBg',
+      gradient: theme.guessBooGame.main.backgroundWait,
+    })};
+
+  ${({ myTurn, theme }) =>
+    myTurn &&
+    transitionGradient({
+      id: '-guessBooMainBg',
+      gradient: theme.guessBooGame.main.backgroundGo,
+    })};
 `;
 
 export const Game = styled.div<{
   myTurn: boolean;
 }>`
+  position: relative;
   width: 100%;
   height: 100%;
-
-  background: #eceefe;
 
   box-sizing: border-box;
   border-radius: 32px;
@@ -92,9 +98,29 @@ export const Game = styled.div<{
     justify-content: center;
   }
 
-  transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   background: ${({ myTurn, theme }) =>
     !myTurn
       ? theme.guessBooGame.main.game.backgroundWait
       : theme.guessBooGame.main.game.backgroundGo};
+
+  border: 2px solid
+    ${({ myTurn, theme }) =>
+      !myTurn
+        ? theme.guessBooGame.main.game.borderWait
+        : theme.guessBooGame.main.game.borderGo};
+
+  box-shadow: -4px 4px 6px 1px
+    ${({ myTurn, theme }) =>
+      !myTurn
+        ? theme.guessBooGame.main.game.shadowWaitRGBA
+        : theme.guessBooGame.main.game.shadowGoRGBA};
+
+  @media ${tabletAndSmaller} {
+    box-shadow: 0px 4px 6px 1px
+      ${({ myTurn, theme }) =>
+        !myTurn
+          ? theme.guessBooGame.main.game.shadowWaitRGBA
+          : theme.guessBooGame.main.game.shadowGoRGBA};
+  }
 `;

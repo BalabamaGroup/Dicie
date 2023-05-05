@@ -5,6 +5,7 @@ import useThemeStore from '@/stores/ThemeStore';
 import navbarTheme from '@/styles/themes/componentThemes/navbarTheme';
 
 import MyRoomNavigation from '../SubOptions/MyRoomNavigation';
+import Profile from '../SubOptions/Profile';
 import SettingsTheme from '../SubOptions/SettingsTheme';
 import { useNavbarColor } from '../useNavbarColor';
 import * as Styled from './index.styled';
@@ -48,6 +49,14 @@ const DesktopNavBar = ({ withHome, withMyRoom }: DesktopNavBarProps) => {
           <div className='option-content'>
             <div className='option-content-title'>Settings</div>
             <SettingsTheme />
+          </div>
+        </Styled.DesktopNavBarOption>
+
+        <Styled.DesktopNavBarOption theme={componentTheme}>
+          <div className='option-title'>Profile</div>
+          <div className='option-content'>
+            <div className='option-content-title'>Profile</div>
+            <Profile />
           </div>
         </Styled.DesktopNavBarOption>
       </Styled.DesktopNavBarContent>

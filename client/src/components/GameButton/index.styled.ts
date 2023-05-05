@@ -40,16 +40,12 @@ export const GameButtonHighlight = styled.div<{
     !isSelected
       ? css`
           border: 2px solid transparent;
-          /* color: ${theme.gameButton.text};
-          background: ${theme.gameButton.background}; */
         `
       : css`
           border: 2px solid
             ${color === 'indigo'
               ? theme.gameButton.highlightBorderWait
               : theme.gameButton.highlightBorderGo};
-          /* color: ${theme.gameButton.textSelected};
-          background: ${theme.gameButton.backgroundSelected}; */
         `}
 `;
 

@@ -1,4 +1,10 @@
-import React, { createRef, useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  createRef,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { create } from 'zustand';
 
 import { ChatMessage } from '@/common/types/chat';
@@ -10,8 +16,8 @@ interface ChatStoreState {
   status: boolean;
   messages: ChatMessage[];
 
-  sendMessage: Function;
-  subscribe: Function;
+  sendMessage: { (message: ChatMessage): void };
+  subscribe: { (): void };
 }
 
 const useChatStore = create<ChatStoreState>()((set, get) => ({

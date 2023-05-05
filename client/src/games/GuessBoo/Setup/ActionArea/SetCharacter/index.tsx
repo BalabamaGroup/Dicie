@@ -30,7 +30,7 @@ const SetCharacter = ({
   };
 
   const onSubmitCharacter = async () => {
-    // setCharacterCache(character);
+    if (!character) return;
     setHighlightedPlayer({
       ...highlightedPlayer,
       state: { ...highlightedPlayer.state, word: character },
@@ -54,6 +54,7 @@ const SetCharacter = ({
           value={character}
           onChange={onChangeCharacter}
           placeholder={`Character for ${highlightedPlayer.username}`}
+          onEnter={onSubmitCharacter}
         />
         <div className='example'>
           Example: <span onClick={onSetExample}>{example}</span>

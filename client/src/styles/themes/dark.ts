@@ -3,120 +3,180 @@ import gradients from '../colors/gradients';
 import shadows from '../colors/shadows';
 
 const dark: any = {
-  navbar: {
-    wait: colors.indigo[10],
-    go: colors.lime[80],
-  },
-
   toast: {
     background: '#222222',
     color: '#F6F6F6',
-    success: colors.green.dark,
+    success: colors.indigo.success.base,
     successCircle: '#055F03',
-    warning: colors.orange.dark,
+    warning: colors.indigo.warning.base,
     warningCircle: '#74410B',
-    error: colors.red.dark,
+    error: colors.indigo.danger.base,
     errorCircle: '#5A0B1A',
     shadow: 'rgba(0, 0, 0, 0.85)',
   },
 
-  page: {
-    background: gradients.home_page_dark,
-    text: colors.indigo[10],
+  authPage: {
+    background: colors.indigo[80],
+    pictureBackground: 'linear-gradient(180deg, #8986F5 0%, #BE86F5 100%)',
+    headerMain: colors.indigo[10],
+    headerSub: colors.indigo[60],
+    headerAccent: colors.indigo.base,
+  },
 
-    auth: {
-      background: colors.indigo[80],
-      pictureBackground: gradients.indigo_purple_dark.value,
-      headerMain: colors.indigo[10],
-      headerSub: colors.indigo[60],
-      headerAccent: colors.indigo.base,
-    },
-
-    home: {
-      defaultBackground: gradients.home_page_dark.value,
-      createRoomBackground:
-        'linear-gradient(117.19deg, #CBF586 0%, #F5D686 100%);',
-      joinRoomBackground:
-        'linear-gradient(117.19deg, #86C6F5 0%, #B786F5 100%);',
-      createRoomCard: {
-        shadowRGBA: hexToRgba(colors.lime[90], 0.75),
-        notSelectedBackground: colors.lime.base,
-        notSelectedText: colors.lime[80],
-        background: colors.lime[80],
-        text: colors.lime[0],
-        chooseGameBackground: colors.lime[90],
-        border: 'transparent',
-        shadowHover: shadows.lime.large,
+  homePage: {
+    defaultBackground: gradients.home_page_dark,
+    createRoomBackground: gradients.go_dark,
+    joinRoomBackground: gradients.wait_dark,
+    createRoomCard: {
+      background: colors.lime[80],
+      border: colors.lime[100],
+      text: colors.lime[0],
+      shadowRGBA: hexToRgba(colors.lime[100], 0.75),
+      default: {
+        background: colors.lime.base,
+        text: colors.lime[80],
+        border: colors.lime.dark,
+        shadowHoverRGBA: hexToRgba(colors.lime.base, 0.75),
       },
-      joinRoomCard: {
-        shadowRGBA: hexToRgba(colors.indigo[90], 0.75),
-        notSelectedBackground: colors.indigo.base,
-        notSelectedText: colors.indigo[10],
-        background: colors.indigo[80],
+      notSelected: {
+        arrow: colors.lime.base,
+      },
+      selected: {
+        setupRoomBackground: colors.lime[80],
+        chooseGameBackground: colors.lime[90],
+      },
+    },
+    joinRoomCard: {
+      background: colors.indigo[80],
+      border: colors.indigo[100],
+      text: colors.indigo[0],
+      shadowRGBA: hexToRgba(colors.indigo[90], 0.75),
+      default: {
+        background: colors.indigo.base,
         text: colors.indigo[0],
-        border: 'transparent',
-        shadowHover: shadows.indigo.large,
-        roomsTableBackground: colors.indigo[90],
-        roomsTableUserIconFill: colors.indigo.light,
-        alreadyInRoomBackdropRGBA: hexToRgba(colors.indigo[90], 0.4),
-        alreadyInRoomBackground: colors.indigo[80],
-        alreadyInRoomText: colors.indigo[0],
+        border: colors.indigo.dark,
+        shadowHoverRGBA: hexToRgba(colors.indigo.base, 0.75),
+      },
+      notSelected: {
+        arrow: colors.indigo.base,
+      },
+      selected: {
+        roomsTable: {
+          background: colors.indigo[90],
+          userIconFill: colors.indigo.light,
+        },
+        alreadyInRoom: {
+          text: colors.indigo[0],
+          backdropRGBA: hexToRgba(colors.indigo[90], 0.4),
+          shadowRGBA: hexToRgba(colors.indigo[100], 0.75),
+          background: colors.indigo[80],
+        },
       },
     },
   },
 
   guessBooGame: {
     setup: {
-      backgroundWait: colors.indigo.base,
-      backgroundGo: colors.lime.base,
+      backgroundWait: gradients.wait_dark,
+      backgroundGo: gradients.go_dark,
       actionArea: {
+        shadowGoRGBA: hexToRgba(colors.lime[90], 0.75),
+        shadowWaitRGBA: hexToRgba(colors.indigo[90], 0.75),
         backgroundWait: colors.indigo[80],
         backgroundGo: colors.lime[80],
+        borderWait: colors.indigo[100],
+        borderGo: colors.lime[100],
         intructionTextWait: colors.indigo[0],
         intructionSpanTextWait: colors.indigo.base,
         intructionTextGo: colors.lime[0],
         secondaryLabelText: colors.lime[60],
         secondaryLabelSpanText: colors.lime.base,
-        selectPlayerWarningText: colors.orange.dark,
+        selectPlayerWarningText: colors.indigo.warning.base,
       },
       otherPlayers: {
+        shadowGoRGBA: hexToRgba(colors.lime[90], 0.75),
+        shadowWaitRGBA: hexToRgba(colors.indigo[90], 0.75),
         backgroundWait: colors.indigo[90],
         backgroundGo: colors.lime[90],
+        borderWait: colors.indigo[100],
+        borderGo: colors.lime[100],
       },
     },
     main: {
-      backgroundWait: colors.indigo.base,
-      backgroundGo: colors.lime.base,
+      backgroundWait: gradients.wait_dark,
+      backgroundGo: gradients.go_dark,
       game: {
         backgroundWait: colors.indigo[90],
         backgroundGo: colors.lime[90],
+        borderWait: colors.indigo[100],
+        borderGo: colors.lime[100],
+        playersCarousel: {
+          backgroundWait: colors.indigo[80],
+          backgroundGo: colors.lime[80],
+          borderWait: colors.indigo[100],
+          borderGo: colors.lime[100],
+        },
+        shadowGoRGBA: hexToRgba(colors.lime[90], 0.75),
+        shadowWaitRGBA: hexToRgba(colors.indigo[90], 0.75),
         answerVisualizerDefaultWait: colors.indigo[80],
         answerVisualizerDefaultGo: colors.lime[80],
-        yes: colors.green.dark,
-        no: colors.red.dark,
-        wtf: colors.orange.dark,
+        yesWait: colors.indigo.success.base,
+        noWait: colors.indigo.danger.base,
+        wtfWait: colors.indigo.warning.base,
+        yesGo: colors.lime.success.base,
+        noGo: colors.lime.danger.base,
+        wtfGo: colors.lime.warning.base,
+        yesWaitBorder: colors.indigo.success.dark,
+        noWaitBorder: colors.indigo.danger.dark,
+        wtfWaitBorder: colors.indigo.warning.dark,
+        yesGoBorder: colors.lime.success.dark,
+        noGoBorder: colors.lime.danger.dark,
+        wtfGoBorder: colors.lime.warning.dark,
+        winGame: {
+          backdropRGBA: hexToRgba(colors.indigo[90], 0.4),
+          shadowRGBA: hexToRgba(colors.indigo[100], 0.75),
+        },
         myTurn: {
-          askGuessFormHeader: colors.lime[0],
-          guessWarning: colors.orange.dark,
-          convoMyQuestionBackground: colors.lime.base,
-          convoMyQuestionText: colors.lime[80],
-          convoOthersAnswerBackground: colors.lime[80],
-          convoOthersAnswerText: colors.lime[0],
-          convoMyAnswerBackground: colors.lime[80],
-          convoMyAnswerAskAgainBg: colors.lime.base,
-          convoMyAnswerAskAgainText: colors.lime[80],
-          convoMyAnswerSkipTurnBg: colors.red.dark,
-          convoMyAnswerSkipTurnText: colors.lime[0],
-          convoMyAnswerContinueBg: colors.lime.base,
-          convoMyAnswerContinueText: colors.lime[80],
+          askGuessForm: {
+            header: colors.lime[0],
+            span: colors.lime.base,
+            guessWarning: colors.indigo.warning.base,
+          },
+          convo: {
+            myQuestion: {
+              background: colors.lime.base,
+              border: colors.lime.dark,
+              text: colors.lime[90],
+            },
+            othersAnswer: {
+              background: colors.lime[80],
+              border: colors.lime[100],
+              textLoading: colors.lime[0],
+              text: colors.lime[80],
+            },
+            myNextMove: {
+              background: colors.lime[80],
+              border: colors.lime[100],
+            },
+          },
         },
         othersTurn: {
-          myQuestionBackgroundWriting: colors.indigo[80],
-          myQuestionTextWriting: colors.indigo[10],
-          myQuestionBackgroundAsked: colors.indigo.base,
-          myQuestionTextAsked: colors.indigo[10],
-          othersAnswerBackground: colors.indigo[90],
-          othersAnswerText: colors.indigo[0],
+          othersQuestion: {
+            loading: {
+              background: colors.indigo[80],
+              border: colors.indigo[100],
+              text: colors.indigo[10],
+            },
+            asked: {
+              background: colors.indigo.base,
+              border: colors.indigo.dark,
+              text: colors.indigo[10],
+            },
+          },
+          myAnswer: {
+            background: colors.indigo[80],
+            text: colors.indigo[0],
+          },
         },
       },
     },
@@ -132,6 +192,8 @@ const dark: any = {
     background: 'none',
     textSelected: colors.indigo[80],
     backgroundSelected: colors.lime.base,
+    highlightBorderWait: colors.indigo[10],
+    highlightBorderGo: colors.lime[10],
   },
 };
 

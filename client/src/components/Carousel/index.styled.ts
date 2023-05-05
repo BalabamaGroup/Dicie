@@ -2,7 +2,10 @@ import styled, { css } from 'styled-components';
 
 import { ComponentColor } from '@/common/types/theme';
 
-export const Carousel = styled.div<{ maxWidth: number }>`
+export const Carousel = styled.div<{
+  maxWidth: number;
+  cantUseArrows: boolean;
+}>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -12,6 +15,14 @@ export const Carousel = styled.div<{ maxWidth: number }>`
   ${({ maxWidth }) => css`
     width: ${`${maxWidth}px`};
   `}
+
+  ${({ cantUseArrows }) =>
+    cantUseArrows &&
+    css`
+      .arrow-btn {
+        opacity: 0;
+      }
+    `}
 `;
 
 export const Arrow = styled.div<{
@@ -55,6 +66,7 @@ export const CarouselItems = styled.div<{
   itemWidth: number;
   gap: number;
   shift: number;
+  cantUseArrows: boolean;
 }>`
   display: flex;
   flex-direction: row;
@@ -63,6 +75,12 @@ export const CarouselItems = styled.div<{
 
   overflow: hidden;
   box-sizing: border-box;
+
+  ${({ cantUseArrows }) =>
+    cantUseArrows &&
+    css`
+      justify-content: center;
+    `}
 
   ${({ width, gap }) => css`
     width: ${`${width}px`};

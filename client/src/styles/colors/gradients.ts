@@ -1,22 +1,14 @@
 import colors from './colors';
 
+type Gradient = {
+  value: string;
+  angle: string;
+  colorsNum: number;
+  colors: string[];
+  points: string[];
+};
+
 const gradients = {
-  no_gradient_page_bg_light: {
-    value: 'linear-gradient(120deg, #ECEEFE 10%, #ECEEFE 25%, #ECEEFE 80%);',
-    angle: '120deg',
-    colorsNum: 3,
-    colors: ['#ECEEFE', '#ECEEFE', '#ECEEFE'],
-    points: ['10%', '25%', '80%'],
-  },
-
-  no_gradient_page_bg_dark: {
-    value: 'linear-gradient(120deg, #141414 10%, #141414 25%, #141414 80%);',
-    angle: '120deg',
-    colorsNum: 3,
-    colors: ['#141414', '#141414', '#141414'],
-    points: ['10%', '25%', '80%'],
-  },
-
   home_page_dark: {
     value: `linear-gradient(90deg, ${colors.lime[80]} 0%,  ${colors.indigo[80]} 100%);`,
     angle: '90deg',
@@ -33,37 +25,69 @@ const gradients = {
     points: ['0%', '100%'],
   },
 
-  lime_green_dark: {
-    value: 'linear-gradient(135deg, #F2F586 12.5%, #B0F586 87.5%);',
-    angle: '135deg',
+  wait_light: {
+    value: `linear-gradient(120deg, #CAE9FF 0%, #E2CBFF 100%);`,
+    angle: '120deg',
     colorsNum: 2,
-    colors: ['#F2F586', '#B0F586'],
-    points: ['12.5%', '87.5%'],
+    colors: ['#CAE9FF', '#E2CBFF'],
+    points: ['0%', '100%'],
   },
 
-  lime_green_light: {
-    value: 'linear-gradient(135deg, #DEFFCD 12.5%, #FFFCCF 87.5%);',
-    angle: '135deg',
+  wait_dark: {
+    value: `linear-gradient(120deg, #86C6F5 0%, #B786F5 100%);`,
+    angle: '120deg',
     colorsNum: 2,
-    colors: ['#DEFFCD', '#FFFCCF'],
-    points: ['12.5%', '87.5%'],
+    colors: ['#86C6F5', '#B786F5'],
+    points: ['0%', '100%'],
   },
 
-  indigo_purple_dark: {
-    value: 'linear-gradient(180deg, #8986F5 12.5%, #BE86F5 87.5%);',
-    angle: '180deg',
+  go_light: {
+    value: `linear-gradient(120deg, #E1FDBD 0%, #F5D686 100%);`,
+    angle: '120deg',
     colorsNum: 2,
-    colors: ['#8986F5', '#BE86F5'],
-    points: ['12.5%', '87.5%'],
+    colors: ['#E1FDBD', '#F5D686'],
+    points: ['0%', '100%'],
   },
 
-  indigo_purple_light: {
-    value: 'linear-gradient(180deg, #C5C3FA 12.5%, #DEC3FA 87.5%);',
-    angle: '180deg',
+  go_dark: {
+    value: `linear-gradient(120deg, #CBF586 0%, #F5D686 100%);`,
+    angle: '120deg',
     colorsNum: 2,
-    colors: ['#C5C3FA', '#DEC3FA'],
-    points: ['12.5%', '87.5%'],
+    colors: ['#CBF586', '#F5D686'],
+    points: ['0%', '100%'],
   },
+
+  // lime_green_dark: {
+  //   value: 'linear-gradient(135deg, #F2F586 12.5%, #B0F586 87.5%);',
+  //   angle: '135deg',
+  //   colorsNum: 2,
+  //   colors: ['#F2F586', '#B0F586'],
+  //   points: ['12.5%', '87.5%'],
+  // },
+
+  // lime_green_light: {
+  //   value: 'linear-gradient(135deg, #DEFFCD 12.5%, #FFFCCF 87.5%);',
+  //   angle: '135deg',
+  //   colorsNum: 2,
+  //   colors: ['#DEFFCD', '#FFFCCF'],
+  //   points: ['12.5%', '87.5%'],
+  // },
+
+  // indigo_purple_dark: {
+  //   value: 'linear-gradient(180deg, #8986F5 12.5%, #BE86F5 87.5%);',
+  //   angle: '180deg',
+  //   colorsNum: 2,
+  //   colors: ['#8986F5', '#BE86F5'],
+  //   points: ['12.5%', '87.5%'],
+  // },
+
+  // indigo_purple_light: {
+  //   value: 'linear-gradient(180deg, #C5C3FA 12.5%, #DEC3FA 87.5%);',
+  //   angle: '180deg',
+  //   colorsNum: 2,
+  //   colors: ['#C5C3FA', '#DEC3FA'],
+  //   points: ['12.5%', '87.5%'],
+  // },
 };
 
 export default gradients;

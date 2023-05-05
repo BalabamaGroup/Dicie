@@ -27,6 +27,8 @@ const MultiInput = ({
     isSeparate: false,
     isTopSeparate: false,
     isBottomSeparate: false,
+    withTopBorder: i === 0,
+    withBottomBorder: i === children.length - 1,
   }));
 
   const [multiInputData, setMiltiInputData] = useState(defaultData);
@@ -38,6 +40,7 @@ const MultiInput = ({
       if (i === index + 1) return { ...input, isTopSeparate: isSeparate };
       return input;
     });
+    console.log(newMultiInputData);
     setMiltiInputData(newMultiInputData);
   };
 

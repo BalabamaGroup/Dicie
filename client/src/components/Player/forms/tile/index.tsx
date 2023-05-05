@@ -13,7 +13,7 @@ interface PlayerTileFormProps {
   size?: 'small' | 'medium' | 'large' | 'extraLarge';
 
   isClickable?: boolean;
-  onClick: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 
   label?: string | null;
   labelIsLoading?: boolean;

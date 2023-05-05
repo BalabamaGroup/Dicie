@@ -4,10 +4,21 @@ export const RoomSettings = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  width: 50%;
-  padding: 64px;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  padding: 64px 16px 16px 16px;
   box-sizing: border-box;
+
+  .players {
+    max-width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(5, 148px);
+    grid-template-rows: repeat(2, 148px);
+    gap: 16px;
+  }
 
   .start-game-button {
     max-width: 400px;

@@ -1,9 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const SidePanelChatWrapper = styled.div<{}>`
+export const ChatWrapper = styled.div<{}>`
   width: 100%;
   height: 100%;
-  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -14,12 +13,14 @@ export const SidePanelChatWrapper = styled.div<{}>`
 
 export const ChatMessages = styled.div`
   width: 100%;
-  height: calc(var(--vh100) - 252px);
+  height: calc(var(--vh100) - 240px);
 
   .chat-messages-scroll {
+    padding-right: 10px;
+    padding-left: 16px;
     box-sizing: border-box;
     width: 100%;
-    height: calc(var(--vh100) - 252px);
+    height: calc(var(--vh100) - 240px);
     display: flex;
     flex-direction: column-reverse;
   }
@@ -45,36 +46,13 @@ export const MessagesList = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: end;
-  gap: 2px;
-`;
-
-export const Message = styled.div<{}>`
-  display: flex;
-  align-items: flex-start;
-  justify-content: start;
-  padding: 12px;
-  box-sizing: border-box;
-  max-width: 320px;
-  border-radius: 16px;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
-  color: ${({ theme }) => theme.chat.messageText};
-  background: ${({ theme }) => theme.chat.messageBackground};
-`;
-
-export const MessageUser = styled.div<{}>`
-  margin-top: 10px;
-  margin-bottom: 2px;
-  font-weight: 700;
-  font-size: 10px;
-  line-height: 20px;
-  transition: color 0.3s ease-in-out;
-  color: ${({ theme }) => theme.chat.messageText};
+  gap: 3px;
 `;
 
 export const ChatForm = styled.div`
+  box-sizing: border-box;
+  padding-right: 16px;
+  padding-left: 16px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -114,5 +92,5 @@ export const SendButton = styled.div<{
 
   transition: background 0.3s ease-in-out, opacity 0.3 ease-in-out;
   background: ${({ theme }) => theme.chat.sendButtonBackground};
-  opacity: ${({ disabled }) => (disabled ? '0.5' : '1')};
+  opacity: ${({ disabled }) => (disabled ? '0.75' : '1')};
 `;

@@ -3,16 +3,15 @@ import styled, { css } from 'styled-components';
 import { tabletAndSmaller } from '@/common/utils/device';
 
 export const OthersTurn = styled.div<{
-  currentQuestion: string | null;
+  currentQuestion: string | null | undefined;
 }>`
-  margin-top: auto;
   display: flex;
   flex-direction: column;
   align-items: end;
-  justify-content: start;
+  justify-content: center;
   width: 100%;
-  max-width: 480px;
-  height: 232px;
+  max-width: 560px;
+  height: 100%;
 
   transition: gap 0.3s ease-in-out;
   ${({ currentQuestion }) =>
@@ -26,7 +25,7 @@ export const OthersTurn = styled.div<{
 `;
 
 export const Qestion = styled.div<{
-  currentQuestion: string | null;
+  currentQuestion: string | null | undefined;
 }>`
   display: flex;
   flex-direction: row;
@@ -40,10 +39,11 @@ export const Qestion = styled.div<{
     display: none;
     height: 144px;
   }
+
   @media ${tabletAndSmaller} {
     flex-direction: column;
     gap: 8px;
-    height: 256px;
+    height: 304px;
     .others-turn-player {
       display: none;
     }
@@ -64,7 +64,7 @@ export const Qestion = styled.div<{
 `;
 
 export const MessageBubble = styled.div<{
-  currentQuestion: string | null;
+  currentQuestion: string | null | undefined;
 }>`
   display: flex;
   align-items: center;
@@ -75,14 +75,14 @@ export const MessageBubble = styled.div<{
   height: 144px;
   padding: 24px;
   box-sizing: border-box;
-  border-radius: 64px 64px 64px 16px;
+  border-radius: 48px 48px 48px 12px;
   width: 100%;
-  max-width: 320px;
+  max-width: 280px;
   margin-right: auto;
 
   @media ${tabletAndSmaller} {
     border-radius: 16px 64px 64px 64px;
-    height: 96px;
+    height: 144px;
   }
 
   .writing-loader {
@@ -97,37 +97,48 @@ export const MessageBubble = styled.div<{
     !currentQuestion
       ? css`
           background: ${({ theme }) =>
-            theme.guessBooGame.main.game.othersTurn
-              .myQuestionBackgroundWriting};
+            theme.guessBooGame.main.game.othersTurn.othersQuestion.loading
+              .background};
           color: ${({ theme }) =>
-            theme.guessBooGame.main.game.othersTurn.myQuestionTextWriting};
+            theme.guessBooGame.main.game.othersTurn.othersQuestion.loading
+              .text};
+          border: 1px solid
+            ${({ theme }) =>
+              theme.guessBooGame.main.game.othersTurn.othersQuestion.loading
+                .border};
         `
       : css`
           background: ${({ theme }) =>
-            theme.guessBooGame.main.game.othersTurn.myQuestionBackgroundAsked};
+            theme.guessBooGame.main.game.othersTurn.othersQuestion.asked
+              .background};
           color: ${({ theme }) =>
-            theme.guessBooGame.main.game.othersTurn.myQuestionTextAsked};
+            theme.guessBooGame.main.game.othersTurn.othersQuestion.asked.text};
+          border: 1px solid
+            ${({ theme }) =>
+              theme.guessBooGame.main.game.othersTurn.othersQuestion.asked
+                .border};
         `}
 `;
 
 export const AnswerBubble = styled.div<{
   givenAnswer: 'YES' | 'NO' | 'WTF' | null;
-  currentQuestion: string | null;
+  currentQuestion: string | null | undefined;
 }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 32px 32px 16px 32px;
-  gap: 6px;
-  width: calc(100% - 16px);
+  border-radius: 24px 24px 12px 24px;
+  gap: 8px;
+  width: calc(100% - 32px);
   max-width: 240px;
   margin-left: 16px;
   font-weight: 700;
   font-size: 20px;
   line-height: 20px;
   box-sizing: border-box;
-  height: 48px;
-  padding: 6px;
+  height: 80px;
+  width: 240px;
+  padding: 16px;
 
   transition: background 0.2s ease-in-out, color 0.2s ease-in-out,
     width 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -145,51 +156,30 @@ export const AnswerBubble = styled.div<{
       pointer-events: none;
     `}
 
-  width: ${({ givenAnswer }) => (givenAnswer ? '120px' : 'calc(100% - 16px)')};
+  width: ${({ givenAnswer }) => (givenAnswer ? '240px' : 'calc(100% - 16px)')};
   color: ${({ theme }) =>
-    theme.guessBooGame.main.game.othersTurn.othersAnswerText};
+    theme.guessBooGame.main.game.othersTurn.myAnswer.text};
 
   background: ${({ givenAnswer, theme }) =>
     givenAnswer === 'YES'
-      ? theme.guessBooGame.main.game.yes
+      ? theme.guessBooGame.main.game.yesWait
       : givenAnswer === 'NO'
-      ? theme.guessBooGame.main.game.no
+      ? theme.guessBooGame.main.game.noWait
       : givenAnswer === 'WTF'
-      ? theme.guessBooGame.main.game.wtf
-      : theme.guessBooGame.main.game.othersTurn.othersAnswerBackground};
-`;
+      ? theme.guessBooGame.main.game.wtfWait
+      : theme.guessBooGame.main.game.othersTurn.myAnswer.background};
 
-const AnswerButton = styled.button`
-  all: unset;
-  cursor: pointer;
-  width: 72px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 20px;
-  color: #eceefe;
-`;
+  border: 1px solid
+    ${({ givenAnswer, theme }) =>
+      givenAnswer === 'YES'
+        ? theme.guessBooGame.main.game.yesWaitBorder
+        : givenAnswer === 'NO'
+        ? theme.guessBooGame.main.game.noWaitBorder
+        : givenAnswer === 'WTF'
+        ? theme.guessBooGame.main.game.wtfWaitBorder
+        : 'transparent'};
 
-export const Yes = styled(AnswerButton)`
-  border-radius: 16px;
-  background: ${({ theme }) => theme.guessBooGame.main.game.yes};
-  color: ${({ theme }) =>
-    theme.guessBooGame.main.game.othersTurn.othersAnswerText};
-`;
-
-export const No = styled(AnswerButton)`
-  border-radius: 16px;
-  background: ${({ theme }) => theme.guessBooGame.main.game.no};
-  color: ${({ theme }) =>
-    theme.guessBooGame.main.game.othersTurn.othersAnswerText};
-`;
-
-export const Wtf = styled(AnswerButton)`
-  border-radius: 16px;
-  background: ${({ theme }) => theme.guessBooGame.main.game.wtf};
-  color: ${({ theme }) =>
-    theme.guessBooGame.main.game.othersTurn.othersAnswerText};
+  .my-answer-btn {
+    width: 64px;
+  }
 `;

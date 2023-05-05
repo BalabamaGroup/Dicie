@@ -9,33 +9,27 @@ export const JoinRoomCard = styled(HomeContentCard)<{
   isDefault: boolean;
 }>`
   position: relative;
-  color: ${({ theme }) => theme.page.home.joinRoomCard.text};
-  border: 2px solid ${({ theme }) => theme.page.home.joinRoomCard.border};
-
   box-sizing: border-box;
 
-  background: ${({ isDefault, isSelected, theme }) =>
-    isDefault
-      ? theme.page.home.joinRoomCard.notSelectedBackground
-      : !isSelected
-      ? theme.page.home.joinRoomCard.background
-      : theme.page.home.joinRoomCard.background};
-
-  box-shadow: ${({ isSelected }) =>
-    isSelected ? '4px 4px 12px 1px' : '-4px 4px 12px 1px'};
-  color: ${({ theme }) => theme.page.home.joinRoomCard.shadowRGBA};
-
-  ${({ isDefault }) =>
-    isDefault &&
-    css`
-      &:hover {
-        box-shadow: 0px 0px 256px rgba(106, 101, 255, 0.75);
-      }
-    `}
-
-  .on-default {
-    color: ${({ theme }) => theme.page.home.joinRoomCard.notSelectedText};
-  }
+  ${({ isDefault, isSelected, theme }) =>
+    isDefault && !isSelected
+      ? css`
+          background: ${theme.homePage.joinRoomCard.default.background};
+          border: 2px solid ${theme.homePage.joinRoomCard.default.border};
+          color: ${theme.homePage.joinRoomCard.default.text};
+          box-shadow: -4px 4px 6px 1px ${theme.homePage.joinRoomCard.shadowRGBA};
+          &:hover {
+            box-shadow: 0px 0px 256px
+              ${theme.homePage.joinRoomCard.default.shadowHoverRGBA};
+          }
+        `
+      : css`
+          background: ${theme.homePage.joinRoomCard.background};
+          border: 2px solid ${theme.homePage.joinRoomCard.border};
+          color: ${theme.homePage.joinRoomCard.text};
+          box-shadow: ${isSelected ? '-4px 4px 6px 1px' : '-4px 4px 6px 1px'}
+            ${theme.homePage.joinRoomCard.shadowRGBA};
+        `};
 
   .notselected-arrow {
     position: absolute;
@@ -50,13 +44,13 @@ export const JoinRoomCard = styled(HomeContentCard)<{
     }
     svg {
       path {
-        fill: #8986f5;
+        fill: ${({ theme }) => theme.homePage.joinRoomCard.notSelected.arrow};
       }
     }
   }
 
   .on-selected {
-    color: ${({ theme }) => theme.page.home.joinRoomCard.text};
+    color: ${({ theme }) => theme.homePage.joinRoomCard.text};
 
     padding: 32px 32px 0 32px;
     @media ${tabletAndSmaller} {

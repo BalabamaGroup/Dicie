@@ -53,8 +53,8 @@ const WaitForAllReady = () => {
       <Button
         color='indigo'
         size='large'
+        type='danger'
         onClick={onReadyClick}
-        isPrimary
         isScale
       >
         I&apos;m not ready

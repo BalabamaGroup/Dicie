@@ -72,6 +72,7 @@ const AskGuessForm = () => {
           className='question-form-input'
           value={inputValue}
           onChange={onChangeInputValue}
+          onEnter={onSubmit}
           placeholder={isQuestion ? 'Write a question' : 'Write your guess'}
           size='large'
         />

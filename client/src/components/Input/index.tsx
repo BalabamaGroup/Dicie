@@ -3,6 +3,7 @@ import { ReactSVG } from 'react-svg';
 import useThemeStore from 'stores/ThemeStore';
 
 import { getTextHeight } from '@/common/helpers/domHelpers';
+import useKeyPressListener from '@/hooks/useKeyPressListener';
 import useGameStore from '@/stores/GameStore';
 import inputTheme from '@/styles/themes/componentThemes/inputTheme';
 
@@ -22,6 +23,8 @@ const Input = ({
 
   value,
   onChange,
+
+  onEnter,
 
   icon,
   onIconClick,
@@ -48,24 +51,28 @@ const Input = ({
     setIsFocus(true);
   };
 
-  const onBlur = () => {
+  const onBlur = (e: any) => {
     multiInputData && onChangeMultiInputData && onChangeMultiInputData(false);
     setIsFocus(false);
   };
 
   const onInputClick = () => {
-    console.log(1);
     if (!inputRef?.current) return;
-    console.log(2);
     inputRef.current.focus();
     onFocus();
   };
+
+  useKeyPressListener({
+    keys: ['Enter'],
+    onPress: () => {
+      if (isFocus && onEnter) onEnter();
+    },
+  });
 
   useEffect(() => {
     if (focusOnLoad && inputRef?.current) inputRef.current.focus();
   }, []);
 
-  // console.log(isFocus, isError, !!errorNote);
   return (
     <Styled.LabelWrapper
       className={`${className} label_wrapper`}

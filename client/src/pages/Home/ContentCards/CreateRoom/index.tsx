@@ -30,6 +30,9 @@ const CreateRoomCard = ({
   const [roomPassword, setRoomPassword] = useState('');
   const onChangeRoomPassword = (e: any) => setRoomPassword(e.target.value);
 
+  const [isFriendMode, setIsFriendMode] = useState<boolean>(false);
+  const onChangeIsFriendMode = () => setIsFriendMode(!isFriendMode);
+
   const [isWithCommuninactions, setIsWithCommuninactions] =
     useState<boolean>(false);
   const onChangeIsWithCommuninactions = () =>
@@ -54,6 +57,8 @@ const CreateRoomCard = ({
     const newRoom = await RoomAPI.createRoom({
       gameId: selectedGameId,
       name: roomName,
+      password: roomPassword || null,
+      isFriendMode: isFriendMode,
     });
 
     navigate(`/room/${newRoom.id}`);
@@ -93,6 +98,8 @@ const CreateRoomCard = ({
           onChangeIsPrivate={onChangeIsPrivate}
           roomPassword={roomPassword}
           onChangeRoomPassword={onChangeRoomPassword}
+          isFriendMode={isFriendMode}
+          onChangeIsFriendMode={onChangeIsFriendMode}
           isWithCommuninactions={isWithCommuninactions}
           onChangeIsWithCommuninactions={onChangeIsWithCommuninactions}
           selectedCommunicationOption={selectedCommunicationOption}
