@@ -16,7 +16,7 @@ export const RoomsTable = styled.div<{
   min-height: 0px;
   box-sizing: border-box;
   background-color: ${({ theme }) =>
-    theme.homePage.joinRoomCard.roomsTableBackground};
+    theme.homePage.joinRoomCard.selected.roomsTable.background};
   border: 2px solid ${({ theme }) => theme.homePage.joinRoomCard.border};
   border-bottom: none;
   border-top-left-radius: 32px;
@@ -105,7 +105,7 @@ export const RoomRow = styled.div<{}>`
         height: 16px;
         path {
           fill: ${({ theme }) =>
-            theme.homePage.joinRoomCard.roomsTableUserIconFill};
+            theme.homePage.joinRoomCard.selected.roomsTable.userIconFill};
         }
       }
     }

@@ -18,7 +18,7 @@ export const StyledAlreadyInRoom = styled.div<{}>`
   border-radius: 32px;
 
   background: ${({ theme }) =>
-    theme.homePage.joinRoomCard.alreadyInRoomBackdropRGBA};
+    theme.homePage.joinRoomCard.selected.alreadyInRoom.backdropRGBA};
   backdrop-filter: blur(12px);
 
   display: flex;
@@ -37,7 +37,7 @@ export const StyledAlreadyInRoom = styled.div<{}>`
     max-width: 540px;
     padding: 20px;
     background: ${({ theme }) =>
-      theme.homePage.joinRoomCard.alreadyInRoomBackground};
+      theme.homePage.joinRoomCard.selected.alreadyInRoom.background};
     border-radius: 32px;
     display: flex;
     flex-direction: column;
@@ -46,7 +46,8 @@ export const StyledAlreadyInRoom = styled.div<{}>`
     gap: 20px;
     box-sizing: border-box;
     box-shadow: 0px 4px 8px 2px
-      ${({ theme }) => theme.homePage.joinRoomCard.modalShadowRGBA};
+      ${({ theme }) =>
+        theme.homePage.joinRoomCard.selected.alreadyInRoom.shadowRGBA};
 
     .header {
       text-align: center;

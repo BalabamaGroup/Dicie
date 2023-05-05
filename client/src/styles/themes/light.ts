@@ -52,20 +52,31 @@ const light = {
       },
     },
     joinRoomCard: {
-      shadowRGBA: hexToRgba(colors.indigo[90], 0.25),
-      notSelectedBackground: colors.indigo.base,
-      notSelectedText: colors.indigo[0],
-      notSelectedArrow: colors.indigo.dark,
       background: colors.indigo[10],
-      text: colors.indigo[80],
       border: colors.indigo[50],
-      shadowHover: shadows.indigo.large,
-      roomsTableBackground: colors.indigo[0],
-      roomsTableUserIconFill: colors.indigo.base,
-      alreadyInRoomBackdropRGBA: hexToRgba(colors.indigo[50], 0.4),
-      modalShadowRGBA: hexToRgba(colors.indigo[80], 0.25),
-      alreadyInRoomBackground: colors.indigo[10],
-      alreadyInRoomText: colors.indigo[80],
+      text: colors.indigo[80],
+      shadowRGBA: hexToRgba(colors.indigo[90], 0.25),
+      default: {
+        background: colors.indigo.base,
+        text: colors.indigo[0],
+        border: colors.indigo.dark,
+        shadowHoverRGBA: hexToRgba(colors.indigo.base, 0.75),
+      },
+      notSelected: {
+        arrow: colors.indigo.dark,
+      },
+      selected: {
+        roomsTable: {
+          background: colors.indigo[0],
+          userIconFill: colors.indigo.base,
+        },
+        alreadyInRoom: {
+          backdropRGBA: hexToRgba(colors.indigo[50], 0.4),
+          shadowRGBA: hexToRgba(colors.indigo[80], 0.25),
+          background: colors.indigo[10],
+          text: colors.indigo[80],
+        },
+      },
     },
   },
 

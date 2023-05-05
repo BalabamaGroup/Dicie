@@ -31,7 +31,7 @@ export const StyledWinGame = styled.div<{}>`
     max-width: 400px;
     padding: 20px;
     background: ${({ theme }) =>
-      theme.homePage.joinRoomCard.alreadyInRoomBackground};
+      theme.homePage.joinRoomCard.selected.alreadyInRoom.background};
     border-radius: 32px;
     display: flex;
     flex-direction: column;

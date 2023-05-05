@@ -47,25 +47,31 @@ const dark: any = {
       },
     },
     joinRoomCard: {
-      default: {
-        notSelectedBackground: colors.indigo.base,
-        notSelectedText: colors.indigo[10],
-        notSelectedArrow: colors.indigo.base,
-      },
-      shadowRGBA: hexToRgba(colors.indigo[90], 0.75),
-      notSelectedBackground: colors.indigo.base,
-      notSelectedText: colors.indigo[10],
-      notSelectedArrow: colors.indigo.base,
       background: colors.indigo[80],
-      text: colors.indigo[0],
       border: colors.indigo[100],
-      shadowHover: shadows.indigo.large,
-      roomsTableBackground: colors.indigo[90],
-      roomsTableUserIconFill: colors.indigo.light,
-      alreadyInRoomBackdropRGBA: hexToRgba(colors.indigo[90], 0.4),
-      modalShadowRGBA: hexToRgba(colors.indigo[100], 0.75),
-      alreadyInRoomBackground: colors.indigo[80],
-      alreadyInRoomText: colors.indigo[0],
+      text: colors.indigo[0],
+      shadowRGBA: hexToRgba(colors.indigo[90], 0.75),
+      default: {
+        background: colors.indigo.base,
+        text: colors.indigo[0],
+        border: colors.indigo.dark,
+        shadowHoverRGBA: hexToRgba(colors.indigo.base, 0.75),
+      },
+      notSelected: {
+        arrow: colors.indigo.base,
+      },
+      selected: {
+        roomsTable: {
+          background: colors.indigo[90],
+          userIconFill: colors.indigo.light,
+        },
+        alreadyInRoom: {
+          text: colors.indigo[0],
+          backdropRGBA: hexToRgba(colors.indigo[90], 0.4),
+          shadowRGBA: hexToRgba(colors.indigo[100], 0.75),
+          background: colors.indigo[80],
+        },
+      },
     },
   },
 
