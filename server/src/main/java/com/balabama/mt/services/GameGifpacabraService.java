@@ -8,5 +8,7 @@ public interface GameGifpacabraService {
 
     List<String> getDefaultPhrases();
 
+    Room selectGif(String gif);
+
     Room setPhrase(String phrase);
 }

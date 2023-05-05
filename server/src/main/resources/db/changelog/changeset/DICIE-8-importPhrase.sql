@@ -12,6 +12,5 @@ insert into gifpacabra_phrase (phrase) values ('When your coworker tells you a b
 insert into gifpacabra_phrase (phrase) values ('When you are trying to act cool in front of your crush.');
 insert into gifpacabra_phrase (phrase) values ('When you finally beat a video game after hours of playing.');
 insert into gifpacabra_phrase (phrase) values ('When you are waiting for someone to text you back.');
-insert into gifpacabra_phrase (phrase) values ("When you're trying to be productive but end up scrolling through social media.");
 insert into gifpacabra_phrase (phrase) values ('Me pretending to know what is going on in a conversation.');
 insert into gifpacabra_phrase (phrase) values ('When you are home alone and hear a noise.');

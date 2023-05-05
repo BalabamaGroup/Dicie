@@ -1,11 +1,12 @@
 package com.balabama.mt.entities.rooms.gifpacabra;
 
-import com.balabama.mt.dtos.room.charade.RoomCharadeDataDto;
+import com.balabama.mt.dtos.room.gifpacabra.RoomGifpacabraDataDto;
 import com.balabama.mt.entities.rooms.Room;
 import com.balabama.mt.entities.rooms.RoomData;
 import com.balabama.mt.entities.user.User;
 import com.balabama.mt.entities.user.UserState;
 import com.balabama.mt.entities.user.charade.UserCharadeState;
+import com.balabama.mt.entities.user.gifpacabra.UserGifpacabraState;
 import com.balabama.mt.exceptions.MTException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,7 @@ import javax.persistence.Table;
 public class RoomGifpacabraData extends RoomData {
 
     private Boolean allUsersReady = false;
-    private String currentQuestion;
+    private String currentPhrase;
     private Integer responseCounterYes = 0;
     private Integer round = 0;
 
@@ -32,9 +33,9 @@ public class RoomGifpacabraData extends RoomData {
         super(room);
     }
 
-    public void checkReady() {
-        this.allUsersReady = super.getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState())
-            .allMatch(UserCharadeState::getReady);
+    public void allUsersSetGif() {
+        this.allUsersReady = super.getRoom().getUsers().stream().map(x -> (UserGifpacabraState) x.getUserState())
+            .noneMatch(userGifpacabraState -> userGifpacabraState.getGif().isBlank());
     }
 
     public boolean checkFinish() {
@@ -42,39 +43,22 @@ public class RoomGifpacabraData extends RoomData {
     }
 
     public void disconnect(User user) {
-        UserCharadeState userState = (UserCharadeState) user.getUserState();
-        userState.setWinRound(getRound());
-        if (!allUsersReady) {
-            getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState()).forEach(UserCharadeState::undoReady);
-            getRoom().getUsers().stream().filter(x -> !x.equals(user)).findFirst()
-                .ifPresent(y -> ((UserCharadeState) y.getUserState()).setIsGoing(true));
-            return;
-        }
-        if (userState.getIsGoing()) {
-            responseCounterYes = 0;
-            currentQuestion = null;
-            getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState()).forEach(y -> y.setLastAnswer(null));
-            if (!checkFinish()) {
-                changeTurn();
-            }
-        }
-    }
-
-    public Room changeTurn() {
-        Integer currentTurnNumber = findCurrentTurnNumber(getRoom());
-        int newNumber = 0;
-        ((UserCharadeState) getRoom().getUsers().get(currentTurnNumber).getUserState()).setIsGoing(false);
-        if (currentTurnNumber != getRoom().getUsers().size() - 1) {
-            ((UserCharadeState) getRoom().getUsers().get(currentTurnNumber + 1).getUserState()).setIsGoing(true);
-            newNumber = currentTurnNumber + 1;
-        } else {
-            ((UserCharadeState) getRoom().getUsers().get(0).getUserState()).setIsGoing(true);
-            ((RoomGifpacabraData) getRoom().getRoomData()).setRound(((RoomGifpacabraData) getRoom().getRoomData()).getRound() + 1);
-        }
-        if (((UserCharadeState) getRoom().getUsers().get(newNumber).getUserState()).isFinished()) {
-            changeTurn();
-        }
-        return getRoom();
+//        UserCharadeState userState = (UserCharadeState) user.getUserState();
+//        userState.setWinRound(getRound());
+//        if (!allUsersReady) {
+//            getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState()).forEach(UserCharadeState::undoReady);
+//            getRoom().getUsers().stream().filter(x -> !x.equals(user)).findFirst()
+//                .ifPresent(y -> ((UserCharadeState) y.getUserState()).setIsGoing(true));
+//            return;
+//        }
+//        if (userState.getIsGoing()) {
+//            responseCounterYes = 0;
+//            currentQuestion = null;
+//            getRoom().getUsers().stream().map(x -> (UserCharadeState) x.getUserState()).forEach(y -> y.setLastAnswer(null));
+//            if (!checkFinish()) {
+//                changeTurn();
+//            }
+//        }
     }
 
     private Integer findCurrentTurnNumber(Room room) {
@@ -86,12 +70,10 @@ public class RoomGifpacabraData extends RoomData {
         throw new MTException(HttpStatus.INTERNAL_SERVER_ERROR, "Turn not found");
     }
 
-    public RoomCharadeDataDto createDto() {
-        RoomCharadeDataDto roomCharadeDataDto = new RoomCharadeDataDto(super.getRoom());
+    public RoomGifpacabraDataDto createDto() {
+        RoomGifpacabraDataDto roomCharadeDataDto = new RoomGifpacabraDataDto(super.getRoom());
         roomCharadeDataDto.setAllUsersReady(allUsersReady);
-        roomCharadeDataDto.setCurrentQuestion(currentQuestion);
-        roomCharadeDataDto.setResponseCounterYes(responseCounterYes);
-        roomCharadeDataDto.setRound(round);
+        roomCharadeDataDto.setPhrase(currentPhrase);
         return roomCharadeDataDto;
     }
 
