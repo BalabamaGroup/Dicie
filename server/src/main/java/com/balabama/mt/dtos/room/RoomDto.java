@@ -20,6 +20,7 @@ public class RoomDto {
 
     private List<UserWithState> users = new ArrayList<>();
     private RoomDataDto roomDataDto;
+    private Long gameId;
     private Boolean start = false;
     private String name;
     private UUID id;
