@@ -16,6 +16,9 @@ export const SetupRoom = styled.div<{
   justify-content: space-around;
   width: 100%;
 
+  background: ${({ theme }) =>
+    theme.homePage.createRoomCard.selected.setupRoomBackground};
+
   padding: 32px 32px;
   @media ${tabletAndSmaller} {
     padding: 20px;

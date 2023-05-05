@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 
 import {
-  desktopAndBigger,
-  desktopAndSmaller,
-  mobileAndSmaller,
-  tabletAndBigger,
+    desktopAndBigger, desktopAndSmaller, mobileAndSmaller, tabletAndBigger
 } from '@/common/utils/device';
 
 export const ChooseGame = styled.div`
@@ -20,7 +17,7 @@ export const ChooseGame = styled.div`
   box-sizing: border-box;
 
   background: ${({ theme }) =>
-    theme.homePage.createRoomCard.chooseGameBackground};
+    theme.homePage.createRoomCard.selected.chooseGameBackground};
 
   border-radius: 0 32px 32px 0;
   @media ${desktopAndSmaller} {

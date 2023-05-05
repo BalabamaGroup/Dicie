@@ -28,17 +28,30 @@ const dark: any = {
     createRoomBackground: gradients.go_dark,
     joinRoomBackground: gradients.wait_dark,
     createRoomCard: {
-      shadowRGBA: hexToRgba(colors.lime[90], 0.75),
-      notSelectedBackground: colors.lime.base,
-      notSelectedText: colors.lime[80],
-      notSelectedArrow: colors.lime.base,
       background: colors.lime[80],
-      text: colors.lime[0],
-      chooseGameBackground: colors.lime[90],
       border: colors.lime[100],
-      shadowHover: shadows.lime.large,
+      text: colors.lime[0],
+      shadowRGBA: hexToRgba(colors.lime[100], 0.75),
+      default: {
+        background: colors.lime.base,
+        text: colors.lime[80],
+        border: colors.lime.dark,
+        shadowHoverRGBA: hexToRgba(colors.lime.base, 0.75),
+      },
+      notSelected: {
+        arrow: colors.lime.base,
+      },
+      selected: {
+        setupRoomBackground: colors.lime[80],
+        chooseGameBackground: colors.lime[90],
+      },
     },
     joinRoomCard: {
+      default: {
+        notSelectedBackground: colors.indigo.base,
+        notSelectedText: colors.indigo[10],
+        notSelectedArrow: colors.indigo.base,
+      },
       shadowRGBA: hexToRgba(colors.indigo[90], 0.75),
       notSelectedBackground: colors.indigo.base,
       notSelectedText: colors.indigo[10],
