@@ -26,8 +26,6 @@ public class RoomGifpacabraData extends RoomData {
 
     private Boolean allUsersReady = false;
     private String currentPhrase;
-    private Integer responseCounterYes = 0;
-    private Integer round = 0;
 
     public RoomGifpacabraData(Room room) {
         super(room);
