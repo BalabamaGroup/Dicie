@@ -1,6 +1,6 @@
 import { ReactSVG } from 'react-svg';
 
-import { games } from '@/common/constants';
+import games from '@/common/constants/games';
 import { ComponentColor } from '@/common/types/theme';
 
 import * as Styled from './index.styled';

@@ -3,6 +3,7 @@ import { User, UserInGame } from './user';
 export type Room = {
   id: string;
   name: string;
+  gameId: number;
   start: boolean;
   admin: User;
   users: User[];
@@ -14,6 +15,7 @@ export default Room;
 export type RoomOutside = {
   id: string;
   name: string;
+  gameId: number;
   numberOfUsers: number | null;
   start: boolean;
   admin: User;

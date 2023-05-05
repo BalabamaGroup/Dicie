@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import RoomAPI from '@/api/room';
-import { gameData } from '@/common/constants';
+import games from '@/common/constants/games';
 import Button from '@/components/Button';
 import Scroll from '@/components/Scroll';
 import Toast from '@/components/Toast';
@@ -61,7 +61,7 @@ const RoomsTable = ({ selectedGames, searchValue }: RoomsTableProps) => {
       <Scroll className='scroll' color='indigo'>
         {filteredRooms.map((room, i) => (
           <Styled.RoomRow key={i}>
-            <ReactSVG className='game-icon' src={gameData[1].icon} />
+            <ReactSVG className='game-icon' src={games[room.gameId - 1].icon} />
             <div className='room-name' title={room.name}>
               {room.name}
             </div>
@@ -70,7 +70,7 @@ const RoomsTable = ({ selectedGames, searchValue }: RoomsTableProps) => {
                 className='players-num-icon'
                 src={'/images/svgs/person.svg'}
               />
-              {room.numberOfUsers || 0}/{gameData[1].maxPlayers}
+              {room.numberOfUsers || 0}/{games[room.gameId - 1].maxPlayers}
             </div>
             <Button
               color='indigo'
