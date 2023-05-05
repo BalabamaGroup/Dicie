@@ -25,7 +25,7 @@ import javax.persistence.Table;
 public class RoomGifpacabraData extends RoomData {
 
     private Boolean allUsersReady = false;
-    private String currentPhrase;
+    private String phrase;
 
     public RoomGifpacabraData(Room room) {
         super(room);
@@ -71,7 +71,7 @@ public class RoomGifpacabraData extends RoomData {
     public RoomGifpacabraDataDto createDto() {
         RoomGifpacabraDataDto roomCharadeDataDto = new RoomGifpacabraDataDto(super.getRoom());
         roomCharadeDataDto.setAllUsersReady(allUsersReady);
-        roomCharadeDataDto.setPhrase(currentPhrase);
+        roomCharadeDataDto.setPhrase(phrase);
         return roomCharadeDataDto;
     }
 

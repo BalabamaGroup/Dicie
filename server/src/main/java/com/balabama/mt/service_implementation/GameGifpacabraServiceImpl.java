@@ -1,12 +1,10 @@
 package com.balabama.mt.service_implementation;
 
-import com.balabama.mt.entities.games.Charade;
 import com.balabama.mt.entities.games.Gifpacabra;
 import com.balabama.mt.entities.games.GifpacabraPhrase;
 import com.balabama.mt.entities.rooms.Room;
 import com.balabama.mt.entities.rooms.gifpacabra.RoomGifpacabraData;
 import com.balabama.mt.entities.user.User;
-import com.balabama.mt.entities.user.charade.UserCharadeState;
 import com.balabama.mt.entities.user.gifpacabra.UserGifpacabraState;
 import com.balabama.mt.repositories.GifpacabraPhraseRepository;
 import com.balabama.mt.services.GameGifpacabraService;
@@ -37,7 +35,7 @@ public class GameGifpacabraServiceImpl implements GameGifpacabraService {
         User currentUser = userService.getCurrent();
         Room room = currentUser.getRoom();
         room.validateGame(Gifpacabra.class);
-        ((RoomGifpacabraData) room.getRoomData()).setCurrentPhrase(phrase);
+        ((RoomGifpacabraData) room.getRoomData()).setPhrase(phrase);
         return roomService.save(room);
     }
 
