@@ -1,15 +1,17 @@
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import RoomAPI from '@/api/room';
 import Loader from '@/components/Loader';
 import NavBar from '@/components/NavBar';
-import GuessBoo from '@/games/GuessBoo';
 import useGameStore from '@/stores/GameStore';
 import useUserStore from '@/stores/UserStore';
 
 import * as Styled from './index.styled';
 import RoomSettings from './RoomSettings';
+
+const GuessBoo = lazy(() => import('@/games/GuessBoo'));
+const Gifpacabra = lazy(() => import('@/games/Gifpacabra'));
 
 const Room = () => {
   const navigate = useNavigate();
@@ -42,7 +44,7 @@ const Room = () => {
     <Styled.GamePage>
       <NavBar />
       <Styled.GameContent>
-        <GuessBoo />;
+        {roomData.gameId === 1 ? <GuessBoo /> : <Gifpacabra />}
       </Styled.GameContent>
     </Styled.GamePage>
   );

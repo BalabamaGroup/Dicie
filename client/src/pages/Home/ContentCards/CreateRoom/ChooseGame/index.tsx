@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
-import { games } from '@/common/constants';
+import games from '@/common/constants/games';
 import Button from '@/components/Button';
 import GameButton from '@/components/GameButton';
 

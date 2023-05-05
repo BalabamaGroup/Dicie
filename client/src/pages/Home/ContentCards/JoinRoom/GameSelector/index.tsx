@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { games } from '@/common/constants';
+import games from '@/common/constants/games';
 import GameButton from '@/components/GameButton';
 
 export const StyledGameSelector = styled.div<{}>`
