@@ -63,6 +63,7 @@ const light = {
       roomsTableBackground: colors.indigo[0],
       roomsTableUserIconFill: colors.indigo.base,
       alreadyInRoomBackdropRGBA: hexToRgba(colors.indigo[50], 0.4),
+      modalShadowRGBA: hexToRgba(colors.indigo[80], 0.25),
       alreadyInRoomBackground: colors.indigo[10],
       alreadyInRoomText: colors.indigo[80],
     },

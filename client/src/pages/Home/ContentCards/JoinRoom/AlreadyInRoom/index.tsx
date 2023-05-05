@@ -45,6 +45,8 @@ export const StyledAlreadyInRoom = styled.div<{}>`
     justify-content: center;
     gap: 20px;
     box-sizing: border-box;
+    box-shadow: 0px 4px 8px 2px
+      ${({ theme }) => theme.homePage.joinRoomCard.modalShadowRGBA};
 
     .header {
       text-align: center;

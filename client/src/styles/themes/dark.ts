@@ -63,6 +63,7 @@ const dark: any = {
       roomsTableBackground: colors.indigo[90],
       roomsTableUserIconFill: colors.indigo.light,
       alreadyInRoomBackdropRGBA: hexToRgba(colors.indigo[90], 0.4),
+      modalShadowRGBA: hexToRgba(colors.indigo[100], 0.75),
       alreadyInRoomBackground: colors.indigo[80],
       alreadyInRoomText: colors.indigo[0],
     },
