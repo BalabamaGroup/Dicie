@@ -10,10 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "gifpacabra_phrase")
+@Table(name = "memetaur_phrase")
 @Data
 @NoArgsConstructor
-public class GifpacabraPhrase {
+public class MemetaurPhrase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,6 +1,6 @@
-package com.balabama.mt.entities.user.gifpacabra;
+package com.balabama.mt.entities.user.memetaur;
 
-import com.balabama.mt.dtos.user.gifpacabra.UserGifpacabraStateDto;
+import com.balabama.mt.dtos.user.memetaur.UserMemetaurStateDto;
 import com.balabama.mt.entities.user.User;
 import com.balabama.mt.entities.user.UserState;
 import lombok.Data;
@@ -12,21 +12,21 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_gifpacabra_state")
+@Table(name = "user_memetaur_state")
 @NoArgsConstructor
 @Data
-public class UserGifpacabraState extends UserState {
+public class UserMemetaurState extends UserState {
 
     private String gif;
     private String votedGif;
 
-    public UserGifpacabraState(User user) {
+    public UserMemetaurState(User user) {
         super(user);
     }
 
     @Override
-    public UserGifpacabraStateDto createDto() {
-        return new UserGifpacabraStateDto(this);
+    public UserMemetaurStateDto createDto() {
+        return new UserMemetaurStateDto(this);
     }
 
     public void checkTurn() {
@@ -38,7 +38,7 @@ public class UserGifpacabraState extends UserState {
     public static List<User> addUserStates(List<User> users) {
         List<User> userList = new ArrayList<>();
         for (User user : users) {
-            user.setUserState(new UserGifpacabraState(user));
+            user.setUserState(new UserMemetaurState(user));
             userList.add(user);
         }
         return userList;

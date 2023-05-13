@@ -2,9 +2,7 @@ package com.balabama.mt.controllers;
 
 import com.balabama.mt.converters.RoomDtoConverter;
 import com.balabama.mt.dtos.StringDto;
-import com.balabama.mt.dtos.user.charade.CharadeLogDto;
-import com.balabama.mt.services.GameCharadeService;
-import com.balabama.mt.services.GameGifpacabraService;
+import com.balabama.mt.services.GameMemetaurService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,17 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
-import javax.annotation.PostConstruct;
 
 @RestController
-@RequestMapping("/api/game_gifpacabra")
+@RequestMapping("/api/game_memetaur")
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
-public class GameGifpacabraController {
+public class GameMemetaurController {
 
     private final String API_KEY = "AIzaSyBiokwDtyObCB3OYuHokrO6ChOoaI9DyWU";
     private static final String CLIENT_KEY = "Dicie";
 
-    private final GameGifpacabraService service;
+    private final GameMemetaurService service;
     private final RoomDtoConverter converter;
     private final WebSocketHandler webSocketHandler;
 

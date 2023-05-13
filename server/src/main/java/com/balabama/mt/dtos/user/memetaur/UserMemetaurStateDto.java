@@ -1,9 +1,7 @@
-package com.balabama.mt.dtos.user.gifpacabra;
+package com.balabama.mt.dtos.user.memetaur;
 
 import com.balabama.mt.dtos.user.UserStateDto;
-import com.balabama.mt.entities.user.charade.CharadeAnswer;
-import com.balabama.mt.entities.user.charade.UserCharadeState;
-import com.balabama.mt.entities.user.gifpacabra.UserGifpacabraState;
+import com.balabama.mt.entities.user.memetaur.UserMemetaurState;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -14,24 +12,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserGifpacabraStateDto extends UserStateDto {
+public class UserMemetaurStateDto extends UserStateDto {
 
     private String gif;
     private String votedGif;
 
-    public UserGifpacabraStateDto(UserGifpacabraState state) {
+    public UserMemetaurStateDto(UserMemetaurState state) {
         super(state);
         this.gif = state.getGif();
         this.votedGif = state.getGif();
     }
 
     @JsonIgnore
-    public UserGifpacabraStateDto hideState() {
+    public UserMemetaurStateDto hideState() {
         return this;
     }
 
     @JsonIgnore
-    public UserGifpacabraStateDto copy() {
-        return new UserGifpacabraStateDto(gif, votedGif);
+    public UserMemetaurStateDto copy() {
+        return new UserMemetaurStateDto(gif, votedGif);
     }
 }

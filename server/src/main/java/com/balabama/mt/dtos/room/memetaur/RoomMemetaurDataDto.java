@@ -1,4 +1,4 @@
-package com.balabama.mt.dtos.room.gifpacabra;
+package com.balabama.mt.dtos.room.memetaur;
 
 import com.balabama.mt.dtos.room.RoomDataDto;
 import com.balabama.mt.entities.rooms.Room;
@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RoomGifpacabraDataDto extends RoomDataDto {
+public class RoomMemetaurDataDto extends RoomDataDto {
 
     private Boolean allUsersReady = false;
     private String phrase;;
 
-    public RoomGifpacabraDataDto(Room room) {
+    public RoomMemetaurDataDto(Room room) {
         super();
     }
 }
