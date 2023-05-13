@@ -1,6 +1,6 @@
-package com.balabama.mt.dtos.room.charade;
+package com.balabama.mt.dtos.room.guessBoo;
 
-import com.balabama.mt.entities.user.charade.CharadeAnswer;
+import com.balabama.mt.entities.user.guessBoo.GuessBooAnswer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CharadeAnswerDto {
+public class GuessBooAnswerDto {
 
-    private CharadeAnswer charadeAnswer;
+    private GuessBooAnswer guessBooAnswer;
 }

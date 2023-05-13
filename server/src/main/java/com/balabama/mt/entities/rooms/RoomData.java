@@ -2,7 +2,7 @@ package com.balabama.mt.entities.rooms;
 
 import com.balabama.mt.dtos.room.RoomDataDto;
 import com.balabama.mt.entities.user.User;
-import com.balabama.mt.entities.user.charade.UserCharadeState;
+import com.balabama.mt.entities.user.guessBoo.UserGuessBooState;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

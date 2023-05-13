@@ -1,11 +1,11 @@
 package com.balabama.mt.services;
 
-import com.balabama.mt.entities.user.charade.CharadeAnswer;
+import com.balabama.mt.entities.user.guessBoo.GuessBooAnswer;
 import com.balabama.mt.entities.rooms.Room;
-import com.balabama.mt.entities.user.charade.CharadeLog;
+import com.balabama.mt.entities.user.guessBoo.GuessBooLog;
 import java.util.List;
 
-public interface GameCharadeService {
+public interface GameGuessBooService {
 
     Room setWord(Long id, String word);
 
@@ -17,12 +17,12 @@ public interface GameCharadeService {
 
     Room askQuestion(String question);
 
-    Room answer(CharadeAnswer charadeAnswer);
+    Room answer(GuessBooAnswer guessBooAnswer);
 
     Room acceptAnswer();
 
     Room changeTurn();
 
-    List<CharadeLog> getLogs(Long id);
+    List<GuessBooLog> getLogs(Long id);
 
 }

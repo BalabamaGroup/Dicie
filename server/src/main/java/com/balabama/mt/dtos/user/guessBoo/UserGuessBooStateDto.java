@@ -1,8 +1,8 @@
-package com.balabama.mt.dtos.user.charade;
+package com.balabama.mt.dtos.user.guessBoo;
 
 import com.balabama.mt.dtos.user.UserStateDto;
-import com.balabama.mt.entities.user.charade.CharadeAnswer;
-import com.balabama.mt.entities.user.charade.UserCharadeState;
+import com.balabama.mt.entities.user.guessBoo.GuessBooAnswer;
+import com.balabama.mt.entities.user.guessBoo.UserGuessBooState;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.HashSet;
@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserCharadeStateDto extends UserStateDto {
+public class UserGuessBooStateDto extends UserStateDto {
 
     private String word;
     private Integer winRound;
@@ -26,9 +26,9 @@ public class UserCharadeStateDto extends UserStateDto {
     private Long selectedUser;
     private Long selectedBy;
     private Boolean isGoing = false;
-    private CharadeAnswer lastAnswer;
+    private GuessBooAnswer lastAnswer;
 
-    public UserCharadeStateDto(UserCharadeState state) {
+    public UserGuessBooStateDto(UserGuessBooState state) {
         super(state);
         this.word = state.getWord();
         this.winRound = state.getWinRound();
@@ -44,7 +44,7 @@ public class UserCharadeStateDto extends UserStateDto {
     }
 
     @JsonIgnore
-    public UserCharadeStateDto hideState() {
+    public UserGuessBooStateDto hideState() {
         if (winRound == null) {
             word = "*****";
         }
@@ -52,7 +52,7 @@ public class UserCharadeStateDto extends UserStateDto {
     }
 
     @JsonIgnore
-    public UserCharadeStateDto copy() {
-        return new UserCharadeStateDto(word, winRound, ready, selectedUser, selectedBy, isGoing, lastAnswer);
+    public UserGuessBooStateDto copy() {
+        return new UserGuessBooStateDto(word, winRound, ready, selectedUser, selectedBy, isGoing, lastAnswer);
     }
 }

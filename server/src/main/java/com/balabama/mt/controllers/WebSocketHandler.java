@@ -31,7 +31,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Transactional
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         sessions.add(session);
-        session.sendMessage(new TextMessage(mapper.writeValueAsString("KUKU")));
+        session.sendMessage(new TextMessage(mapper.writeValueAsString("Hello")));
     }
 
     @Override

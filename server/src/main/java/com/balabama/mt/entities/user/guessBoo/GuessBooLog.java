@@ -1,6 +1,5 @@
-package com.balabama.mt.entities.user.charade;
+package com.balabama.mt.entities.user.guessBoo;
 
-import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,20 +11,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "charade_log")
+@Table(name = "guess_boo_log")
 @Data
 @NoArgsConstructor
-public class CharadeLog {
+public class GuessBooLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String question;
-    private CharadeAnswer answer;
+    private GuessBooAnswer answer;
     @ManyToOne(fetch = FetchType.LAZY)
-    private UserCharadeState state;
+    private UserGuessBooState state;
 
-    public CharadeLog(String question, CharadeAnswer answer, UserCharadeState state) {
+    public GuessBooLog(String question, GuessBooAnswer answer, UserGuessBooState state) {
         this.question = question;
         this.answer = answer;
         this.state = state;
