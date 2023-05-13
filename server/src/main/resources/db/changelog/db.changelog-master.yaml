@@ -11,3 +11,5 @@ databaseChangeLog:
       file: db/changelog/changeset/DICIE-5.sql
   - include:
       file: db/changelog/changeset/DICIE-6.sql
+  - include:
+      file: db/changelog/changeset/DICIE-RENAME-CHARADE.sql

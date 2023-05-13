@@ -1,7 +1,7 @@
-package com.balabama.mt.entities.user.charade;
+package com.balabama.mt.entities.user.guessBoo;
 
-import com.balabama.mt.dtos.user.charade.UserCharadeStateDto;
-import com.balabama.mt.entities.rooms.charade.RoomCharadeData;
+import com.balabama.mt.dtos.user.guessBoo.UserGuessBooStateDto;
+import com.balabama.mt.entities.rooms.guessBoo.RoomGuessBooData;
 import com.balabama.mt.entities.user.User;
 import com.balabama.mt.entities.user.UserState;
 import com.balabama.mt.exceptions.MTException;
@@ -21,10 +21,10 @@ import lombok.ToString;
 import org.springframework.http.HttpStatus;
 
 @Entity
-@Table(name = "user_charade_state")
+@Table(name = "user_guess_boo_state")
 @NoArgsConstructor
 @Data
-public class UserCharadeState extends UserState {
+public class UserGuessBooState extends UserState {
 
     private String word;
     private Integer winRound;
@@ -34,34 +34,34 @@ public class UserCharadeState extends UserState {
     private Long selectedBy;
     @Column(nullable = false)
     private Boolean isGoing = false;
-    private CharadeAnswer lastAnswer;
+    private GuessBooAnswer lastAnswer;
     @ToString.Exclude
     @OneToMany(mappedBy = "state", fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<CharadeLog> charadeLogs = new ArrayList<>();
+    private List<GuessBooLog> guessBooLogs = new ArrayList<>();
 
-    public UserCharadeState(User user) {
+    public UserGuessBooState(User user) {
         super(user);
     }
 
     @Override
-    public UserCharadeStateDto createDto() {
-        return new UserCharadeStateDto(this);
+    public UserGuessBooStateDto createDto() {
+        return new UserGuessBooStateDto(this);
     }
 
-    public UserCharadeState setWord(String word) {
+    public UserGuessBooState setWord(String word) {
         this.word = word;
         return this;
     }
 
-    public UserCharadeState checkWord(String word) {
+    public UserGuessBooState checkWord(String word) {
         int q = new LevenshteinDistance().apply(word.toLowerCase(), this.word.toLowerCase());
         if (q < ((((float) this.word.length()) / 100) * 60)) {
-            this.winRound = ((RoomCharadeData) this.getUser().getRoom().getRoomData()).getRound();
+            this.winRound = ((RoomGuessBooData) this.getUser().getRoom().getRoomData()).getRound();
         }
         return this;
     }
 
-    public void selectUser(UserCharadeState selectedUser) {
+    public void selectUser(UserGuessBooState selectedUser) {
         checkTurn();
         if (Objects.equals(this.getId(), selectedUser.getId()) || getSelectedUser() != null || selectedUser.getSelectedBy() != null) {
             throw new MTException(HttpStatus.BAD_REQUEST, "You can not select this user");
@@ -77,7 +77,7 @@ public class UserCharadeState extends UserState {
         }
     }
 
-    public UserCharadeState addSelectedBy(User user) {
+    public UserGuessBooState addSelectedBy(User user) {
         setSelectedBy(user.getId());
         return this;
     }
@@ -85,10 +85,10 @@ public class UserCharadeState extends UserState {
     public static List<User> addUserStates(List<User> users) {
         List<User> userList = new ArrayList<>();
         for (User user : users) {
-            user.setUserState(new UserCharadeState(user));
+            user.setUserState(new UserGuessBooState(user));
             userList.add(user);
         }
-        ((UserCharadeState) userList.get(0).getUserState()).setIsGoing(true);
+        ((UserGuessBooState) userList.get(0).getUserState()).setIsGoing(true);
         return userList;
     }
 
@@ -98,9 +98,9 @@ public class UserCharadeState extends UserState {
     }
 
     private void checkNonCycleSelectedUser() {
-        if (getUser().getRoom().getUsers().stream().map(user -> (UserCharadeState) user.getUserState())
+        if (getUser().getRoom().getUsers().stream().map(user -> (UserGuessBooState) user.getUserState())
             .filter(state -> state.getSelectedBy() == null && state.getSelectedUser() == null).count() == 1
-            && getUser().getRoom().getUsers().stream().map(user -> (UserCharadeState) user.getUserState())
+            && getUser().getRoom().getUsers().stream().map(user -> (UserGuessBooState) user.getUserState())
             .filter(state -> state.getSelectedBy() != null && state.getSelectedUser() != null).count()
             == getUser().getRoom().getUsers().size() - 1) {
             throw new MTException(HttpStatus.BAD_REQUEST, "You have to choose another user");
@@ -126,7 +126,7 @@ public class UserCharadeState extends UserState {
     }
 
     public int questionCount() {
-        return charadeLogs.size();
+        return guessBooLogs.size();
     }
 
 
