@@ -49,6 +49,7 @@ export const InputWrapper = styled.div<{ isVisible: boolean }>`
 export const SpacePassTurnInstruction = styled.div<{ isVisible: boolean }>`
   height: 24px;
 
+  padding: 12px 0;
   margin-bottom: 24px;
   margin-top: 4px;
   font-weight: 600;
@@ -65,8 +66,9 @@ export const SpacePassTurnInstruction = styled.div<{ isVisible: boolean }>`
       theme.guessBooGame.main.game.myTurn.askGuessForm.span};
   }
 
-  transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out,
-    margin-bottom 0.3s ease-in-out, margin-top 0.3s ease-in-out;
+  transition: padding 0.3s ease-in-out, height 0.3s ease-in-out,
+    opacity 0.3s ease-in-out, margin-bottom 0.3s ease-in-out,
+    margin-top 0.3s ease-in-out;
 
   ${({ isVisible }) =>
     !isVisible &&
@@ -75,6 +77,7 @@ export const SpacePassTurnInstruction = styled.div<{ isVisible: boolean }>`
       opacity: 0;
       margin-bottom: 0;
       margin-top: 0;
+      padding: 0;
     `}
 `;
 export const WrongGuessWarning = styled.div<{ isVisible: boolean }>`
