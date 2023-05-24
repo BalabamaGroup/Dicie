@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import { ReactSVG } from 'react-svg';
-
+import Message from './Message';
+import * as Styled from './index.styled';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Scroll from '@/components/Scroll';
@@ -9,13 +8,10 @@ import useGameStore from '@/stores/GameStore';
 import useThemeStore from '@/stores/ThemeStore';
 import useUserStore from '@/stores/UserStore';
 import sidePanelTheme from '@/styles/themes/componentThemes/sidePanelTheme';
+import { useState } from 'react';
+import { ReactSVG } from 'react-svg';
 
-import * as Styled from './index.styled';
-import Message from './Message';
-
-interface ChatProps {}
-
-const Chat = ({}: ChatProps) => {
+const Chat = () => {
   const user = useUserStore((s) => s.user);
 
   const [messages, sendMessage] = useChatStore((s) => [
@@ -62,6 +58,7 @@ const Chat = ({}: ChatProps) => {
             <Styled.MessagesList>
               {messages.map((message, i) => (
                 <Message
+                  key={i}
                   index={i}
                   isNewBlock={!i || messages[i - 1].userId !== message.userId}
                   isMyMessage={message.userId === user?.id}

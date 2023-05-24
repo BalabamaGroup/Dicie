@@ -34,7 +34,7 @@ export const NoMessages = styled.div`
   justify-content: center;
   text-align: center;
   transition: color 0.3s ease-in-out;
-  color: ${({ theme }) => theme.chat.messageText};
+  color: ${({ theme }) => theme.chat.noMessageText};
   font-weight: 700;
   font-size: 20px;
   line-height: 20px;
