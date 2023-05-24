@@ -8,7 +8,7 @@ export const Main = styled.div<{
 }>`
   display: flex;
   width: 100vw;
-  height: 100vh;
+  height: var(--vh100);
   padding: 80px 16px 16px 16px;
   box-sizing: border-box;
 
