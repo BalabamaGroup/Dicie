@@ -1,3 +1,5 @@
+import PlayerWithIndicator from './PlayerWithIndicator';
+import * as Styled from './index.styled';
 import { ComponentColor } from '@/common/types/theme';
 import { UserInGame } from '@/common/types/user';
 import Carousel from '@/components/Carousel';
@@ -5,9 +7,6 @@ import Player from '@/components/Player';
 import useWindowWidth from '@/hooks/useWindowWidth';
 import useGameStore from '@/stores/GameStore';
 import useUserStore from '@/stores/UserStore';
-
-import * as Styled from './index.styled';
-import PlayerWithIndicator from './PlayerWithIndicator';
 
 interface PlayersCarouselProps {}
 
@@ -29,6 +28,7 @@ const PlayersCarousel = ({}: PlayersCarouselProps) => {
       <Carousel color={color} maxWidth={maxWidth} itemWidth={108} gap={16}>
         {otherPlayers.map((player, i) => (
           <PlayerWithIndicator
+            id={player.id}
             key={i}
             lastAnswer={player.state.lastAnswer}
             isHighlighted={goingPlayer.id === player.id}

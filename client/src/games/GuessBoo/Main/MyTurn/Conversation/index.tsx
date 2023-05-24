@@ -1,3 +1,4 @@
+import * as Styled from './index.styled';
 import CharadesAPI from '@/api/game/charades';
 import { UserInGame } from '@/common/types/user';
 import Button from '@/components/Button';
@@ -6,8 +7,6 @@ import Player from '@/components/Player';
 import useChatStore from '@/stores/ChatStore';
 import useGameStore from '@/stores/GameStore';
 import useUserStore from '@/stores/UserStore';
-
-import * as Styled from './index.styled';
 
 interface ConversationProps {
   otherPlayers: UserInGame[];
@@ -86,6 +85,7 @@ const Conversation = ({
       finalAnswer={finalAnswer}
     >
       <Player
+        id={user!.id}
         color='indigo'
         className='conversation-player'
         onClick={() => {

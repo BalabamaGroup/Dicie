@@ -1,10 +1,9 @@
+import * as Styled from './index.styled';
+import { PlayerTileFormSizeWrapper } from './index.styled.size';
 import { ComponentColor } from '@/common/types/theme';
 import Loader from '@/components/Loader';
 import useThemeStore from '@/stores/ThemeStore';
 import playerTheme from '@/styles/themes/componentThemes/playerTheme';
-
-import * as Styled from './index.styled';
-import { PlayerTileFormSizeWrapper } from './index.styled.size';
 
 interface PlayerTileFormProps {
   id?: number;
@@ -55,9 +54,14 @@ const PlayerTileForm = ({
       light: '#FBC3DE',
       dark: '#AA195F',
     },
+    {
+      main: '#87F69F',
+      light: '#CFF8D8',
+      dark: '#137411',
+    },
   ];
 
-  const playerPalette = id ? playerPalettes[id % 3] : playerPalettes[0];
+  const playerPalette = id ? playerPalettes[id % 4] : playerPalettes[0];
 
   const theme = useThemeStore((state) => state.theme);
   const componentTheme = playerTheme[theme][color].tile;
