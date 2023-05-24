@@ -1,12 +1,10 @@
-import { useState } from 'react';
-
+import * as Styled from './index.styled';
 import CharadesAPI from '@/api/game/charades';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Switch from '@/components/Switch';
 import useKeyPressListener from '@/hooks/useKeyPressListener';
-
-import * as Styled from './index.styled';
+import { useState } from 'react';
 
 interface FriendModeProps {}
 
@@ -31,7 +29,7 @@ const FriendMode = ({}: FriendModeProps) => {
   };
 
   useKeyPressListener({
-    keys: ['Space'],
+    keys: ['Space', ' '],
     onPress: onPassTurn,
   });
 

@@ -8,16 +8,12 @@ const useKeyPressListener = ({
   onPress: Function;
 }) => {
   const onKeyDown = (e: any) => {
-    if (keys.some((key) => e.key === key)) {
-      onPress();
-    }
+    if (keys.some((key) => e.key === key)) onPress();
   };
 
   useEffect(() => {
     document.addEventListener('keydown', onKeyDown);
-    return () => {
-      document.removeEventListener('keydown', onKeyDown);
-    };
+    return () => document.removeEventListener('keydown', onKeyDown);
   }, [onKeyDown]);
 };
 
