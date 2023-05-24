@@ -1,15 +1,13 @@
-import { useEffect } from 'react';
-
-import { thresholds } from '@/common/utils/device';
-import SidePanel from '@/components/SidePanel';
-import useGameStore from '@/stores/GameStore';
-
 import AnswerVisualizer from './AnswerVisualizer';
-import * as Styled from './index.styled';
 import MyTurn from './MyTurn';
 import OthersTurn from './OthersTurn';
 import PlayersCarousel from './PlayersCarousel';
 import WinGame from './WinGame';
+import * as Styled from './index.styled';
+import { thresholds } from '@/common/utils/device';
+import SidePanel from '@/components/SidePanel';
+import useGameStore from '@/stores/GameStore';
+import { useEffect } from 'react';
 
 const Main = () => {
   const isFriendMode = useGameStore((s) => s.data!.isFriendMode);

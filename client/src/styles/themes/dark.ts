@@ -106,13 +106,13 @@ const dark: any = {
       backgroundWait: gradients.wait_dark,
       backgroundGo: gradients.go_dark,
       game: {
-        backgroundWait: colors.indigo[90],
-        backgroundGo: colors.lime[90],
+        backgroundWait: colors.indigo[80],
+        backgroundGo: colors.lime[80],
         borderWait: colors.indigo[100],
         borderGo: colors.lime[100],
         playersCarousel: {
-          backgroundWait: colors.indigo[80],
-          backgroundGo: colors.lime[80],
+          backgroundWait: colors.indigo[90],
+          backgroundGo: colors.lime[90],
           borderWait: colors.indigo[100],
           borderGo: colors.lime[100],
         },
@@ -163,7 +163,7 @@ const dark: any = {
         othersTurn: {
           othersQuestion: {
             loading: {
-              background: colors.indigo[80],
+              background: colors.indigo[90],
               border: colors.indigo[100],
               text: colors.indigo[10],
             },

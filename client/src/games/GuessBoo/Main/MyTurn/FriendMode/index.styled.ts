@@ -18,7 +18,7 @@ export const FriendModeWrapper = styled.div<{}>`
   justify-content: center;
 
   .question-form-switch {
-    margin-bottom: 48px;
+    margin-bottom: 24px;
   }
 
   .submit-button {
@@ -30,6 +30,9 @@ export const InputWrapper = styled.div<{ isVisible: boolean }>`
   height: 72px;
   opacity: 1;
   margin-bottom: 21px;
+
+  width: 100%;
+  max-width: 340px;
 
   transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out,
     margin-bottom 0.3s ease-in-out;

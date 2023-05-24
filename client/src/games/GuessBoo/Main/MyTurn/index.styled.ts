@@ -1,6 +1,5 @@
-import styled, { css } from 'styled-components';
-
 import { thresholds } from '@/common/utils/device';
+import styled, { css } from 'styled-components';
 
 export const MyTurn = styled.div`
   height: 480px;
@@ -10,7 +9,7 @@ export const MyTurn = styled.div`
     height: 100%;
   }
 
-  border-radius: 64px;
+  border-radius: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
