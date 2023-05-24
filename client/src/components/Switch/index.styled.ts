@@ -28,7 +28,7 @@ export const SwitchOption = styled.div<{ isChosen: boolean | undefined }>`
     height: 2px;
     border-radius: 2px;
     display: inline-block;
-    transition: width 0.1s ease-in-out, background 0.15s ease-in-out;
+    transition: width 0.15s ease-in-out, background 0.15s ease-in-out;
   }
 
   transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
@@ -41,7 +41,7 @@ export const SwitchOption = styled.div<{ isChosen: boolean | undefined }>`
           &:hover {
             box-shadow: ${({ theme }) => theme.shadow};
             .higlighting {
-              background-color: ${({ theme }) => theme.textOn};
+              background-color: ${({ theme }) => theme.backgroundOn};
               width: 24px;
             }
           }
