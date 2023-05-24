@@ -4,8 +4,8 @@ export type User = {
   id: number;
   username: string;
   email: string;
-  role: UserRole;
   token: string | null;
+  role: UserRole;
   roomId: string | null;
   points: number;
 };

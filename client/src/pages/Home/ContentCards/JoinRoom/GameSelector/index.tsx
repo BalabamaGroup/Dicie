@@ -9,6 +9,7 @@ export const StyledGameSelector = styled.div<{}>`
   box-sizing: border-box;
   display: flex;
   align-items: start;
+  gap: 12px;
 `;
 
 interface GameSelectorProps {

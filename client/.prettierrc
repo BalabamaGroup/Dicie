@@ -1,4 +1,18 @@
 {
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "^@/api/(.*)$",
+    "^@/common/(.*)$",
+    "^@/components/(.*)$",
+    "^@/games/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/pages/(.*)$",
+    "^@/stores/(.*)$",
+    "^@/styles/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
   "trailingComma": "es5",
   "tabWidth": 2,
   "semi": true,

@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
@@ -55,13 +54,15 @@ const RoomsTable = ({ selectedGames, searchValue }: RoomsTableProps) => {
       (!selectedGames.length || selectedGames.includes(1))
   );
 
+  console.log(filteredRooms);
+
   return (
     <Styled.RoomsTable isNoRooms={!filteredRooms.length}>
       <ReactSVG className='no-room-image' src='/images/svgs/no-rooms.svg' />
       <Scroll className='scroll' color='indigo'>
         {filteredRooms.map((room, i) => (
           <Styled.RoomRow key={i}>
-            <ReactSVG className='game-icon' src={games[room.gameId - 1].icon} />
+            <ReactSVG className='game-icon' src={games[1].icon} />
             <div className='room-name' title={room.name}>
               {room.name}
             </div>
@@ -70,7 +71,7 @@ const RoomsTable = ({ selectedGames, searchValue }: RoomsTableProps) => {
                 className='players-num-icon'
                 src={'/images/svgs/person.svg'}
               />
-              {room.numberOfUsers || 0}/{games[room.gameId - 1].maxPlayers}
+              {room.numberOfUsers || 0}/{games[1].maxPlayers}
             </div>
             <Button
               color='indigo'

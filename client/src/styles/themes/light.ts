@@ -187,6 +187,41 @@ const light = {
     },
   },
 
+  memetaurGame: {
+    backgroundWait: gradients.wait_light,
+    backgroundGo: gradients.go_light,
+    game: {
+      backgroundWait: colors.indigo[10],
+      backgroundGo: colors.lime[10],
+      borderWait: colors.indigo[50],
+      borderGo: colors.lime[50],
+      shadowWaitRGBA: hexToRgba(colors.indigo[90], 0.25),
+      shadowGoRGBA: hexToRgba(colors.lime[90], 0.25),
+
+      captionSetup: {
+        myTurn: {
+          header: {
+            textMain: colors.lime[80],
+            textSub: colors.lime[60],
+          },
+          presets: {
+            background: colors.lime[0],
+            border: colors.lime[50],
+            preset: {
+              text: colors.lime[80],
+              background: 'transparent',
+              backgroundHover: colors.lime.light,
+            },
+          },
+        },
+        othersTurn: {
+          textHeader: colors.indigo[80],
+          textWaitMessage: colors.indigo[80],
+        },
+      },
+    },
+  },
+
   carousel: {
     arrowWait: colors.indigo[80],
     arrowGo: colors.lime[80],

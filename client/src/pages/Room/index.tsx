@@ -22,6 +22,8 @@ const Room = () => {
   const socketStatus = useGameStore((s) => s.socketStatus);
   useGameStore((s) => s.subscribe)();
 
+  console.log(roomData);
+
   useEffect(() => {
     if (socketStatus && roomId)
       RoomAPI.connectToRoom(roomId)

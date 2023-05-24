@@ -26,10 +26,15 @@ export type Game = Omit<Room, 'users'> & {
   users: UserInGame[];
 };
 
-export type GameSpecific = GuessBooSpecific;
+export type GameSpecific = GuessBooSpecific & MemetaurSpecific;
 
 export type GuessBooSpecific = {
   currentQuestion: string | null;
   responseCounterYes: number;
   allUsersReady: boolean;
+};
+
+export type MemetaurSpecific = {
+  allUsersReady: boolean;
+  phrase: string;
 };

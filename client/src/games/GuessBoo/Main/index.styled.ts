@@ -1,14 +1,21 @@
 import styled, { css } from 'styled-components';
 
-import { createGradientTransition, transitionGradient } from '@/common/helpers/styleHelpers';
-import { mobileAndSmaller, tabletAndSmaller, thresholds } from '@/common/utils/device';
+import {
+  createGradientTransition,
+  transitionGradient,
+} from '@/common/helpers/styleHelpers';
+import {
+  mobileAndSmaller,
+  tabletAndSmaller,
+  thresholds,
+} from '@/common/utils/device';
 
 export const Main = styled.div<{
   myTurn: boolean;
 }>`
   display: flex;
   width: 100vw;
-  height: 100vh;
+  height: var(--vh100);
   padding: 80px 16px 16px 16px;
   box-sizing: border-box;
 
