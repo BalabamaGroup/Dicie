@@ -2,31 +2,31 @@ import colors from '@/styles/colors/colors';
 
 const light = {
   indigo: {
-    backgroundOn: 'none',
-    textOn: colors.indigo[90],
-    backgroundOff: colors.indigo.base,
-    textOff: colors.lime[0],
+    backgroundOff: 'none',
+    textOff: colors.indigo[80],
+    backgroundOn: colors.indigo.base,
+    textOn: colors.indigo[0],
   },
   lime: {
-    backgroundOn: 'none',
-    textOn: colors.lime[80],
-    backgroundOff: colors.lime.base,
+    backgroundOff: 'none',
     textOff: colors.lime[80],
+    backgroundOn: colors.lime.base,
+    textOn: colors.lime[80],
   },
 };
 
 const dark = {
   indigo: {
-    backgroundOn: 'none',
+    backgroundOff: 'none',
+    textOff: colors.indigo.light,
+    backgroundOn: colors.indigo.base,
     textOn: colors.indigo[0],
-    backgroundOff: colors.indigo.base,
-    textOff: colors.indigo[0],
   },
   lime: {
-    backgroundOn: 'none',
-    textOn: colors.lime[0],
-    backgroundOff: colors.lime.base,
-    textOff: colors.lime[80],
+    backgroundOff: 'none',
+    textOff: colors.lime.light,
+    backgroundOn: colors.lime.base,
+    textOn: colors.lime[80],
   },
 };
 
