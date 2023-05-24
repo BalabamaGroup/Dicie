@@ -5,10 +5,10 @@ const useKeyPressListener = ({
   onPress,
 }: {
   keys: string[];
-  onPress: Function;
+  onPress: any;
 }) => {
   const onKeyDown = (e: any) => {
-    if (keys.some((key) => e.key === key)) onPress();
+    if (keys.some((key) => e.key === key)) onPress(e);
   };
 
   useEffect(() => {
