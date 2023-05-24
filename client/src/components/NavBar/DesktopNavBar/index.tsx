@@ -1,14 +1,12 @@
-import { useNavigate } from 'react-router-dom';
-
-import routes from '@/common/constants/routes';
-import useThemeStore from '@/stores/ThemeStore';
-import navbarTheme from '@/styles/themes/componentThemes/navbarTheme';
-
 import MyRoomNavigation from '../SubOptions/MyRoomNavigation';
 import Profile from '../SubOptions/Profile';
 import SettingsTheme from '../SubOptions/SettingsTheme';
 import { useNavbarColor } from '../useNavbarColor';
 import * as Styled from './index.styled';
+import routes from '@/common/constants/routes';
+import useThemeStore from '@/stores/ThemeStore';
+import navbarTheme from '@/styles/themes/componentThemes/navbarTheme';
+import { useNavigate } from 'react-router-dom';
 
 interface DesktopNavBarProps {
   withHome: boolean;
@@ -45,9 +43,9 @@ const DesktopNavBar = ({ withHome, withMyRoom }: DesktopNavBarProps) => {
         )}
 
         <Styled.DesktopNavBarOption theme={componentTheme}>
-          <div className='option-title'>Settings</div>
+          <div className='option-title'>Theme</div>
           <div className='option-content'>
-            <div className='option-content-title'>Settings</div>
+            <div className='option-content-title'>Theme</div>
             <SettingsTheme />
           </div>
         </Styled.DesktopNavBarOption>

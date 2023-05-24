@@ -1,7 +1,4 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ReactSVG } from 'react-svg';
-
+import * as Styled from './index.styled';
 import routes from '@/common/constants/routes';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
@@ -10,14 +7,17 @@ import Toast from '@/components/Toast';
 import useAuthPageStore from '@/stores/AuthPageStore';
 import useThemeStore from '@/stores/ThemeStore';
 import useUserStore from '@/stores/UserStore';
-
-import * as Styled from './index.styled';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 interface signInProps {}
 
 const SignInForm = ({}: signInProps) => {
   const theme = useThemeStore((state) => state.theme);
   const defaultColor = theme === 'light' ? 'indigo' : 'lime';
+
+  const [isLoadingSignIn, setIsLoadingSignIn] = useState<boolean>(false);
 
   // prettier-ignore
   const [username,  validateUsername] = useAuthPageStore(
@@ -41,8 +41,9 @@ const SignInForm = ({}: signInProps) => {
 
   const signIn = useUserStore((s) => s.signIn);
   const navigate = useNavigate();
-  const onSignIn = async (e: any) => {
+  const onSignIn = async () => {
     try {
+      setIsLoadingSignIn(true);
       await signIn({
         username: username,
         password: password,
@@ -50,6 +51,8 @@ const SignInForm = ({}: signInProps) => {
       navigate(routes.HOME);
     } catch (e) {
       Toast.error('Could not authorize with provided data');
+    } finally {
+      setIsLoadingSignIn(false);
     }
   };
 
@@ -96,7 +99,14 @@ const SignInForm = ({}: signInProps) => {
         </MultiInput>
       </Styled.MultiInputWrapper>
 
-      <Button color='indigo' isPrimary isScale onClick={onSignIn} size='large'>
+      <Button
+        color='indigo'
+        isPrimary
+        isScale
+        onClick={onSignIn}
+        isLoading={isLoadingSignIn}
+        size='large'
+      >
         Sign In
       </Button>
     </Styled.AuthForm>

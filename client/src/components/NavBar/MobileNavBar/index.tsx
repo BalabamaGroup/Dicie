@@ -1,16 +1,14 @@
-import { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { ReactSVG } from 'react-svg';
-
-import routes from '@/common/constants/routes';
-import useThemeStore from '@/stores/ThemeStore';
-import navbarTheme from '@/styles/themes/componentThemes/navbarTheme';
-
 import MyRoomNavigation from '../SubOptions/MyRoomNavigation';
 import Profile from '../SubOptions/Profile';
 import SettingsTheme from '../SubOptions/SettingsTheme';
 import { useNavbarColor } from '../useNavbarColor';
 import * as Styled from './index.styled';
+import routes from '@/common/constants/routes';
+import useThemeStore from '@/stores/ThemeStore';
+import navbarTheme from '@/styles/themes/componentThemes/navbarTheme';
+import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 interface MobileNavBarProps {
   withHome: boolean;
@@ -111,7 +109,7 @@ const MobileNavBar = ({ withHome, withMyRoom }: MobileNavBarProps) => {
                 className='option-icon'
                 src='/images/svgs/settings.svg'
               />
-              Settings
+              Theme
             </Styled.MobileNavBarOption>,
           ]}
 
@@ -126,7 +124,7 @@ const MobileNavBar = ({ withHome, withMyRoom }: MobileNavBarProps) => {
                 className='option-icon'
                 src='/images/svgs/arrow.left.svg'
               />
-              <div className='option-title'>Settings</div>
+              <div className='option-title'>Theme</div>
             </Styled.MobileNavBarOptionHeader>,
             <SettingsTheme key='settings-theme' />,
           ]}
