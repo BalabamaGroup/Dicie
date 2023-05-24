@@ -60,9 +60,24 @@ const PlayerRowForm = ({
       light: '#CFF8D8',
       dark: '#137411',
     },
+    {
+      main: '#87EFF6',
+      light: '#CFF5F8',
+      dark: '#116D74',
+    },
+    {
+      main: '#B187F6',
+      light: '#DFCFF8',
+      dark: '#371174',
+    },
+    {
+      main: '#F68787',
+      light: '#F8CFCF',
+      dark: '#741111',
+    },
   ];
 
-  const playerPalette = id ? playerPalettes[id % 4] : playerPalettes[0];
+  const playerPalette = id ? playerPalettes[id % 7] : playerPalettes[0];
 
   const theme = useThemeStore((state) => state.theme);
   const componentTheme = playerTheme[theme][color].row;
