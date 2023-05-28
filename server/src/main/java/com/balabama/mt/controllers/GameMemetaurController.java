@@ -41,8 +41,9 @@ public class GameMemetaurController {
 
     @GetMapping("/{query}")
     public String searchGif(@PathVariable String query) throws Exception {
-        String url = String.format("https://tenor.googleapis.com/v2/search?q=%1$s&key=%2$s&client_key=%3$s&limit=%4$s",
-                query, API_KEY, CLIENT_KEY, 10);
+        String url = String.format(
+            "https://tenor.googleapis.com/v2/search?q=%1$s&key=%2$s&client_key=%3$s&limit=%4$s&contentfilter=off&media_filter=gif",
+            query, API_KEY, CLIENT_KEY, 25);
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
         return responseEntity.getBody();

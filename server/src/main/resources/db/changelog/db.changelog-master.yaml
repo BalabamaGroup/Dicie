@@ -19,3 +19,5 @@ databaseChangeLog:
       file: db/changelog/changeset/DICIE-8-importPhrase.sql
   - include:
       file: db/changelog/changeset/DICIE-9.sql
+  - include:
+      file: db/changelog/changeset/DICIE-RENAME-GIFPACABRA.sql

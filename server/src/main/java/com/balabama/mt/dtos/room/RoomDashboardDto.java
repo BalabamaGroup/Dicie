@@ -20,5 +20,5 @@ public class RoomDashboardDto {
     private UserDto admin;
     private Boolean isPrivate = false;
     private Boolean isFriendMode = false;
-    private String gameName;
+    private Long gameId;
 }
