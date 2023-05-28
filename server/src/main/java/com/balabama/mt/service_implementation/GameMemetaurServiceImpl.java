@@ -40,7 +40,7 @@ public class GameMemetaurServiceImpl implements GameMemetaurService {
     }
 
     @Override
-    public Room selectGif(String gif) {
+    public Room  selectGif(String gif) {
         User currentUser = userService.getCurrent();
         UserMemetaurState userState = (UserMemetaurState)currentUser.getUserState();
         userState.setGif(gif);
