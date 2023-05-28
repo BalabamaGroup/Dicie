@@ -12,6 +12,8 @@ databaseChangeLog:
   - include:
       file: db/changelog/changeset/DICIE-6.sql
   - include:
+      file: db/changelog/changeset/DICIE-RENAME-CHARADE.sql
+  - include:
       file: db/changelog/changeset/DICIE-7.sql
   - include:
       file: db/changelog/changeset/DICIE-8-importPhrase.sql
