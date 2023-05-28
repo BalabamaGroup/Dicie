@@ -17,10 +17,9 @@ const FriendMode = () => {
   const onChangeInputValue = (e: any) => setInputValue(e.target.value);
 
   const onPassTurn = async (e: any) => {
-    console.log(e);
+    if (isGuess) return;
     if (e.target.nodeName.toLowerCase() === 'input') return;
     if (e.target.nodeName.toLowerCase() === 'textarea') return;
-    if (isGuess) return;
     await CharadesAPI.passTurnFM();
   };
 
