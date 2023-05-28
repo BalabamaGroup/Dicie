@@ -52,14 +52,14 @@ public class GameMemetaurController {
         webSocketHandler.sendRoomMessage(converter.convertRoom(service.voteGif(gif.getWord())));
     }
 
-    @GetMapping("/{query}")
-    public String searchGif(@PathVariable(required = false)  String query) throws Exception {
-        if (query == null || query.isEmpty()) {
+    @GetMapping("/searchGif")
+    public String searchGif(@RequestBody(required = false)  StringDto query) throws Exception {
+        if (query == null || query.getWord().isEmpty()) {
             return new ArrayList<>().toString();
         }
         String url = String.format(
                 "https://tenor.googleapis.com/v2/search?q=%1$s&key=%2$s&client_key=%3$s&limit=%4$s&contentfilter=off&media_filter=gif",
-                query, API_KEY, CLIENT_KEY, 25);
+                query.getWord(), API_KEY, CLIENT_KEY, 25);
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
         ObjectMapper objectMapper = new ObjectMapper();
