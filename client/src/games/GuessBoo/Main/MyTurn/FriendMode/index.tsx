@@ -1,16 +1,12 @@
-import { useState } from 'react';
-
+import * as Styled from './index.styled';
 import CharadesAPI from '@/api/game/charades';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Switch from '@/components/Switch';
 import useKeyPressListener from '@/hooks/useKeyPressListener';
+import { useState } from 'react';
 
-import * as Styled from './index.styled';
-
-interface FriendModeProps {}
-
-const FriendMode = ({}: FriendModeProps) => {
+const FriendMode = () => {
   const [formType, setFormType] = useState<'question' | 'guess'>('question');
   const onSelectQuestion = () => setFormType('question');
   const onSelectGuess = () => setFormType('guess');
@@ -20,8 +16,10 @@ const FriendMode = ({}: FriendModeProps) => {
   const [inputValue, setInputValue] = useState<string>('');
   const onChangeInputValue = (e: any) => setInputValue(e.target.value);
 
-  const onPassTurn = async () => {
+  const onPassTurn = async (e: any) => {
     if (isGuess) return;
+    if (e.target.nodeName.toLowerCase() === 'input') return;
+    if (e.target.nodeName.toLowerCase() === 'textarea') return;
     await CharadesAPI.passTurnFM();
   };
 
@@ -31,7 +29,7 @@ const FriendMode = ({}: FriendModeProps) => {
   };
 
   useKeyPressListener({
-    keys: ['Space'],
+    keys: ['Space', ' '],
     onPress: onPassTurn,
   });
 

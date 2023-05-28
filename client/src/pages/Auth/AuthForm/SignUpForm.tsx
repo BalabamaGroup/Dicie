@@ -1,7 +1,4 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ReactSVG } from 'react-svg';
-
+import * as Styled from './index.styled';
 import { RoleTypes } from '@/common/constants';
 import routes from '@/common/constants/routes';
 import Button from '@/components/Button';
@@ -10,10 +7,13 @@ import MultiInput from '@/components/MultiInput';
 import useAuthPageStore from '@/stores/AuthPageStore';
 import useThemeStore from '@/stores/ThemeStore';
 import useUserStore from '@/stores/UserStore';
-
-import * as Styled from './index.styled';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 const SignUpForm = () => {
+  const [isLoadingSignUp, setIsLoadingSignUp] = useState<boolean>(false);
+
   // prettier-ignore
   const [username, usernameIsValid, validateUsername, usernameErrorNote] = useAuthPageStore(
     (s) => [s.username, s.usernameIsValid, s.validateUsername, s.usernameErrorNote]);
@@ -57,14 +57,18 @@ const SignUpForm = () => {
 
   const signUp = useUserStore((s) => s.signUp);
   const navigate = useNavigate();
-  const onSignUp = async (e: any) => {
-    e.preventDefault();
-    await signUp({
-      username: username,
-      password: password,
-      email: email,
-      role: RoleTypes.USER,
-    }).then(() => navigate(routes.HOME));
+  const onSignUp = async () => {
+    try {
+      setIsLoadingSignUp(true);
+      await signUp({
+        username: username,
+        password: password,
+        email: email,
+        role: RoleTypes.USER,
+      }).then(() => navigate(routes.HOME));
+    } finally {
+      setIsLoadingSignUp(false);
+    }
   };
 
   const theme = useThemeStore((state) => state.theme);
@@ -161,6 +165,7 @@ const SignUpForm = () => {
         isScale={true}
         onClick={onSignUp}
         size='large'
+        isLoading={isLoadingSignUp}
         // isDisabled={
         //   !usernameIsValid ||
         //   !passwordIsValid ||

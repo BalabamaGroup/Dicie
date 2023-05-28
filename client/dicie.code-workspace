@@ -31,7 +31,8 @@
       "**/.DS_Store": true,
       "**/Thumbs.db": true,
       "**/node_modules": true
-    }
+    },
+    "powershell.cwd": "d:\\Work\\Dicie"
   },
   "tasks": {
     "version": "2.0.0",

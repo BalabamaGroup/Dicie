@@ -1,11 +1,9 @@
-import { useParams } from 'react-router-dom';
-
+import * as Styled from './index.styled';
 import RoomAPI from '@/api/room';
 import Button from '@/components/Button';
 import Player from '@/components/Player';
 import useGameStore from '@/stores/GameStore';
-
-import * as Styled from './index.styled';
+import { useParams } from 'react-router-dom';
 
 const RoomSettings = () => {
   const { roomId } = useParams();
@@ -17,6 +15,7 @@ const RoomSettings = () => {
       <div className='players'>
         {users.map((user) => (
           <Player
+            id={user.id}
             key={user.id}
             onClick={() => {}}
             size='large'

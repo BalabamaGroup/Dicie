@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const WholePage = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: var(--vh100);
 `;
 
 export const CircleLoader = styled.div`

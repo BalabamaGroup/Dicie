@@ -1,11 +1,10 @@
+import * as Styled from './index.styled';
 import CharadesAPI from '@/api/game/charades';
 import { UserInGame } from '@/common/types/user';
 import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import Player from '@/components/Player';
 import useGameStore from '@/stores/GameStore';
-
-import * as Styled from './index.styled';
 
 interface OthersTurnProps {}
 
@@ -27,6 +26,7 @@ const OthersTurn = ({}: OthersTurnProps) => {
     <Styled.OthersTurn currentQuestion={currentQuestion}>
       <Styled.Qestion currentQuestion={currentQuestion}>
         <Player
+          id={goingPlayer.id}
           className='others-turn-player'
           color='indigo'
           form='tile'
@@ -40,6 +40,7 @@ const OthersTurn = ({}: OthersTurnProps) => {
           size='large'
         />
         <Player
+          id={goingPlayer.id}
           className='others-turn-player-mobile'
           color='indigo'
           form='tile'

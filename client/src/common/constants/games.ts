@@ -14,8 +14,8 @@ const games: {
   },
   {
     id: 2,
-    name: 'Gifpacabra',
-    icon: '/images/svgs/game-icons/guess-boo.svg',
+    name: 'Meme-taur',
+    icon: '/images/svgs/game-icons/gif.svg',
     minPlayers: 3,
     maxPlayers: 10,
   },

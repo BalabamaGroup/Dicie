@@ -3,15 +3,18 @@ import { ReactSVG } from 'react-svg';
 import useThemeStore from 'stores/ThemeStore';
 
 import { getTextHeight } from '@/common/helpers/domHelpers';
+
 import useKeyPressListener from '@/hooks/useKeyPressListener';
+
 import useGameStore from '@/stores/GameStore';
+
 import inputTheme from '@/styles/themes/componentThemes/inputTheme';
 
 import * as Styled from './index.styled';
 import { InputProps } from './interface';
 
 const Input = ({
-  id = 'input',
+  id,
   className,
   type = 'text',
   autoComplete = 'off',

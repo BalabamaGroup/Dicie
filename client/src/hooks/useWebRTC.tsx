@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 const useWebRTC = () => {
   const ws = useRef<WebSocket | null>(null);

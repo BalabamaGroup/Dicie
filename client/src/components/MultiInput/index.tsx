@@ -40,7 +40,6 @@ const MultiInput = ({
       if (i === index + 1) return { ...input, isTopSeparate: isSeparate };
       return input;
     });
-    console.log(newMultiInputData);
     setMiltiInputData(newMultiInputData);
   };
 
