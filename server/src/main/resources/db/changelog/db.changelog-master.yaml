@@ -23,3 +23,5 @@ databaseChangeLog:
       file: db/changelog/changeset/DICIE-RENAME-GIFPACABRA.sql
   - include:
       file: db/changelog/changeset/DICIE-10.sql
+  - include:
+      file: db/changelog/changeset/DICIE-11.sql
