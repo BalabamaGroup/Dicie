@@ -16,11 +16,13 @@ public class UserMemetaurStateDto extends UserStateDto {
 
     private String gif;
     private String votedGif;
+    private Integer countWin;
 
     public UserMemetaurStateDto(UserMemetaurState state) {
         super(state);
         this.gif = state.getGif();
         this.votedGif = state.getGif();
+        this.countWin = state.getCountWin();
     }
 
     @JsonIgnore
@@ -30,6 +32,6 @@ public class UserMemetaurStateDto extends UserStateDto {
 
     @JsonIgnore
     public UserMemetaurStateDto copy() {
-        return new UserMemetaurStateDto(gif, votedGif);
+        return new UserMemetaurStateDto(gif, votedGif,countWin);
     }
 }

@@ -57,6 +57,19 @@ public class GameMemetaurServiceImpl implements GameMemetaurService {
         UserMemetaurState userState = (UserMemetaurState) currentUser.getUserState();
         userState.setVotedGif(gif);
         Room room = getRoomByState(userState);
+        RoomMemetaurData roomData = (RoomMemetaurData) room.getRoomData();
+        roomData.checkUsersVoteGif();
+        if (roomData.getAllUsersVoteGif()) {
+            roomData.getWonUser().forEach(userService::save);
+            roomData.endRound();
+            if (roomData.getRoom().getUsers().size() >= roomData.getCurrentRound()) {
+                room.setRoomData(roomData);
+                Room finishRoom = roomService.save(room);
+                finishRoom.finish();
+                return roomService.save(finishRoom);
+            }
+        }
+        room.setRoomData(roomData);
         return roomService.save(room);
     }
 

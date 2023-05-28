@@ -11,7 +11,11 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RoomMemetaurDataDto extends RoomDataDto {
 
-    private Boolean allUsersReady = false;
+    private Boolean allUsersSelectGif = false;
+    private Boolean allUsersVoteGif = false;
+    private Integer currentRound;
+
+
     private String phrase;;
 
     public RoomMemetaurDataDto(Room room) {

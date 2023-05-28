@@ -3,6 +3,8 @@ package com.balabama.mt.controllers;
 import com.balabama.mt.dtos.room.RoomDto;
 import com.balabama.mt.dtos.user.UserDto.UserWithState;
 import com.balabama.mt.dtos.user.UserStateDto;
+import com.balabama.mt.dtos.user.memetaur.UserMemetaurStateDto;
+import com.balabama.mt.entities.user.memetaur.UserMemetaurState;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.List;
@@ -64,7 +66,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 Long userId = Long.parseLong(Objects.requireNonNull(session.getUri()).getQuery());
                 if (ids.contains(userId)) {
                     UserWithState user = roomDto.getUser(userId);
-                    if (user.getState() != null) {
+                    if (user.getState() != null && user.getState() instanceof UserMemetaurStateDto) {
                         UserStateDto oldState = user.getState().copy();
                         user.hideState();
                         session.sendMessage(new TextMessage(mapper.writeValueAsString(roomDto)));

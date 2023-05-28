@@ -19,6 +19,7 @@ public class UserMemetaurState extends UserState {
 
     private String gif;
     private String votedGif;
+    private Integer countWin = 0;
 
     public UserMemetaurState(User user) {
         super(user);
@@ -27,6 +28,15 @@ public class UserMemetaurState extends UserState {
     @Override
     public UserMemetaurStateDto createDto() {
         return new UserMemetaurStateDto(this);
+    }
+
+    public void addWinCount() {
+        countWin += 1;
+    }
+
+    public void endRound() {
+        gif = null;
+        votedGif = null;
     }
 
     public void checkTurn() {
