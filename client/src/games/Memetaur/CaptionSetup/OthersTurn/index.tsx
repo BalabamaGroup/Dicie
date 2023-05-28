@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import Loader from '@/components/Loader';
 import Player from '@/components/Player';
+
 import useGameStore from '@/stores/GameStore';
 
 export const StyledOthersTurn = styled.div<{}>`
@@ -42,16 +43,15 @@ export const StyledOthersTurn = styled.div<{}>`
   }
 `;
 
-interface OthersTurnProps {}
-
-const OthersTurn = ({}: OthersTurnProps) => {
+const OthersTurn = () => {
   const goingPlayer = useGameStore((s) => s.getGoingPlayer());
 
   return (
     <StyledOthersTurn>
-      <div className='header'>It is {goingPlayer.username}'s turn</div>
+      <div className='header'>It is {goingPlayer?.username}'s turn</div>
       <div className='content'>
         <Player
+          id={goingPlayer.id}
           color='indigo'
           size='large'
           tileContent={{

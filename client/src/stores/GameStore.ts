@@ -5,6 +5,7 @@ import { Game, GameSpecific, Room } from '@/common/types/room';
 import { ComponentColor } from '@/common/types/theme';
 import { UserInGame } from '@/common/types/user';
 import { roomSocketUrl } from '@/common/utils/url';
+
 import useUserStore from '@/stores/UserStore';
 
 interface GameStoreState {
@@ -19,8 +20,8 @@ interface GameStoreState {
   getColor: { (): ComponentColor };
 
   getMePlayer: { (): UserInGame };
-  getOtherPlayers: { (): UserInGame[] };
   getGoingPlayer: { (): UserInGame };
+  getOtherPlayers: { (): UserInGame[] };
 
   subscribe: { (): void };
 }
@@ -63,6 +64,8 @@ const useGameStore = create<GameStoreState>()((set, get) => ({
 
   subscribe: (): void => subscribeToSocket(),
 }));
+
+// - // - // - // - // - // - // - // - // - // - // - //
 
 const subscribeToSocket = () => {
   const ws = useRef<WebSocket | null>(null);

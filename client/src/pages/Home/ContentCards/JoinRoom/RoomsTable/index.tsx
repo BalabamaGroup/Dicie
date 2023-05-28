@@ -1,16 +1,14 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ReactSVG } from 'react-svg';
-
+import * as Styled from './index.styled';
+import { useRoomsQuery } from '@/GlobalQueries';
 import RoomAPI from '@/api/room';
 import games from '@/common/constants/games';
 import Button from '@/components/Button';
 import Scroll from '@/components/Scroll';
 import Toast from '@/components/Toast';
-import { useRoomsQuery } from '@/GlobalQueries';
 import useUserStore from '@/stores/UserStore';
-
-import * as Styled from './index.styled';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 interface RoomsTableProps {
   selectedGames: number[];
@@ -48,9 +46,9 @@ const RoomsTable = ({ selectedGames, searchValue }: RoomsTableProps) => {
     return <Styled.RoomsTable>Loading..</Styled.RoomsTable>;
 
   let filteredRooms = rooms.filter(
-    (r) =>
-      !r.start &&
-      r.name.toLowerCase().includes(searchValue.toLowerCase()) &&
+    (room) =>
+      !room.start &&
+      room.name.toLowerCase().includes(searchValue.toLowerCase()) &&
       (!selectedGames.length || selectedGames.includes(1))
   );
 

@@ -219,6 +219,26 @@ const light = {
           textWaitMessage: colors.indigo[80],
         },
       },
+
+      memeCreation: {
+        meme: {
+          captionBackground: colors.lime[0],
+          gifBackground: colors.lime[10],
+          text: colors.lime[80],
+          border: colors.lime[50],
+          noGif: {
+            backgroundHover: colors.lime[10],
+          },
+          selectGif: {
+            gif: {
+              border: colors.lime[50],
+            },
+          },
+          myGif: {
+            backgroundHover: hexToRgba(colors.lime[80], 0.5),
+          },
+        },
+      },
     },
   },
 

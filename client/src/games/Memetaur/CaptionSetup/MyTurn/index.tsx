@@ -2,22 +2,14 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 
 import MemetaurAPI from '@/api/game/memetaur';
+
 import Button from '@/components/Button';
 import Input from '@/components/Input';
-import Loader from '@/components/Loader';
 import Scroll from '@/components/Scroll';
 
 import * as Styled from './index.styled';
 
 interface MyTurnProps {}
-
-const presets = [
-  'asdasdasd',
-  'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd',
-  'asdasdasd asdasdasdasdas dasdasda sdasdaasddasd sadasd sdasda ',
-  'asdasdasd sdasdaasddasd asdasdasdasdas dasdasda sdasdaasddasd sadasd sdasdaasddasdsdasda ',
-  'asdasdasd asdasdasdasdas sadasd sdasda ',
-];
 
 const MyTurn = ({}: MyTurnProps) => {
   const [caption, setCaption] = useState<string>('');

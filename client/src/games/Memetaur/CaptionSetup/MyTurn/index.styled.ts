@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-
 import { tabletAndSmaller } from '@/common/utils/device';
+import styled from 'styled-components';
 
 export const MyTurn = styled.div<{}>`
   height: 100%;
@@ -54,9 +53,12 @@ export const Form = styled.div<{}>`
 export const CaptionPresets = styled.div<{}>`
   margin-top: auto;
   box-sizing: border-box;
-  max-width: 600px;
   max-height: 320px;
+  width: calc(100% - 16px);
   height: 100%;
+  margin: auto 16px -17px 16px;
+  box-sizing: border-box;
+  position: relative;
 
   margin-bottom: -17px;
   border-radius: 16px 16px 0 0;
@@ -72,8 +74,10 @@ export const CaptionPresets = styled.div<{}>`
   justify-content: center;
 
   .presets-scroll {
+    width: calc(100% - 16px);
     max-height: 100%;
     margin: 8px 4px 8px 4px;
+    box-sizing: border-box;
   }
 
   .preset {

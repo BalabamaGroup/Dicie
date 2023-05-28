@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 
 import SidePanel from '@/components/SidePanel';
+
 import useGameStore from '@/stores/GameStore';
 
 import CaptionSetup from './CaptionSetup';
-import MyTurn from './CaptionSetup/MyTurn';
-import OthersTurn from './CaptionSetup/OthersTurn';
-import * as Styled from './index.styled';
 import MemeCreation from './MemeCreation';
+import * as Styled from './index.styled';
 
 interface GifpacabraProps {}
 
