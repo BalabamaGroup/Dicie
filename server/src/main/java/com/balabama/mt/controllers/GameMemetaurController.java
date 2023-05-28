@@ -3,6 +3,8 @@ package com.balabama.mt.controllers;
 import com.balabama.mt.converters.RoomDtoConverter;
 import com.balabama.mt.dtos.StringDto;
 import com.balabama.mt.services.GameMemetaurService;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -40,7 +43,7 @@ public class GameMemetaurController {
     }
 
     @PostMapping("/select_gif")
-    public void setGif(@RequestBody StringDto gif) {
+    public void selectGif(@RequestBody StringDto gif) {
         webSocketHandler.sendRoomMessage(converter.convertRoom(service.selectGif(gif.getWord())));
     }
 
@@ -50,13 +53,23 @@ public class GameMemetaurController {
     }
 
     @GetMapping("/{query}")
-    public String searchGif(@PathVariable String query) throws Exception {
+    public String searchGif(@PathVariable  String query) throws Exception {
+        if (query == null || query.isEmpty()) {
+            return new ArrayList<>().toString();
+        }
         String url = String.format(
-            "https://tenor.googleapis.com/v2/search?q=%1$s&key=%2$s&client_key=%3$s&limit=%4$s&contentfilter=off&media_filter=gif",
-            query, API_KEY, CLIENT_KEY, 25);
+                "https://tenor.googleapis.com/v2/search?q=%1$s&key=%2$s&client_key=%3$s&limit=%4$s&contentfilter=off&media_filter=gif",
+                query, API_KEY, CLIENT_KEY, 25);
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
-        return responseEntity.getBody();
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(responseEntity.getBody());
+        JsonNode resultsNode = jsonNode.get("results");
+        if (resultsNode.isArray()) {
+            return resultsNode.toString();
+        } else {
+            return new ArrayList<>().toString();
+        }
     }
 
 }
