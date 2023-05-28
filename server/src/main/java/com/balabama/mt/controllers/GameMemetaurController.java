@@ -3,6 +3,7 @@ package com.balabama.mt.controllers;
 import com.balabama.mt.converters.RoomDtoConverter;
 import com.balabama.mt.dtos.StringDto;
 import com.balabama.mt.services.GameMemetaurService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,8 +54,8 @@ public class GameMemetaurController {
         webSocketHandler.sendRoomMessage(converter.convertRoom(service.voteGif(gif.getWord())));
     }
 
-    @GetMapping("/searchGif")
-    public String searchGif(@RequestBody  StringDto query) throws Exception {
+    @PutMapping("/search_gif")
+    public String searchGif(@RequestBody(required = false) StringDto query) throws JsonProcessingException {
         if (query == null || query.getWord().isEmpty()) {
             return new ArrayList<>().toString();
         }
