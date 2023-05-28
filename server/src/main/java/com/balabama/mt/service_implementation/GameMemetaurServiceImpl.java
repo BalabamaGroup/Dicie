@@ -40,17 +40,25 @@ public class GameMemetaurServiceImpl implements GameMemetaurService {
     }
 
     @Override
-    public Room  selectGif(String gif) {
+    public Room selectGif(String gif) {
         User currentUser = userService.getCurrent();
-        UserMemetaurState userState = (UserMemetaurState)currentUser.getUserState();
+        UserMemetaurState userState = (UserMemetaurState) currentUser.getUserState();
         userState.setGif(gif);
         Room room = getRoomByState(userState);
-        RoomMemetaurData roomData = (RoomMemetaurData)room.getRoomData();
+        RoomMemetaurData roomData = (RoomMemetaurData) room.getRoomData();
         roomData.allUsersSetGif();
         room.setRoomData(roomData);
         return roomService.save(room);
     }
 
+    @Override
+    public Room voteGif(String gif) {
+        User currentUser = userService.getCurrent();
+        UserMemetaurState userState = (UserMemetaurState) currentUser.getUserState();
+        userState.setVotedGif(gif);
+        Room room = getRoomByState(userState);
+        return roomService.save(room);
+    }
 
 
     private Room getRoomByState(UserMemetaurState userMemetaurState) {

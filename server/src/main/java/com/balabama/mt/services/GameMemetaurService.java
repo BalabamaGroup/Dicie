@@ -10,5 +10,7 @@ public interface GameMemetaurService {
 
     Room selectGif(String gif);
 
+    Room voteGif(String gif);
+
     Room setPhrase(String phrase);
 }

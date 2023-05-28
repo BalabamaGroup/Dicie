@@ -44,6 +44,11 @@ public class GameMemetaurController {
         webSocketHandler.sendRoomMessage(converter.convertRoom(service.selectGif(gif.getWord())));
     }
 
+    @PostMapping("/vote_gif")
+    public void voteGif(@RequestBody StringDto gif) {
+        webSocketHandler.sendRoomMessage(converter.convertRoom(service.voteGif(gif.getWord())));
+    }
+
     @GetMapping("/{query}")
     public String searchGif(@PathVariable String query) throws Exception {
         String url = String.format(
