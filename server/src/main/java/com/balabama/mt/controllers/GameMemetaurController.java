@@ -53,7 +53,7 @@ public class GameMemetaurController {
     }
 
     @GetMapping("/{query}")
-    public String searchGif(@PathVariable  String query) throws Exception {
+    public String searchGif(@PathVariable(required = false)  String query) throws Exception {
         if (query == null || query.isEmpty()) {
             return new ArrayList<>().toString();
         }
