@@ -1,6 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
 import Button from './';
+import type { Meta, StoryObj } from '@storybook/react';
 
 export default {
   title: 'Button',
@@ -12,6 +11,7 @@ export default {
     type: undefined,
     isPrimary: false,
     isDisabled: false,
+    isLoading: false,
     isScale: false,
   },
   argTypes: {

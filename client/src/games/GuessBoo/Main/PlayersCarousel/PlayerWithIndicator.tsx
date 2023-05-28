@@ -1,7 +1,6 @@
-import styled, { css } from 'styled-components';
-
 import Player from '@/components/Player';
 import useGameStore from '@/stores/GameStore';
+import styled, { css } from 'styled-components';
 
 export const StyledPlayerWithIndicator = styled.div<{
   lastAnswer: 'YES' | 'NO' | 'WTF' | null;
@@ -69,6 +68,7 @@ export const StyledIndicator = styled.div<{
 `;
 
 interface PlayerWithIndicatorProps {
+  id: number;
   lastAnswer: 'YES' | 'NO' | 'WTF' | null;
 
   isHighlighted: boolean;
@@ -80,7 +80,6 @@ interface PlayerWithIndicatorProps {
 
 const PlayerWithIndicator = ({
   lastAnswer,
-
   ...rest
 }: PlayerWithIndicatorProps) => {
   const myTurn = useGameStore((s) => s.myTurn);

@@ -1,10 +1,8 @@
-import { useState } from 'react';
-
+import * as Styled from './index.styled';
 import { ComponentColor } from '@/common/types/theme';
 import useThemeStore from '@/stores/ThemeStore';
 import switchTheme from '@/styles/themes/componentThemes/switchTheme';
-
-import * as Styled from './index.styled';
+import { useState } from 'react';
 
 interface SwitchProps {
   className?: string;
@@ -38,7 +36,7 @@ const Switch = ({ className, color, options }: SwitchProps) => {
           }}
         >
           {opt.label}
-          <div className='higlighting'></div>
+          <div className='higlighting' />
         </Styled.SwitchOption>
       ))}
     </Styled.Switch>

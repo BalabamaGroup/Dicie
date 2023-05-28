@@ -1,9 +1,8 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-
 import { mobileAndSmaller } from '@/common/utils/device';
 import Button from '@/components/Button';
 import useGameStore from '@/stores/GameStore';
+import { useState } from 'react';
+import styled from 'styled-components';
 
 export const StyledWinGame = styled.div<{}>`
   z-index: 2;
@@ -87,7 +86,6 @@ const WinGame = ({}: WinGameProps) => {
   const onAcceptWin = () => setHasAcceptedWin(true);
 
   const meHasWon = useGameStore((s) => s.getMePlayer().state.winRound);
-  console.log(meHasWon, hasAcceptedWin);
   if (!meHasWon || hasAcceptedWin) return null;
 
   return (

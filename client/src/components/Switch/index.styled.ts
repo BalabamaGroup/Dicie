@@ -4,10 +4,12 @@ export const Switch = styled.div`
   display: flex;
   flex-direction: row;
   gap: 16px;
+  /* height: 36px; */
 `;
 
 export const SwitchOption = styled.div<{ isChosen: boolean | undefined }>`
-  padding: 8px 16px 0;
+  position: relative;
+  padding: 8px 16px;
   user-select: none;
   display: flex;
   flex-direction: column;
@@ -20,12 +22,13 @@ export const SwitchOption = styled.div<{ isChosen: boolean | undefined }>`
   border-radius: 8px;
 
   .higlighting {
+    position: absolute;
     bottom: 0;
-    width: 24px;
+    width: 0;
     height: 2px;
     border-radius: 2px;
     display: inline-block;
-    transition: background 0.3s ease-in-out;
+    transition: width 0.15s ease-in-out, background 0.15s ease-in-out;
   }
 
   transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
@@ -37,16 +40,14 @@ export const SwitchOption = styled.div<{ isChosen: boolean | undefined }>`
           background: ${({ theme }) => theme.backgroundOff};
           &:hover {
             box-shadow: ${({ theme }) => theme.shadow};
-          }
-          .higlighting {
-            background-color: none;
+            .higlighting {
+              background-color: ${({ theme }) => theme.backgroundOn};
+              width: 24px;
+            }
           }
         `
       : css`
           background: ${({ theme }) => theme.backgroundOn};
           color: ${({ theme }) => theme.textOn};
-          .higlighting {
-            background-color: ${({ theme }) => theme.textOn};
-          }
         `};
 `;

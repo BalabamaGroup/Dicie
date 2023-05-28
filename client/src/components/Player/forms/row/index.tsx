@@ -1,9 +1,8 @@
+import * as Styled from './index.styled';
 import { ComponentColor } from '@/common/types/theme';
 import Loader from '@/components/Loader';
 import useThemeStore from '@/stores/ThemeStore';
 import playerTheme from '@/styles/themes/componentThemes/playerTheme';
-
-import * as Styled from './index.styled';
 
 interface PlayerRowFormProps {
   id?: number;
@@ -56,9 +55,29 @@ const PlayerRowForm = ({
       light: '#FBC3DE',
       dark: '#AA195F',
     },
+    {
+      main: '#87F69F',
+      light: '#CFF8D8',
+      dark: '#137411',
+    },
+    {
+      main: '#87EFF6',
+      light: '#CFF5F8',
+      dark: '#116D74',
+    },
+    {
+      main: '#B187F6',
+      light: '#DFCFF8',
+      dark: '#371174',
+    },
+    {
+      main: '#F68787',
+      light: '#F8CFCF',
+      dark: '#741111',
+    },
   ];
 
-  const playerPalette = id ? playerPalettes[id % 3] : playerPalettes[0];
+  const playerPalette = id ? playerPalettes[id % 7] : playerPalettes[0];
 
   const theme = useThemeStore((state) => state.theme);
   const componentTheme = playerTheme[theme][color].row;

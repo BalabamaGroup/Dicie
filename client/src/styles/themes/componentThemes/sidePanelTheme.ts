@@ -11,6 +11,7 @@ const light = {
     chat: {
       sendButtonBackground: colors.indigo[0],
       sendButtonIcon: colors.indigo.dark,
+      noMessageText: colors.indigo[60],
       message: {
         background: colors.indigo[0],
         border: colors.indigo[50],
@@ -50,6 +51,7 @@ const light = {
     chat: {
       sendButtonBackground: colors.lime[0],
       sendButtonIcon: colors.lime.dark,
+      noMessageText: colors.lime[60],
       message: {
         background: colors.lime[0],
         border: colors.lime[50],
@@ -92,6 +94,7 @@ const dark = {
     chat: {
       sendButtonBackground: colors.indigo[90],
       sendButtonIcon: colors.indigo.base,
+      noMessageText: colors.indigo[60],
       message: {
         background: colors.indigo[90],
         border: colors.indigo[100],
@@ -131,6 +134,7 @@ const dark = {
     chat: {
       sendButtonBackground: colors.lime[90],
       sendButtonIcon: colors.lime.base,
+      noMessageText: colors.lime[60],
       message: {
         background: colors.lime[90],
         border: colors.lime[100],

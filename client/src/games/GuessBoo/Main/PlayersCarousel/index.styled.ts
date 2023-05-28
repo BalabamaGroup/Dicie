@@ -18,9 +18,9 @@ export const PlayersCarouselWrapper = styled.div<{
       ? theme.guessBooGame.main.game.playersCarousel.backgroundWait
       : theme.guessBooGame.main.game.playersCarousel.backgroundGo};
 
-  /* border: 1px solid
+  border: 1px solid
     ${({ myTurn, theme }) =>
-    !myTurn
-      ? theme.guessBooGame.main.game.playersCarousel.borderWait
-      : theme.guessBooGame.main.game.playersCarousel.borderGo}; */
+      !myTurn
+        ? theme.guessBooGame.main.game.playersCarousel.borderWait
+        : theme.guessBooGame.main.game.playersCarousel.borderGo};
 `;

@@ -1,23 +1,17 @@
-import { useState } from 'react';
-import { ReactSVG } from 'react-svg';
-
+import Message from './Message';
+import * as Styled from './index.styled';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Scroll from '@/components/Scroll';
-
 import useChatStore from '@/stores/ChatStore';
 import useGameStore from '@/stores/GameStore';
 import useThemeStore from '@/stores/ThemeStore';
 import useUserStore from '@/stores/UserStore';
-
 import sidePanelTheme from '@/styles/themes/componentThemes/sidePanelTheme';
+import { useState } from 'react';
+import { ReactSVG } from 'react-svg';
 
-import Message from './Message';
-import * as Styled from './index.styled';
-
-interface ChatProps {}
-
-const Chat = ({}: ChatProps) => {
+const Chat = () => {
   const user = useUserStore((s) => s.user);
 
   const [messages, sendMessage] = useChatStore((s) => [
