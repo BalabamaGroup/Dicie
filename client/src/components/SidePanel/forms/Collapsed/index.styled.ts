@@ -20,7 +20,7 @@ export const CollapsedFormWrapper = styled.div<{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: ${({ theme }) => theme.bodyBackground};
+    background: ${({ theme }) => theme.collapsedBackground};
     box-shadow: 4px 4px 6px 1px ${({ theme }) => theme.shadowRGBA};
 
     border-radius: 32px;

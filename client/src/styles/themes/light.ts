@@ -239,6 +239,20 @@ const light = {
           },
         },
       },
+
+      memeGrading: {
+        meme: {
+          background: colors.lime[0],
+          text: colors.lime[80],
+          border: colors.lime[50],
+          overlayBackground: hexToRgba(colors.indigo[90], 0.5),
+          voted: {
+            background: colors.indigo.light,
+            text: colors.indigo[80],
+            border: colors.indigo.base,
+          },
+        },
+      },
     },
   },
 

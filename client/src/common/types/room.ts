@@ -35,6 +35,8 @@ export type GuessBooSpecific = {
 };
 
 export type MemetaurSpecific = {
-  allUsersReady: boolean;
+  allUsersSelectGif: boolean;
+  allUsersVoteGif: boolean;
+  currentRound: number;
   phrase: string;
 };

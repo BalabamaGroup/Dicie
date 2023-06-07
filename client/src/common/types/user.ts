@@ -28,11 +28,7 @@ export type UserGuessBooState = {
 };
 
 export type UserMemetaurState = {
-  isGoing: boolean;
-  ready: boolean;
-  lastAnswer: 'YES' | 'NO' | 'WTF' | null;
-  selectedBy: number | null;
-  selectedUser: number | null;
-  winRound: boolean;
-  word: string | null;
+  gif: string;
+  voted_gif: string;
+  count_win: number;
 };
