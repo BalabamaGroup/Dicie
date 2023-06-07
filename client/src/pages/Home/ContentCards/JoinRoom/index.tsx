@@ -5,9 +5,10 @@ import Input from '@/components/Input';
 
 import useUserStore from '../../../../stores/UserStore';
 import AlreadyInRoom from './AlreadyInRoom';
+import EnterPassword from './EnterPassword';
 import GameSelector from './GameSelector';
-import * as Styled from './index.styled';
 import RoomsTable from './RoomsTable';
+import * as Styled from './index.styled';
 
 interface JoinRoomCardProps {
   isSelected: boolean;
@@ -33,6 +34,12 @@ const JoinRoomCard = ({
     else setSelectedGames(selectedGames.filter((gameId) => gameId !== id));
   };
 
+  const [enterPasswordIsVisible, setEnterPasswordIsVisible] =
+    useState<boolean>(false);
+  const onCancelEnterPassword = async () => setEnterPasswordIsVisible(false);
+
+  const [connectRoomID, setConnectRoomID] = useState<string | null>(null);
+
   return (
     <Styled.JoinRoomCard
       isSelected={isSelected}
@@ -54,6 +61,14 @@ const JoinRoomCard = ({
       <div className='on-selected'>
         {user?.roomId && <AlreadyInRoom />}
 
+        {enterPasswordIsVisible && (
+          <EnterPassword
+            isVisible={enterPasswordIsVisible}
+            onClose={onCancelEnterPassword}
+            roomId={connectRoomID}
+          />
+        )}
+
         <div className='search-wrapper'>
           <Input
             color='indigo'
@@ -68,7 +83,12 @@ const JoinRoomCard = ({
           onToggleGameSelection={onToggleGameSelection}
         />
 
-        <RoomsTable searchValue={searchValue} selectedGames={selectedGames} />
+        <RoomsTable
+          searchValue={searchValue}
+          selectedGames={selectedGames}
+          setConnectRoomID={setConnectRoomID}
+          setEnterPasswordIsVisible={setEnterPasswordIsVisible}
+        />
       </div>
     </Styled.JoinRoomCard>
   );

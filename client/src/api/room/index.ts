@@ -36,11 +36,14 @@ export default class RoomAPI {
     return request(options).then((res: Promise<Room>) => res);
   };
 
-  static connectToRoom = async (id: string): Promise<Room> => {
+  static connectToRoom = async (
+    id: string,
+    password: string | null = null
+  ): Promise<Room> => {
     const options = {
       method: 'put',
       url: `room/connect/${id}`,
-      data: { password: null },
+      data: { password },
     };
 
     return request(options).then((res: Promise<Room>) => res);

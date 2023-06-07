@@ -1,21 +1,33 @@
-import * as Styled from './index.styled';
 import { useRoomsQuery } from '@/GlobalQueries';
-import RoomAPI from '@/api/room';
-import games from '@/common/constants/games';
-import Button from '@/components/Button';
-import Scroll from '@/components/Scroll';
-import Toast from '@/components/Toast';
-import useUserStore from '@/stores/UserStore';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
+import RoomAPI from '@/api/room';
+
+import games from '@/common/constants/games';
+
+import Button from '@/components/Button';
+import Scroll from '@/components/Scroll';
+import Toast from '@/components/Toast';
+
+import useUserStore from '@/stores/UserStore';
+
+import * as Styled from './index.styled';
+
 interface RoomsTableProps {
   selectedGames: number[];
   searchValue: string;
+  setConnectRoomID: Function;
+  setEnterPasswordIsVisible: Function;
 }
 
-const RoomsTable = ({ selectedGames, searchValue }: RoomsTableProps) => {
+const RoomsTable = ({
+  selectedGames,
+  searchValue,
+  setConnectRoomID,
+  setEnterPasswordIsVisible,
+}: RoomsTableProps) => {
   const navigate = useNavigate();
   const fetchUser = useUserStore((s) => s.fetchUser);
 
@@ -25,17 +37,23 @@ const RoomsTable = ({ selectedGames, searchValue }: RoomsTableProps) => {
     refetch: refetchRooms,
   } = useRoomsQuery();
 
-  const onJoinRoom = (id: string) => {
-    const func = async (id: string) => {
-      try {
-        await RoomAPI.connectToRoom(id);
-        await fetchUser();
-        navigate(`/room/${id}`);
-      } catch (e) {
-        Toast.error('Room is unavialable');
+  const onJoinRoom = (id: string, isPrivate: boolean) => {
+    const func = async (id: string, isPrivate: boolean) => {
+      if (isPrivate) {
+        setConnectRoomID(id);
+        setEnterPasswordIsVisible(true);
+      } else {
+        try {
+          await RoomAPI.connectToRoom(id, '');
+          await fetchUser();
+          navigate(`/room/${id}`);
+        } catch (e) {
+          Toast.error('Room is unavialable');
+        }
       }
     };
-    return () => func(id);
+
+    return () => func(id, isPrivate);
   };
 
   useEffect(() => {
@@ -74,7 +92,7 @@ const RoomsTable = ({ selectedGames, searchValue }: RoomsTableProps) => {
             <Button
               color='indigo'
               size='small'
-              onClick={onJoinRoom(room.id)}
+              onClick={onJoinRoom(room.id, room.isPrivate)}
               isPrimary
             >
               Join

@@ -1,5 +1,5 @@
 import { useRoomsQuery } from '@/GlobalQueries';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -8,10 +8,12 @@ import RoomAPI from '@/api/room';
 import { mobileAndSmaller } from '@/common/utils/device';
 
 import Button from '@/components/Button';
+import Input from '@/components/Input';
+import Toast from '@/components/Toast';
 
 import useUserStore from '@/stores/UserStore';
 
-export const StyledAlreadyInRoom = styled.div<{}>`
+export const StyledEnterPassword = styled.div<{}>`
   z-index: 10;
   position: absolute;
   top: 0px;
@@ -57,7 +59,7 @@ export const StyledAlreadyInRoom = styled.div<{}>`
       font-weight: 700;
       font-size: 24px;
       line-height: 24px;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       color: ${({ theme }) => theme.homePage.joinRoomCard.alreadyInRoomText};
     }
     .body {
@@ -89,48 +91,45 @@ export const StyledAlreadyInRoom = styled.div<{}>`
   }
 `;
 
-interface AlreadyInRoomProps {}
+interface EnterPasswordProps {
+  roomId: string | null;
+  isVisible: boolean;
+  onClose: Function;
+}
 
-const AlreadyInRoom = ({}: AlreadyInRoomProps) => {
+const EnterPassword = ({ roomId, isVisible, onClose }: EnterPasswordProps) => {
   const navigate = useNavigate();
+  const fetchUser = useUserStore((s) => s.fetchUser);
 
-  const { data: rooms } = useRoomsQuery();
-  const [user, isLoading, fetchUser] = useUserStore((s) => [
-    s.user,
-    s.isLoading,
-    s.fetchUser,
-  ]);
+  const [password, setPassword] = useState<string>('');
+  const onChangePassword = (e: any) => setPassword(e.target.value);
 
-  const onReturnToCurrRoom = () => {
-    if (user?.roomId) navigate(`/room/${user?.roomId}`);
-  };
-
-  const onDisconnectFromCurrRoom = async () => {
-    if (user?.roomId) {
-      await RoomAPI.disconnectFromRoom(user?.roomId);
-      fetchUser();
+  const onConnect = async () => {
+    if (!roomId) return;
+    try {
+      await RoomAPI.connectToRoom(roomId, password);
+      await fetchUser();
+      navigate(`/room/${roomId}`);
+    } catch (e) {
+      Toast.error('Room is unavialable');
     }
+    onClose();
   };
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
-  if (!rooms || !user?.roomId) return null;
-
-  const [myRoom] = rooms.filter((r) => r.id === user?.roomId);
-
-  if (!myRoom) return null;
 
   return (
-    <StyledAlreadyInRoom>
+    <StyledEnterPassword>
       <div className='modal'>
-        <div className='header'>You are already in the room</div>
+        <div className='header'>Enter password</div>
         <div className='body'>
-          You are already connected to Room <span>«{myRoom.name}»</span>
+          This room is private and requires you to enter a password
           <br />
           <br />
-          To join another room, you must first disconnect from your current one.
+          <Input
+            color='indigo'
+            value={password}
+            onChange={onChangePassword}
+            placeholder='Password'
+          />
         </div>
         <div className='footer'>
           <Button
@@ -138,9 +137,9 @@ const AlreadyInRoom = ({}: AlreadyInRoomProps) => {
             isScale
             color='indigo'
             isPrimary
-            onClick={onReturnToCurrRoom}
+            onClick={onConnect}
           >
-            Return
+            Connect
           </Button>
           <Button
             isPrimary
@@ -148,14 +147,14 @@ const AlreadyInRoom = ({}: AlreadyInRoomProps) => {
             size='medium'
             isScale
             color='indigo'
-            onClick={onDisconnectFromCurrRoom}
+            onClick={onClose}
           >
-            {isLoading ? 'Loading...' : 'Leave'}
+            Cancel
           </Button>
         </div>
       </div>
-    </StyledAlreadyInRoom>
+    </StyledEnterPassword>
   );
 };
 
-export default AlreadyInRoom;
+export default EnterPassword;

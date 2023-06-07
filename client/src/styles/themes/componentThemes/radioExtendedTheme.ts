@@ -12,7 +12,7 @@ const light = {
   lime: {
     text: colors.lime[80],
     headerBackground: colors.lime.base,
-    bodyBackground: colors.lime[10],
+    bodyBackground: colors.lime[0],
     indicator: colors.lime[80],
     indicatorBackground: colors.lime[10],
     icon: colors.lime[80],
@@ -23,7 +23,7 @@ const dark = {
   indigo: {
     text: colors.indigo[10],
     headerBackground: colors.indigo.base,
-    bodyBackground: colors.indigo[80],
+    bodyBackground: colors.indigo[90],
     indicator: colors.indigo[10],
     indicatorBackground: colors.indigo[10],
     icon: colors.indigo[10],
@@ -31,7 +31,7 @@ const dark = {
   lime: {
     text: colors.lime[80],
     headerBackground: colors.lime.base,
-    bodyBackground: colors.lime[80],
+    bodyBackground: colors.lime[90],
     indicator: colors.lime[0],
     indicatorBackground: colors.lime[80],
     icon: colors.lime[0],

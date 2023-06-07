@@ -4,9 +4,11 @@ import { ReactSVG } from 'react-svg';
 
 import RoomAPI from '@/api/room';
 
+import useUserStore from '@/stores/UserStore';
+
 import ChooseGame from './ChooseGame';
-import * as Styled from './index.styled';
 import SetupRoom from './SetupRoom';
+import * as Styled from './index.styled';
 
 interface CreateRoomCardProps {
   isSelected: boolean;
@@ -20,6 +22,8 @@ const CreateRoomCard = ({
   onSelect,
 }: CreateRoomCardProps) => {
   const navigate = useNavigate();
+
+  const fetchUser = useUserStore((s) => s.fetchUser);
 
   const [roomName, setRoomName] = useState('');
   const onChangeRoomName = (e: any) => setRoomName(e.target.value);
@@ -60,6 +64,8 @@ const CreateRoomCard = ({
       password: roomPassword || null,
       isFriendMode: isFriendMode,
     });
+
+    await fetchUser();
 
     navigate(`/room/${newRoom.id}`);
   };

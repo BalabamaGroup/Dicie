@@ -69,6 +69,10 @@ export const Option = styled.div`
     }
   }
 
+  .main-communications {
+    margin-bottom: 8px;
+  }
+
   .settings {
     display: flex;
     flex-direction: column;
@@ -87,6 +91,7 @@ export const Option = styled.div`
     display: flex;
     flex-direction: row;
     gap: 16px;
+    margin-bottom: 20px;
   }
 
   .communications-settings {
