@@ -38,7 +38,7 @@ public class RoomMemetaurData extends RoomData {
 
     public void checkUsersVoteGif() {
         this.allUsersVoteGif = super.getRoom().getUsers().stream().map(x -> (UserMemetaurState) x.getUserState())
-                .noneMatch(userMemetaurState -> userMemetaurState.getVotedGif().isBlank());
+                .noneMatch(userMemetaurState -> userMemetaurState.getVotedGif() == null);
     }
 
     public void updateWonUser() {
