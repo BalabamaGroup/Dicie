@@ -140,7 +140,7 @@ const SetupRoom = ({
             )}
           </Styled.Option>
 
-          <Styled.Option>
+          {/* <Styled.Option>
             <div className='main main-communications'>
               <Toggle
                 className='main-toggle'
@@ -190,7 +190,7 @@ const SetupRoom = ({
                 />
               </div>
             )}
-          </Styled.Option>
+          </Styled.Option> */}
         </Styled.SetupRoomForm>
       </Scroll>
 
