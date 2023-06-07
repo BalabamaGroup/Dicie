@@ -37,6 +37,9 @@ export const DesktopNavBarContent = styled.div`
   justify-content: center;
   align-items: center;
   gap: 64px;
+  .is-link {
+    cursor: pointer;
+  }
 `;
 
 export const DesktopNavBarOption = styled.div.attrs({

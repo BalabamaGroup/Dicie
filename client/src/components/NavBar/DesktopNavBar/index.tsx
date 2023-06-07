@@ -1,12 +1,16 @@
+import { useNavigate } from 'react-router-dom';
+
+import routes from '@/common/constants/routes';
+
+import useThemeStore from '@/stores/ThemeStore';
+
+import navbarTheme from '@/styles/themes/componentThemes/navbarTheme';
+
 import MyRoomNavigation from '../SubOptions/MyRoomNavigation';
 import Profile from '../SubOptions/Profile';
 import SettingsTheme from '../SubOptions/SettingsTheme';
 import { useNavbarColor } from '../useNavbarColor';
 import * as Styled from './index.styled';
-import routes from '@/common/constants/routes';
-import useThemeStore from '@/stores/ThemeStore';
-import navbarTheme from '@/styles/themes/componentThemes/navbarTheme';
-import { useNavigate } from 'react-router-dom';
 
 interface DesktopNavBarProps {
   withHome: boolean;
@@ -16,6 +20,7 @@ interface DesktopNavBarProps {
 const DesktopNavBar = ({ withHome, withMyRoom }: DesktopNavBarProps) => {
   const navigate = useNavigate();
   const goHome = () => navigate(routes.HOME);
+  const goToLeaderboard = () => navigate(routes.LEADERBOARD);
 
   const theme = useThemeStore((s) => s.theme);
   const color = useNavbarColor();
@@ -28,9 +33,13 @@ const DesktopNavBar = ({ withHome, withMyRoom }: DesktopNavBarProps) => {
       </Styled.Logo>
 
       <Styled.DesktopNavBarContent theme={componentTheme}>
-        {/* <Styled.DesktopNavBarOption theme={componentTheme}>
-          Profile
-        </Styled.DesktopNavBarOption> */}
+        <Styled.DesktopNavBarOption
+          className={'is-link'}
+          onClick={goToLeaderboard}
+          theme={componentTheme}
+        >
+          Leaderboard
+        </Styled.DesktopNavBarOption>
 
         {withMyRoom && (
           <Styled.DesktopNavBarOption theme={componentTheme}>

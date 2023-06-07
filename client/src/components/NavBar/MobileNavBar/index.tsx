@@ -1,14 +1,18 @@
+import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
+
+import routes from '@/common/constants/routes';
+
+import useThemeStore from '@/stores/ThemeStore';
+
+import navbarTheme from '@/styles/themes/componentThemes/navbarTheme';
+
 import MyRoomNavigation from '../SubOptions/MyRoomNavigation';
 import Profile from '../SubOptions/Profile';
 import SettingsTheme from '../SubOptions/SettingsTheme';
 import { useNavbarColor } from '../useNavbarColor';
 import * as Styled from './index.styled';
-import routes from '@/common/constants/routes';
-import useThemeStore from '@/stores/ThemeStore';
-import navbarTheme from '@/styles/themes/componentThemes/navbarTheme';
-import { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { ReactSVG } from 'react-svg';
 
 interface MobileNavBarProps {
   withHome: boolean;
@@ -30,6 +34,7 @@ const MobileNavBar = ({ withHome, withMyRoom }: MobileNavBarProps) => {
 
   const navigate = useNavigate();
   const goHome = () => navigate(routes.HOME);
+  const goToLeaderboard = () => navigate(routes.LEADERBOARD);
 
   const [isSettings, setIsSettings] = useState<boolean>(false);
   const onOpenSettings = () => setIsSettings(true);
@@ -79,6 +84,19 @@ const MobileNavBar = ({ withHome, withMyRoom }: MobileNavBarProps) => {
                 Home
               </Styled.MobileNavBarOption>
             ),
+
+            <Styled.MobileNavBarOption
+              key='leaderboard'
+              className='option'
+              onClick={goToLeaderboard}
+              theme={componentTheme}
+            >
+              <ReactSVG
+                className='option-icon'
+                src='/images/svgs/leaderboard.svg'
+              />
+              Leaderboard
+            </Styled.MobileNavBarOption>,
 
             <Styled.MobileNavBarOption
               key='profile'

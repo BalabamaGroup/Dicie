@@ -31,6 +31,15 @@ export default class UserAPI {
     return request(options).then((res: getUserByIdRes) => res);
   };
 
+  static getLeaderboard = async (): Promise<User[]> => {
+    const options = {
+      method: 'get',
+      url: `user/leaderboard`,
+    };
+
+    return request(options).then((res: Promise<User[]>) => res);
+  };
+
   static deleteUserById = (id: number): void => {
     const options = {
       method: 'delete',

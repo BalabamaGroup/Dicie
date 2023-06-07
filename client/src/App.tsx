@@ -1,7 +1,5 @@
-import 'react-toastify/dist/ReactToastify.css';
-
 import debounce from 'lodash.debounce';
-import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import {
@@ -10,11 +8,13 @@ import {
   Routes as RoutesWrapper,
   useNavigate,
 } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 
+import GlobalQueries from './GlobalQueries';
 import Routes from './common/constants/routes';
 import Loader from './components/Loader';
 import ToastContainer from './components/Toast/ToastContainer';
-import GlobalQueries from './GlobalQueries';
+import Leaderboard from './pages/Leaderboard';
 import VoiceChatTest from './pages/VoiceChatTest';
 import useUserStore from './stores/UserStore';
 import Theme from './styles/Theme';
@@ -81,6 +81,14 @@ const App = () => {
                 element={
                   <Private>
                     <Home />
+                  </Private>
+                }
+              />
+              <Route
+                path={Routes.LEADERBOARD}
+                element={
+                  <Private>
+                    <Leaderboard />
                   </Private>
                 }
               />
