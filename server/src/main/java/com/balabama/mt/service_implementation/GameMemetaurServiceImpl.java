@@ -6,6 +6,7 @@ import com.balabama.mt.entities.rooms.Room;
 import com.balabama.mt.entities.rooms.memetaur.RoomMemetaurData;
 import com.balabama.mt.entities.user.User;
 import com.balabama.mt.entities.user.memetaur.UserMemetaurState;
+import com.balabama.mt.exceptions.MTException;
 import com.balabama.mt.repositories.MemetaurPhraseRepository;
 import com.balabama.mt.services.GameMemetaurService;
 import com.balabama.mt.services.RoomService;
@@ -13,6 +14,7 @@ import com.balabama.mt.services.UserService;
 import com.balabama.mt.services.UserStateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,12 +57,15 @@ public class GameMemetaurServiceImpl implements GameMemetaurService {
     public Room voteGif(String gif) {
         User currentUser = userService.getCurrent();
         UserMemetaurState userState = (UserMemetaurState) currentUser.getUserState();
+        if (userState.getGif().equals(gif)){
+            throw new MTException(HttpStatus.BAD_REQUEST, "You can't vote for your gif");
+        }
         userState.setVotedGif(gif);
         Room room = getRoomByState(userState);
         RoomMemetaurData roomData = (RoomMemetaurData) room.getRoomData();
         roomData.checkUsersVoteGif();
         if (roomData.getAllUsersVoteGif()) {
-            roomData.setWonUsers();
+            roomData.updateWonUser();
             roomData.endRound();
             if (roomData.getRoom().getUsers().size() >= roomData.getCurrentRound()) {
                 room.setRoomData(roomData);

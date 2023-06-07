@@ -41,7 +41,7 @@ public class RoomMemetaurData extends RoomData {
                 .noneMatch(userMemetaurState -> userMemetaurState.getVotedGif().isBlank());
     }
 
-    public List<User> setWonUsers() {
+    public void updateWonUser() {
         List<String> winGifs = getRoom().getUsers().stream().map(User::getUserState)
                 .map(userState -> ((UserMemetaurState) userState).getVotedGif())
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
@@ -52,8 +52,6 @@ public class RoomMemetaurData extends RoomData {
         List<User> users = getUserByGifs(winGifs);
         users.stream().map(user -> ((UserMemetaurState) user.getUserState()))
                 .forEach(UserMemetaurState::addWinCount);
-        getRoom().setUsers(users);
-        return users;
     }
 
     public List<User> getUserByGifs(List<String> winGifs) {
