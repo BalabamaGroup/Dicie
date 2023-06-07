@@ -1,16 +1,20 @@
 package com.balabama.mt.controllers;
 
+import com.balabama.mt.converters.RoomDtoConverter;
 import com.balabama.mt.dtos.room.RoomDto;
 import com.balabama.mt.dtos.user.UserDto.UserWithState;
 import com.balabama.mt.dtos.user.UserStateDto;
-import com.balabama.mt.dtos.user.memetaur.UserMemetaurStateDto;
+import com.balabama.mt.entities.rooms.Room;
+import com.balabama.mt.services.RoomService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import javax.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +31,19 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     private final ObjectMapper mapper = new ObjectMapper();
     private final Set<WebSocketSession> sessions = new CopyOnWriteArraySet<>();
+    private final RoomService roomService;
+    private final RoomDtoConverter roomDtoConverter;
 
     @Override
     @Transactional
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         sessions.add(session);
-        session.sendMessage(new TextMessage(mapper.writeValueAsString("Hello")));
+        Long userId = Long.parseLong(Objects.requireNonNull(session.getUri()).getQuery());
+        Room room = roomService.getByUserId(userId);
+        if (room == null){
+            session.sendMessage(new TextMessage(mapper.writeValueAsString("Hi no rooms")));
+        }
+        session.sendMessage(new TextMessage(mapper.writeValueAsString(roomDtoConverter.convertRoom(room))));
     }
 
     @Override

@@ -19,6 +19,8 @@ public interface RoomService {
 
     Room getById(UUID id);
 
+    Room getByUserId(Long id);
+
     Room connect(UUID id);
 
     Room disconnect(UUID id);

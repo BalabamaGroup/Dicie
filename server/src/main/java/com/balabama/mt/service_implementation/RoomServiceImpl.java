@@ -49,6 +49,11 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public Room getByUserId(Long id) {
+        return roomRepository.findRoomByUserId(id);
+    }
+
+    @Override
     public Room connect(UUID id) {
         Room room = getById(id);
         room.connect(userService.getCurrent());
