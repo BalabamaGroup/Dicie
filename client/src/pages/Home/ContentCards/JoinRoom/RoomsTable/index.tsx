@@ -67,7 +67,7 @@ const RoomsTable = ({
     (room) =>
       !room.start &&
       room.name.toLowerCase().includes(searchValue.toLowerCase()) &&
-      (!selectedGames.length || selectedGames.includes(1))
+      (!selectedGames.length || selectedGames.includes(room.gameId))
   );
 
   console.log(filteredRooms);
@@ -78,7 +78,7 @@ const RoomsTable = ({
       <Scroll className='scroll' color='indigo'>
         {filteredRooms.map((room, i) => (
           <Styled.RoomRow key={i}>
-            <ReactSVG className='game-icon' src={games[1].icon} />
+            <ReactSVG className='game-icon' src={games[room.gameId - 1].icon} />
             <div className='room-name' title={room.name}>
               {room.name}
             </div>
