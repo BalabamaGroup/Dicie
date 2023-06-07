@@ -2,16 +2,18 @@ import { useEffect } from 'react';
 
 import { UserInGame } from '@/common/types/user';
 import { thresholds } from '@/common/utils/device';
+
 import Player from '@/components/Player';
 import Scroll from '@/components/Scroll';
+
 import useWindowWidth from '@/hooks/useWindowWidth';
-import useColorStore from '@/stores/ColorStore';
+
+import useGameStore from '@/stores/GameStore';
 
 import * as Styled from './index.styled';
 import useForceSelect from './useForceSelect';
 
 interface OtherPlayersProps {
-  isMyTurn: boolean;
   mePlayer: UserInGame;
   otherPlayers: UserInGame[];
   highlightedPlayer: UserInGame | null;
@@ -19,14 +21,13 @@ interface OtherPlayersProps {
 }
 
 const OtherPlayers = ({
-  isMyTurn,
   mePlayer,
   otherPlayers,
   highlightedPlayer,
   setHighlightedPlayer,
 }: OtherPlayersProps) => {
-  const isWait = useColorStore((s) => s.color.guessBoo) === 'indigo';
-  const guessBooSetupColor = useColorStore((state) => state.color.guessBoo);
+  const myTurn = useGameStore((s) => s.myTurn);
+  const color = useGameStore((s) => s.getColor());
 
   const disabledByLoopsPlayerId = (() => {
     const avialablePlayers = otherPlayers.filter(
@@ -38,7 +39,7 @@ const OtherPlayers = ({
   })();
 
   const onHighlightPlayer = (player: UserInGame) => {
-    if (!isMyTurn) return;
+    if (!myTurn) return;
     if (mePlayer.state.selectedUser) return;
     if (player.state.selectedBy) return;
     if (disabledByLoopsPlayerId === player.id) return;
@@ -63,7 +64,7 @@ const OtherPlayers = ({
   }, []);
 
   useForceSelect({
-    isMyTurn,
+    isMyTurn: myTurn,
     mePlayer,
     otherPlayers,
     disabledByLoopsPlayerId,
@@ -71,20 +72,20 @@ const OtherPlayers = ({
   });
 
   return (
-    <Styled.OtherPlayersWrapper isWait={isWait}>
-      <Scroll color={guessBooSetupColor} className='other-players-scroll'>
+    <Styled.OtherPlayersWrapper isWait={!myTurn}>
+      <Scroll color={color} className='other-players-scroll'>
         <Styled.OtherPlayers isRow={isRow}>
           {otherPlayers.map((player) => (
             <Player
               id={player.id}
-              color={guessBooSetupColor}
+              color={color}
               form={isRow ? 'row' : 'tile'}
               className='game-setup-other-player'
               size='large'
               key={player.id}
               canBeHighlighted
               isHighlighted={highlightedPlayer?.id === player.id}
-              isClickable={isMyTurn}
+              isClickable={!myTurn}
               onClick={() => onHighlightPlayer(player)}
               tileContent={{
                 label: player.state.word,
@@ -104,7 +105,7 @@ const OtherPlayers = ({
                   : '',
               }}
               isDisabled={
-                isMyTurn &&
+                !myTurn &&
                 !mePlayer.state.selectedUser &&
                 (!!player.state.selectedBy ||
                   disabledByLoopsPlayerId === player.id)

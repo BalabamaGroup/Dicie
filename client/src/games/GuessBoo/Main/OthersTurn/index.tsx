@@ -1,10 +1,14 @@
-import * as Styled from './index.styled';
 import CharadesAPI from '@/api/game/charades';
+
 import { UserInGame } from '@/common/types/user';
+
 import Button from '@/components/Button';
 import Loader from '@/components/Loader';
 import Player from '@/components/Player';
+
 import useGameStore from '@/stores/GameStore';
+
+import * as Styled from './index.styled';
 
 interface OthersTurnProps {}
 
@@ -18,9 +22,9 @@ const OthersTurn = ({}: OthersTurnProps) => {
     (s) => s.data?.roomDataDto.currentQuestion
   );
 
-  const onYes = () => CharadesAPI.answerQuestion({ charadeAnswer: 'YES' });
-  const onNo = () => CharadesAPI.answerQuestion({ charadeAnswer: 'NO' });
-  const onWtf = () => CharadesAPI.answerQuestion({ charadeAnswer: 'WTF' });
+  const onYes = () => CharadesAPI.answerQuestion({ guessBooAnswer: 'YES' });
+  const onNo = () => CharadesAPI.answerQuestion({ guessBooAnswer: 'NO' });
+  const onWtf = () => CharadesAPI.answerQuestion({ guessBooAnswer: 'WTF' });
 
   return (
     <Styled.OthersTurn currentQuestion={currentQuestion}>

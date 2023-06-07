@@ -1,27 +1,27 @@
 import { UserInGame } from '@/common/types/user';
-import useColorStore from '@/stores/ColorStore';
+
+import useGameStore from '@/stores/GameStore';
 
 import ActionAreaContent from './ActionAreaContent';
 import * as Styled from './index.styled';
 
 interface ActionAreaProps {
-  isMyTurn: boolean;
   mePlayer: UserInGame;
   highlightedPlayer: UserInGame | null;
   setHighlightedPlayer: Function;
 }
 
 const ActionArea = ({
-  isMyTurn,
   mePlayer,
   highlightedPlayer,
   setHighlightedPlayer,
 }: ActionAreaProps) => {
-  const isWait = useColorStore((s) => s.color.guessBoo) === 'indigo';
+  const myTurn = useGameStore((s) => s.myTurn);
+
   return (
-    <Styled.ActionArea isMyTurn={isMyTurn} isWait={isWait}>
+    <Styled.ActionArea isMyTurn={myTurn} isWait={!myTurn}>
       <ActionAreaContent
-        isMyTurn={isMyTurn}
+        isMyTurn={myTurn}
         mePlayer={mePlayer}
         highlightedPlayer={highlightedPlayer}
         setHighlightedPlayer={setHighlightedPlayer}

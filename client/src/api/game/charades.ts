@@ -4,7 +4,7 @@ export default class CharadesAPI {
   static selectUser = (id: number) => {
     const options = {
       method: 'post',
-      url: `game_charade/select_user/${id}`,
+      url: `game_guess_boo/select_user/${id}`,
     };
 
     return request(options).then((res: Promise<void>) => res);
@@ -13,7 +13,7 @@ export default class CharadesAPI {
   static setReady = async () => {
     const options = {
       method: 'post',
-      url: `game_charade/ready`,
+      url: `game_guess_boo/ready`,
     };
 
     return request(options).then((res: Promise<void>) => res);
@@ -22,7 +22,7 @@ export default class CharadesAPI {
   static setWord = async (id: number, data: { word: string }) => {
     const options = {
       method: 'post',
-      url: `game_charade/set_word/${id}`,
+      url: `game_guess_boo/set_word/${id}`,
       data,
     };
 
@@ -32,17 +32,17 @@ export default class CharadesAPI {
   static askQuestion = async (data: { question: string }) => {
     const options = {
       method: 'post',
-      url: `game_charade/ask_question`,
+      url: `game_guess_boo/ask_question`,
       data,
     };
 
     return request(options).then((res: Promise<void>) => res);
   };
 
-  static answerQuestion = (data: { charadeAnswer: string }) => {
+  static answerQuestion = (data: { guessBooAnswer: string }) => {
     const options = {
       method: 'post',
-      url: `game_charade/answer`,
+      url: `game_guess_boo/answer`,
       data,
     };
 
@@ -52,7 +52,7 @@ export default class CharadesAPI {
   static acceptAnswer = async (): Promise<void> => {
     const options = {
       method: 'post',
-      url: `game_charade/accept_answer`,
+      url: `game_guess_boo/accept_answer`,
     };
 
     return request(options).then((res: Promise<void>) => res);
@@ -63,7 +63,7 @@ export default class CharadesAPI {
   ): Promise<[{ question: string; answer: 'YES' | 'NO' | 'WTF' }]> => {
     const options = {
       method: 'get',
-      url: `game_charade/get_history/${id}`,
+      url: `game_guess_boo/get_history/${id}`,
     };
 
     return request(options).then(
@@ -75,7 +75,7 @@ export default class CharadesAPI {
   static passTurnFM = async () => {
     const options = {
       method: 'post',
-      url: `game_charade/change_turn`,
+      url: `game_guess_boo/change_turn`,
     };
 
     return request(options).then((res: Promise<void>) => res);
@@ -84,7 +84,7 @@ export default class CharadesAPI {
   static checkWord = async (data: { word: string }) => {
     const options = {
       method: 'post',
-      url: `game_charade/check_word`,
+      url: `game_guess_boo/check_word`,
       data,
     };
 

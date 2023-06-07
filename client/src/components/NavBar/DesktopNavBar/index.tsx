@@ -34,11 +34,10 @@ const DesktopNavBar = ({ withHome, withMyRoom }: DesktopNavBarProps) => {
 
       <Styled.DesktopNavBarContent theme={componentTheme}>
         <Styled.DesktopNavBarOption
-          className={'is-link'}
           onClick={goToLeaderboard}
           theme={componentTheme}
         >
-          Leaderboard
+          <div className='option-title is-link'>Leaderboard</div>
         </Styled.DesktopNavBarOption>
 
         {withMyRoom && (

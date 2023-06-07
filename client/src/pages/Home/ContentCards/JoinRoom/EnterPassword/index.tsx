@@ -94,7 +94,7 @@ export const StyledEnterPassword = styled.div<{}>`
 interface EnterPasswordProps {
   roomId: string | null;
   isVisible: boolean;
-  onClose: Function;
+  onClose: { (): void };
 }
 
 const EnterPassword = ({ roomId, isVisible, onClose }: EnterPasswordProps) => {
@@ -108,8 +108,13 @@ const EnterPassword = ({ roomId, isVisible, onClose }: EnterPasswordProps) => {
     if (!roomId) return;
     try {
       await RoomAPI.connectToRoom(roomId, password);
-      await fetchUser();
-      navigate(`/room/${roomId}`);
+      useUserStore.setState((s) => ({
+        ...s,
+        user: { ...s.user, roomId: roomId },
+      }));
+      await fetchUser().then(() => {
+        navigate(`/room/${roomId}`);
+      });
     } catch (e) {
       Toast.error('Room is unavialable');
     }
