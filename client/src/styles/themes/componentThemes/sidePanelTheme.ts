@@ -3,6 +3,7 @@ import colors, { hexToRgba } from '@/styles/colors/colors';
 const light = {
   indigo: {
     bodyBackground: colors.indigo[10],
+    collapsedBackground: colors.lime[0],
     border: colors.indigo[50],
     shadowRGBA: hexToRgba(colors.indigo[90], 0.25),
     headerBackground: colors.indigo[0],
@@ -43,6 +44,7 @@ const light = {
   },
   lime: {
     bodyBackground: colors.lime[10],
+    collapsedBackground: colors.lime[0],
     border: colors.lime[50],
     shadowRGBA: hexToRgba(colors.lime[90], 0.25),
     headerBackground: colors.lime[0],
@@ -86,6 +88,7 @@ const light = {
 const dark = {
   indigo: {
     bodyBackground: colors.indigo[80],
+    collapsedBackground: colors.indigo[90],
     border: colors.indigo[100],
     shadowRGBA: hexToRgba(colors.indigo[90], 0.75),
     headerBackground: colors.indigo[90],
@@ -126,6 +129,7 @@ const dark = {
   },
   lime: {
     bodyBackground: colors.lime[80],
+    collapsedBackground: colors.lime[90],
     border: colors.lime[100],
     shadowRGBA: hexToRgba(colors.lime[90], 0.75),
     headerBackground: colors.lime[90],
