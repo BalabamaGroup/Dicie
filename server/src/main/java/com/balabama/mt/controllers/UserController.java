@@ -43,6 +43,11 @@ public class UserController {
         return converter.simpleConvert(service.getCurrent(), UserDto.class);
     }
 
+    @GetMapping("/leaderboard")
+    public List<UserDto> getLeaderboard() {
+        return converter.simpleConvert(service.getLeaderboard(), UserDto.class);
+    }
+
     @PutMapping("/change_theme")
     public UserDto changeTheme(@RequestBody User.Theme theme) {
         return converter.simpleConvert(service.changeTheme(theme), UserDto.class);

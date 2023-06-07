@@ -12,6 +12,9 @@ public interface UserService {
 
     User getCurrent();
 
+    List<User> getLeaderboard();
+
+
     User changeTheme(User.Theme theme);
 
 

@@ -1,20 +1,16 @@
 package com.balabama.mt.service_implementation;
 
-import com.balabama.mt.entities.rooms.Room;
 import com.balabama.mt.entities.user.User;
 import com.balabama.mt.exceptions.MTException;
 import com.balabama.mt.repositories.UserRepository;
 import com.balabama.mt.services.UserService;
 
+import java.util.Comparator;
 import java.util.List;
-import java.util.UUID;
-import javax.transaction.Transactional;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.builder.ToStringExclude;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -52,6 +48,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getCurrent() {
         return getByUsername(getCurrentUserName());
+    }
+
+    @Override
+    public List<User> getLeaderboard() {
+        List<User> userList = userRepository.findAll();
+        userList.sort(Comparator.comparing(User::getPoints).reversed());
+        return userList;
     }
 
     @Override
