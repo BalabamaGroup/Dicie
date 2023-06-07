@@ -63,7 +63,6 @@ const JoinRoomCard = ({
 
         {enterPasswordIsVisible && (
           <EnterPassword
-            isVisible={enterPasswordIsVisible}
             onClose={onCancelEnterPassword}
             roomId={connectRoomID}
           />

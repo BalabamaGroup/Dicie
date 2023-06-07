@@ -93,13 +93,13 @@ export const StyledEnterPassword = styled.div<{}>`
 
 interface EnterPasswordProps {
   roomId: string | null;
-  isVisible: boolean;
   onClose: { (): void };
 }
 
-const EnterPassword = ({ roomId, isVisible, onClose }: EnterPasswordProps) => {
+const EnterPassword = ({ roomId, onClose }: EnterPasswordProps) => {
   const navigate = useNavigate();
   const fetchUser = useUserStore((s) => s.fetchUser);
+  const user = useUserStore((s) => s.user);
 
   const [password, setPassword] = useState<string>('');
   const onChangePassword = (e: any) => setPassword(e.target.value);
@@ -108,10 +108,8 @@ const EnterPassword = ({ roomId, isVisible, onClose }: EnterPasswordProps) => {
     if (!roomId) return;
     try {
       await RoomAPI.connectToRoom(roomId, password);
-      useUserStore.setState((s) => ({
-        ...s,
-        user: { ...s.user, roomId: roomId },
-      }));
+      const newUser = user ? { ...user, roomId: roomId } : null;
+      useUserStore.setState((s) => ({ ...s, user: newUser }));
       await fetchUser().then(() => {
         navigate(`/room/${roomId}`);
       });

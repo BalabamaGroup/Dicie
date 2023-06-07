@@ -19,6 +19,8 @@ export type RoomOutside = {
   numberOfUsers: number | null;
   start: boolean;
   admin: User;
+  isPrivate: boolean;
+  isFriendMode: boolean;
 };
 
 export type Game = Omit<Room, 'users'> & {
