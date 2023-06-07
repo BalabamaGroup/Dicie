@@ -22,7 +22,7 @@ public class UserMemetaurStateDto extends UserStateDto {
     public UserMemetaurStateDto(UserMemetaurState state) {
         super(state);
         this.gif = state.getGif();
-        this.votedGif = state.getGif();
+        this.votedGif = state.getVotedGif();
         this.countWin = state.getCountWin();
         this.isGoing = state.getIsGoing();
     }
