@@ -70,7 +70,9 @@ public class RoomDtoConverter extends BaseDtoConverter {
         roomDto.setId(room.getId());
         roomDto.setIsPrivate(room.getIsPrivate());
         roomDto.setIsFriendMode(room.getIsFriendMode());
-        roomDto.setGameId(room.getGame().getId());
+        if (room.getGame() != null) {
+            roomDto.setGameId(room.getGame().getId());
+        }
         return roomDto;
     }
 }
