@@ -24,7 +24,7 @@ export const MemeGrading = styled.div<{}>`
       margin-bottom: auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-auto-rows: auto;
+      grid-template-rows: auto;
       gap: 16px;
 
       @media ${mobileAndSmaller} {

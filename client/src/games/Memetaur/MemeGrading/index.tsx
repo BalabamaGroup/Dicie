@@ -1,5 +1,3 @@
-import MemetaurAPI from '@/api/game/memetaur';
-
 import Scroll from '@/components/Scroll';
 
 import useGameStore from '@/stores/GameStore';
@@ -17,7 +15,7 @@ const MemeGrading = ({}: MemeGradingProps) => {
     <Styled.MemeGrading>
       <Scroll className='meme-grading-scroll' color='indigo'>
         <div className='memes'>
-          {[...users, ...users].map((user) => (
+          {users.map((user) => (
             <Meme caption={phrase} gif={user.state.gif} />
           ))}
         </div>

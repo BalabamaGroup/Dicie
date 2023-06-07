@@ -28,7 +28,8 @@ export type UserGuessBooState = {
 };
 
 export type UserMemetaurState = {
+  isGoing: true;
   gif: string;
-  voted_gif: string;
-  count_win: number;
+  votedGif: string;
+  countWin: number;
 };

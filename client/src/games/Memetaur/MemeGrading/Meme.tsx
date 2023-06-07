@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import MemetaurAPI from '@/api/game/memetaur';
@@ -9,6 +8,7 @@ import useGameStore from '@/stores/GameStore';
 
 export const StyledMeme = styled.div<{ isVoted: boolean; isMy: boolean }>`
   max-width: 400px;
+  max-height: 400px;
   position: relative;
 
   display: flex;
@@ -18,13 +18,14 @@ export const StyledMeme = styled.div<{ isVoted: boolean; isMy: boolean }>`
 
   background: ${({ theme }) =>
     theme.memetaurGame.game.memeGrading.meme.background};
-
   border: 1px solid
     ${({ theme }) => theme.memetaurGame.game.memeGrading.meme.border};
-
   border-radius: 8px;
 
   .caption {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: auto;
     width: 100%;
     text-align: center;
     box-sizing: border-box;
@@ -51,7 +52,9 @@ export const StyledMeme = styled.div<{ isVoted: boolean; isMy: boolean }>`
     `}
 
   .body {
+    margin-bottom: auto;
     width: 100%;
+    max-height: 280px;
     padding: 8px;
     display: flex;
     align-items: center;
@@ -59,11 +62,10 @@ export const StyledMeme = styled.div<{ isVoted: boolean; isMy: boolean }>`
     box-sizing: border-box;
 
     img {
-      object-fit: contain;
       height: 100%;
       width: auto;
       max-width: 100%;
-      border-radius: 4px;
+      border-radius: 8px;
     }
   }
 
@@ -103,15 +105,13 @@ interface MemeProps {
 
 const Meme = ({ caption, gif }: MemeProps) => {
   const myGif = useGameStore((s) => s.getMePlayer().state.gif);
-  const votedGif = useGameStore((s) => s.getMePlayer().state.voted_gif);
+  const votedGif = useGameStore((s) => s.getMePlayer().state.votedGif);
   const onVote = () => MemetaurAPI.voteForGif({ word: gif });
 
+  console.log(myGif === votedGif);
+
   return (
-    <StyledMeme
-      isMy={myGif === gif}
-      // isVoted={votedGif === gif}
-      isVoted={myGif === gif}
-    >
+    <StyledMeme isMy={myGif === gif} isVoted={votedGif === gif}>
       <div className='overlay'>
         <Button isPrimary color='indigo' onClick={onVote}>
           Vote for this meme
